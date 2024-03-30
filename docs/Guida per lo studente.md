@@ -65,7 +65,7 @@ Si suppone che lo studente abbia già installato sulla sua macchina l’ultima v
 - Aspettare che GitHub Classroom cloni il repository base per te.
   ![configuringRepository](./img/configuringRepository.png)
 - *Fai un refresh della pagina web per verificare il completamento.
-  ![readyToGo](./img/readyToGo.png)
+  ![readyToGo](./img/readyToGoCocke.png)
 - Comunicare al docente in chat l'esito della creazione.
 - Comunicare agli altri componenti del gruppo il link di assegnazione del progetto precedentemente inviato dal docente.
 
@@ -77,7 +77,7 @@ Si suppone che lo studente abbia già installato sulla sua macchina l’ultima v
 - Scorrere la lista e cliccare sul proprio indirizzo di email
   ![joinClassroom](./img/joinClassroom.png)
 - Unisciti al tuo team cliccando il corrispondente pulsante `Join`
-   ![joinTeam](./img/joinTeam.png)
+   ![joinTeam](./img/joinTeamCocke.png)
    **Se non trovi il team è probabile che l'assignment sia stato accettato prima della creazione del team. Fermarsi e avvisare il componente designato dal.
 
 - Se ti sei unito a un team già creato, dovrai prima confermare la scelta e quindi avrai subito la conferma.
@@ -115,13 +115,13 @@ L'intervento iniziale a voi richiesto deve essere svolto da *un solo membro del 
 Il membro del team, avendo i diritti di amministratore sul repository, deve:
 
 - entrare nella pagina delle impostazioni del proprio profilo GitHub (click sull'immagine di profilo in alto a destra, poi click sulla voce *"Settings"* nel menù a tendina che compare);
-  ![SaveTokenInSecret_1](./img/SaveTokenInSecret_1.png)
+  ![SaveTokenInSecret_1](./img/SaveTokenInSecretCocke_1.png)
 
 - entrare nella sezione delle impostazioni per sviluppatori, *"Developer Settings"*, facendo click sul relativo pulsante nella barra laterale;
-  ![SaveTokenInSecret_2](./img/SaveTokenInSecret_2.png)
+  ![SaveTokenInSecret_2](./img/SaveTokenInSecretCocke_2.png)
 
 - selezionare *"Personal access tokens"* nella barra laterale, quindi la sotto-voce *"Tokens (classic)"*. Successivamente fare click sul bottone *"Generate new token"* in alto a destra, quindi su *"Generate new token (classic)"*;
-  ![SaveTokenInSecret_3](./img/SaveTokenInSecret_3.png)
+  ![SaveTokenInSecret_3](./img/SaveTokenInSecretCocke_3.png)
 
 - indicare nel campo *"Note"* l'utilizzo che si intende fare del token (ad es.: *"Upload of Docker images to GitHub Packages"*). Tale appunto tornerà utile in futuro per ricordarsi a quale scopo era stato generato il token;
 
@@ -131,7 +131,7 @@ Il membro del team, avendo i diritti di amministratore sul repository, deve:
   - `write:packages`
   - `read:packages`
 
-  ![SaveTokenInSecret_4](./img/SaveTokenInSecret_4.png)
+  ![SaveTokenInSecret_4](./img/SaveTokenInSecretCocke_4.png)
 
 - fare click sul pulsante *"Generate token"*, in basso nella pagina;
 - copiare il token che apparirà alla pagina seguente e memorizzarlo in un luogo sicuro.
@@ -143,11 +143,11 @@ A questo punto, il membro del team che ha generato il token dovrà:
 
 - recarsi sulla pagina principale del repository e fare click sull'icona *"Settings"* (ultima tab in alto a destra);
   **N.B.**: solo l'amministratore visualizza questa tab!
-  ![SaveTokenInSecret_5](./img/SaveTokenInSecret_5.png)
+  ![SaveTokenInSecret_5](./img/SaveTokenInSecretCocke_5.png)
 - selezionare la voce *"Secrets and variables"*, quindi la sotto-voce *"Actions"* dalla barra laterale;
-  ![SaveTokenInSecret_6](./img/SaveTokenInSecret_6.png)
+  ![SaveTokenInSecret_6](./img/SaveTokenInSecretCocke_6.png)
 - fare click sul pulsante *"New repository secret"*:
- ![SaveTokenInSecret_6](./img/SaveTokenInSecret_7.png)
+ ![SaveTokenInSecret_6](./img/SaveTokenInSecretCocke_7.png)
   - inserire la stringa `GH_ACCESS_TOKEN` nella textbox con l'etichetta *"Name"*;
   - inserire il Personal Access Token precedentemente generato nella textarea con l'etichetta *"Secret"*;
   - concludere l'operazione cliccando sul pulsante *"Add secret"*.
@@ -164,22 +164,22 @@ Affinché tutti i membri del team possano visualizzare e scaricare l'immagine Do
 
 1. accedere al proprio repository su GitHub;
 2. cliccare sul link del package associato al repository; il link è collocato nella barra laterale destra della pagina principale del repository, sotto l'intestazione "Packages"
-(vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/ExecuteDockerImage_1.png)
+(vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/LinkToPackageCocke.png)
 N.B.: il package sarà visibile solo dopo che GitHub Actions avrà completato con successo la prima build del progetto;
-3. cliccare sul link "Package settings", presente nella pagina dedicata al package come ultima voce nella barra laterale destra (vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/packageSettings.png)
+3. cliccare sul link "Package settings", presente nella pagina dedicata al package come ultima voce nella barra laterale destra (vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/packageSettingsCocke.png)
 4. scorrere in basso, sino all'intestazione "Inherited access"; rimuovere la spunta dalla checkbox *"Inherit access from source repository (recommended)"* – questa operazione comporterà un ricaricamento automatico della pagina;
-5. dopo il ricaricamento della pagina, l'intestazione *"Inherited access"* viene sostituita dall'intestazione *"Manage access"*; a destra dell'intestazione compare inoltre il bottone *"Invite teams or people"*; fare click su tale bottone e aggiungere il proprio team alla lista dei membri, conferendo allo stesso i permessi di "Admin" (vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/manageAccess.png).
+5. dopo il ricaricamento della pagina, l'intestazione *"Inherited access"* viene sostituita dall'intestazione *"Manage access"*; a destra dell'intestazione compare inoltre il bottone *"Invite teams or people"*; fare click su tale bottone e aggiungere il proprio team alla lista dei membri, conferendo allo stesso i permessi di "Admin" (vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/manageAccessCocke.png).
 
 ## Aggiunta del badge di GitHub Actions nel README
 
 Per aggiungere il badge che riporta l'ultimo esito dell'esecuzione del workflow `docker_build&push.yml` (stato del workflow) all'interno del file README del vostro repository, seguire le seguenti istruzioni:
 
 - entrare nella pagina principale del repository e cliccare su `Actions` (subito sotto il titolo, in alto al centro);
-![Update_GitHub_badge_1](./img/Update_GitHub_badge_1.png)
+![Update_GitHub_badge_1](./img/Update_GitHub_badge_1_Cocke.png)
 - la pagina *"All workflows"* sotto la tab *"Actions"*, riporta l'elenco delle esecuzioni (*run*) di tutti i workflow di GitHub Actions attivabili nel repository; per filtrarne il contenuto e visualizzare soltanto le esecuzioni relative al workflow `docker_build&push.yml`, fare click sulla voce corrispondente nel pannello laterale a sinistra. (**N.B.**: all'inizio del progetto, è del tutto normale che queste liste siano vuote. I workflow si attiveranno per la prima volta quando modificherete il codice nella cartella `src/` ed effettuerete Pull Request o operazioni di push/merge sul branch `main`);
 - Una volta selezionato il workflow `docker_build&push.yml` dal pannello laterale, in alto a destra nella pagina – di fianco alla text box con la scritta "Filter workflow runs" – comparirà un nuovo bottone con tre puntini `•••`. Fare click su tale bottone e poi selezionare la voce "Create status badge" nel menù a tendina.
 - Lasciando invariate le impostazioni di default (`branch` e `event`) nella finestra a comparsa, fare click su `Copy status badge Markdown`;
-  ![Update_GitHub_badge_3](./img/Update_GitHub_badge_3.png)
+  ![Update_GitHub_badge_3](./img/Update_GitHub_badge_3_Cocke.png)
 - La modifica del file Markdown `README.md` sarà fatta come parte dei task dello *Sprint 0* incollando il codice markdown per la costruzione del badge in cima al `README.md`, accanto al titolo del repository.
 
 Il titolo del README.md dovrà apparire come nella seguente figura, con *Ataxx* al posto di *scacchi*:
@@ -293,10 +293,10 @@ Svolgere le seguenti operazioni:
 
 - recarsi alla pagina principale dedicata al repository su GitHub e fare click sul link del package sotto il titolo *"Packages"*, come evidenziato in figura;
    **N.B.**: se i Secret menzionati in questa guida sono stati impostati correttamente e se almeno un'esecuzione del workflow di GitHub Actions è andata a buon fine, la vostra immagine Docker (nella sua ultima versione) dovrebbe essere disponibile.
-   ![ExecuteDockerImage_1](./img/ExecuteDockerImage_1.png)
+   ![ExecuteDockerImage_1](./img/LinkToPackageCocke.png)
 
 - nella pagina dedicata al package è indicato il comando da copiare ed eseguire nel terminale per scaricare l'immagine Docker in locale.
-   ![ExecuteDockerImage_2](./img/ExecuteDockerImage_2.png)
+   ![ExecuteDockerImage_2](./img/ExecuteDockerImageCocke_2.png)
 
 - incollare ed eseguire il comando nel terminale. Attendere che Docker scarichi l’immagine dell’applicazione
 
