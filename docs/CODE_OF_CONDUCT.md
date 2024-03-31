@@ -31,11 +31,11 @@
    - Non invierò codice che produca warning su qualunque strumento di correzione.
 	
 
- **_IN FEDE_**
-   _Vincenzo Buttari_ aka _zeltarave_
-   _Lorenzo Appice_ aka _lorenzoappice_
-   _Francesco Ciavarella_ aka _frankrep_
-   _Pietro De Giglio_ aka _zPhyter_
-   _Potito Florio_ aka _B4RTM0SS_
-   _Michele Loconte_ aka _lmikk0_
-   _Giovanni Guastamacchia_ aka _ninofrasca_
+ **_IN FEDE_**      
+   _Vincenzo Buttari_ aka _zeltarave_      
+   _Lorenzo Appice_ aka _lorenzoappice_      
+   _Francesco Ciavarella_ aka _frankrep_     
+   _Pietro De Giglio_ aka _zPhyter_      
+   _Potito Florio_ aka _B4RTM0SS_     
+   _Michele Loconte_ aka _lmikk0_     
+   _Giovanni Guastamacchia_ aka _ninofrasca_      
