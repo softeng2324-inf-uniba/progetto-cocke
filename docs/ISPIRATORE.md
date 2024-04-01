@@ -1,4 +1,7 @@
-**John Cocke**, nato il **30 maggio 1925** a **Charlotte, Carolina del Nord, USA**, e deceduto il **16 luglio 2002** a **Valhalla, New York**, è stato un matematico e informatico americano. È noto soprattutto per i suoi **eccezionali contributi** nel campo della **progettazione dei compilatori**, dell'**architettura dei grandi sistemi** e dello sviluppo dei **computer con set di istruzioni ridotte (RISC)**.
+**John Cocke**, nato il **30 maggio 1925** a **Charlotte, Carolina del Nord, USA**, e deceduto il **16 luglio 2002** a 
+**Valhalla, New York**, è stato un matematico e informatico americano. È noto soprattutto per i suoi eccezionali contributi
+ nel campo della progettazione dei compilatori, dell'architettura dei grandi sistemi e dello sviluppo dei computer con set 
+di istruzioni ridotte (RISC).
 
 Ecco alcuni dei suoi principali contributi:
 
