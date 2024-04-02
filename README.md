@@ -15,6 +15,7 @@ La struttura della repository si presenta nel seguente modo:
 |    |–– checkstyle
 |–– docs
 |    |–– Assegnazione progetto.md
+|    |–– CODE_OF_CONDUCT.md
 |    |–– Guida per lo studente.md
 |    |–– img
 |    |–– ISPIRATORE.md
@@ -43,6 +44,7 @@ Nel seguito si dettagliano i ruoli dei diversi componenti:
   Il file `Report.md` verrà usato per redigere la relazione finale del progetto.
   La cartella raccoglie inoltre:
   - `Assegnazione progetto.md`: contenente la descrizione dettagliata del progetto assegnato;
+  - `CODE_OF_CONDUCT.md`: contenente la descrizione del codice di condotta per il gruppo e le firme simboliche dei componenti.
   - `Guida per lo studente.md`: contenente la descrizione di tutti i passi di configurazione necessari per l'attivazione del flusso di lavoro a supporto dello sviluppo del progetto;
   - `ISPIRATORE.md`: contenente una breve biografia e i principali contributi di John Cocke, cui il nome del nostro gruppo si ispira;
 - `gradle/`: ospita il `.jar` relativo al sistema di gestione delle dipendenze *Gradle*.
