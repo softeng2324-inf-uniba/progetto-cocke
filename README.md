@@ -1,4 +1,4 @@
-# Battleship [![Docker Build & Push](https://github.com/softeng2324-inf-uniba/progetto-cocke/actions/workflows/docker_build&push.yml/badge.svg)](https://github.com/softeng2324-inf-uniba/progetto-cocke/actions/workflows/docker_build&push.yml)
+# Ataxx [![Docker Build & Push](https://github.com/softeng2324-inf-uniba/progetto-cocke/actions/workflows/docker_build&push.yml/badge.svg)](https://github.com/softeng2324-inf-uniba/progetto-cocke/actions/workflows/docker_build&push.yml)
 
 La struttura della repository si presenta nel seguente modo:
 
@@ -17,6 +17,7 @@ La struttura della repository si presenta nel seguente modo:
 |    |–– Assegnazione progetto.md
 |    |–– Guida per lo studente.md
 |    |–– img
+|    |–– ISPIRATORE.md
 |    |–– Report.md
 |–– drawings
 |–– gradle
@@ -43,6 +44,7 @@ Nel seguito si dettagliano i ruoli dei diversi componenti:
   La cartella raccoglie inoltre:
   - `Assegnazione progetto.md`: contenente la descrizione dettagliata del progetto assegnato;
   - `Guida per lo studente.md`: contenente la descrizione di tutti i passi di configurazione necessari per l'attivazione del flusso di lavoro a supporto dello sviluppo del progetto;
+  - `ISPIRATORE.md`: contenente una breve biografia e i principali contributi di John Cocke, cui il nome del nostro gruppo si ispira;
 - `gradle/`: ospita il `.jar` relativo al sistema di gestione delle dipendenze *Gradle*.
 - `lib`: include eventuali librerie esterne utilizzate dal progetto.
 - `res`: contiene risorse varie utilizzate dal sistema
