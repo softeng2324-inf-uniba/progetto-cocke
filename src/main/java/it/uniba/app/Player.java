@@ -53,7 +53,7 @@ public class Player {
 	 * Imposta il nome del giocatore
 	 * @param name nome del giocatore
 	 */
-	public void setName() {
+	public void setName(String name) {
 		playerName = name;
 	}
 }
