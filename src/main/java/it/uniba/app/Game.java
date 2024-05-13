@@ -1,16 +1,22 @@
 package it.uniba.app;
 
+import com.sun.jdi.Field;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingDeque;
 
 public class Game {
 
     private Field gameField;
-    private Queue<Move> moveList;
+    private ArrayList<Move> moveList;
     private Player[] players;
 
     Game(Player[] players) {
-        Field();
+        gameField = new Field();
+        moveList = new ArrayList<Move>();
         this.players = players;
     }
 
