@@ -29,7 +29,7 @@ public class Player {
 	 * Restituisce il colore del giocatore
 	 * @return colore del giocatore
 	 */
-	Color getColor() {
+	public Color getColor() {
 		return playerColor;
 	}
 
@@ -37,7 +37,7 @@ public class Player {
 	 * Imposta il colore del giocatore
 	 * @param color colore del giocatore
 	 */
-	void setColor(Color color) {
+	public void setColor(Color color) {
 		playerColor = color;
 	}
 
@@ -45,7 +45,7 @@ public class Player {
 	 * Restituisce il nome del giocatore
 	 * @return nome del giocatore
 	 */
-	String getName() {
+	public String getName() {
 		return playerName;
 	}
 
@@ -53,7 +53,7 @@ public class Player {
 	 * Imposta il nome del giocatore
 	 * @param name nome del giocatore
 	 */
-	void setName() {
+	public void setName() {
 		playerName = name;
 	}
 }
