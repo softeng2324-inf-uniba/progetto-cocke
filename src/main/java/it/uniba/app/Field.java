@@ -14,7 +14,7 @@ public class Field {
      * Costruisce un oggetto Field
      */
     Field () {
-        gameboard = new Field [7][7];
+        gameboard = new Slot [7][7];
     }
 
     /**
@@ -22,7 +22,7 @@ public class Field {
      * @param dim dimensione del campo di gioco
      */
     Field (int dim) {
-        gameboard = new Field [dim][dim];
+        gameboard = new Slot [dim][dim];
     }
 
     /**
