@@ -46,6 +46,10 @@ public class Ataxx {
 		stillPlaying = isStillPlaying;
 	}
 
+	/**
+	 * Gestisce il flusso di esecuzione in base al comando ricevuto.
+	 * @param command il comando da gestire
+	 */
 	public void ataxxCommand(String command){
 		switch (command){
 			case "/help":
