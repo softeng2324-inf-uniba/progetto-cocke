@@ -42,8 +42,5 @@ public class Field {
     public Slot getSlot (Coordinate c) {
         return gameboard[c.getX()][c.getY()];
     }
-
-    // public espandersi (mossa m) { }
-    // private dividersi (mossa m) { }
-    // private spostarsi (mossa m)
+    
 }
