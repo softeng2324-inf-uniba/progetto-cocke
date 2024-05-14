@@ -45,4 +45,27 @@ public class Ataxx {
 	public void setStillPlaying(boolean isStillPlaying) {
 		stillPlaying = isStillPlaying;
 	}
+
+	public void ataxxCommand(String command){
+		switch (command){
+			case "/help":
+
+				break;
+			case "/gioca":
+
+				break;
+			case "/vuoto":
+
+				break;
+			case "/tavoliere":
+
+				break;
+			case "/qualimosse":
+
+				break;
+			case "/abbandona":
+
+				break;
+		}
+	}
 }
