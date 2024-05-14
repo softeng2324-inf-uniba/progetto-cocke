@@ -7,11 +7,11 @@ public class Coordinate{
     /**
      * x è la coordinata x
      */
-    public int x;
+    private int x;
     /**
      * y è la coordinata y
      */
-    public int y;
+    private int y;
 
 
     /**
