@@ -66,6 +66,9 @@ public class Ataxx {
 			case "/abbandona":
 
 				break;
+			case "/esci":
+
+				break;
 		}
 	}
 }
