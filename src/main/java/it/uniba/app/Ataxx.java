@@ -45,4 +45,34 @@ public class Ataxx {
 	public void setStillPlaying(boolean isStillPlaying) {
 		stillPlaying = isStillPlaying;
 	}
+
+	/**
+	 * Gestisce il flusso di esecuzione in base al comando ricevuto.
+	 * @param command il comando da gestire
+	 */
+	public static void ataxxCommand(String command){
+		switch (command){
+			case "/help":
+
+				break;
+			case "/gioca":
+
+				break;
+			case "/vuoto":
+
+				break;
+			case "/tavoliere":
+
+				break;
+			case "/qualimosse":
+
+				break;
+			case "/abbandona":
+
+				break;
+			case "/esci":
+
+				break;
+		}
+	}
 }
