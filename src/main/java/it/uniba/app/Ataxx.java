@@ -1,17 +1,21 @@
 package it.uniba.app;
-import org.apache.commons.cli;
-import java.text.ParseException;
+import org.apache.commons.cli.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-
-
 /**
  * Ataxx è la classe principale del gioco che gestisce l'intero flusso di gioco.
  */
 public class Ataxx {
+
+	/**
+	 * File contenente le informazioni di aiuto per l'utente.
+	 */
+
+	private static File helpFile = new File("help.txt");
+
 	/**
 	 * Rappresenta il gioco attualmente in esecuzione.
 	 */
@@ -60,7 +64,7 @@ public class Ataxx {
 	 * Se viene passata una flag non riconosciuta, viene stampato un messaggio di errore.
 	 * Se non vengono passate flag, il programma prosegue normalmente.
 	 */
-	private void manageFlag(){
+	private void manageFlag(String [] args){
 		Options options = new Options();
         options.addOption("h", "help", false, "Mostra l'aiuto");
 
@@ -71,7 +75,7 @@ public class Ataxx {
             if (cmd.hasOption("h") || cmd.hasOption("help")) {
                 HelpFormatter formatter = new HelpFormatter();
                 formatter.printHelp("App", options);
-                manageHelp();
+                manageHelp(helpFile);
                 return;
             }
 
@@ -84,7 +88,7 @@ public class Ataxx {
 	 * Gestisce il file da stampare a video
 	 * @param help file da leggere e stampare a video
 	 */
-	private void manageHelp(File help) {
+	private static void manageHelp(File help) {
 		BufferedReader reader = null; //inizializzo a null reader per leggere il file help
 		try {
 			reader = new BufferedReader(new FileReader(help)); //istanza che punta al file da leggere
@@ -116,8 +120,7 @@ public class Ataxx {
 	public static void ataxxCommand(String command, String[] args) {
 		switch (command){
 			case "/help":
-				File help = new File(help.txt);
-				manageHelp(help);
+				manageHelp(helpFile);
 				break;
 			case "/gioca":
 
