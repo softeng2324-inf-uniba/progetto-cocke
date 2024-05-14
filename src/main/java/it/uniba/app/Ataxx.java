@@ -1,4 +1,6 @@
 package it.uniba.app;
+import org.apache.commons.cli;
+import java.text.ParseException;
 
 /**
  * Ataxx è la classe principale del gioco che gestisce l'intero flusso di gioco.
@@ -46,11 +48,31 @@ public class Ataxx {
 		stillPlaying = isStillPlaying;
 	}
 
+	private void manageFlag(){
+		Options options = new Options();
+        options.addOption("h", "help", false, "Mostra l'aiuto");
+
+        CommandLineParser parser = new DefaultParser();
+        try {
+            CommandLine cmd = parser.parse(options, args);
+
+            if (cmd.hasOption("h") || cmd.hasOption("help")) {
+                HelpFormatter formatter = new HelpFormatter();
+                formatter.printHelp("App", options);
+                manageHelp();
+                return;
+            }
+
+        } catch (ParseException e) {
+            System.err.println("Errore durante il parsing degli argomenti: " + e.getMessage());
+        }
+	}
+
 	/**
 	 * Gestisce il flusso di esecuzione in base al comando ricevuto.
 	 * @param command il comando da gestire
 	 */
-	public static void ataxxCommand(String command){
+	public static void ataxxCommand(String command, String[] args){
 		switch (command){
 			case "/help":
 
