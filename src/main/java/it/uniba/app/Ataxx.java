@@ -54,6 +54,12 @@ public class Ataxx {
 		stillPlaying = isStillPlaying;
 	}
 
+	/**
+	 * Gestisce le flag passate come argomenti al programma (tramite CLI).
+	 * Se viene passata la flag -h o --help, viene stampato l'help del programma.
+	 * Se viene passata una flag non riconosciuta, viene stampato un messaggio di errore.
+	 * Se non vengono passate flag, il programma prosegue normalmente.
+	 */
 	private void manageFlag(){
 		Options options = new Options();
         options.addOption("h", "help", false, "Mostra l'aiuto");
