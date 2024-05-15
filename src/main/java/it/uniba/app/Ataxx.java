@@ -1,5 +1,4 @@
 package it.uniba.app;
-import org.apache.commons.cli.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -65,23 +64,24 @@ public class Ataxx {
 	 * Se non vengono passate flag, il programma prosegue normalmente.
 	 */
 	private void manageFlag(String [] args){
-		Options options = new Options();
-        options.addOption("h", "help", false, "Mostra l'aiuto");
+		boolean help = false;
 
-        CommandLineParser parser = new DefaultParser();
-        try {
-            CommandLine cmd = parser.parse(options, args);
+		for (String arg : args) {
+			switch (arg) {
+				case "-h":
+				case "--help":
+					help = true;
+					break;
+				default:
+					System.err.println("Flag non riconosciuta: " + arg);
+					break;
+			}	
+		}
 
-            if (cmd.hasOption("h") || cmd.hasOption("help")) {
-                HelpFormatter formatter = new HelpFormatter();
-                formatter.printHelp("App", options);
-                manageHelp(helpFile);
-                return;
-            }
-
-        } catch (ParseException e) {
-            System.err.println("Errore durante il parsing degli argomenti: " + e.getMessage());
-        }
+		if (help) {
+			manageHelp(helpFile);
+			return;
+		}
 	}
 
 	/**
