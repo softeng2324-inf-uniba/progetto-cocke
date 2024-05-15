@@ -26,7 +26,7 @@ public class Ataxx {
 	 * Imposta il gioco attualmente in esecuzione.
 	 * @param newGame il nuovo gioco da impostare.
 	 */
-	public void setGame(Game newGame) {
+	public void setGame(final Game newGame) {
 		game = newGame;
 	}
 
@@ -42,7 +42,7 @@ public class Ataxx {
 	 * Imposta se il gioco è ancora in esecuzione.
 	 * @param isStillPlaying valore booleano per indicare se il gioco è ancora in esecuzione.
 	 */
-	public void setStillPlaying(boolean isStillPlaying) {
+	public void setStillPlaying(final boolean isStillPlaying) {
 		stillPlaying = isStillPlaying;
 	}
 
@@ -50,8 +50,8 @@ public class Ataxx {
 	 * Gestisce il flusso di esecuzione in base al comando ricevuto.
 	 * @param command il comando da gestire
 	 */
-	public static void ataxxCommand(String command){
-		switch (command){
+	public static void ataxxCommand(final String command) {
+		switch (command) {
 			case "/help":
 
 				break;
@@ -72,6 +72,9 @@ public class Ataxx {
 				break;
 			case "/esci":
 
+				break;
+			default:
+				System.out.println("Comando sconosciuto");
 				break;
 		}
 	}

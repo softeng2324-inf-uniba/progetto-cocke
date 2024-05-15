@@ -1,56 +1,54 @@
 package it.uniba.app;
 
 /**
- * Coordinate e la classe che serve ad indicare le coordinate di gioco
+ * Coordinate e la classe che serve ad indicare le coordinate di gioco.
  */
-public class Coordinate{
+public class Coordinate {
     /**
-     * x è la coordinata x
+     * x è la coordinata x.
      */
     private int x;
     /**
-     * y è la coordinata y
+     * y è la coordinata y.
      */
     private int y;
 
 
     /**
-     * Costruisce le coordinate
-     * @param x è la coordinata ascisse
-     * @param y è la coordinata ordinate
+     * Costruisce le coordinate.
+     * @param newX è la coordinata ascisse
+     * @param newY è la coordinata ordinate
      */
-    public Coordinate(int x , int y) {
-        this.x=x;
-        this.y=y;
+    public Coordinate(final int newX, final int newY) {
+        x = newX;
+        y = newY;
     }
 
     /**
-     * Prende il valore x
+     * Prende il valore x.
      * @return il valore delle ascisse
      */
-    public int getX(){
+    public int getX() {
         return x;
     }
 
     /**
-     * Prende il valore y
-     * @return il valore delle ordinate
+     * Prende il valore y.
+     * @return y il valore delle ordinate
      */
-    public int getY(){
+    public int getY() {
         return y;
     }
     /**
-     * Imposta il valore x
-     * @return il valore delle ascisse
+     * Imposta il valore x.
      */
-    public void setX(int x){
-        this.x=x;
+    public void setX(final int newX) {
+        x = newX;
     }
     /**
-     * Imposta il valore y
-     * @return il valore delle ordinate
+     * Imposta il valore y.
      */
-    public void setY(int y){
-        this.y=y;
+    public void setY(final int newY) {
+        y = newY;
     }
 }

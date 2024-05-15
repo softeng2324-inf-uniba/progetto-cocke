@@ -1,24 +1,25 @@
 package it.uniba.app;
 
+
 /**
- * Slot è la classe che rappresenta la casella
+ * Slot è la classe che rappresenta la casella.
  */
 public class Slot {
     /**
-     * Rappresenta lo stato della casella se piena(di che colore) o vuota
+     * Rappresenta lo stato della casella se piena(di che colore) o vuota.
      */
     private Color colorState;
 
     /**
-     * Costruttore della classe slot
+     * Costruttore della classe slot.
      * @param c il colore della casella
      */
-    public Slot (Color c){
+    public Slot(final Color c) {
         colorState = c;
     }
 
     /**
-     * Restituisce lo stato della casella
+     * Restituisce lo stato della casella.
      * @return lo stato della casella
      */
     public Color getColorState() {
@@ -26,10 +27,10 @@ public class Slot {
     }
 
     /**
-     * Modifica lo stato della casella
+     * Modifica lo stato della casella.
      * @param c il colore della casella
      */
-    public void setColorState (Color c) {
+    public void setColorState(final Color c) {
         colorState = c;
     }
 }
