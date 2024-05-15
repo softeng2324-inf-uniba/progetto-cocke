@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Ataxx è la classe principale del gioco che gestisce l'intero flusso di gioco.
@@ -13,7 +15,8 @@ public class Ataxx {
 	 * File contenente le informazioni di aiuto per l'utente.
 	 */
 
-	private static File helpFile = new File("help.txt");
+	private static String relativePath = "/src/main/java/it/uniba/app/help.txt"; // Percorso relativo del file da leggere
+	private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
 	/**
 	 * Rappresenta il gioco attualmente in esecuzione.
@@ -63,7 +66,7 @@ public class Ataxx {
 	 * Se viene passata una flag non riconosciuta, viene stampato un messaggio di errore.
 	 * Se non vengono passate flag, il programma prosegue normalmente.
 	 */
-	private void manageFlag(String [] args){
+	private static void manageFlag(String [] args){
 		boolean help = false;
 
 		for (String arg : args) {
@@ -75,40 +78,30 @@ public class Ataxx {
 				default:
 					System.err.println("Flag non riconosciuta: " + arg);
 					break;
-			}	
+			}
 		}
 
 		if (help) {
-			manageHelp(helpFile);
+			manageHelp();
 			return;
 		}
 	}
 
 	/**
 	 * Gestisce il file da stampare a video
-	 * @param help file da leggere e stampare a video
 	 */
-	private static void manageHelp(File help) {
-		BufferedReader reader = null; //inizializzo a null reader per leggere il file help
-		try {
-			reader = new BufferedReader(new FileReader(help)); //istanza che punta al file da leggere
-			String currentLine = reader.readLine(); //leggo la prima riga del file help e la salvo in currentLine
-			while ((currentLine = reader.readLine()) != null) { //stampo tutte le righe del file help fino a che non arriva alla fine
-				System.out.println(currentLine);
-			}
-		}
-		catch (IOException e) { //se non riesce a leggere il file help
-			System.err.println("Errore durante la lettura del file di help: " + e.getMessage());
-		}
-		finally { //in ogni caso finisco qui e chiudo il file help per liberare risorse
-			try {
-				if (reader != null) {
-					reader.close();
+	private static void manageHelp() {
+		if (new File(filePath).exists()) {
+			try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+				String line;
+				while ((line = reader.readLine()) != null) {
+					System.out.println(line);
 				}
+			} catch (IOException e) {
+				System.out.println("Si è verificato un errore durante la lettura del file: " + e.getMessage());
 			}
-			catch (IOException e) { //se non riesce a chiudere il file help
-				System.err.println("Errore durante la chiusura del file di help: " + e.getMessage());
-			}
+		} else {
+			System.out.println("File non trovato");
 		}
 	}
 
@@ -118,29 +111,29 @@ public class Ataxx {
 	 * @param command il comando da gestire
 	 */
 	public static void ataxxCommand(String command, String[] args) {
+		manageFlag(args);
 		switch (command){
 			case "/help":
-				manageHelp(helpFile);
+				manageHelp();
 				break;
 			case "/gioca":
-
+				System.out.println("/gioca");
 				break;
 			case "/vuoto":
-
+				System.out.println("/vuoto");
 				break;
 			case "/tavoliere":
-
+				System.out.println("/tavoliere");
 				break;
 			case "/qualimosse":
-
+				System.out.println("/qualimosse");
 				break;
 			case "/abbandona":
-
+				System.out.println("/abbandona");
 				break;
 			case "/esci":
-
+				System.out.println("/esci");
 				break;
 		}
 	}
-
 }
