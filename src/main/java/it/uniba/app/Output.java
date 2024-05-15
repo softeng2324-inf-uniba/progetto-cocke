@@ -19,33 +19,35 @@ public class Output {
     void printEmptyField(){
         final int dim = 7;
         System.out.print("   ");
-        for(int i=0;i<dim;i++){
+        for(int i=1;i<=dim;i++){
             System.out.print("____ ");
         }
         System.out.print("\n");
         System.out.print(" _|");
         char c = '\u0041';
-        for(int i=0;i<dim;i++){
+        for(int i=1;i<=dim;i++){
             System.out.print("_"+c+"__|");
             c++;
         }
         System.out.print("_");
-        for(int i=0; i<dim; i++) {
+        System.out.print("\n");
+        for(int i=1; i<=dim; i++) {
             System.out.print("|"+i+"|");
-            for(int j=0; j<dim; j++){
+            for(int j=1; j<=dim; j++){
                 System.out.print("    |");
             }
             System.out.print(i+"|");
             System.out.print("\n");
             System.out.print("|_|");
-            for(int j=0; j<dim; j++){
+            for(int j=1; j<=dim; j++){
                 System.out.print("____|");
             }
             System.out.print("_|");
+            System.out.print("\n");
         }
         System.out.print("  |");
         c = '\u0041';
-        for(int i=0;i<dim;i++){
+        for(int i=1;i<=dim;i++){
             System.out.print("_"+c+"__|");
             c++;
         }
