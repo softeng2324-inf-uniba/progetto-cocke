@@ -17,10 +17,10 @@ public class Player {
 	 * @param color colore del giocatore
 	 * @param name nome del giocatore
 	 */
-		public Player(final Color color, final String name) {
-			playerColor = color;
-			playerName = name;
-		}
+	public Player(final Color color, final String name) {
+		playerColor = color;
+		playerName = name;
+	}
 	/**
 	 * Restituisce il colore del giocatore.
 	 * @return colore del giocatore
