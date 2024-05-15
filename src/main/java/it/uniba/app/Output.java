@@ -6,14 +6,6 @@ package it.uniba.app;
  */
 public class Output {
     /**
-     * Metodo che mostra a video lo stato del campo in input
-     * @param f campo da mostrare a video
-     */
-    void printField(Field f){
-
-    }
-
-    /**
      * Metodo che mostra a video il campo vuoto su cui giocare
      */
     static void printEmptyField(){
