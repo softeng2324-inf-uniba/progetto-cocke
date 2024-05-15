@@ -59,7 +59,7 @@ public class Ataxx {
 
 				break;
 			case "/vuoto":
-
+				Output.printEmptyField();
 				break;
 			case "/tavoliere":
 

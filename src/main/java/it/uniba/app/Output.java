@@ -16,7 +16,7 @@ public class Output {
     /**
      * Metodo che mostra a video il campo vuoto su cui giocare
      */
-    void printEmptyField(){
+    static void printEmptyField(){
         final int dim = 7;
         System.out.print("   ");
         for(int i=1;i<=dim;i++){
