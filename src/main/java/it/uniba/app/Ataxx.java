@@ -12,10 +12,13 @@ import java.nio.file.Paths;
 public class Ataxx {
 
 	/**
-	 * File contenente le informazioni di aiuto per l'utente.
+	 * Stringa contenente il percorso relativo del file da leggere.
 	 */
+	private static String relativePath = "/src/main/java/it/uniba/app/help.txt";
 
-	private static String relativePath = "/src/main/java/it/uniba/app/help.txt"; // Percorso relativo del file da leggere
+	/**
+	 * Workspace attuale.
+	 */
 	private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
 	/**
@@ -83,7 +86,7 @@ public class Ataxx {
 	}
 
 	/**
-	 * Gestisce il file da stampare a video
+	 * Gestisce il file da stampare a video.
 	 */
 	private static void manageHelp() {
 		if (new File(filePath).exists()) {
@@ -103,9 +106,9 @@ public class Ataxx {
 
 	/**
 	 * Gestisce il flusso di esecuzione in base al comando ricevuto.
-	 * @param command il comando da gestire
+	 * @param command il comando da gestire.
 	 */
-	public static void ataxxCommand(String command, String[] args) {
+	public static void ataxxCommand(final String command, final String[] args) {
 		manageFlag(args);
 		switch (command){
 			case "/help":
