@@ -8,11 +8,11 @@ public class Ataxx {
     /**
      * Stringa contenente il percorso relativo del file da leggere.
      */
-    private static final String relativePath = "/src/main/java/it/uniba/app/help.txt";
+    private static String relativePath = "/src/main/java/it/uniba/app/help.txt";
     /**
      * Workspace attuale.
      */
-    private static final String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
+    private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
     /**
      * Rappresenta il gioco attualmente in esecuzione.
