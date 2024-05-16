@@ -40,12 +40,12 @@ public class Game {
     /**
      * Costruttore della classe <code>Game</code> che inizializza i rispettivi attributi, usando gli oggetti di tipo
      * <code>Player</code> passati come dati in entrata.
-     * @param players Array contenente i giocatori, con i rispettivi campi inizializzati.
+     * @param newPlayers Array contenente i giocatori, con i rispettivi campi inizializzati.
      */
-    Game(Player[] players) {
+    Game(final Player[] newPlayers) {
         gameField = new Field();
         moveList = new ArrayList<Move>();
-        this.players = players;
+        players = newPlayers;
     }
 
     /**
@@ -60,7 +60,7 @@ public class Game {
      * Inizializza il campo da gioco della partita su cui è invocato, usando il campo dato in entrata al metodo.
      * @param f campo da gioco da inserire all'interno di una partita.
      */
-    void setGameField(Field f) {
+    void setGameField(final Field f) {
         this.gameField = f;
     }
 
@@ -76,7 +76,7 @@ public class Game {
      * Inserisce una lista di mosse in entrata, come log della partita su cui tale metodo è invocato.
      * @param moves lista di <code>Move</code> da inserire come log della partita corrente.
      */
-    void setMoveList(ArrayList<Move> moves) {
+    void setMoveList(final ArrayList<Move> moves) {
         this.moveList = moves;
     }
 
@@ -85,7 +85,7 @@ public class Game {
      * @param index indica la posizione del giocatore desiderato nella partita corrente.
      * @return <code>Player</code> nella posizione richiesta.
      */
-    Player getPlayer(int index) {
+    Player getPlayer(final int index) {
         return players[index];
     }
 
@@ -94,7 +94,7 @@ public class Game {
      * @param p giocatore da inserire nella posizione <code>index</code> richiesta nella partita.
      * @param index indice della posizione in cui inserire il giocatore <code>p</code>.
      */
-    void setPlayer(Player p, int index) {
+    void setPlayer(final Player p, final int index) {
         players[index] = p;
     }
 
