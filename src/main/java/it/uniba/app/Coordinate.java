@@ -16,8 +16,8 @@ public class Coordinate {
 
     /**
      * Costruisce le coordinate.
-     * @param newX è la coordinata ascisse
-     * @param newY è la coordinata ordinate
+     * @param newX è la coordinata ascisse.
+     * @param newY è la coordinata ordinate.
      */
     public Coordinate(final int newX, final int newY) {
         x = newX;
@@ -26,7 +26,7 @@ public class Coordinate {
 
     /**
      * Prende il valore x.
-     * @return il valore delle ascisse
+     * @return il valore delle ascisse.
      */
     public int getX() {
         return x;
@@ -34,7 +34,7 @@ public class Coordinate {
 
     /**
      * Prende il valore y.
-     * @return y il valore delle ordinate
+     * @return y il valore delle ordinate.
      */
     public int getY() {
         return y;

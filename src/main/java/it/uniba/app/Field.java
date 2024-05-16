@@ -23,7 +23,7 @@ public class Field {
 
     /**
      * Costruisce un oggetto Field.
-     * @param dim dimensione del campo di gioco
+     * @param dim dimensione del campo di gioco.
      */
     Field(final int dim) {
         gameboard = new Slot[dim][dim];
@@ -31,8 +31,8 @@ public class Field {
 
     /**
      * Imposta uno slot nella coordinata c.
-     * @param c Coordinate x e y
-     * @param s Slot da inserire
+     * @param c Coordinate x e y.
+     * @param s Slot da inserire.
      */
     public void setSlot(final Coordinate c, final Slot s) {
         gameboard[c.getX()][c.getY()] = s;
@@ -40,8 +40,8 @@ public class Field {
 
     /**
      * Restituisce uno slot del campo.
-     * @param c Coordinate x e y
-     * @return Slot nella posizione c
+     * @param c Coordinate x e y.
+     * @return Slot nella posizione c.
      */
     public Slot getSlot(final Coordinate c) {
         return gameboard[c.getX()][c.getY()];

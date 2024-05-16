@@ -12,7 +12,7 @@ public class Slot {
 
     /**
      * Costruttore della classe slot.
-     * @param c il colore della casella
+     * @param c il colore della casella.
      */
     public Slot(final Color c) {
         colorState = c;
@@ -20,7 +20,7 @@ public class Slot {
 
     /**
      * Restituisce lo stato della casella.
-     * @return lo stato della casella
+     * @return lo stato della casella.
      */
     public Color getColorState() {
         return colorState;
@@ -28,7 +28,7 @@ public class Slot {
 
     /**
      * Modifica lo stato della casella.
-     * @param c il colore della casella
+     * @param c il colore della casella.
      */
     public void setColorState(final Color c) {
         colorState = c;

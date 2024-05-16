@@ -14,8 +14,8 @@ public class Player {
 	private String playerName;
 	/**
 	 * Costruttore della classe Player che inizializza il giocatore con il suo colore e il suo nome.
-	 * @param color colore del giocatore
-	 * @param name nome del giocatore
+	 * @param color colore del giocatore.
+	 * @param name nome del giocatore.
 	 */
 	public Player(final Color color, final String name) {
 		playerColor = color;
@@ -23,7 +23,7 @@ public class Player {
 	}
 	/**
 	 * Restituisce il colore del giocatore.
-	 * @return colore del giocatore
+	 * @return colore del giocatore.
 	 */
 	public Color getColor() {
 		return playerColor;
@@ -37,14 +37,14 @@ public class Player {
 	}
 	/**
 	 * Restituisce il nome del giocatore.
-	 * @return nome del giocatore
+	 * @return nome del giocatore.
 	 */
 	public String getName() {
 		return playerName;
 	}
 	/**
 	 * Imposta il nome del giocatore.
-	 * @param name nome del giocatore
+	 * @param name nome del giocatore.
 	 */
 	public void setName(final String name) {
 		playerName = name;

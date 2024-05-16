@@ -15,8 +15,8 @@ public class Move {
 
     /**
      * Costruisce un oggetto Move.
-     * @param starting  la coordinata di partenza
-     * @param chosen  la coordinata di arrivo
+     * @param starting  la coordinata di partenza.
+     * @param chosen  la coordinata di arrivo.
      */
     Move(final Coordinate starting, final Coordinate chosen) {
         startingSlot = starting;
@@ -33,7 +33,7 @@ public class Move {
 
     /**
      * Imposta la coordinata dello slot di partenza.
-     * @param starting la coordinata di partenza
+     * @param starting la coordinata di partenza.
      */
     public void setStartingSlot(final Coordinate starting) {
         startingSlot = starting;
@@ -41,7 +41,7 @@ public class Move {
 
     /**
      * Restituisce la cooridnata dello slot di arrivo.
-     * @return la coordinata dello slot di arrivo
+     * @return la coordinata dello slot di arrivo.
      */
     public Coordinate getChosenSlot() {
         return chosenSlot;
@@ -49,7 +49,7 @@ public class Move {
 
     /**
      * Imposta la coordinata dello slot di arrivo.
-     * @param chosen la coordinata di arrivo
+     * @param chosen la coordinata di arrivo.
      */
     public void setChosenSlot(final Coordinate chosen) {
         chosenSlot = chosen;

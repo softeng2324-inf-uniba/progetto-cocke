@@ -48,7 +48,7 @@ public class Ataxx {
 
 	/**
 	 * Gestisce il flusso di esecuzione in base al comando ricevuto.
-	 * @param command il comando da gestire
+	 * @param command il comando da gestire.
 	 */
 	public static void ataxxCommand(final String command) {
 		switch (command) {
