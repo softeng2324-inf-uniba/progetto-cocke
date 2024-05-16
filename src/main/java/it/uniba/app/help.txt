@@ -7,9 +7,9 @@ Quando una pedina generata o spostata vicino ad una avversaria, le pedine avvers
 
 
 •DESCRIZIONE DEI COMANDI
--gioca      : Genera una nuova partita se non ci sono partite in corso.
--vuoto      : Mostra il tavoliere vuoto.
--tavoliere  : Mostra la posizione delle pedine sul tavoliere.
--qualimosse : Mostra le mosse disponibili al giocatore.
--abbandona  : Chiude la partita in gioco e viene dichiarata vittoria all' avversario.
--esci       : Esci dal gioco.
+/gioca      : Genera una nuova partita se non ci sono partite in corso.
+/vuoto      : Mostra il tavoliere vuoto.
+/tavoliere  : Mostra la posizione delle pedine sul tavoliere.
+/qualimosse : Mostra le mosse disponibili al giocatore.
+/abbandona  : Chiude la partita in gioco e viene dichiarata vittoria all' avversario.
+/esci       : Esci dal gioco.
