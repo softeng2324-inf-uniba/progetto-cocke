@@ -73,17 +73,12 @@ public class Ataxx {
 			switch (arg) {
 				case "-h":
 				case "--help":
-					help = true;
+					manageHelp();
 					break;
 				default:
 					System.err.println("Flag non riconosciuta: " + arg);
 					break;
 			}
-		}
-
-		if (help) {
-			manageHelp();
-			return;
 		}
 	}
 
