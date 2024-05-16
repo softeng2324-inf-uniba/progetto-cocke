@@ -90,9 +90,9 @@ public class Ataxx {
      */
     private static void manageExit() {
         System.out.println("Sicuro di voler uscire? (s/n)");
-        if (Input.command().equals("s")) {
+        /*if (Input.command().equals("s")) {
             setStillPlaying(false);
-        }
+        }*/
     }
 
     /**
