@@ -52,7 +52,7 @@ public class Ataxx {
      * Imposta se il gioco è ancora in esecuzione.
      * @param isStillPlaying valore booleano per indicare se il gioco è ancora in esecuzione.
      */
-    public void setStillPlaying(final boolean isStillPlaying) {
+    public static void setStillPlaying(final boolean isStillPlaying) {
         stillPlaying = isStillPlaying;
     }
 
@@ -83,6 +83,15 @@ public class Ataxx {
         Output.printFile(filePath);
     }
 
+    /**
+     * Gestisce l'uscita dal gioco.
+     */
+    private static void manageExit() {
+        System.out.println("Sicuro di voler uscire? (s/n)");
+        /*if (Input.command().equals("s")) {
+            setStillPlaying(false);
+        }*/
+    }
 
     /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
@@ -113,7 +122,7 @@ public class Ataxx {
                     System.out.println("/abbandona");
                     break;
                 case "/esci":
-                    System.out.println("/esci");
+                    manageExit();
                     break;
                 default:
                     System.out.println("Comando sconosciuto");
