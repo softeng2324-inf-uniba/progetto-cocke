@@ -51,12 +51,13 @@ public class Ataxx {
 	 * @param command il comando da gestire
 	 */
 	public static void ataxxCommand(String command){
+		Ataxx ataxx = new Ataxx();
 		switch (command){
 			case "/help":
 
 				break;
 			case "/gioca":
-
+				ataxx.startNewGame();
 				break;
 			case "/vuoto":
 
@@ -75,4 +76,17 @@ public class Ataxx {
 				break;
 		}
 	}
+
+	/**
+	 * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
+	 * da gioco, con le pedine in posizione iniziale.
+	 */
+	private void startNewGame() {
+		if (getGame() == null) {
+			setGame(new Game());
+			getGame().setStartingPosition();
+			printField(getGame().getGameField());
+		}
+	}
+
 }
