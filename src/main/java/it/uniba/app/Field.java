@@ -42,5 +42,9 @@ public class Field {
     public Slot getSlot (Coordinate c) {
         return gameboard[c.getX()][c.getY()];
     }
+
+    public int length (){
+        return gameboard.length;
+    }
     
 }
