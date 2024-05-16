@@ -25,6 +25,19 @@ public class Game {
     private Player[] players;
 
     /**
+     * Costruttore della classe <code>Game</code> privo di parametri formali, che inizializza tutti i rispettivi
+     * attributi, inizializzando i giocatori con dei nomi di default (es. Giocatore 1).
+     */
+    Game() {
+        gameField = new Field();
+        moveList = new ArrayList<Move>();
+
+        players = new Player[2];
+        players[0] = new Player(Color.NERO, "Giocatore 1");
+        players[1] = new Player(Color.BIANCO, "Giocatore 2");
+    }
+
+    /**
      * Costruttore della classe <code>Game</code> che inizializza i rispettivi attributi, usando gli oggetti di tipo
      * <code>Player</code> passati come dati in entrata.
      * @param players Array contenente i giocatori, con i rispettivi campi inizializzati.
