@@ -10,8 +10,9 @@ import java.io.IOException;
  * <p>Questa classe gestisce la stampa degli elementi del gioco Ataxx,
  * come la stampa del campo da gioco e dell'interfaccia grafica.</p>
  */
-public class Output {
+public final class Output {
 
+    private Output() { };
     /** Prende in input un percorso di un file e ne stampa il suo contenuto.
      * @param filePath percorso del file da stampare,
      */
