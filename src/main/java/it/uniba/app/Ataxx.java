@@ -43,7 +43,7 @@ public class Ataxx {
 	 * Imposta il gioco attualmente in esecuzione.
 	 * @param newGame il nuovo gioco da impostare.
 	 */
-	public void setGame(Game newGame) {
+	public void setGame(final Game newGame) {
 		game = newGame;
 	}
 
@@ -59,11 +59,12 @@ public class Ataxx {
 	 * Imposta se il gioco è ancora in esecuzione.
 	 * @param isStillPlaying valore booleano per indicare se il gioco è ancora in esecuzione.
 	 */
-	public void setStillPlaying(boolean isStillPlaying) {
+	public void setStillPlaying(final boolean isStillPlaying) {
 		stillPlaying = isStillPlaying;
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Gestisce le flag passate come argomenti al programma (tramite CLI).
 	 * Se viene passata la flag -h o --help, viene stampato l'help del programma.
 	 * Se viene passata una flag non riconosciuta, viene stampato un messaggio di errore.
@@ -131,6 +132,9 @@ public class Ataxx {
 				break;
 			case "/esci":
 				System.out.println("/esci");
+				break;
+			default:
+				System.out.println("Comando sconosciuto");
 				break;
 		}
 	}

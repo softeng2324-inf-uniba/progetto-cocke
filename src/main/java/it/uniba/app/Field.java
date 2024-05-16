@@ -9,38 +9,41 @@ public class Field {
      * Matrice di slot che rappresenta il campo di gioco.
      */
     private Slot[][] gameboard;
+    /**
+     * Dimensione di default del campo di gioco.
+     */
+    static final int DEFAULT_DIM = 7;
 
     /**
-     * Costruisce un oggetto Field
+     * Costruisce un oggetto Field.
      */
-    Field () {
-        gameboard = new Slot [7][7];
+    Field() {
+        gameboard = new Slot[DEFAULT_DIM][DEFAULT_DIM];
     }
 
     /**
-     * Costruisce un oggetto Field
-     * @param dim dimensione del campo di gioco
+     * Costruisce un oggetto Field.
+     * @param dim dimensione del campo di gioco.
      */
-    Field (int dim) {
-        gameboard = new Slot [dim][dim];
+    Field(final int dim) {
+        gameboard = new Slot[dim][dim];
     }
 
     /**
-     * Imposta uno slot nella coordinata c
-     * @param c Coordinate x e y
-     * @param s Slot da inserire
+     * Imposta uno slot nella coordinata c.
+     * @param c Coordinate x e y.
+     * @param s Slot da inserire.
      */
-    public void setSlot (Coordinate c,Slot s) {
+    public void setSlot(final Coordinate c, final Slot s) {
         gameboard[c.getX()][c.getY()] = s;
     }
 
     /**
-     * Restituisce uno slot del campo
-     * @param c Coordinate x e y
-     * @return Slot nella posizione c
+     * Restituisce uno slot del campo.
+     * @param c Coordinate x e y.
+     * @return Slot nella posizione c.
      */
-    public Slot getSlot (Coordinate c) {
+    public Slot getSlot(final Coordinate c) {
         return gameboard[c.getX()][c.getY()];
     }
-    
 }
