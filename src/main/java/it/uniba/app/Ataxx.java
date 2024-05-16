@@ -22,7 +22,7 @@ public class Ataxx {
     /**
      * Indica se il gioco è ancora in esecuzione.
      */
-    private boolean stillPlaying = true;
+    private static boolean stillPlaying = true;
 
     /**
      * Restituisce il gioco attualmente in esecuzione.
@@ -88,35 +88,39 @@ public class Ataxx {
 
     /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
-     * @param command il comando da gestire.
+     * @param args array di argomenti passati da command line.
      */
-    public static void ataxxCommand(final String command, final String[] args) {
+    public static void ataxxCommand(final String[] args) {
         manageFlag(args);
-        switch (command) {
-            case "/help":
-                manageHelp();
-                break;
-            case "/gioca":
-                System.out.println("/gioca");
-                break;
-            case "/vuoto":
-                System.out.println("/vuoto");
-                break;
-            case "/tavoliere":
-                System.out.println("/tavoliere");
-                break;
-            case "/qualimosse":
-                System.out.println("/qualimosse");
-                break;
-            case "/abbandona":
-                System.out.println("/abbandona");
-                break;
-            case "/esci":
-                System.out.println("/esci");
-                break;
-           default:
-                System.out.println("Comando sconosciuto");
-                break;
-        }
+        String command = "";  //da eliminare dopo implementazione di getcommand
+        do {
+            //String command = Input.getCommand();
+            switch (command) {
+                case "/help":
+                    manageHelp();
+                    break;
+                case "/gioca":
+                    System.out.println("/gioca");
+                    break;
+                case "/vuoto":
+                    System.out.println("/vuoto");
+                    break;
+                case "/tavoliere":
+                    System.out.println("/tavoliere");
+                    break;
+                case "/qualimosse":
+                    System.out.println("/qualimosse");
+                    break;
+                case "/abbandona":
+                    System.out.println("/abbandona");
+                    break;
+                case "/esci":
+                    System.out.println("/esci");
+                    break;
+                default:
+                    System.out.println("Comando sconosciuto");
+                    break;
+            }
+        } while (!stillPlaying);
     }
 }
