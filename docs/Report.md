@@ -88,7 +88,7 @@ Le seguenti user story inizierebbero con Come Giocatore voglio ...
 2. Voglio iniziare una nuova partita: al comando **/gioca**, se nessuna partita è in corso l'app mostra il tavoliere con le pedine in posizione iniziale come in figura e si
    predispone a ricevere la prima mossa di gioco del nero o altri comandi.
 
-   ![tavoliere](../drawings/tavolier.png)
+   ![tavoliere](./img/Report/tavoliere.png)
 
 3. Voglio mostrare il tavoliere vuoto con la numerazione al comando **/vuoto** l'app mostra il tavoliere vuoto di 49 caselle quadrate (7 per lato) con le righe numerate da 1 a 7 e le colonne
    numerate da ‘a’ a ‘g’.
@@ -99,7 +99,8 @@ Le seguenti user story inizierebbero con Come Giocatore voglio ...
   - a) in giallo le caselle raggiungibili con mosse che generano una nuova pedina
   - b) in arancione raggiungibili con mosse che consentono un salto
   - c) in rosa le caselle raggiungibili con mosse di tipo a) o b)
-> ![tavolierees1](../drawings/tavolieres1.png) 
+  
+  ![tavolierees1](./img/Report/tavolierees1.png)
 
 5. Voglio abbandonare la partita, al comando **/abbandona** l'applicazione chiede conferma:
 - se la conferma è positiva, l'app comunica che il Bianco (o Nero) ha vinto per abbandono e dichiara come
