@@ -85,4 +85,70 @@ public class Game {
         players[index] = p;
     }
 
+    void legalMoves(){
+        Field legalMovesField = getGameField();
+        convertField(legalMovesField, whoIsPlaying().getColor());
+        printMoveField(legalMovesField);
+    }
+
+    void convertField(Field field, Color playerColor){
+        Coordinate coordinate = new Coordinate(0, 0);
+        Slot currentSlot = null;
+        for (int x = 0; x < field.length(); x++){
+            for (int y = 0; y < field.length(); y++){
+                coordinate.setX(x);
+                coordinate.setY(y);
+                currentSlot = field.getSlot(coordinate);
+                if (currentSlot.getColorState() == playerColor){
+                    markNeighboringSlot(field, coordinate);
+                }
+            }
+        }
+    }
+
+    void markNeighboringSlot(Field field, Coordinate coordinate) {
+        Coordinate markCoordinate = new Coordinate(0, 0);
+        for (int distance = 1; distance <= 2; distance++) {
+            for (int row = coordinate.getX() - distance; row < coordinate.getX() + distance; row++) {
+                if ((row == 0) || (row == field.length() - 1)) {
+                    for (int column = coordinate.getY()-distance; column < coordinate.getY()+distance; column++) {
+                        if (!(((row < 0) || (row >= field.length())) || ((column < 0) || (column > field.length())))) {
+                            markCoordinate.setX(row);
+                            markCoordinate.setY(column);
+                            markSlot(field.getSlot(markCoordinate), distance);
+                        }
+                    }
+                }else {
+                    markCoordinate.setX(row);
+                    markCoordinate.setY(0);
+                    markSlot(field.getSlot(markCoordinate), distance);
+                    markCoordinate.setX(row);
+                    markCoordinate.setY(field.length() - 1);
+                    markSlot(field.getSlot(markCoordinate), distance);
+                }
+            }
+        }
+    }
+
+    void markSlot(Slot slot, int distance) {
+        if ((slot.getColorState() != Color.BIANCO) && (slot.getColorState() != Color.NERO)) {
+            switch (distance) {
+                case 1:
+                    if (slot.getColorState() == Color.ARANCIONE) {
+                        slot.setColorState(Color.ROSA);
+                    }else {
+                        slot.setColorState(Color.GIALLO);
+                    }
+                    break;
+                case 2:
+                    if (slot.getColorState() == Color.GIALLO) {
+                        slot.setColorState(Color.ROSA);
+                    }else {
+                        slot.setColorState(Color.ARANCIONE);
+                    }
+                    break;
+            }
+        }
+    }
+
 }
