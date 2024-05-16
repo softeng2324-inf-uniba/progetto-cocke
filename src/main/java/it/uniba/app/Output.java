@@ -12,7 +12,11 @@ import java.io.IOException;
  */
 public final class Output {
 
+    /**
+     * Costruttore privato per evitare che la classe Output venga istanziata.
+     */
     private Output() { };
+
     /** Prende in input un percorso di un file e ne stampa il suo contenuto.
      * @param filePath percorso del file da stampare,
      */
