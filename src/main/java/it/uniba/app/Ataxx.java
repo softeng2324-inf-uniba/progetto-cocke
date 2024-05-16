@@ -86,18 +86,7 @@ public class Ataxx {
      * Gestisce il file da stampare a video.
      */
     private static void manageHelp() {
-        if (new File(filePath).exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
-            } catch (IOException e) {
-                System.out.println("Errore durante la lettura del file: " + e.getMessage());
-            }
-        } else {
-            System.out.println("File non trovato");
-        }
+        Output.printFile(filePath);
     }
 
 
