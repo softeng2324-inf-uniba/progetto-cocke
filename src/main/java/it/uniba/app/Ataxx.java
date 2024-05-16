@@ -113,8 +113,9 @@ public class Ataxx {
                 break;
             case "/esci":
                 System.out.println("Sicuro di voler uscire? (s/n)");
-                if(Input.command().equals("s"))
+                if (Input.command().equals("s")) {
                     setStillPlaying(false);
+                }
                 break;
            default:
                 System.out.println("Comando sconosciuto");
