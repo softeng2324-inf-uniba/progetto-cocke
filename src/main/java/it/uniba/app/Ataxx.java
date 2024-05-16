@@ -8,11 +8,11 @@ public class Ataxx {
     /**
      * Stringa contenente il percorso relativo del file da leggere.
      */
-    private static String relativePath = "/src/main/java/it/uniba/app/help.txt";
+    private static final String relativePath = "/src/main/java/it/uniba/app/help.txt";
     /**
      * Workspace attuale.
      */
-    private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
+    private static final String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
     /**
      * Rappresenta il gioco attualmente in esecuzione.
@@ -85,6 +85,15 @@ public class Ataxx {
         Output.printFile(filePath);
     }
 
+    /**
+     * Gestisce l'uscita dal gioco.
+     */
+    private static void manageExit() {
+        System.out.println("Sicuro di voler uscire? (s/n)");
+        if (Input.command().equals("s")) {
+            setStillPlaying(false);
+        }
+    }
 
     /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
@@ -112,10 +121,7 @@ public class Ataxx {
                 System.out.println("/abbandona");
                 break;
             case "/esci":
-                System.out.println("Sicuro di voler uscire? (s/n)");
-                if (Input.command().equals("s")) {
-                    setStillPlaying(false);
-                }
+                manageExit();
                 break;
            default:
                 System.out.println("Comando sconosciuto");
