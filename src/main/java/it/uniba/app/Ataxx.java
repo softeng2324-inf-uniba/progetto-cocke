@@ -22,7 +22,7 @@ public class Ataxx {
     /**
      * Indica se il gioco è ancora in esecuzione.
      */
-    private boolean stillPlaying = true;
+    private static boolean stillPlaying = true;
 
     /**
      * Restituisce il gioco attualmente in esecuzione.
@@ -52,7 +52,7 @@ public class Ataxx {
      * Imposta se il gioco è ancora in esecuzione.
      * @param isStillPlaying valore booleano per indicare se il gioco è ancora in esecuzione.
      */
-    public void setStillPlaying(final boolean isStillPlaying) {
+    public static void setStillPlaying(final boolean isStillPlaying) {
         stillPlaying = isStillPlaying;
     }
 
@@ -112,7 +112,9 @@ public class Ataxx {
                 System.out.println("/abbandona");
                 break;
             case "/esci":
-                System.out.println("/esci");
+                System.out.println("Sicuro di voler uscire? (s/n)");
+                if(Input.command().equals("s"))
+                    setStillPlaying(false);
                 break;
            default:
                 System.out.println("Comando sconosciuto");
