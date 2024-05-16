@@ -11,6 +11,10 @@ import java.io.IOException;
  * come la stampa del campo da gioco e dell'interfaccia grafica.</p>
  */
 public class Output {
+
+    /** Prende in input un percorso di un file e ne stampa il suo contenuto.
+     * @param filePath percorso del file da stampare,
+     */
     public static void printFile(final String filePath) {
         if (new File(filePath).exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
