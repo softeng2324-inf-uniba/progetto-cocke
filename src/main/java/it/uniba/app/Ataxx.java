@@ -93,7 +93,7 @@ public class Ataxx {
     public static void ataxxCommand(final String[] args) {
         manageFlag(args);
         do {
-            String command = Input.getCommand();
+            //String command = Input.getCommand();
             switch (command) {
                 case "/help":
                     manageHelp();
