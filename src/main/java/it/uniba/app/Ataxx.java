@@ -1,81 +1,137 @@
 package it.uniba.app;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * Ataxx è la classe principale del gioco che gestisce l'intero flusso di gioco.
  */
 public class Ataxx {
-	/**
-	 * Rappresenta il gioco attualmente in esecuzione.
-	 */
-	private Game game = null;
+    /**
+     * Stringa contenente il percorso relativo del file da leggere.
+     */
+    private static String relativePath = "/src/main/java/it/uniba/app/help.txt";
+    /**
+     * Workspace attuale.
+     */
+    private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
-	/**
-	 * Indica se il gioco è ancora in esecuzione.
-	 */
-	private boolean stillPlaying = true;
+    /**
+     * Rappresenta il gioco attualmente in esecuzione.
+     */
+    private Game game = null;
 
-	/**
-	 * Restituisce il gioco attualmente in esecuzione.
-	 * @return il gioco attualmente in esecuzione.
-	 */
-	public Game getGame() {
-		return game;
-	}
+    /**
+     * Indica se il gioco è ancora in esecuzione.
+     */
+    private boolean stillPlaying = true;
 
-	/**
-	 * Imposta il gioco attualmente in esecuzione.
-	 * @param newGame il nuovo gioco da impostare.
-	 */
-	public void setGame(final Game newGame) {
-		game = newGame;
-	}
+    /**
+     * Restituisce il gioco attualmente in esecuzione.
+     * @return il gioco attualmente in esecuzione.
+     */
+    public Game getGame() {
+        return game;
+    }
 
-	/**
-	 * Restituisce se il gioco è ancora in esecuzione.
-	 * @return (true) se il gioco è ancora in esecuzione, (false) altrimenti.
-	 */
-	public boolean getStillPlaying() {
-		return stillPlaying;
-	}
+    /**
+     * Imposta il gioco attualmente in esecuzione.
+     * @param newGame il nuovo gioco da impostare.
+     */
+    public void setGame(final Game newGame) {
+        game = newGame;
+    }
 
-	/**
-	 * Imposta se il gioco è ancora in esecuzione.
-	 * @param isStillPlaying valore booleano per indicare se il gioco è ancora in esecuzione.
-	 */
-	public void setStillPlaying(final boolean isStillPlaying) {
-		stillPlaying = isStillPlaying;
-	}
+    /**
+     * Restituisce se il gioco è ancora in esecuzione.
+     * @return (true) se il gioco è ancora in esecuzione, (false) altrimenti.
+     */
+    public boolean getStillPlaying() {
+        return stillPlaying;
+    }
 
-	/**
-	 * Gestisce il flusso di esecuzione in base al comando ricevuto.
-	 * @param command il comando da gestire.
-	 */
-	public static void ataxxCommand(final String command) {
-		switch (command) {
-			case "/help":
+    /**
+     * Imposta se il gioco è ancora in esecuzione.
+     * @param isStillPlaying valore booleano per indicare se il gioco è ancora in esecuzione.
+     */
+    public void setStillPlaying(final boolean isStillPlaying) {
+        stillPlaying = isStillPlaying;
+    }
 
-				break;
-			case "/gioca":
+    /**
+     * Gestisce le flag passate come argomenti al programma (tramite CLI).
+     * Se viene passata la flag -h o --help, viene stampato l'help del programma.
+     * Se viene passata una flag non riconosciuta, viene stampato un messaggio di errore.
+     * Se non vengono passate flag, il programma prosegue normalmente.
+     */
+    private static void manageFlag(final String[] args) {
+        boolean help = false;
 
-				break;
-			case "/vuoto":
+        for (String arg : args) {
+            switch (arg) {
+                case "-h":
+                case "--help":
+                    manageHelp();
+                    break;
+                default:
+                    System.err.println("Flag non riconosciuta: " + arg);
+                    break;
+            }
+        }
+    }
 
-				break;
-			case "/tavoliere":
+    /**
+     * Gestisce il file da stampare a video.
+     */
+    private static void manageHelp() {
+        if (new File(filePath).exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            } catch (IOException e) {
+                System.out.println("Errore durante la lettura del file: " + e.getMessage());
+            }
+        } else {
+            System.out.println("File non trovato");
+        }
+    }
 
-				break;
-			case "/qualimosse":
 
-				break;
-			case "/abbandona":
-
-				break;
-			case "/esci":
-
-				break;
-			default:
-				System.out.println("Comando sconosciuto");
-				break;
-		}
-	}
+    /**
+     * Gestisce il flusso di esecuzione in base al comando ricevuto.
+     * @param command il comando da gestire.
+     */
+    public static void ataxxCommand(final String command, final String[] args) {
+        manageFlag(args);
+        switch (command) {
+            case "/help":
+                manageHelp();
+                break;
+            case "/gioca":
+                System.out.println("/gioca");
+                break;
+            case "/vuoto":
+                System.out.println("/vuoto");
+                break;
+            case "/tavoliere":
+                System.out.println("/tavoliere");
+                break;
+            case "/qualimosse":
+                System.out.println("/qualimosse");
+                break;
+            case "/abbandona":
+                System.out.println("/abbandona");
+                break;
+            case "/esci":
+                System.out.println("/esci");
+                break;
+           default:
+                System.out.println("Comando sconosciuto");
+                break;
+        }
+    }
 }
