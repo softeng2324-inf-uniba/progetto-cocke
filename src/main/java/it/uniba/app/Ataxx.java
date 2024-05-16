@@ -63,8 +63,6 @@ public class Ataxx {
      * Se non vengono passate flag, il programma prosegue normalmente.
      */
     private static void manageFlag(final String[] args) {
-        boolean help = false;
-
         for (String arg : args) {
             switch (arg) {
                 case "-h":
