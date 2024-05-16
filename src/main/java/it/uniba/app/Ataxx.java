@@ -99,32 +99,6 @@ public class Ataxx {
      */
     public static void ataxxCommand(final String[] args) {
         manageFlag(args);
-        switch (command) {
-            case "/help":
-                manageHelp();
-                break;
-            case "/gioca":
-                System.out.println("/gioca");
-                break;
-            case "/vuoto":
-                System.out.println("/vuoto");
-                break;
-            case "/tavoliere":
-                System.out.println("/tavoliere");
-                break;
-            case "/qualimosse":
-                System.out.println("/qualimosse");
-                break;
-            case "/abbandona":
-                System.out.println("/abbandona");
-                break;
-            case "/esci":
-                manageExit();
-                break;
-           default:
-                System.out.println("Comando sconosciuto");
-                break;
-        }
         String command = "";  //da eliminare dopo implementazione di getcommand
         do {
             //String command = Input.getCommand();
@@ -148,7 +122,7 @@ public class Ataxx {
                     System.out.println("/abbandona");
                     break;
                 case "/esci":
-                    System.out.println("/esci");
+                    manageExit();
                     break;
                 default:
                     System.out.println("Comando sconosciuto");
