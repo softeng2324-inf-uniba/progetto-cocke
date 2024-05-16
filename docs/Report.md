@@ -139,7 +139,25 @@ dove *base* sarà sostituito con il nome del gruppo.
 
 ---
 
-<!-- scrivere il manuale utente -->
+Per poter avviare l'applicazione è necessario utilizzare docker,
+il container docker dell’app deve essere eseguito da terminali che supportano Unicode con encoding UTF-8 o UTF-16.
+
+**Comando per l’esecuzione del container**
+
+Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, il comando Docker da usare per eseguire il container contenente l’applicazione è:
+> docker run --rm -it ghcr.io/softeng2324-inf-uniba/ataxx-base:latest
+
+
+Ataxx è un gioco da tavolo strategico per due giocatori, l'obiettivo è conquistare il maggior numero di celle possibili trasformando le pedine avversarie in proprie.
+
+_Ecco i comandi disponibili per il giocatore:_
+> - **/gioca** : Crea una nuova partita se non ci sono partite in corso.
+> - **/vuoto** : Mostra il tavoliere vuoto.
+> - **/tavoliere** : Mostra la posizione delle pedine sul tavoliere.
+> - **/qualimosse** : Mostra le mosse disponibili al giocatore.
+> - **/abbandona** : Chiude la partita in gioco e viene dichiarata vittoria all' avversario.
+> - **/esci** : Esci dal gioco.
+
 
 ---
 
