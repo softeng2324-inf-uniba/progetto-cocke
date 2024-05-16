@@ -9,13 +9,16 @@ public class Field {
      * Matrice di slot che rappresenta il campo di gioco.
      */
     private Slot[][] gameboard;
-    static final int BASIC_DIM = 7;
+    /**
+     * Dimensione di default del campo di gioco.
+     */
+    static final int DEFAULT_DIM = 7;
 
     /**
      * Costruisce un oggetto Field.
      */
     Field() {
-        gameboard = new Slot[BASIC_DIM][BASIC_DIM];
+        gameboard = new Slot[DEFAULT_DIM][DEFAULT_DIM];
     }
 
     /**
