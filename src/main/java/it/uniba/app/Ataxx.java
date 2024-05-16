@@ -92,6 +92,7 @@ public class Ataxx {
      */
     public static void ataxxCommand(final String[] args) {
         manageFlag(args);
+        String command = "";  //da eliminare dopo implementazione di getcommand
         do {
             //String command = Input.getCommand();
             switch (command) {
