@@ -60,13 +60,13 @@ public class Ataxx {
      * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
      * da gioco, con le pedine in posizione iniziale.
      */
-	private void startNewGame() {
-		if (getGame() == null) {
-			setGame(new Game());
-			getGame().setStartingPosition();
-			printField(getGame().getGameField());
-		}
-	}
+    private void startNewGame() {
+        if (getGame() == null) {
+            setGame(new Game());
+            getGame().setStartingPosition();
+            printField(getGame().getGameField());
+        }
+    }
 
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
@@ -99,11 +99,36 @@ public class Ataxx {
      * Gestisce l'uscita dal gioco.
      */
     private void manageExit() {
-        System.out.println("Sicuro di voler uscire? (s/n)");
-        /*if (Input.command().equals("s")) {
-            setStillPlaying(false);
-        }*/
+        System.out.println("Sicuro di voler uscire? (s/n)"); //spostare in Output
+        do {
+            String answer = Input.getCommand();
+            if (Input.getCommand().equals("s")) {
+                setStillPlaying(false);
+            }
+        } while (!answer.equals("s") || !answer.equals("n"));
     }
+
+    private void leaveGame() {
+        System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)"); // spostare in Output
+        String answer;
+        do {
+            answer = Input.getCommand();
+            if (answer.equals("s")) {
+                setGame(null);
+                Player currentPlayer = game.whoIsPlaying();
+                Player winner = game.getPlayer((currentPlayer == game.getPlayer(0)) ? 1 : 0);
+                int piecesRemaining = game.getGameField().countPieces(winner.getColor());
+                System.out.println("Il giocatore " + winner.getName()
+                        + " ha vinto per abbandono dell'avversario, il punteggio è " + piecesRemaining + "a 0.");
+                System.out.println("");
+            } else if (answer.equals("n")) {
+                System.out.println("Continua la partita."); // spostare in Output
+            } else {
+                System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare."); // Metti in Output
+            }
+        } while (!answer.equals("s") || !answer.equals("n"));
+    }
+
 
     /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
@@ -112,9 +137,8 @@ public class Ataxx {
     public static void ataxxCommand(final String[] args) {
         Ataxx ataxx = new Ataxx();
         ataxx.manageFlag(args);
-        String command = "";  //da eliminare dopo implementazione di getcommand
         do {
-            //String command = Input.getCommand();
+            String command = Input.getCommand();
             switch (command) {
                 case "/help":
                     ataxx.manageHelp();
@@ -132,7 +156,7 @@ public class Ataxx {
                     System.out.println("/qualimosse");
                     break;
                 case "/abbandona":
-                    System.out.println("/abbandona");
+                    ataxx.leaveGame();
                     break;
                 case "/esci":
                     ataxx.manageExit();
