@@ -10,7 +10,11 @@ public final class Output {
      * Costruttore per la classe.
      */
     private Output() { }
-    private static void printFirstLine(int dim) {
+    /**
+     * Metodo che stampa la prima riga di caratteri che compone il campo.
+     * @param dim dimensione del campo.
+     */
+    private static void printFirstLine(final int dim) {
         System.out.print(" " + "\u203e" + " " + "\u2016" + "\u200a");
         for (int i = 0; i < dim - 1; i++) {
             System.out.print("\u203e" + "\u203e" + "\u203e" + "\u203e" + "\u203e" + "\u203e" + "\u203e");
@@ -22,7 +26,12 @@ public final class Output {
         System.out.print(" " + "\u203e");
         System.out.print("\n");
     }
-    private static void printNumberLine(int dim, int num) {
+    /**
+     * Metodo che stampa la riga di caratteri contenente il numero che identifica la riga di caselle.
+     * @param dim dimensione del campo.
+     * @param num numero di riga.
+     * */
+    private static void printNumberLine(final int dim, final int num) {
         System.out.print(" " + num + " ");
         System.out.print("\u2016");
         System.out.print("\u200a");
@@ -36,7 +45,11 @@ public final class Output {
         System.out.print(" " + num + " ");
         System.out.print("\n");
     }
-    private static void printSpaceLine(int dim) {
+    /**
+     * Metodo che stampa una riga vuota del campo.
+     * @param dim dimensione del campo.
+     */
+    private static void printSpaceLine(final int dim) {
         System.out.print("   ");
         System.out.print("\u2016");
         System.out.print("\u200a");
@@ -49,7 +62,12 @@ public final class Output {
         System.out.print("\u2016");
         System.out.print("\n");
     }
-    private static void printLetters(int dim) {
+
+    /**
+     * Metodo che stampa la riga contenente le lettere che identificano le colonne.
+     * @param dim dimensione del campo
+     */
+    private static void printLetters(final int dim) {
         System.out.print("   " + "\u200a" + "\u007c");
         char c = '\u0041';
         for (int i = 0; i < dim; i++) {
@@ -62,7 +80,7 @@ public final class Output {
      * Metodo che mostra a video il campo vuoto su cui giocare.
      */
     static void printEmptyField() {
-        final int dim = 7;
+        final int dim = Field.DEFAULT_DIM;
         printLetters(dim);
         System.out.print(" " + "\u203e" + " ");
         System.out.print("\u2016");
