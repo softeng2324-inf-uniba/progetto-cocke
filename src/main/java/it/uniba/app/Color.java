@@ -11,6 +11,6 @@ public enum Color {
     NERO,
     ARANCIONE,
     ROSA,
-    GIALLO
-
+    GIALLO,
+    VERDE
 }

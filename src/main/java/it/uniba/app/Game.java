@@ -99,6 +99,14 @@ public class Game {
     }
 
     /**
+     * Restituisce il giocatore di turno.
+     * @return giocatore del turno appena iniziato/in corso.
+     */
+    Player whoIsPlaying() {
+        return getPlayer(getMoveList().size() % 2);
+    }
+
+    /**
      * Inizializza la posizione iniziale delle pedine sul campo da gioco a inizio partita.
      */
     void setStartingPosition() {
