@@ -10,6 +10,10 @@ public class Slot {
      */
     private Color colorState;
 
+    Slot() {
+        colorState = Color.VERDE;
+    }
+
     /**
      * Costruttore della classe slot.
      * @param c il colore della casella.
