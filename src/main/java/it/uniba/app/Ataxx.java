@@ -47,6 +47,18 @@ public class Ataxx {
 	}
 
 	/**
+	 * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
+	 * da gioco, con le pedine in posizione iniziale.
+	 */
+	private void startNewGame() {
+		if (getGame() == null) {
+			setGame(new Game());
+			getGame().setStartingPosition();
+			printField(getGame().getGameField());
+		}
+	}
+	
+	/**
 	 * Gestisce il flusso di esecuzione in base al comando ricevuto.
 	 * @param command il comando da gestire
 	 */
@@ -74,18 +86,6 @@ public class Ataxx {
 			case "/esci":
 
 				break;
-		}
-	}
-
-	/**
-	 * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
-	 * da gioco, con le pedine in posizione iniziale.
-	 */
-	private void startNewGame() {
-		if (getGame() == null) {
-			setGame(new Game());
-			getGame().setStartingPosition();
-			printField(getGame().getGameField());
 		}
 	}
 
