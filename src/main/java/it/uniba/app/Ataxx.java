@@ -56,10 +56,10 @@ public class Ataxx {
         stillPlaying = isStillPlaying;
     }
 
-	/**
-	 * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
-	 * da gioco, con le pedine in posizione iniziale.
-	 */
+    /**
+     * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
+     * da gioco, con le pedine in posizione iniziale.
+     */
 	private void startNewGame() {
 		if (getGame() == null) {
 			setGame(new Game());
