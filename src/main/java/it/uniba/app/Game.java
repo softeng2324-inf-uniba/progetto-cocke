@@ -97,7 +97,7 @@ public class Game {
     void legalMoves() {
         Field legalMovesField = new Field();
         convertField(legalMovesField, whoIsPlaying().getColor());
-        Output.printMoveField(legalMovesField);
+        Output.printField(legalMovesField);
     }
 
     /**
