@@ -65,7 +65,7 @@ public class Ataxx {
 
 				break;
 			case "/qualimosse":
-
+				ataxx.getGame().legalMoves();
 				break;
 			case "/abbandona":
 
