@@ -104,19 +104,19 @@ public class Game {
     void setStartingPosition() {
         int[] tempXY = new int[2];
         tempXY[0] = 0;
-        tempXY[1] = 6;
+        tempXY[1] = Field.DEFAULT_DIM - 1;
 
         Field tempField = getGameField();
 
         Slot tempSlot = new Slot();
 
-        for(int x = 0; x < tempXY.length; x++) {
+        for (int x = 0; x < tempXY.length; x++) {
 
-            for(int y = 0; y < tempXY.length; y++) {
+            for (int y = 0; y < tempXY.length; y++) {
 
                 Coordinate tempCoordinate = new Coordinate(tempXY[x], tempXY[y]);
 
-                if( (x + y) % 2 != 0) {
+                if ((x + y) % 2 != 0) {
                     tempSlot.setColorState(Color.BIANCO);
                 } else {
                     tempSlot.setColorState(Color.NERO);
