@@ -137,7 +137,7 @@ public class Game {
                         if ((((row >= 0) || (row < field.length())) || ((column >= 0) || (column < field.length())))) {
                             markCoordinate.setX(row);
                             markCoordinate.setY(column);
-                            markSlot(field.getSlot(markCoordinate), distance);
+                            field.getSlot(markCoordinate).markSlot(distance);
                         }
                     }
                 } else {
@@ -145,43 +145,15 @@ public class Game {
                     if ((((row >= 0) || (row < field.length())) || ((column >= 0) || (column < field.length())))) {
                         markCoordinate.setX(row);
                         markCoordinate.setY(column);
-                        markSlot(field.getSlot(markCoordinate), distance);
+                        field.getSlot(markCoordinate).markSlot(distance);
                     }
                     column = coordinate.getY() + distance;
-                    if ((((row >= 0) || (row < field.length())) || ((column > 0) || (column < field.length())))) {
+                    if ((((row >= 0) || (row < field.length())) || ((column >= 0) || (column < field.length())))) {
                         markCoordinate.setX(row);
                         markCoordinate.setY(column);
-                        markSlot(field.getSlot(markCoordinate), distance);
+                        field.getSlot(markCoordinate).markSlot(distance);
                     }
                 }
-            }
-        }
-    }
-
-    /**
-     * Evidenzia lo slot selezionato in base alla distanza selezionata.
-     * @param slot lo slot da evidenziare.
-     * @param distance la distanza per cui evidenziare.
-     */
-    void markSlot(final Slot slot, final int distance) {
-        if ((slot.getColorState() != Color.BIANCO) && (slot.getColorState() != Color.NERO)) {
-            switch (distance) {
-                case 1:
-                    if (slot.getColorState() == Color.ARANCIONE) {
-                        slot.setColorState(Color.ROSA);
-                    } else {
-                        slot.setColorState(Color.GIALLO);
-                    }
-                    break;
-                case 2:
-                    if (slot.getColorState() == Color.GIALLO) {
-                        slot.setColorState(Color.ROSA);
-                    } else {
-                        slot.setColorState(Color.ARANCIONE);
-                    }
-                    break;
-                default:
-                    break;
             }
         }
     }
