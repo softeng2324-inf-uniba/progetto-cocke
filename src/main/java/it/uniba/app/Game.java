@@ -88,14 +88,14 @@ public class Game {
     void legalMoves(){
         Field legalMovesField = getGameField();
         convertField(legalMovesField, whoIsPlaying().getColor());
-        printMoveField(legalMovesField);
+        Output.printMoveField(legalMovesField);
     }
 
     void convertField(Field field, Color playerColor){
         Coordinate coordinate = new Coordinate(0, 0);
         Slot currentSlot = null;
-        for (int x = 0; x < field.length(); x++){
-            for (int y = 0; y < field.length(); y++){
+        for (int x = 1; x <= field.length(); x++){
+            for (int y = 1; y <= field.length(); y++){
                 coordinate.setX(x);
                 coordinate.setY(y);
                 currentSlot = field.getSlot(coordinate);
@@ -109,22 +109,28 @@ public class Game {
     void markNeighboringSlot(Field field, Coordinate coordinate) {
         Coordinate markCoordinate = new Coordinate(0, 0);
         for (int distance = 1; distance <= 2; distance++) {
-            for (int row = coordinate.getX() - distance; row < coordinate.getX() + distance; row++) {
-                if ((row == 0) || (row == field.length() - 1)) {
-                    for (int column = coordinate.getY()-distance; column < coordinate.getY()+distance; column++) {
-                        if (!(((row < 0) || (row >= field.length())) || ((column < 0) || (column > field.length())))) {
+            for (int row = (coordinate.getX() - distance); row <= (coordinate.getX() + distance); row++) {
+                if ((row == (coordinate.getX() - distance)) || (row == (coordinate.getX() + distance))) {
+                    for (int column = (coordinate.getY() - distance); column <= (coordinate.getY() + distance); column++) {
+                        if (!(((row < 1) || (row > field.length())) || ((column < 1) || (column > field.length())))) {
                             markCoordinate.setX(row);
                             markCoordinate.setY(column);
                             markSlot(field.getSlot(markCoordinate), distance);
                         }
                     }
                 }else {
-                    markCoordinate.setX(row);
-                    markCoordinate.setY(0);
-                    markSlot(field.getSlot(markCoordinate), distance);
-                    markCoordinate.setX(row);
-                    markCoordinate.setY(field.length() - 1);
-                    markSlot(field.getSlot(markCoordinate), distance);
+                    int column = coordinate.getY() - distance;
+                    if (!(((row < 1) || (row > field.length())) || ((column < 1) || (column > field.length())))) {
+                        markCoordinate.setX(row);
+                        markCoordinate.setY(column);
+                        markSlot(field.getSlot(markCoordinate), distance);
+                    }
+                    column = coordinate.getY() + distance;
+                    if (!(((row < 1) || (row > field.length())) || ((column < 1) || (column > field.length())))) {
+                        markCoordinate.setX(row);
+                        markCoordinate.setY(column);
+                        markSlot(field.getSlot(markCoordinate), distance);
+                    }
                 }
             }
         }
