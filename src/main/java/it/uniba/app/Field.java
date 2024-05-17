@@ -43,8 +43,11 @@ public class Field {
         return gameboard[c.getX()][c.getY()];
     }
 
-    public int length (){
+    /**
+     * Restituisce la lunghezza del campo.
+     * @return la lunghezza del campo.
+     */
+    public int length() {
         return gameboard.length;
     }
-    
 }
