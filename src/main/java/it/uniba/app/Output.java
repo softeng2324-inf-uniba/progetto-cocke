@@ -10,12 +10,17 @@ public final class Output {
      * Costruttore per la classe.
      */
     private Output() { }
+    private static void printHoLine(final int dim){
+        for (int i = 0; i < dim*5+dim-1; i++) {
+            System.out.print("═");
+        }
+    }
     /**
      * Metodo che stampa la riga contenente le lettere che identificano le colonne.
      * @param dim dimensione del campo
      */
     private static void printLetters(final int dim) {
-        System.out.print("     ║");
+        System.out.print("    ║");
         char c = 'A';
         for (int i = 0; i < dim; i++) {
             System.out.print("  " + c + "  ║");
@@ -28,13 +33,23 @@ public final class Output {
      */
     static void printEmptyField() {
         final int dim = Field.DEFAULT_DIM;
-        System.out.print("     ");
+        System.out.print("    ");
         System.out.print("╔");
-        for (int i = 0; i < dim*5+dim-1; i++) {
-            System.out.print("═");
-        }
+        printHoLine(dim);
         System.out.print("╗");
         System.out.print("\n");
         printLetters(dim);
+
+        System.out.print("╔═══╬");
+        printHoLine(dim);
+        System.out.print("╬═══╗");
+        System.out.print("\n");
+
+        System.out.print("║ 1 ║");
+        for (int i = 0; i < dim; i++) {
+            System.out.print("     ║");
+        }
+        System.out.print(" 1 ║");
+        System.out.print("\n");
     }
 }
