@@ -20,9 +20,9 @@ public class Field {
     Field() {
         gameboard = new Slot[DEFAULT_DIM][DEFAULT_DIM];
         gameboard[0][0].setColorState(Color.ROSSO);
-        gameboard[DEFAULT_DIM-1][DEFAULT_DIM-1].setColorState(Color.ROSSO);
-        gameboard[0][DEFAULT_DIM-1].setColorState(Color.BLU);
-        gameboard[DEFAULT_DIM-1][0].setColorState(Color.BLU);
+        gameboard[DEFAULT_DIM - 1][DEFAULT_DIM - 1].setColorState(Color.ROSSO);
+        gameboard[0][DEFAULT_DIM - 1].setColorState(Color.BLU);
+        gameboard[DEFAULT_DIM - 1][0].setColorState(Color.BLU);
     }
 
     /**
@@ -32,9 +32,9 @@ public class Field {
     Field(final int dim) {
         gameboard = new Slot[dim][dim];
         gameboard[0][0].setColorState(Color.ROSSO);
-        gameboard[dim-1][dim-1].setColorState(Color.ROSSO);
-        gameboard[0][dim-1].setColorState(Color.BLU);
-        gameboard[dim-1][0].setColorState(Color.BLU);
+        gameboard[dim - 1][dim - 1].setColorState(Color.ROSSO);
+        gameboard[0][dim - 1].setColorState(Color.BLU);
+        gameboard[dim - 1][0].setColorState(Color.BLU);
     }
 
     /**
