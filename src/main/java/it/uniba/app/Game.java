@@ -25,14 +25,27 @@ public class Game {
     private Player[] players;
 
     /**
-     * Costruttore della classe <code>Game</code> che inizializza i rispettivi attributi, usando gli oggetti di tipo
-     * <code>Player</code> passati come dati in entrata.
-     * @param players Array contenente i giocatori, con i rispettivi campi inizializzati.
+     * Costruttore della classe <code>Game</code> privo di parametri formali, che inizializza tutti i rispettivi
+     * attributi, inizializzando i giocatori con dei nomi di default (es. Giocatore 1).
      */
-    Game(Player[] players) {
+    Game() {
         gameField = new Field();
         moveList = new ArrayList<Move>();
-        this.players = players;
+
+        players = new Player[2];
+        players[0] = new Player(Color.NERO, "Giocatore 1");
+        players[1] = new Player(Color.BIANCO, "Giocatore 2");
+    }
+
+    /**
+     * Costruttore della classe <code>Game</code> che inizializza i rispettivi attributi, usando gli oggetti di tipo
+     * <code>Player</code> passati come dati in entrata.
+     * @param newPlayers Array contenente i giocatori, con i rispettivi campi inizializzati.
+     */
+    Game(final Player[] newPlayers) {
+        gameField = new Field();
+        moveList = new ArrayList<Move>();
+        players = newPlayers;
     }
 
     /**
@@ -47,7 +60,7 @@ public class Game {
      * Inizializza il campo da gioco della partita su cui è invocato, usando il campo dato in entrata al metodo.
      * @param f campo da gioco da inserire all'interno di una partita.
      */
-    void setGameField(Field f) {
+    void setGameField(final Field f) {
         this.gameField = f;
     }
 
@@ -63,7 +76,7 @@ public class Game {
      * Inserisce una lista di mosse in entrata, come log della partita su cui tale metodo è invocato.
      * @param moves lista di <code>Move</code> da inserire come log della partita corrente.
      */
-    void setMoveList(ArrayList<Move> moves) {
+    void setMoveList(final ArrayList<Move> moves) {
         this.moveList = moves;
     }
 
@@ -72,7 +85,7 @@ public class Game {
      * @param index indica la posizione del giocatore desiderato nella partita corrente.
      * @return <code>Player</code> nella posizione richiesta.
      */
-    Player getPlayer(int index) {
+    Player getPlayer(final int index) {
         return players[index];
     }
 
@@ -81,7 +94,7 @@ public class Game {
      * @param p giocatore da inserire nella posizione <code>index</code> richiesta nella partita.
      * @param index indice della posizione in cui inserire il giocatore <code>p</code>.
      */
-    void setPlayer(Player p, int index) {
+    void setPlayer(final Player p, final int index) {
         players[index] = p;
     }
 
