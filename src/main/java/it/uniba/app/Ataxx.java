@@ -52,9 +52,21 @@ public class Ataxx {
      * Imposta se il gioco è ancora in esecuzione.
      * @param isStillPlaying valore booleano per indicare se il gioco è ancora in esecuzione.
      */
-    public static void setStillPlaying(final boolean isStillPlaying) {
+    public void setStillPlaying(final boolean isStillPlaying) {
         stillPlaying = isStillPlaying;
     }
+
+    /**
+     * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
+     * da gioco, con le pedine in posizione iniziale.
+     */
+	private void startNewGame() {
+		if (getGame() == null) {
+			setGame(new Game());
+			getGame().setStartingPosition();
+			printField(getGame().getGameField());
+		}
+	}
 
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
@@ -62,7 +74,7 @@ public class Ataxx {
      * Se viene passata una flag non riconosciuta, viene stampato un messaggio di errore.
      * Se non vengono passate flag, il programma prosegue normalmente.
      */
-    private static void manageFlag(final String[] args) {
+    private void manageFlag(final String[] args) {
         for (String arg : args) {
             switch (arg) {
                 case "-h":
@@ -79,14 +91,14 @@ public class Ataxx {
     /**
      * Gestisce il file da stampare a video.
      */
-    private static void manageHelp() {
+    private void manageHelp() {
         Output.printFile(filePath);
     }
 
     /**
      * Gestisce l'uscita dal gioco.
      */
-    private static void manageExit() {
+    private void manageExit() {
         System.out.println("Sicuro di voler uscire? (s/n)");
         /*if (Input.command().equals("s")) {
             setStillPlaying(false);
@@ -98,16 +110,17 @@ public class Ataxx {
      * @param args array di argomenti passati da command line.
      */
     public static void ataxxCommand(final String[] args) {
-        manageFlag(args);
+        Ataxx ataxx = new Ataxx();
+        ataxx.manageFlag(args);
         String command = "";  //da eliminare dopo implementazione di getcommand
         do {
             //String command = Input.getCommand();
             switch (command) {
                 case "/help":
-                    manageHelp();
+                    ataxx.manageHelp();
                     break;
                 case "/gioca":
-                    System.out.println("/gioca");
+                    ataxx.startNewGame();
                     break;
                 case "/vuoto":
                     System.out.println("/vuoto");
@@ -122,12 +135,12 @@ public class Ataxx {
                     System.out.println("/abbandona");
                     break;
                 case "/esci":
-                    manageExit();
+                    ataxx.manageExit();
                     break;
                 default:
                     System.out.println("Comando sconosciuto");
                     break;
             }
-        } while (!stillPlaying);
+        } while (ataxx.getStillPlaying());
     }
 }
