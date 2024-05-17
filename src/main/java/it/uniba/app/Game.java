@@ -98,4 +98,35 @@ public class Game {
         players[index] = p;
     }
 
+    /**
+     * Inizializza la posizione iniziale delle pedine sul campo da gioco a inizio partita.
+     */
+    void setStartingPosition() {
+        int[] tempXY = new int[2];
+        tempXY[0] = 0;
+        tempXY[1] = 6;
+
+        Field tempField = getGameField();
+
+        Slot tempSlot = new Slot(Color.NERO);
+
+        for(int x = 0; x < tempXY.length; x++) {
+
+            for(int y = 0; y < tempXY.length; y++) {
+
+                Coordinate tempCoordinate = new Coordinate(tempXY[x], tempXY[y]);
+
+                if( (x + y) % 2 != 0) {
+                    tempSlot.setColorState(Color.BIANCO);
+                } else {
+                    tempSlot.setColorState(Color.NERO);
+                }
+
+                tempField.setSlot(tempCoordinate, tempSlot);
+
+            }
+
+        }
+
+    }
 }
