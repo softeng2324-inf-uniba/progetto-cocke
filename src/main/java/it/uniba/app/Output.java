@@ -28,13 +28,20 @@ public final class Output {
         }
         System.out.print("\n");
     }
+    private static void printStuffedLine(final int dim, final int num) {
+        System.out.print("║ " + num + " ║");
+        for (int i = 0; i < dim; i++) {
+            System.out.print("     ║");
+        }
+        System.out.print(" " + num + " ║");
+        System.out.print("\n");
+    }
     /**
      * Metodo che mostra a video il campo vuoto su cui giocare.
      */
     static void printEmptyField() {
         final int dim = Field.DEFAULT_DIM;
-        System.out.print("    ");
-        System.out.print("╔");
+        System.out.print("    ╔");
         printHoLine(dim);
         System.out.print("╗");
         System.out.print("\n");
@@ -45,11 +52,22 @@ public final class Output {
         System.out.print("╬═══╗");
         System.out.print("\n");
 
-        System.out.print("║ 1 ║");
-        for (int i = 0; i < dim; i++) {
-            System.out.print("     ║");
+        int i=0;
+        for (i = 0; i < dim-1; i++) {
+            printStuffedLine(dim, i+1);
+            System.out.print("╠═══╬");
+            printHoLine(dim);
+            System.out.print("╬═══╣");
+            System.out.print("\n");
         }
-        System.out.print(" 1 ║");
+        printStuffedLine(dim, i+1);
+        System.out.print("╚═══╬");
+        printHoLine(dim);
+        System.out.print("╬═══╝");
         System.out.print("\n");
+        printLetters(dim);
+        System.out.print("    ╚");
+        printHoLine(dim);
+        System.out.print("╝");
     }
 }
