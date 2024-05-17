@@ -168,5 +168,4 @@ _Ecco i comandi disponibili per il giocatore:_
 ## 9.1 Sprint 0
 
 ---
-
-![Retrospettiva0](./img/Report/Retrospettiva0.png)
+![Retrospettiva0](./img/Report/Retrospettiva0.jpg)
