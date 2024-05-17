@@ -29,12 +29,21 @@ public final class Output {
         System.out.print("\n");
     }
     private static void printStuffedLine(final int dim, final int num) {
-        System.out.print("║ " + num + " ║");
+        if (num < 10){
+            System.out.print("║ " + num + " ║");
+        } else {
+            System.out.print("║ " + num + "║");
+        }
         for (int i = 0; i < dim; i++) {
             System.out.print("     ║");
         }
-        System.out.print(" " + num + " ║");
-        System.out.print("\n");
+        if (num < 10) {
+            System.out.print(" " + num + " ║");
+            System.out.print("\n");
+        } else {
+            System.out.print(num + " ║");
+            System.out.print("\n");
+        }
     }
     /**
      * Metodo che mostra a video il campo vuoto su cui giocare.
