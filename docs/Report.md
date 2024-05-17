@@ -165,8 +165,8 @@ _Ecco i comandi disponibili per il giocatore:_
 
 ---
 
-<!-- inserire analisi retrospettiva -->
+## 9.1 Sprint 0
 
 ---
 
-## 9.1 Sprint 0
+![Retrospettiva0](./img/Report/Retrospettiva0.png)
