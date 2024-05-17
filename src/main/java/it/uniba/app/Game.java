@@ -85,40 +85,62 @@ public class Game {
         players[index] = p;
     }
 
-    void legalMoves(){
-        Field legalMovesField = getGameField();
+    /**
+     * Stampa il campo con le mosse consentite per il giocatore di turno.
+     * <p>Il metodo stampa:
+     * <ul>
+     *     <li>in giallo le caselle in cui è possibile effettuare duplicarsi;</li>
+     *     <li>in arancione le caselle in cui è possibile spostarsi;</li>
+     *     <li>in rosa le caselle in cui è possibile effettuare entrambe le azioni.</li>
+     * </ul>
+     */
+    void legalMoves() {
+        Field legalMovesField = new Field();
         convertField(legalMovesField, whoIsPlaying().getColor());
         Output.printMoveField(legalMovesField);
     }
 
-    void convertField(Field field, Color playerColor){
+    /**
+     * Converte il campo per mostrare le mosse consentite al giocatore di turno.
+     * <p>Il <code>field</code> passato come parametro
+     * è convertito in un campo con le caselle colorate a seconda delle mosse consentite.
+     * @param field il campo da convertire.
+     * @param playerColor il colore del giocatore di cui mostrare le mosse.
+     */
+    void convertField(final Field field, final Color playerColor) {
         Coordinate coordinate = new Coordinate(0, 0);
         Slot currentSlot = null;
-        for (int x = 1; x <= field.length(); x++){
-            for (int y = 1; y <= field.length(); y++){
+        for (int x = 1; x <= field.length(); x++) {
+            for (int y = 1; y <= field.length(); y++) {
                 coordinate.setX(x);
                 coordinate.setY(y);
                 currentSlot = field.getSlot(coordinate);
-                if (currentSlot.getColorState() == playerColor){
+                if (currentSlot.getColorState() == playerColor) {
                     markNeighboringSlot(field, coordinate);
                 }
             }
         }
     }
 
-    void markNeighboringSlot(Field field, Coordinate coordinate) {
+    /**
+     * Evidenzia le caselle adiacenti alla pedina.
+     * @param field il campo in cui evidenziare le caselle.
+     * @param coordinate la posizione della casella da cui evidenziare le caselle.
+     */
+    void markNeighboringSlot(final Field field, final Coordinate coordinate) {
         Coordinate markCoordinate = new Coordinate(0, 0);
         for (int distance = 1; distance <= 2; distance++) {
             for (int row = (coordinate.getX() - distance); row <= (coordinate.getX() + distance); row++) {
                 if ((row == (coordinate.getX() - distance)) || (row == (coordinate.getX() + distance))) {
-                    for (int column = (coordinate.getY() - distance); column <= (coordinate.getY() + distance); column++) {
+                    for (int column = (coordinate.getY() - distance); column <= (coordinate.getY() + distance);
+                         column++) {
                         if (!(((row < 1) || (row > field.length())) || ((column < 1) || (column > field.length())))) {
                             markCoordinate.setX(row);
                             markCoordinate.setY(column);
                             markSlot(field.getSlot(markCoordinate), distance);
                         }
                     }
-                }else {
+                } else {
                     int column = coordinate.getY() - distance;
                     if (!(((row < 1) || (row > field.length())) || ((column < 1) || (column > field.length())))) {
                         markCoordinate.setX(row);
@@ -136,22 +158,29 @@ public class Game {
         }
     }
 
-    void markSlot(Slot slot, int distance) {
+    /**
+     * Evidenzia lo slot selezionato in base alla distanza selezionata.
+     * @param slot lo slot da evidenziare.
+     * @param distance la distanza per cui evidenziare.
+     */
+    void markSlot(final Slot slot, final int distance) {
         if ((slot.getColorState() != Color.BIANCO) && (slot.getColorState() != Color.NERO)) {
             switch (distance) {
                 case 1:
                     if (slot.getColorState() == Color.ARANCIONE) {
                         slot.setColorState(Color.ROSA);
-                    }else {
+                    } else {
                         slot.setColorState(Color.GIALLO);
                     }
                     break;
                 case 2:
                     if (slot.getColorState() == Color.GIALLO) {
                         slot.setColorState(Color.ROSA);
-                    }else {
+                    } else {
                         slot.setColorState(Color.ARANCIONE);
                     }
+                    break;
+                default:
                     break;
             }
         }
