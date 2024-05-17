@@ -98,4 +98,12 @@ public class Game {
         players[index] = p;
     }
 
+    /**
+     * Restituisce il giocatore di turno.
+     * @return giocatore del turno appena iniziato/in corso.
+     */
+    Player whoIsPlaying() {
+        return getPlayer(getMoveList().size() % 2);
+    }
+
 }
