@@ -10,14 +10,14 @@ public final class Output {
      * Costruttore per la classe.
      */
     private Output() { }
-    private static void printHoLine(final int dim){
-        for (int i = 0; i < dim*5+dim-1; i++) {
+    private static void printHoLine(final int dim) {
+        for (int i = 0; i < dim * 5 + dim - 1; i++) {
             System.out.print("═");
         }
     }
     /**
      * Metodo che stampa la riga contenente le lettere che identificano le colonne.
-     * @param dim dimensione del campo
+     * @param dim dimensione del campo.
      */
     private static void printLetters(final int dim) {
         System.out.print("    ║");
@@ -28,8 +28,15 @@ public final class Output {
         }
         System.out.print("\n");
     }
+
+    /**
+     * Metodo che stampa la riga num del campo di gioco.
+     * @param dim dimensione del campo.
+     * @param num riga da stampare.
+     */
     private static void printStuffedLine(final int dim, final int num) {
-        if (num < 10){
+        final int limitDim = 10;
+        if (num < limitDim) {
             System.out.print("║ " + num + " ║");
         } else {
             System.out.print("║ " + num + "║");
@@ -37,7 +44,7 @@ public final class Output {
         for (int i = 0; i < dim; i++) {
             System.out.print("     ║");
         }
-        if (num < 10) {
+        if (num < limitDim) {
             System.out.print(" " + num + " ║");
             System.out.print("\n");
         } else {
@@ -61,15 +68,15 @@ public final class Output {
         System.out.print("╬═══╗");
         System.out.print("\n");
 
-        int i=0;
-        for (i = 0; i < dim-1; i++) {
-            printStuffedLine(dim, i+1);
+        int i = 0;
+        for (i = 0; i < dim - 1; i++) {
+            printStuffedLine(dim, i + 1);
             System.out.print("╠═══╬");
             printHoLine(dim);
             System.out.print("╬═══╣");
             System.out.print("\n");
         }
-        printStuffedLine(dim, i+1);
+        printStuffedLine(dim, i + 1);
         System.out.print("╚═══╬");
         printHoLine(dim);
         System.out.print("╬═══╝");
