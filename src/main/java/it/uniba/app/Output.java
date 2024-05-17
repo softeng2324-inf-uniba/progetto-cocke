@@ -9,8 +9,7 @@ public final class Output {
     /**
      * Costruttore per la classe.
      */
-    private Output() {
-    }
+    private Output() { }
     private static void printFirstLine(int dim) {
         System.out.print(" " + "\u203e" + " " + "\u2016" + "\u200a");
         for (int i = 0; i < dim - 1; i++) {
@@ -20,6 +19,7 @@ public final class Output {
         System.out.print("\u203e" + "\u203e" + "\u203e" + "\u203e" + "\u203e" + "\u203e" + "\u203e");
         System.out.print("\u200a");
         System.out.print("\u2016");
+        System.out.print(" " + "\u203e");
         System.out.print("\n");
     }
     private static void printNumberLine(int dim, int num) {
@@ -33,6 +33,7 @@ public final class Output {
         System.out.print("       ");
         System.out.print("\u200a");
         System.out.print("\u2016");
+        System.out.print(" " + num + " ");
         System.out.print("\n");
     }
     private static void printSpaceLine(int dim) {
@@ -48,11 +49,7 @@ public final class Output {
         System.out.print("\u2016");
         System.out.print("\n");
     }
-    /**
-     * Metodo che mostra a video il campo vuoto su cui giocare.
-     */
-    static void printEmptyField() {
-        final int dim = 7;
+    private static void printLetters(int dim) {
         System.out.print("   " + "\u200a" + "\u007c");
         char c = '\u0041';
         for (int i = 0; i < dim; i++) {
@@ -60,6 +57,13 @@ public final class Output {
             c++;
         }
         System.out.print("\n");
+    }
+    /**
+     * Metodo che mostra a video il campo vuoto su cui giocare.
+     */
+    static void printEmptyField() {
+        final int dim = 7;
+        printLetters(dim);
         System.out.print(" " + "\u203e" + " ");
         System.out.print("\u2016");
         System.out.print("\u200a");
@@ -70,10 +74,26 @@ public final class Output {
         System.out.print("\u033f" + "\u033f" + "\u033f" + "\u033f" + "\u033f" + "\u033f" + "\u033f");
         System.out.print("\u200a");
         System.out.print("\u2016");
+        System.out.print(" " + "\u203e");
         System.out.print("\n");
-
-        printNumberLine(dim, 1);
+        for (int i = 0; i < dim - 1; i++) {
+            printNumberLine(dim, i + 1);
+            printSpaceLine(dim);
+            printFirstLine(dim);
+        }
+        printNumberLine(dim, dim);
         printSpaceLine(dim);
-        printFirstLine(dim);
+        System.out.print(" " + "\u203e" + " ");
+        System.out.print("\u200a");
+        System.out.print("\u033f");
+        for (int i = 0; i < dim - 1; i++) {
+            System.out.print("\u033f" + "\u033f" + "\u033f" + "\u033f" + "\u033f" + "\u033f" + "\u033f");
+            System.out.print(" ");
+        }
+        System.out.print("\u033f" + "\u033f" + "\u033f" + "\u033f" + "\u033f" + "\u033f" + "\u033f");
+        System.out.print("\u033f");
+        System.out.print(" " + "\u203e");
+        System.out.print("\n");
+        printLetters(dim);
     }
 }
