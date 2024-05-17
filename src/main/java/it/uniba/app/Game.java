@@ -108,7 +108,7 @@ public class Game {
 
         Field tempField = getGameField();
 
-        Slot tempSlot = new Slot(Color.NERO);
+        Slot tempSlot = new Slot();
 
         for(int x = 0; x < tempXY.length; x++) {
 
