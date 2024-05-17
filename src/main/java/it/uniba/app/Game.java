@@ -110,8 +110,8 @@ public class Game {
     void convertField(final Field field, final Color playerColor) {
         Coordinate coordinate = new Coordinate(0, 0);
         Slot currentSlot = null;
-        for (int x = 1; x <= field.length(); x++) {
-            for (int y = 1; y <= field.length(); y++) {
+        for (int x = 0; x < field.length(); x++) {
+            for (int y = 0; y < field.length(); y++) {
                 coordinate.setX(x);
                 coordinate.setY(y);
                 currentSlot = field.getSlot(coordinate);
