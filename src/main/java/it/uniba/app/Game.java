@@ -134,7 +134,7 @@ public class Game {
                 if ((row == (coordinate.getX() - distance)) || (row == (coordinate.getX() + distance))) {
                     for (int column = (coordinate.getY() - distance); column <= (coordinate.getY() + distance);
                          column++) {
-                        if (!(((row < 0) || (row >= field.length())) || ((column < 0) || (column >= field.length())))) {
+                        if ((((row >= 0) || (row < field.length())) || ((column >= 0) || (column < field.length())))) {
                             markCoordinate.setX(row);
                             markCoordinate.setY(column);
                             markSlot(field.getSlot(markCoordinate), distance);
@@ -142,13 +142,13 @@ public class Game {
                     }
                 } else {
                     int column = coordinate.getY() - distance;
-                    if (!(((row < 0) || (row >= field.length())) || ((column < 0) || (column >= field.length())))) {
+                    if ((((row >= 0) || (row < field.length())) || ((column >= 0) || (column < field.length())))) {
                         markCoordinate.setX(row);
                         markCoordinate.setY(column);
                         markSlot(field.getSlot(markCoordinate), distance);
                     }
                     column = coordinate.getY() + distance;
-                    if (!(((row < 0) || (row >= field.length())) || ((column < 0) || (column >= field.length())))) {
+                    if ((((row >= 0) || (row < field.length())) || ((column > 0) || (column < field.length())))) {
                         markCoordinate.setX(row);
                         markCoordinate.setY(column);
                         markSlot(field.getSlot(markCoordinate), distance);
