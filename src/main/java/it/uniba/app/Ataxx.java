@@ -136,6 +136,7 @@ public class Ataxx {
                     break;
                 case "/vuoto":
                     System.out.println("/vuoto");
+                    Output.printEmptyField();
                     break;
                 case "/tavoliere":
                     System.out.println("/tavoliere");
