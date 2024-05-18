@@ -64,7 +64,7 @@ public class Ataxx {
 		if (getGame() == null) {
 			setGame(new Game());
 			getGame().setStartingPosition();
-			printField(getGame().getGameField());
+			//printField(getGame().getGameField());
 		}
 	}
 
