@@ -113,19 +113,16 @@ public class Ataxx {
      */
     private void leaveGame() {
         System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)"); // spostare in Output
-        String answer;
+        String answer = "";
         do {
             answer = Input.getCommand();
             if (answer.equals("s")) {
-                setGame(null);
                 Player currentPlayer = game.whoIsPlaying();
-                Player winner = game.getPlayer((currentPlayer == game.getPlayer(0)) ? 1 : 0);
+                Player winner = game.
                 int piecesRemaining = game.getGameField().countPieces(winner.getColor());
                 System.out.println("Il giocatore " + winner.getName() // spostare in Output
                         + " ha vinto per abbandono dell'avversario, il punteggio è " + piecesRemaining + "a 0.");
                 System.out.println("");
-            } else if (answer.equals("n")) {
-                System.out.println("Continua la partita."); // spostare in Output
             } else {
                 System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare."); // Metti in Output
             }
