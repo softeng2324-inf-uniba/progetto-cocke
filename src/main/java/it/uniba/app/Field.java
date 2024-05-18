@@ -58,4 +58,12 @@ public class Field {
     public Slot getSlot(final Coordinate c) {
         return gameboard[c.getX()][c.getY()];
     }
+
+    /**
+     * Restituisce la lunghezza del campo.
+     * @return la lunghezza del campo.
+     */
+    public int length() {
+        return gameboard.length;
+    }
 }

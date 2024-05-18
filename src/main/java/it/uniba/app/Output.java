@@ -122,4 +122,20 @@ public final class Output {
             System.out.println("File non trovato");
         }
     }
+
+    /**
+     * Imposta il colore dei caratteri del terminale.
+     * @param color il colore da impostare.
+     */
+    public static void switchCharColor(final Color color) {
+        System.out.print(String.format("\033[38:5:%dm", color.getColorValue()));
+    }
+
+    /**
+     * Imposta il colore di sfondo del terminale.
+     * @param color il colore da impostare.
+     */
+    public static void switchBackgroundColor(final Color color) {
+        System.out.print(String.format("\033[48:5:%dm", color.getColorValue()));
+    }
 }
