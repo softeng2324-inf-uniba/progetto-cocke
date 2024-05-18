@@ -15,7 +15,7 @@ public class Slot {
      * Costruttore della classe slot che inizializza una casella libera, indicata con il colore
      * <code>Color.VERDE</code>.
      */
-    Slot() {
+    public Slot() {
         colorState = Color.GRIGIO;
     }
 
