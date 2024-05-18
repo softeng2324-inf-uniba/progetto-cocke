@@ -60,13 +60,13 @@ public class Ataxx {
      * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
      * da gioco, con le pedine in posizione iniziale.
      */
-	private void startNewGame() {
-		if (getGame() == null) {
-			setGame(new Game());
-			getGame().setStartingPosition();
-			printField(getGame().getGameField());
-		}
-	}
+    private void startNewGame() {
+        if (getGame() == null) {
+            setGame(new Game());
+            getGame().setStartingPosition();
+            printField(getGame().getGameField());
+        }
+    }
 
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
@@ -130,6 +130,10 @@ public class Ataxx {
                     break;
                 case "/qualimosse":
                     System.out.println("/qualimosse");
+                    if (ataxx.game == null) {
+                        System.out.println("Non è stata avviata alcuna partita");
+                        ataxx.manageHelp();
+                    }
                     break;
                 case "/abbandona":
                     System.out.println("/abbandona");
