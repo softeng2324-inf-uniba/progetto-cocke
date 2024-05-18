@@ -137,7 +137,11 @@ public class Game {
         }
 
     }
-    
+    /**
+     * Conta le pedine di un giocatore.
+     * @param color colore del giocatore selezionato.
+     * @return numero delle pedine del giocatore.
+     */
     int countPieces (Color color) {
         int count = 0;
         Coordinate coordinata = new Coordinate(0, 0);
