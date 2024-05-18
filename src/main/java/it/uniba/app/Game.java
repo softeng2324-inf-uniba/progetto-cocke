@@ -116,24 +116,15 @@ public class Game {
 
         Field tempField = getGameField();
 
-        Slot tempSlot = new Slot();
-
-        for (int x = 0; x < tempXY.length; x++) {
-
-            for (int y = 0; y < tempXY.length; y++) {
-
-                Coordinate tempCoordinate = new Coordinate(tempXY[x], tempXY[y]);
-
-                if ((x + y) % 2 != 0) {
-                    tempSlot.setColorState(Color.BIANCO);
+        for (int row = 0; row < tempXY.length; row++) {
+            for (int column = 0; column < tempXY.length; column++) {
+                Coordinate tempCoordinate = new Coordinate(tempXY[row], tempXY[column]);
+                if ((row + column) % 2 != 0) {
+                    tempField.getSlot(tempCoordinate).setColorState(Color.BIANCO);
                 } else {
-                    tempSlot.setColorState(Color.NERO);
+                    tempField.getSlot(tempCoordinate).setColorState(Color.NERO);
                 }
-
-                tempField.setSlot(tempCoordinate, tempSlot);
-
             }
-
         }
 
     }
@@ -142,15 +133,14 @@ public class Game {
      * @param color colore del giocatore selezionato.
      * @return numero delle pedine del giocatore.
      */
-    int countPieces (Color color) {
+    int countPieces(final Color color) {
         int count = 0;
         Coordinate coordinata = new Coordinate(0, 0);
-        for (int row =0; row < getGameField().length(); row++){
+        for (int row = 0; row < getGameField().length(); row++) {
             coordinata.setRow(row);
-            for (int column =0; column < getGameField().length(); column++ ){
+            for (int column = 0; column < getGameField().length(); column++) {
                 coordinata.setCol(column);
-                Slot slot = getGameField().getSlot(coordinata);
-                if (slot.getColorState() == color) {
+                if (getGameField().getSlot(coordinata).getColorState() == color) {
                     count++;
                 }
             }
@@ -170,7 +160,7 @@ public class Game {
     void legalMoves() {
         Field legalMovesField = new Field(getGameField());
         convertField(legalMovesField, whoIsPlaying().getColor());
-        //Output.printField(legalMovesField);
+        Output.printField(legalMovesField);
     }
 
     /**
@@ -182,7 +172,7 @@ public class Game {
      */
     void convertField(final Field field, final Color playerColor) {
         Coordinate coordinate = new Coordinate(0, 0);
-        Slot currentSlot = null;
+        Slot currentSlot;
         for (int x = 0; x < field.length(); x++) {
             for (int y = 0; y < field.length(); y++) {
                 coordinate.setRow(x);

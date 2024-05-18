@@ -111,7 +111,7 @@ public class Ataxx {
                 System.out.println("Errore! Inserire 's' per uscire, 'n' per annullare.");
 
             }
-        } while ( !(answer.equals("s") || answer.equals("n")) );
+        } while (!(answer.equals("s") || answer.equals("n")));
     }
 
     /**
@@ -139,7 +139,7 @@ public class Ataxx {
                 System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare.");
 
             }
-        } while ( !(answer.equals("s") || answer.equals("n")) );
+        } while (!(answer.equals("s") || answer.equals("n")));
     }
 
 
