@@ -12,7 +12,7 @@ public class Field {
     /**
      * Dimensione di default del campo di gioco.
      */
-    static final int DEFAULT_DIM = 7;
+    public static final int DEFAULT_DIM = 7;
 
     /**
      * Costruisce un oggetto Field.

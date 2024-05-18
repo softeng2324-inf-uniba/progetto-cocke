@@ -69,7 +69,7 @@ public final class Output {
     /**
      * Metodo che mostra a video il campo vuoto su cui giocare.
      */
-    static void printEmptyField() {
+    public static void printEmptyField() {
         final int dim = Field.DEFAULT_DIM; //da sostituire con Field.length successivamente.
         System.out.print("    ╔");
         for (int i = 0; i < dim - 1; i++) {
