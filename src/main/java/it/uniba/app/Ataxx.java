@@ -106,6 +106,18 @@ public class Ataxx {
     }
 
     /**
+     * Gestisce il caso /qualimosse del metodo ataxxCommand.
+     */
+    private void manageQualimosse() {
+        if (getGame() == null) {
+            System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
+        } else {
+            return;
+            //aggiungere legal moves
+        }
+    }
+
+    /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
      * @param args array di argomenti passati da command line.
      */
@@ -130,10 +142,7 @@ public class Ataxx {
                     break;
                 case "/qualimosse":
                     System.out.println("/qualimosse");
-                    if (ataxx.game == null) {
-                        System.out.println("Non è stata avviata alcuna partita");
-                        ataxx.manageHelp();
-                    }
+                    ataxx.manageQualimosse();
                     break;
                 case "/abbandona":
                     System.out.println("/abbandona");
