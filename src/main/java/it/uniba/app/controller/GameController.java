@@ -67,7 +67,7 @@ public class GameController {
      /**
      * Inizializza la posizione iniziale delle pedine sul campo da gioco a inizio partita.
      */
-    static public void setStartingPosition(final Game game) {
+    public void setStartingPosition(final Game game) {
         int[] tempXY = new int[2];
         tempXY[0] = 0;
         tempXY[1] = Field.DEFAULT_DIM - 1;
