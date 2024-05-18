@@ -5,52 +5,52 @@ package it.uniba.app;
  */
 public class Coordinate {
     /**
-     * x è l'indice di riga.
+     * row è l'indice di riga.
      */
-    private int x;
+    private int row;
 
     /**
-     * y è l'indice di colonna.
+     * col è l'indice di colonna.
      */
-    private int y;
+    private int col;
 
     /**
      * Costruisce le coordinate.
-     * @param newX è l'indice di riga.
-     * @param newY è l'indice di colonna.
+     * @param inRow è l'indice di riga.
+     * @param newCol è l'indice di colonna.
      */
-    public Coordinate(final int newX, final int newY) {
-        x = newX;
-        y = newY;
+    public Coordinate(final int inRow, final int inCol) {
+        row = inRow;
+        col = inCol;
     }
 
     /**
-     * Prende il valore x.
+     * Restituisce il valore row.
      * @return l'indice di riga.
      */
-    public int getX() {
-        return x;
+    public int getRow() {
+        return row;
     }
 
     /**
-     * Prende il valore y.
+     * Restituisce il valore y.
      * @return y l'indice di colonna.
      */
-    public int getY() {
-        return y;
+    public int getCol() {
+        return col;
     }
 
     /**
      * Imposta il valore dell'indice di riga.
      */
-    public void setX(final int newX) {
-        x = newX;
+    public void setRow(final int inRow) {
+        row = inRow;
     }
 
     /**
      * Imposta il valore dell'indice di colonna.
      */
-    public void setY(final int newY) {
-        y = newY;
+    public void setCol(final int inCol) {
+        col = inCol;
     }
 }
