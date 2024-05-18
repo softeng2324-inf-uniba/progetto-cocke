@@ -60,13 +60,13 @@ public class Ataxx {
      * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
      * da gioco, con le pedine in posizione iniziale.
      */
-	private void startNewGame() {
-		if (getGame() == null) {
-			setGame(new Game());
-			getGame().setStartingPosition();
-			printField(getGame().getGameField());
-		}
-	}
+    private void startNewGame() {
+        if (getGame() == null) {
+            setGame(new Game());
+            getGame().setStartingPosition();
+            //printField(getGame().getGameField());
+        }
+    }
 
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
@@ -106,6 +106,17 @@ public class Ataxx {
     }
 
     /**
+     * Gestisce il caso /qualimosse del metodo ataxxCommand.
+     */
+    private void manageQualimosse() {
+        if (getGame() == null) {
+            System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
+        } else {
+            getGame().legalMoves();
+        }
+    }
+
+    /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
      * @param args array di argomenti passati da command line.
      */
@@ -124,12 +135,14 @@ public class Ataxx {
                     break;
                 case "/vuoto":
                     System.out.println("/vuoto");
+                    Output.printEmptyField();
                     break;
                 case "/tavoliere":
                     System.out.println("/tavoliere");
                     break;
                 case "/qualimosse":
                     System.out.println("/qualimosse");
+                    ataxx.manageQualimosse();
                     break;
                 case "/abbandona":
                     System.out.println("/abbandona");
