@@ -137,7 +137,27 @@ public class Game {
         }
 
     }
-    
+    /**
+     * Conta le pedine di un giocatore.
+     * @param color colore del giocatore selezionato.
+     * @return numero delle pedine del giocatore.
+     */
+    int countPieces (Color color) {
+        int count = 0;
+        Coordinate coordinata = new Coordinate(0, 0);
+        for (int row =0; row < getGameField().length(); row++){
+            coordinata.setRow(row);
+            for (int column =0; column < getGameField().length(); column++ ){
+                coordinata.setCol(column);
+                Slot slot = getGameField().getSlot(coordinata);
+                if (slot.getColorState() == color) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     /**
      * Stampa il campo con le mosse consentite per il giocatore di turno.
      * <p>Il metodo stampa:
