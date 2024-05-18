@@ -19,6 +19,14 @@ public class Slot {
     }
 
     /**
+     * Crea un nuovo <code>Slot</code> che è la copia di quello passato come argomento.
+     * @param slot lo slot da copiare.
+     */
+    Slot(final Slot slot) {
+        colorState = slot.getColorState();
+    }
+
+    /**
      * Costruttore della classe slot che inizializza il colore della stessa con quello passato
      * come parametro attuale.
      * @param c il colore della casella.
