@@ -184,9 +184,19 @@ public final class Output {
     }
 
     /**
-     * 
+     * Metodo che gestisce le stampe dei messaggi di errore.
      */
-    public static void printErrorMessages() {
-        System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
+    public static void printErrorMessages(int errorID) {
+        switch (errorID) {
+            case 1:
+                System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
+                break;
+            case 2:
+                System.out.println("Sicuro di voler uscire? (s/n)");
+                break;
+            default:
+                System.out.println("ID errore sconosciuto");
+                break;
+        }
     }
 }
