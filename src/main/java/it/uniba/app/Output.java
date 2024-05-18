@@ -185,14 +185,19 @@ public final class Output {
 
     /**
      * Metodo che gestisce le stampe dei messaggi di errore.
+     * @param id messaggio che si vuole mostrare.
+     * @param extra stringa da aggiungere al messaggio standard.
      */
-    public static void printErrorMessages(int errorID) {
-        switch (errorID) {
+    public static void printMessages(final int id, final String extra) {
+        switch (id) {
             case 1:
                 System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
                 break;
             case 2:
                 System.out.println("Sicuro di voler uscire? (s/n)");
+                break;
+            case 3:
+                System.out.println("Flag non riconosciuta: " + extra);
                 break;
             default:
                 System.out.println("ID errore sconosciuto");
