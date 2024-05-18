@@ -112,7 +112,7 @@ public class Ataxx {
         if (getGame() == null) {
             System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
         } else {
-            ataxx.getGame().legalMoves();
+            getGame().legalMoves();
         }
     }
 
