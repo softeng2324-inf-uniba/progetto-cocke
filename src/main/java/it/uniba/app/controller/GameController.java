@@ -118,7 +118,7 @@ public class GameController {
      * @param field il campo da convertire.
      * @param playerColor il colore del giocatore di cui mostrare le mosse.
      */
-    static void convertField(final Field field, final Color playerColor) {
+    private void convertField(final Field field, final Color playerColor) {
         Coordinate coordinate = new Coordinate(0, 0);
         Slot currentSlot = null;
         for (int x = 0; x < field.length(); x++) {
@@ -138,7 +138,7 @@ public class GameController {
      * @param field il campo in cui evidenziare le caselle.
      * @param coordinate la posizione della casella da cui evidenziare le caselle.
      */
-    static void markNeighboringSlot(final Field field, final Coordinate coordinate) {
+    private void markNeighboringSlot(final Field field, final Coordinate coordinate) {
         Coordinate markCoordinate = new Coordinate(0, 0);
         for (int distance = 1; distance <= 2; distance++) {
             for (int row = (coordinate.getX() - distance); row <= (coordinate.getX() + distance); row++) {
