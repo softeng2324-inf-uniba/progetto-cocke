@@ -112,8 +112,7 @@ public class Ataxx {
         if (getGame() == null) {
             Output.printMessages(1, "");
         } else {
-            return;
-            //aggiungere legal moves
+            getGame().legalMoves();
         }
     }
 
@@ -161,7 +160,7 @@ public class Ataxx {
                     ataxx.manageExit();
                     break;
                 default:
-                    System.out.println("Comando sconosciuto");
+                    Output.printMessages(4, "");
                     break;
             }
         } while (ataxx.getStillPlaying());
