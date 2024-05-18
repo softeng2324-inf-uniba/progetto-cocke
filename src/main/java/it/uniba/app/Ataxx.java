@@ -82,7 +82,7 @@ public class Ataxx {
                     manageHelp();
                     break;
                 default:
-                    System.err.println("Flag non riconosciuta: " + arg);
+                    Output.printMessages(3, arg);
                     break;
             }
         }
@@ -99,7 +99,7 @@ public class Ataxx {
      * Gestisce l'uscita dal gioco.
      */
     private void manageExit() {
-        System.out.println("Sicuro di voler uscire? (s/n)");
+        Output.printMessages(2, "");
         /*if (Input.command().equals("s")) {
             setStillPlaying(false);
         }*/
@@ -110,7 +110,7 @@ public class Ataxx {
      */
     private void manageQualimosse() {
         if (getGame() == null) {
-            System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
+            Output.printMessages(1, "");
         } else {
             return;
             //aggiungere legal moves
@@ -119,7 +119,7 @@ public class Ataxx {
 
     private void manageTavoliere() {
         if (getGame() == null) {
-            System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
+            Output.printMessages(1, "");
         } else {
             Output.printField(getGame().getGameField());
         }
