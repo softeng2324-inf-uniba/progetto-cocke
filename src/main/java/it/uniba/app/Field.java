@@ -12,7 +12,7 @@ public class Field {
     /**
      * Dimensione di default del campo di gioco.
      */
-    static final int DEFAULT_DIM = 7;
+    public static final int DEFAULT_DIM = 7;
 
     /**
      * Costruisce un oggetto Field.
@@ -57,5 +57,13 @@ public class Field {
      */
     public Slot getSlot(final Coordinate c) {
         return gameboard[c.getX()][c.getY()];
+    }
+
+    /**
+     * Restituisce la lunghezza del campo.
+     * @return la lunghezza del campo.
+     */
+    public int length() {
+        return gameboard.length;
     }
 }
