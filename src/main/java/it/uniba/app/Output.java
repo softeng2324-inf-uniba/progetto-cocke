@@ -182,4 +182,11 @@ public final class Output {
             System.out.println("File non trovato");
         }
     }
+
+    /**
+     * 
+     */
+    public static void printErrorMessages() {
+        System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
+    }
 }
