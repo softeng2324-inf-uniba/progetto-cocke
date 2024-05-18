@@ -150,7 +150,7 @@ public class Game {
     void legalMoves() {
         Field legalMovesField = getGameField().clone();
         convertField(legalMovesField, whoIsPlaying().getColor());
-        Output.printField(legalMovesField);
+        //Output.printField(legalMovesField);
     }
 
     /**
