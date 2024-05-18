@@ -18,16 +18,6 @@ public final class Output {
     private Output() { };
 
     /**
-     * Stampa il corretto numero di '═'.
-     * @param dim dimensione del campo di gioco.
-     */
-    private static void printHoLine(final int dim) {
-        for (int i = 0; i < dim * 5 + dim - 1; i++) {
-            System.out.print("═");
-        }
-    }
-
-    /**
      * Stampa le linee interne del campo di gioco.
      * @param dim dimensione del campo di gioco
      */
@@ -80,10 +70,12 @@ public final class Output {
      * Metodo che mostra a video il campo vuoto su cui giocare.
      */
     static void printEmptyField() {
-        final int dim = Field.DEFAULT_DIM;
+        final int dim = Field.DEFAULT_DIM; //da sostituire con Field.length successivamente.
         System.out.print("    ╔");
-        printHoLine(dim);
-        System.out.print("╗");
+        for (int i = 0; i < dim - 1; i++) {
+            System.out.print("═════╦");
+        }
+        System.out.print("═════╗");
         System.out.print("\n");
         printLetters(dim);
 
@@ -92,7 +84,7 @@ public final class Output {
         System.out.print("╬═══╗");
         System.out.print("\n");
 
-        int i = 0;
+        int i;
         for (i = 0; i < dim - 1; i++) {
             printStuffedLine(dim, i + 1);
             System.out.print("╠═══╬");
@@ -107,8 +99,10 @@ public final class Output {
         System.out.print("\n");
         printLetters(dim);
         System.out.print("    ╚");
-        printHoLine(dim);
-        System.out.print("╝");
+        for (i = 0; i < dim - 1; i++) {
+            System.out.print("═════╩");
+        }
+        System.out.print("═════╝");
     }
 
     /** Prende in input un percorso di un file e ne stampa il suo contenuto.
