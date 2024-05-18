@@ -41,14 +41,14 @@ public class Coordinate {
     }
 
     /**
-     * Imposta il valore x.
+     * Imposta il valore dell'indice di riga.
      */
     public void setX(final int newX) {
         x = newX;
     }
 
     /**
-     * Imposta il valore y.
+     * Imposta il valore dell'indice di colonna.
      */
     public void setY(final int newY) {
         y = newY;
