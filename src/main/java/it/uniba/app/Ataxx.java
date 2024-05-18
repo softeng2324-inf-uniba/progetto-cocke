@@ -60,13 +60,13 @@ public class Ataxx {
      * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
      * da gioco, con le pedine in posizione iniziale.
      */
-	private void startNewGame() {
-		if (getGame() == null) {
-			setGame(new Game());
-			getGame().setStartingPosition();
-			printField(getGame().getGameField());
-		}
-	}
+    private void startNewGame() {
+        if (getGame() == null) {
+            setGame(new Game());
+            getGame().setStartingPosition();
+            //printField(getGame().getGameField());
+        }
+    }
 
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
@@ -82,7 +82,7 @@ public class Ataxx {
                     manageHelp();
                     break;
                 default:
-                    System.err.println("Flag non riconosciuta: " + arg);
+                    Output.printMessages(3, arg);
                     break;
             }
         }
@@ -99,10 +99,31 @@ public class Ataxx {
      * Gestisce l'uscita dal gioco.
      */
     private void manageExit() {
-        System.out.println("Sicuro di voler uscire? (s/n)");
+        Output.printMessages(2, "");
         /*if (Input.command().equals("s")) {
             setStillPlaying(false);
         }*/
+    }
+
+    /**
+     * Gestisce il caso /qualimosse del metodo ataxxCommand.
+     */
+    private void manageQualimosse() {
+        if (getGame() == null) {
+            Output.printMessages(1, "");
+        } else {
+            getGame().legalMoves();
+        }
+    }
+    /**
+     * Gestisce il caso /tavoliere del metodo ataxxCommand.
+     */
+    private void manageTavoliere() {
+        if (getGame() == null) {
+            Output.printMessages(1, "");
+        } else {
+            Output.printField(getGame().getGameField());
+        }
     }
 
     /**
@@ -124,12 +145,15 @@ public class Ataxx {
                     break;
                 case "/vuoto":
                     System.out.println("/vuoto");
+                    Output.printEmptyField();
                     break;
                 case "/tavoliere":
                     System.out.println("/tavoliere");
+                    ataxx.manageTavoliere();
                     break;
                 case "/qualimosse":
                     System.out.println("/qualimosse");
+                    ataxx.manageQualimosse();
                     break;
                 case "/abbandona":
                     System.out.println("/abbandona");
@@ -138,7 +162,7 @@ public class Ataxx {
                     ataxx.manageExit();
                     break;
                 default:
-                    System.out.println("Comando sconosciuto");
+                    Output.printMessages(4, "");
                     break;
             }
         } while (ataxx.getStillPlaying());

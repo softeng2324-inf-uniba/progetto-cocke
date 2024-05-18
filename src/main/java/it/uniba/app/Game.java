@@ -156,4 +156,78 @@ public class Game {
             }
         }
     }
+
+    /**
+     * Stampa il campo con le mosse consentite per il giocatore di turno.
+     * <p>Il metodo stampa:
+     * <ul>
+     *     <li>in giallo le caselle in cui è possibile effettuare duplicarsi;</li>
+     *     <li>in arancione le caselle in cui è possibile spostarsi;</li>
+     *     <li>in rosa le caselle in cui è possibile effettuare entrambe le azioni.</li>
+     * </ul>
+     */
+    void legalMoves() {
+        Field legalMovesField = new Field(getGameField());
+        convertField(legalMovesField, whoIsPlaying().getColor());
+        //Output.printField(legalMovesField);
+    }
+
+    /**
+     * Converte il campo per mostrare le mosse consentite al giocatore di turno.
+     * <p>Il <code>field</code> passato come parametro
+     * è convertito in un campo con le caselle colorate a seconda delle mosse consentite.
+     * @param field il campo da convertire.
+     * @param playerColor il colore del giocatore di cui mostrare le mosse.
+     */
+    void convertField(final Field field, final Color playerColor) {
+        Coordinate coordinate = new Coordinate(0, 0);
+        Slot currentSlot = null;
+        for (int x = 0; x < field.length(); x++) {
+            for (int y = 0; y < field.length(); y++) {
+                coordinate.setRow(x);
+                coordinate.setCol(y);
+                currentSlot = field.getSlot(coordinate);
+                if (currentSlot.getColorState() == playerColor) {
+                    markNeighboringSlot(field, coordinate);
+                }
+            }
+        }
+    }
+
+    /**
+     * Evidenzia le caselle adiacenti alla pedina.
+     * @param field il campo in cui evidenziare le caselle.
+     * @param coordinate la posizione della casella da cui evidenziare le caselle.
+     */
+    void markNeighboringSlot(final Field field, final Coordinate coordinate) {
+        Coordinate markCoordinate = new Coordinate(0, 0);
+        for (int distance = 1; distance <= 2; distance++) {
+            for (int row = (coordinate.getRow() - distance); row <= (coordinate.getRow() + distance); row++) {
+                if ((row == (coordinate.getRow() - distance)) || (row == (coordinate.getRow() + distance))) {
+                    for (int column = (coordinate.getCol() - distance); column <= (coordinate.getCol() + distance);
+                         column++) {
+                        if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
+                            markCoordinate.setRow(row);
+                            markCoordinate.setCol(column);
+                            field.getSlot(markCoordinate).markSlot(distance);
+                        }
+                    }
+                } else {
+                    int column = coordinate.getCol() - distance;
+                    if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
+                        markCoordinate.setRow(row);
+                        markCoordinate.setCol(column);
+                        field.getSlot(markCoordinate).markSlot(distance);
+                    }
+                    column = coordinate.getCol() + distance;
+                    if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
+                        markCoordinate.setRow(row);
+                        markCoordinate.setCol(column);
+                        field.getSlot(markCoordinate).markSlot(distance);
+                    }
+                }
+            }
+        }
+    }
+
 }

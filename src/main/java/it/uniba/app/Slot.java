@@ -15,7 +15,15 @@ public class Slot {
      * <code>Color.VERDE</code>.
      */
     Slot() {
-        colorState = Color.VERDE;
+        colorState = Color.GRIGIO;
+    }
+
+    /**
+     * Crea un nuovo <code>Slot</code> che è la copia di quello passato come argomento.
+     * @param slot lo slot da copiare.
+     */
+    Slot(final Slot slot) {
+        colorState = slot.getColorState();
     }
 
     /**
@@ -41,5 +49,32 @@ public class Slot {
      */
     public void setColorState(final Color c) {
         colorState = c;
+    }
+
+    /**
+     * Evidenzia lo slot selezionato in base alla distanza selezionata.
+     * @param distance la distanza per cui evidenziare.
+     */
+    void markSlot(final int distance) {
+        if ((getColorState() != Color.BIANCO) && (getColorState() != Color.NERO)) {
+            switch (distance) {
+                case 1:
+                    if (getColorState() == Color.ARANCIONE) {
+                        setColorState(Color.ROSA);
+                    } else {
+                        setColorState(Color.GIALLO);
+                    }
+                    break;
+                case 2:
+                    if (getColorState() == Color.GIALLO) {
+                        setColorState(Color.ROSA);
+                    } else {
+                        setColorState(Color.ARANCIONE);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
