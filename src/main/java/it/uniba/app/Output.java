@@ -42,12 +42,36 @@ public final class Output {
         System.out.print("\n");
     }
 
+    private static void printStuffedLine(final int dim, final int num, final Field field1) {
+        final int limitDim = 10;
+        if (num < limitDim) {
+            System.out.print("║ " + num + " ║");
+        } else {
+            System.out.print("║" + "\u2009" + "\u200a" + num + "\u200a" + "\u2009" + "║");
+        }
+        for (int i = 0; i < dim; i++) {
+            Coordinate c = new Coordinate(num,i);
+            if (field1.getSlot(c).getColorState()==Color.BIANCO) {
+                System.out.print(" "+ "\u200a"+ "\u200a"+ "\u200a"+ "\u200a"+ "⛂"+ "\u200a"+ "\u200a"+ "\u200a" + " ║");
+            }else if (field1.getSlot(c).getColorState()==Color.NERO){
+                System.out.print(" "+ "\u200a"+ "\u200a"+ "\u200a"+ "\u200a"+ "⛂"+ "\u200a"+ "\u200a"+ "\u200a" + " ║");
+            }else System.out.print("     ║");
+        }
+        if (num < limitDim) {
+            System.out.print(" " + num + " ║");
+            System.out.print("\n");
+        } else {
+            System.out.print("\u2009" + "\u200a" + num + "\u200a" + "\u2009" + "║");
+            System.out.print("\n");
+        }
+    }
+
     /**
      * Metodo che stampa la riga num del campo di gioco.
      * @param dim dimensione del campo.
      * @param num riga da stampare.
      */
-    private static void printStuffedLine(final int dim, final int num) {
+    private static void printNumLine(final int dim, final int num) {
         final int limitDim = 10;
         if (num < limitDim) {
             System.out.print("║ " + num + " ║");
@@ -86,13 +110,49 @@ public final class Output {
 
         int i;
         for (i = 0; i < dim - 1; i++) {
-            printStuffedLine(dim, i + 1);
+            printNumLine(dim, i + 1);
             System.out.print("╠═══╬");
             printCrossedHoLine(dim);
             System.out.print("╬═══╣");
             System.out.print("\n");
         }
-        printStuffedLine(dim, i + 1);
+        printNumLine(dim, i + 1);
+        System.out.print("╚═══╬");
+        printCrossedHoLine(dim);
+        System.out.print("╬═══╝");
+        System.out.print("\n");
+        printLetters(dim);
+        System.out.print("    ╚");
+        for (i = 0; i < dim - 1; i++) {
+            System.out.print("═════╩");
+        }
+        System.out.print("═════╝");
+    }
+
+    static void printField(Field f){
+        final int dim = Field.DEFAULT_DIM; //da sostituire con Field.length successivamente.
+        System.out.print("    ╔");
+        for (int i = 0; i < dim - 1; i++) {
+            System.out.print("═════╦");
+        }
+        System.out.print("═════╗");
+        System.out.print("\n");
+        printLetters(dim);
+
+        System.out.print("╔═══╬");
+        printCrossedHoLine(dim);
+        System.out.print("╬═══╗");
+        System.out.print("\n");
+
+        int i;
+        for (i = 0; i < dim - 1; i++) {
+            printStuffedLine(dim, i + 1, f);
+            System.out.print("╠═══╬");
+            printCrossedHoLine(dim);
+            System.out.print("╬═══╣");
+            System.out.print("\n");
+        }
+        printStuffedLine(dim, i + 1, f);
         System.out.print("╚═══╬");
         printCrossedHoLine(dim);
         System.out.print("╬═══╝");
