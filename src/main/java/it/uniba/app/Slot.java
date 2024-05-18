@@ -15,7 +15,7 @@ public class Slot {
      * <code>Color.VERDE</code>.
      */
     Slot() {
-        colorState = Color.VERDE;
+        colorState = Color.GRIGIO;
     }
 
     /**
