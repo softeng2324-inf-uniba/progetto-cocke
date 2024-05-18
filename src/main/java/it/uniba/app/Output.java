@@ -184,6 +184,22 @@ public final class Output {
     }
 
     /**
+     * Imposta il colore dei caratteri del terminale.
+     * @param color il colore da impostare.
+     */
+    public static void switchCharColor(final Color color) {
+        System.out.print(String.format("\033[38:5:%dm", color.getColorValue()));
+    }
+
+    /**
+     * Imposta il colore di sfondo del terminale.
+     * @param color il colore da impostare.
+     */
+    public static void switchBackgroundColor(final Color color) {
+        System.out.print(String.format("\033[48:5:%dm", color.getColorValue()));
+    }
+
+    /**
      * Metodo che gestisce le stampe dei messaggi di errore.
      * @param id messaggio che si vuole mostrare.
      * @param extra stringa da aggiungere al messaggio standard.
@@ -198,6 +214,9 @@ public final class Output {
                 break;
             case 3:
                 System.out.println("Flag non riconosciuta: " + extra);
+                break;
+            case 4:
+                System.out.println("Comando sconosciuto");
                 break;
             default:
                 System.out.println("ID errore sconosciuto");
