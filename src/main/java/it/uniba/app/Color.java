@@ -11,7 +11,8 @@ public enum Color {
     NERO(0),
     ARANCIONE(0),
     ROSA(0),
-    GIALLO(0);
+    GIALLO(0)
+    VERDE(0);
 
     /**
      * Codice del colore. La codifica utilizzata è a 8 bit.
