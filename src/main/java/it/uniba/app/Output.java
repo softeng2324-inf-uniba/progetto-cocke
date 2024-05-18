@@ -15,6 +15,12 @@ public final class Output {
             System.out.print("═");
         }
     }
+    private static void printCrossedHoLine(final int dim) {
+        for (int i = 0; i < dim-1; i++) {
+            System.out.print("═════╬");
+        }
+        System.out.print("═════");
+    }
     /**
      * Metodo che stampa la riga contenente le lettere che identificano le colonne.
      * @param dim dimensione del campo.
@@ -39,7 +45,7 @@ public final class Output {
         if (num < limitDim) {
             System.out.print("║ " + num + " ║");
         } else {
-            System.out.print("║ " + num + "║");
+            System.out.print("║"+"\u2009"+"\u200a"+ num +"\u200a"+"\u2009"+ "║");
         }
         for (int i = 0; i < dim; i++) {
             System.out.print("     ║");
@@ -48,7 +54,7 @@ public final class Output {
             System.out.print(" " + num + " ║");
             System.out.print("\n");
         } else {
-            System.out.print(num + " ║");
+            System.out.print("\u2009"+"\u200a"+num +"\u200a"+"\u2009"+ "║");
             System.out.print("\n");
         }
     }
@@ -64,7 +70,7 @@ public final class Output {
         printLetters(dim);
 
         System.out.print("╔═══╬");
-        printHoLine(dim);
+        printCrossedHoLine(dim);
         System.out.print("╬═══╗");
         System.out.print("\n");
 
@@ -72,13 +78,13 @@ public final class Output {
         for (i = 0; i < dim - 1; i++) {
             printStuffedLine(dim, i + 1);
             System.out.print("╠═══╬");
-            printHoLine(dim);
+            printCrossedHoLine(dim);
             System.out.print("╬═══╣");
             System.out.print("\n");
         }
         printStuffedLine(dim, i + 1);
         System.out.print("╚═══╬");
-        printHoLine(dim);
+        printCrossedHoLine(dim);
         System.out.print("╬═══╝");
         System.out.print("\n");
         printLetters(dim);
