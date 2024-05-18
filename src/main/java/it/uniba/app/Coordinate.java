@@ -17,7 +17,7 @@ public class Coordinate {
     /**
      * Costruisce le coordinate.
      * @param inRow è l'indice di riga.
-     * @param newCol è l'indice di colonna.
+     * @param inCol è l'indice di colonna.
      */
     public Coordinate(final int inRow, final int inCol) {
         row = inRow;

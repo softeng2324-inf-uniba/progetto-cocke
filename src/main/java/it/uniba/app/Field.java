@@ -36,8 +36,8 @@ public class Field {
         Coordinate coordinate = new Coordinate(0, 0);
         for (int row = 0; row  < length(); row++) {
             for (int column = 0; column < length(); column++) {
-                coordinate.setX(column);
-                coordinate.setY(row);
+                coordinate.setRow(row);
+                coordinate.setCol(column);
                 setSlot(coordinate, new Slot(getSlot(coordinate)));
             }
         }
@@ -63,7 +63,7 @@ public class Field {
      * @param s Slot da inserire.
      */
     public void setSlot(final Coordinate c, final Slot s) {
-        gameboard[c.getX()][c.getY()] = s;
+        gameboard[c.getRow()][c.getCol()] = s;
     }
 
     /**
@@ -72,7 +72,7 @@ public class Field {
      * @return Slot nella posizione c.
      */
     public Slot getSlot(final Coordinate c) {
-        return gameboard[c.getX()][c.getY()];
+        return gameboard[c.getRow()][c.getCol()];
     }
 
     /**
