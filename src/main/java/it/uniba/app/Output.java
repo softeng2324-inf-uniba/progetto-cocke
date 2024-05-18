@@ -42,6 +42,12 @@ public final class Output {
         System.out.print("\n");
     }
 
+    /**
+     * Metodo che stampa a video la riga num del campo di gioco, eventualmente con le pedine nelle caselle occupate.
+     * @param dim dimensione del campo di gioco.
+     * @param num riga da stampare a video.
+     * @param field1 campo di gioco da stampare a video.
+     */
     private static void printStuffedLine(final int dim, final int num, final Field field1) {
         final int limitDim = 10;
         if (num < limitDim) {

@@ -115,7 +115,9 @@ public class Ataxx {
             getGame().legalMoves();
         }
     }
-
+    /**
+     * Gestisce il caso /tavoliere del metodo ataxxCommand.
+     */
     private void manageTavoliere() {
         if (getGame() == null) {
             Output.printMessages(1, "");
