@@ -52,9 +52,15 @@ public final class Output {
         for (int i = 0; i < dim; i++) {
             Coordinate c = new Coordinate(num,i);
             if (field1.getSlot(c).getColorState()==Color.BIANCO) {
-                System.out.print(" "+ "\u200a"+ "\u200a"+ "\u200a"+ "\u200a"+ "⛂"+ "\u200a"+ "\u200a"+ "\u200a" + " ║");
+                switchCharColor(Color.BIANCO);
+                System.out.print(" "+ "\u200a"+ "\u200a"+ "\u200a"+ "\u200a"+ "⛂"+ "\u200a"+ "\u200a"+ "\u200a");
+                switchCharColor(Color.BIANCO);//colore di default dei caratteri del terminale
+                System.out.print(" ║");
             }else if (field1.getSlot(c).getColorState()==Color.NERO){
-                System.out.print(" "+ "\u200a"+ "\u200a"+ "\u200a"+ "\u200a"+ "⛂"+ "\u200a"+ "\u200a"+ "\u200a" + " ║");
+                switchCharColor(Color.NERO);
+                System.out.print(" "+ "\u200a"+ "\u200a"+ "\u200a"+ "\u200a"+ "⛂"+ "\u200a"+ "\u200a"+ "\u200a");
+                switchCharColor(Color.BIANCO);//colore di default dei caratteri del terminale
+                System.out.print(" ║");
             }else System.out.print("     ║");
         }
         if (num < limitDim) {
