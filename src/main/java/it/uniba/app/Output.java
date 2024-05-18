@@ -1,5 +1,10 @@
 package it.uniba.app;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * Output è la classe che si occupa delle stampe a video.
  * <p>Questa classe gestisce la stampa degli elementi del gioco Ataxx,
@@ -9,7 +14,7 @@ public final class Output {
     /**
      * Costruttore per la classe.
      */
-    private Output() { }
+    private Output() { };
     private static void printHoLine(final int dim) {
         for (int i = 0; i < dim * 5 + dim - 1; i++) {
             System.out.print("═");
@@ -91,5 +96,23 @@ public final class Output {
         System.out.print("    ╚");
         printHoLine(dim);
         System.out.print("╝");
+    }
+
+    /** Prende in input un percorso di un file e ne stampa il suo contenuto.
+     * @param filePath percorso del file da stampare,
+     */
+    public static void printFile(final String filePath) {
+        if (new File(filePath).exists()) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            } catch (IOException e) {
+                System.out.println("Errore durante la lettura del file: " + e.getMessage());
+            }
+        } else {
+            System.out.println("File non trovato");
+        }
     }
 }
