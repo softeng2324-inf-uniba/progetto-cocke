@@ -19,6 +19,12 @@ public class Field {
      */
     Field() {
         gameboard = new Slot[DEFAULT_DIM][DEFAULT_DIM];
+
+        for (int row = 0; row < DEFAULT_DIM; row++) {
+            for (int column = 0; column < DEFAULT_DIM; column++) {
+                setSlot(new Coordinate(row, column), new Slot());
+            }
+        }
     }
 
     /**
@@ -27,6 +33,12 @@ public class Field {
      */
     Field(final int dim) {
         gameboard = new Slot[dim][dim];
+
+        for (int row = 0; row < dim; row++) {
+            for (int column = 0; column < dim; column++) {
+                setSlot(new Coordinate(row, column), new Slot());
+            }
+        }
     }
 
     /**
