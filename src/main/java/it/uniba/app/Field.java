@@ -28,6 +28,22 @@ public class Field {
     }
 
     /**
+     * Crea un nuovo campo che è la copia di quello passato come argomento.
+     * @param field il campo da copiare.
+     */
+    Field(final Field field) {
+        gameboard = new Slot[field.length()][field.length()];
+        Coordinate coordinate = new Coordinate(0, 0);
+        for (int row = 0; row  < length(); row++) {
+            for (int column = 0; column < length(); column++) {
+                coordinate.setX(column);
+                coordinate.setY(row);
+                setSlot(coordinate, new Slot(getSlot(coordinate)));
+            }
+        }
+    }
+
+    /**
      * Costruisce un oggetto Field.
      * @param dim dimensione del campo di gioco.
      */
