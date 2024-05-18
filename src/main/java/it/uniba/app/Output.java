@@ -50,18 +50,22 @@ public final class Output {
             System.out.print("║" + "\u2009" + "\u200a" + num + "\u200a" + "\u2009" + "║");
         }
         for (int i = 0; i < dim; i++) {
-            Coordinate c = new Coordinate(num,i);
-            if (field1.getSlot(c).getColorState()==Color.BIANCO) {
+            Coordinate c = new Coordinate(num, i);
+            if (field1.getSlot(c).getColorState() == Color.BIANCO) {
                 switchCharColor(Color.BIANCO);
-                System.out.print(" "+ "\u200a"+ "\u200a"+ "\u200a"+ "\u200a"+ "⛂"+ "\u200a"+ "\u200a"+ "\u200a");
-                switchCharColor(Color.BIANCO);//colore di default dei caratteri del terminale
+                System.out.print(" " + "\u200a" + "\u200a" + "\u200a" + "\u200a" + "⛂");
+                System.out.print("\u200a" + "\u200a" + "\u200a");
+                switchCharColor(Color.BIANCO); //colore di default dei caratteri del terminale
                 System.out.print(" ║");
-            }else if (field1.getSlot(c).getColorState()==Color.NERO){
+            } else if (field1.getSlot(c).getColorState() == Color.NERO) {
                 switchCharColor(Color.NERO);
-                System.out.print(" "+ "\u200a"+ "\u200a"+ "\u200a"+ "\u200a"+ "⛂"+ "\u200a"+ "\u200a"+ "\u200a");
-                switchCharColor(Color.BIANCO);//colore di default dei caratteri del terminale
+                System.out.print(" " + "\u200a" + "\u200a" + "\u200a" + "\u200a" + "⛂");
+                System.out.print("\u200a" + "\u200a" + "\u200a");
+                switchCharColor(Color.BIANCO); //colore di default dei caratteri del terminale
                 System.out.print(" ║");
-            }else System.out.print("     ║");
+            } else {
+                System.out.print("     ║");
+            }
         }
         if (num < limitDim) {
             System.out.print(" " + num + " ║");
@@ -99,7 +103,7 @@ public final class Output {
     /**
      * Metodo che mostra a video il campo vuoto su cui giocare.
      */
-    static void printEmptyField() {
+    public static void printEmptyField() {
         final int dim = Field.DEFAULT_DIM; //da sostituire con Field.length successivamente.
         System.out.print("    ╔");
         for (int i = 0; i < dim - 1; i++) {
@@ -135,7 +139,11 @@ public final class Output {
         System.out.print("═════╝");
     }
 
-    static void printField(Field f){
+    /**
+     * Metodo che stampa a video il campo di gioco con le pedine nella situazione attuale.
+     * @param f campo di gioco da visualizzare.
+     */
+    public static void printField(final Field f) {
         final int dim = Field.DEFAULT_DIM; //da sostituire con Field.length successivamente.
         System.out.print("    ╔");
         for (int i = 0; i < dim - 1; i++) {
