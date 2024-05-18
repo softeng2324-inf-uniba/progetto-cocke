@@ -146,10 +146,10 @@ public class Game {
         int count = 0;
         Coordinate coordinata = new Coordinate(0, 0);
         for (int row =0; row < getGameField().length(); row++){
-            coordinata.setY(row);
+            coordinata.setRow(row);
             for (int column =0; column < getGameField().length(); column++ ){
-                coordinata.setX(column);
-                Slot slot = getSlot(coordinata);
+                coordinata.setCol(column);
+                Slot slot = getGameField().getSlot(coordinata);
                 if (slot.getColorState() == color) {
                     count++;
                 }
