@@ -1,5 +1,6 @@
-package it.uniba.app;
+package it.uniba.app.model;
 
+import it.uniba.app.utils.Color;
 
 /**
  * Slot è la classe che rappresenta la casella.

@@ -1,9 +1,11 @@
-package it.uniba.app;
+package it.uniba.app.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
+import it.uniba.app.model.Field;
 
 /**
  * Output è la classe che si occupa delle stampe a video.
@@ -69,7 +71,7 @@ public final class Output {
     /**
      * Metodo che mostra a video il campo vuoto su cui giocare.
      */
-    public static void printEmptyField() {
+    static void printEmptyField() {
         final int dim = Field.DEFAULT_DIM; //da sostituire con Field.length successivamente.
         System.out.print("    ╔");
         for (int i = 0; i < dim - 1; i++) {

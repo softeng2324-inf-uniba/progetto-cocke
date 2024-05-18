@@ -1,4 +1,4 @@
-package it.uniba.app;
+package it.uniba.app.model;
 
 /**
  * Classe che rappresenta il campo di gioco.
@@ -12,7 +12,7 @@ public class Field {
     /**
      * Dimensione di default del campo di gioco.
      */
-    public static final int DEFAULT_DIM = 7;
+    static final int DEFAULT_DIM = 7;
 
     /**
      * Costruisce un oggetto Field.

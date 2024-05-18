@@ -1,4 +1,4 @@
-package it.uniba.app;
+package it.uniba.app.model;
 
 /**
  * Coordinate e la classe che serve ad indicare le coordinate di gioco.

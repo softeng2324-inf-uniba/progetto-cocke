@@ -1,4 +1,5 @@
-package it.uniba.app;
+package it.uniba.app.model;
+
 /**
  * Move è la classe che serve a conservare lo slot iniziale e lo slot finale.
  */

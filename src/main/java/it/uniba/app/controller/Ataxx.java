@@ -1,5 +1,7 @@
-package it.uniba.app;
+package it.uniba.app.controller;
 import java.nio.file.Paths;
+import it.uniba.app.model.Game;
+import it.uniba.app.utils.Output;
 
 /**
  * Ataxx è la classe principale del gioco che gestisce l'intero flusso di gioco.

@@ -1,4 +1,6 @@
-package it.uniba.app;
+package it.uniba.app.model;
+
+import it.uniba.app.utils.Color;
 
 /**
  * Player è la classe che rappresenta il giocatore con il suo colore e il suo nome.
