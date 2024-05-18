@@ -5,19 +5,19 @@ package it.uniba.app;
  */
 public class Coordinate {
     /**
-     * x è la coordinata x.
+     * x è l'indice di riga.
      */
     private int x;
+
     /**
-     * y è la coordinata y.
+     * y è l'indice di colonna.
      */
     private int y;
 
-
     /**
      * Costruisce le coordinate.
-     * @param newX è la coordinata ascisse.
-     * @param newY è la coordinata ordinate.
+     * @param newX è l'indice di riga.
+     * @param newY è l'indice di colonna.
      */
     public Coordinate(final int newX, final int newY) {
         x = newX;
@@ -26,7 +26,7 @@ public class Coordinate {
 
     /**
      * Prende il valore x.
-     * @return il valore delle ascisse.
+     * @return l'indice di riga.
      */
     public int getX() {
         return x;
@@ -34,17 +34,19 @@ public class Coordinate {
 
     /**
      * Prende il valore y.
-     * @return y il valore delle ordinate.
+     * @return y l'indice di colonna.
      */
     public int getY() {
         return y;
     }
+
     /**
      * Imposta il valore x.
      */
     public void setX(final int newX) {
         x = newX;
     }
+
     /**
      * Imposta il valore y.
      */
