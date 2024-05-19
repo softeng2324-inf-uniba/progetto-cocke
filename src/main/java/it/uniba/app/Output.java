@@ -57,20 +57,17 @@ public final class Output {
         }
         for (int i = 0; i < dim; i++) {
             Coordinate c = new Coordinate(num, i);
-            if (field1.getSlot(c).getColorState() == Color.WHITE) {
-                switchCharColor(Color.WHITE);
-                System.out.print(" " + "\u200a" + "\u200a" + "\u200a" + "\u200a" + "⛂");
-                System.out.print("\u200a" + "\u200a" + "\u200a");
-                switchCharColor(Color.WHITE); //colore di default dei caratteri del terminale
-                System.out.print(" ║");
-            } else if (field1.getSlot(c).getColorState() == Color.BLACK) {
-                switchCharColor(Color.BLACK);
+            if (field1.getSlot(c).getColorState() == Color.WHITE || field1.getSlot(c).getColorState() == Color.BLACK) {
+                switchCharColor(field1.getSlot(c).getColorState());
                 System.out.print(" " + "\u200a" + "\u200a" + "\u200a" + "\u200a" + "⛂");
                 System.out.print("\u200a" + "\u200a" + "\u200a");
                 switchCharColor(Color.WHITE); //colore di default dei caratteri del terminale
                 System.out.print(" ║");
             } else {
-                System.out.print("     ║");
+                switchBackgroundColor(field1.getSlot(c).getColorState());
+                System.out.print("     ");
+                switchBackgroundColor(Color.GREY); //da cambiare con variabile globale del colore in ataxx.java
+                System.out.print("║");
             }
         }
         if (num < limitDim) {
