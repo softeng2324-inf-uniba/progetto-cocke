@@ -238,8 +238,20 @@ public final class Output {
             case 4:
                 System.out.println("Comando sconosciuto");
                 break;
+            case 5:
+                System.out.println("Inserire il nome del giocatore " + extra);
+                break;
+            case 6:
+                System.out.println("Inserire la riga " + extra);
+                break;
+            case 7:
+                System.out.println("Inserire la colonna " + extra);
+                break;
+            case 8:
+                System.out.println("Inserire un comando");
+                break;
             default:
-                System.out.println("ID errore sconosciuto");
+                System.out.println("ID messaggio sconosciuto");
                 break;
         }
     }
