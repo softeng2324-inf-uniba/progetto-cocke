@@ -250,6 +250,9 @@ public final class Output {
             case 8:
                 System.out.println("Inserire un comando");
                 break;
+            case 9:
+                System.out.println(extra);
+                break;
             default:
                 System.out.println("ID messaggio sconosciuto");
                 break;

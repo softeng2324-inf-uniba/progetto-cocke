@@ -26,7 +26,7 @@ final class Keyboard {
 	private static void error(final String str) {
 		errorCount++;
 		if (printErrors) {
-			System.out.println(str);
+			Output.printMessages(9, str);
 		}
 	}
 
