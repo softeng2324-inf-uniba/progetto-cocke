@@ -27,7 +27,7 @@ public class Field {
     }
 
     /**
-     * Crea un nuovo campo che è la copia di quello passato come argomento.
+     * Costruttore di copia della classe <code>Field</code>: crea una copia del campo da gioco in ingresso.
      * @param field il campo da copiare.
      */
     public Field(final Field field) {

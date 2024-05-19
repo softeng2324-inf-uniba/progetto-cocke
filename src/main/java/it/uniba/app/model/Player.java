@@ -33,6 +33,11 @@ public class Player {
         playerName = name;
     }
 
+    public Player(final Player srcPlayer) {
+        playerColor = srcPlayer.getColor();
+        playerName = srcPlayer.getName();
+    }
+
     /**
      * Restituisce il colore del giocatore.
      * @return colore del giocatore.
