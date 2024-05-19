@@ -234,7 +234,7 @@ final class Keyboard {
 	 */
 	public static char readChar() {
 		String token = getNextToken(false);
-		char value;
+		char value = '_';
 		try {
 			if (token.length() > 1) {
 				currentToken = token.substring(1, token.length());
