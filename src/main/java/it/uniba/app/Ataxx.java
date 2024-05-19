@@ -100,9 +100,9 @@ public class Ataxx {
      */
     private void manageExit() {
         Output.printMessages(2, "");
-        String answer;
+        String answer = "";
         do {
-            answer = Input.getCommand();
+            //answer = Input.getCommand();
             if (answer.equals("s")) {
                 setStillPlaying(false);
             } else if (!answer.equals("n")) {
@@ -122,9 +122,9 @@ public class Ataxx {
         //aggiungere questo messaggio nella funzione printMessages
         System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
 
-        String answer;
+        String answer = "";
         do {
-            answer = Input.getCommand();
+            //answer = Input.getCommand();
             if (answer.equals("s")) {
                 Player winner = getGame().nextPlayer(); //creare il metodo nextPlayer in Game, che restituisce il giocatore successivo a quello attuale
                 int remainingPieces = getGame().countPieces(winner.getColor());
@@ -172,7 +172,7 @@ public class Ataxx {
         Ataxx ataxx = new Ataxx();
         ataxx.manageFlag(args);
         do {
-            String command = Input.getCommand();
+            String command = ""; //Input.getCommand();
             switch (command) {
                 case "/help":
                     ataxx.manageHelp();
