@@ -221,4 +221,13 @@ public class Game {
         }
     }
 
+    /**
+     * Restituisce il giocatore successivo al giocatore di turno.
+     * @return <code>Player</code> successivo a quello attuale.
+     */
+    Player nextPlayer() {
+        int turnNumber = getMoveList().size();
+        return getPlayer((turnNumber + 1) % 2);
+    }
+
 }
