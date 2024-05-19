@@ -5,12 +5,12 @@ package it.uniba.app;
  * In questa enumerazione sono riportati tutti i colori utilizzati nel programma con la rispettiva codifica in 8 bit.
  */
 public enum Color {
-    BIANCO(15),
-    NERO(0),
-    ARANCIONE(208),
-    ROSA(213),
-    GIALLO(226),
-    GRIGIO(244);
+    WHITE(15),
+    BLACK(0),
+    ORANGE(208),
+    PINK(213),
+    YELLOW(226),
+    GREY(244);
 
     /**
      * Codice del colore. La codifica utilizzata è a 8 bit.

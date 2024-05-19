@@ -15,7 +15,7 @@ public class Slot {
      * <code>Color.VERDE</code>.
      */
     Slot() {
-        colorState = Color.GRIGIO;
+        colorState = Color.GREY;
     }
 
     /**
@@ -56,20 +56,20 @@ public class Slot {
      * @param distance la distanza per cui evidenziare.
      */
     void markSlot(final int distance) {
-        if ((getColorState() != Color.BIANCO) && (getColorState() != Color.NERO)) {
+        if ((getColorState() != Color.WHITE) && (getColorState() != Color.BLACK)) {
             switch (distance) {
                 case 1:
-                    if (getColorState() == Color.ARANCIONE) {
-                        setColorState(Color.ROSA);
+                    if (getColorState() == Color.ORANGE) {
+                        setColorState(Color.PINK);
                     } else {
-                        setColorState(Color.GIALLO);
+                        setColorState(Color.YELLOW);
                     }
                     break;
                 case 2:
-                    if (getColorState() == Color.GIALLO) {
-                        setColorState(Color.ROSA);
+                    if (getColorState() == Color.YELLOW) {
+                        setColorState(Color.PINK);
                     } else {
-                        setColorState(Color.ARANCIONE);
+                        setColorState(Color.ORANGE);
                     }
                     break;
                 default:
