@@ -1,16 +1,34 @@
 package it.uniba.app;
-import java.io.*;
-import java.util.*;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 /**
  * Utility class per la lettura di diversi tipi di dati da tastiera.
  */
-public class Keyboard {
+final class Keyboard {
+	/**
+	 * Costruttore per la classe Keyboard.
+	 */
+	private Keyboard() { }
+
 	// Sezione per la gestione degli errori.
 
 	private static boolean printErrors = true;
 
 	private static int errorCount = 0;
+
+	/**
+	 * Incrementa il counter degli errori e stampa il messaggio di errore se appropriato.
+	 * @param str il messaggio di errore da stampare.
+	 */
+	private static void error(final String str) {
+		errorCount++;
+		if (printErrors) {
+			System.out.println(str);
+		}
+	}
 
 	/**
 	 * Restituisce il numero corrente di errori.
@@ -24,7 +42,7 @@ public class Keyboard {
 	 * Resetta il counter degli errori a zero.
 	 * @param count il valore a cui resettare il counter.
 	 */
-	public static void resetErrorCount(int count) {
+	public static void resetErrorCount(final int count) {
 		errorCount = 0;
 	}
 
@@ -40,18 +58,8 @@ public class Keyboard {
 	 * Imposta un booleano che indica se gli errori di input devono essere stampati in output.
 	 * @param flag true se gli errori di input devono essere stampati in output, false altrimenti.
 	 */
-	public static void setPrintErrors(boolean flag) {
+	public static void setPrintErrors(final boolean flag) {
 		printErrors = flag;
-	}
-
-	/**
-	 * Incrementa il counter degli errori e stampa il messaggio di errore se appropriato.
-	 * @param str il messaggio di errore da stampare.
-	 */
-	private static void error(String str) {
-		errorCount++;
-		if (printErrors)
-			System.out.println(str);
 	}
 
 	// Sezione per la lettura di input da tastiera.
@@ -59,7 +67,7 @@ public class Keyboard {
 	/**
 	 * Contiene il token corrente.
 	 */
-	private static String current_token = null;
+	private static String currentToken = null;
 
 	/**
 	 * Contiene i token da leggere.
@@ -85,16 +93,15 @@ public class Keyboard {
 	 * @param skip true se vogliamo saltare le linee vuote, false altrimenti.
 	 * @return token il prossimo token di input.
 	 */
-	private static String getNextToken(boolean skip) {
+	private static String getNextToken(final boolean skip) {
 		String token;
 
-		if (current_token == null)
+		if (currentToken == null) {
 			token = getNextInputToken(skip);
-		else {
-			token = current_token;
-			current_token = null;
+		} else {
+			token = currentToken;
+			currentToken = null;
 		}
-
 		return token;
 	}
 
@@ -103,19 +110,19 @@ public class Keyboard {
 	 * @param skip true se vogliamo saltare le linee vuote, false altrimenti.
 	 * @return token il prossimo token di input.
 	 */
-	private static String getNextInputToken(boolean skip) {
+	private static String getNextInputToken(final boolean skip) {
 		final String delimiters = " \t\n\r\f";
 		String token = null;
 
 		try {
-			if (reader == null)
+			if (reader == null) {
 				reader = new StringTokenizer(in.readLine(), delimiters, true);
-
+			}
 			while (token == null || ((delimiters.indexOf(token) >= 0) && skip)) {
-				while (!reader.hasMoreTokens())
+				while (!reader.hasMoreTokens()) {
 					reader = new StringTokenizer(in.readLine(), delimiters,
 							true);
-
+				}
 				token = reader.nextToken();
 			}
 		} catch (Exception exception) {
@@ -135,40 +142,6 @@ public class Keyboard {
 	// Sezione per la lettura di diversi tipi di dati da tastiera.
 
 	/**
-	 * Legge e restituisce una stringa da tastiera.
-	 * @return str la stringa letta da tastiera.
-	 */
-	public static String readString() {
-		String str;
-
-		try {
-			str = getNextToken(false);
-			while (!endOfLine()) {
-				str = str + getNextToken(false);
-			}
-		} catch (Exception exception) {
-			error("Error reading String data, null value returned.");
-			str = null;
-		}
-		return str;
-	}
-
-	/**
-	 * Legge e restituisce una parola da tastiera.
-	 * @return word la parola letta da tastiera.
-	 */
-	public static String readWord() {
-		String word;
-		try {
-			word = getNextToken();
-		} catch (Exception exception) {
-			error("Error reading String data, null value returned.");
-			word = null;
-		}
-		return word;
-	}
-
-	/**
 	 * Legge e restituisce un booleano da tastiera.
 	 * @return bool il booleano letto da tastiera.
 	 */
@@ -176,11 +149,11 @@ public class Keyboard {
 		String token = getNextToken();
 		boolean bool;
 		try {
-			if (token.toLowerCase().equals("true"))
+			if (token.toLowerCase().equals("true")) {
 				bool = true;
-			else if (token.toLowerCase().equals("false"))
+			} else if (token.toLowerCase().equals("false")) {
 				bool = false;
-			else {
+			} else {
 				error("Error reading boolean data, false value returned.");
 				bool = false;
 			}
@@ -190,28 +163,6 @@ public class Keyboard {
 		}
 		return bool;
 	}
-
-	/**
-	 * Legge e restituisce un carattere da tastiera.
-	 * @return value il carattere letto da tastiera.
-	 */
-	public static char readChar() {
-		String token = getNextToken(false);
-		char value;
-		try {
-			if (token.length() > 1) {
-				current_token = token.substring(1, token.length());
-			} else
-				current_token = null;
-			value = token.charAt(0);
-		} catch (Exception exception) {
-			error("Error reading char data, MIN_VALUE value returned.");
-			value = Character.MIN_VALUE;
-		}
-
-		return value;
-	}
-
 
 	/**
 	 * Legge e restituisce un intero da tastiera.
@@ -228,7 +179,6 @@ public class Keyboard {
 		}
 		return value;
 	}
-
 
 	/**
 	 * Legge e restituisce un long da tastiera.
@@ -262,7 +212,6 @@ public class Keyboard {
 		return value;
 	}
 
-
 	/**
 	 * Legge e restituisce un double da tastiera.
 	 * @return value il double letto da tastiera.
@@ -278,4 +227,61 @@ public class Keyboard {
 		}
 		return value;
 	}
+
+	/**
+	 * Legge e restituisce un carattere da tastiera.
+	 * @return value il carattere letto da tastiera.
+	 */
+	public static char readChar() {
+		String token = getNextToken(false);
+		char value;
+		try {
+			if (token.length() > 1) {
+				currentToken = token.substring(1, token.length());
+			} else {
+				currentToken = null;
+				value = token.charAt(0);
+			}
+		} catch (Exception exception) {
+			error("Error reading char data, MIN_VALUE value returned.");
+			value = Character.MIN_VALUE;
+		}
+
+		return value;
+	}
+
+	/**
+	 * Legge e restituisce una parola da tastiera.
+	 * @return word la parola letta da tastiera.
+	 */
+	public static String readWord() {
+		String word;
+		try {
+			word = getNextToken();
+		} catch (Exception exception) {
+			error("Error reading String data, null value returned.");
+			word = null;
+		}
+		return word;
+	}
+
+	/**
+	 * Legge e restituisce una stringa da tastiera.
+	 * @return str la stringa letta da tastiera.
+	 */
+	public static String readString() {
+		String str;
+
+		try {
+			str = getNextToken(false);
+			while (!endOfLine()) {
+				str = str + getNextToken(false);
+			}
+		} catch (Exception exception) {
+			error("Error reading String data, null value returned.");
+			str = null;
+		}
+		return str;
+	}
+
 }
