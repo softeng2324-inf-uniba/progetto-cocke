@@ -64,7 +64,7 @@ public class Ataxx {
         if (getGame() == null) {
             setGame(new Game());
             getGame().setStartingPosition();
-            //printField(getGame().getGameField());
+            Output.printField(getGame().getGameField());
         }
     }
 
@@ -100,15 +100,53 @@ public class Ataxx {
      */
     private void manageExit() {
         Output.printMessages(2, "");
-        /*if (Input.command().equals("s")) {
-            setStillPlaying(false);
-        }*/
+        String answer = "";
+        do {
+            //answer = Input.getCommand();
+            if (answer.equals("s")) {
+                setStillPlaying(false);
+            } else if (!answer.equals("n")) {
+
+                //aggiungere questo messaggio nella funzione printMessages
+                System.out.println("Errore! Inserire 's' per uscire, 'n' per annullare.");
+
+            }
+        } while (!(answer.equals("s") || answer.equals("n")));
     }
+
+    /**
+     * Gestisce l'uscita dalla partita.
+     */
+    private void leaveGame() {
+
+        //aggiungere questo messaggio nella funzione printMessages
+        System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
+
+        String answer = "";
+        do {
+            //answer = Input.getCommand();
+            if (answer.equals("s")) {
+                Player winner = getGame().nextPlayer(); //creare il metodo nextPlayer in Game, che restituisce il giocatore successivo a quello attuale
+                int remainingPieces = getGame().countPieces(winner.getColor());
+
+                //aggiungere questo messaggio nella funzione printMessages
+                System.out.println("Il giocatore " + winner.getName() + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
+
+                setGame(null);
+            } else if (!answer.equals("n")) {
+
+                //aggiungere questo messaggio nella funzione printMessages
+                System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare.");
+
+            }
+        } while (!(answer.equals("s") || answer.equals("n")));
+    }
+
 
     /**
      * Gestisce il caso /qualimosse del metodo ataxxCommand.
      */
-    private void manageQualimosse() {
+    private void manageLegalMoves() {
         if (getGame() == null) {
             Output.printMessages(1, "");
         } else {
@@ -118,7 +156,7 @@ public class Ataxx {
     /**
      * Gestisce il caso /tavoliere del metodo ataxxCommand.
      */
-    private void manageTavoliere() {
+    private void manageGameField() {
         if (getGame() == null) {
             Output.printMessages(1, "");
         } else {
@@ -133,9 +171,8 @@ public class Ataxx {
     public static void ataxxCommand(final String[] args) {
         Ataxx ataxx = new Ataxx();
         ataxx.manageFlag(args);
-        String command = "";  //da eliminare dopo implementazione di getcommand
         do {
-            //String command = Input.getCommand();
+            String command = ""; //Input.getCommand();
             switch (command) {
                 case "/help":
                     ataxx.manageHelp();
@@ -144,19 +181,16 @@ public class Ataxx {
                     ataxx.startNewGame();
                     break;
                 case "/vuoto":
-                    System.out.println("/vuoto");
                     Output.printEmptyField();
                     break;
                 case "/tavoliere":
-                    System.out.println("/tavoliere");
-                    ataxx.manageTavoliere();
+                    ataxx.manageGameField();
                     break;
                 case "/qualimosse":
-                    System.out.println("/qualimosse");
-                    ataxx.manageQualimosse();
+                    ataxx.manageLegalMoves();
                     break;
                 case "/abbandona":
-                    System.out.println("/abbandona");
+                    ataxx.leaveGame();
                     break;
                 case "/esci":
                     ataxx.manageExit();
