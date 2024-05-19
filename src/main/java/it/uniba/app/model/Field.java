@@ -63,7 +63,7 @@ public class Field {
      * @param s Slot da inserire.
      */
     public void setSlot(final Coordinate c, final Slot s) {
-        gameboard[c.getRow()][c.getCol()] = s;
+        gameboard[c.getRow()][c.getColumn()] = s;
     }
 
     /**
@@ -72,7 +72,7 @@ public class Field {
      * @return Slot nella posizione c.
      */
     public Slot getSlot(final Coordinate c) {
-        return gameboard[c.getRow()][c.getCol()];
+        return gameboard[c.getRow()][c.getColumn()];
     }
 
     /**
