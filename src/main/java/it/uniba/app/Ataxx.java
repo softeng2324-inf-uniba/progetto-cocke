@@ -146,7 +146,7 @@ public class Ataxx {
     /**
      * Gestisce il caso /qualimosse del metodo ataxxCommand.
      */
-    private void manageQualiMosse() {
+    private void manageLegalMoves() {
         if (getGame() == null) {
             Output.printMessages(1, "");
         } else {
@@ -156,7 +156,7 @@ public class Ataxx {
     /**
      * Gestisce il caso /tavoliere del metodo ataxxCommand.
      */
-    private void manageTavoliere() {
+    private void manageGameField() {
         if (getGame() == null) {
             Output.printMessages(1, "");
         } else {
@@ -184,10 +184,10 @@ public class Ataxx {
                     Output.printEmptyField();
                     break;
                 case "/tavoliere":
-                    ataxx.manageTavoliere();
+                    ataxx.manageGameField();
                     break;
                 case "/qualimosse":
-                    ataxx.manageQualiMosse();
+                    ataxx.manageLegalMoves();
                     break;
                 case "/abbandona":
                     ataxx.leaveGame();
