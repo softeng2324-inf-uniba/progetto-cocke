@@ -16,7 +16,7 @@ public final class Input {
      */
     public static Player getPlayersName(final int playerIndex) {
         Player p = null;
-        Output.printMessages(5, String.valueOf(playerIndex+1));
+        Output.printMessages(5, String.valueOf(playerIndex + 1));
         if (playerIndex == 1) {
             p = new Player(Color.WHITE, Keyboard.readString());
         } else {
@@ -39,7 +39,7 @@ public final class Input {
         Coordinate start = new Coordinate(row, col);
         Output.printMessages(6, "dello slot di arrivo");
         row = Keyboard.readChar();
-        Output.printMessages(7, "ello slot di arrivo");
+        Output.printMessages(7, "dello slot di arrivo");
         col = Keyboard.readInt();
         Coordinate choice = new Coordinate(row, col);
         return new Move(start, choice);
