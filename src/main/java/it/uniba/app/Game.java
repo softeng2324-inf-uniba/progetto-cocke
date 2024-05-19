@@ -33,8 +33,8 @@ public class Game {
         moveList = new ArrayList<Move>();
 
         players = new Player[2];
-        players[0] = new Player(Color.NERO, "Giocatore 1");
-        players[1] = new Player(Color.BIANCO, "Giocatore 2");
+        players[0] = new Player(Color.BLACK, "Giocatore 1");
+        players[1] = new Player(Color.WHITE, "Giocatore 2");
     }
 
     /**

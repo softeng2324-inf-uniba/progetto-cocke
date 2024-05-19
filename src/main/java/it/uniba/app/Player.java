@@ -8,10 +8,19 @@ public class Player {
      * Rappresenta il colore del giocatore.
      */
     private Color playerColor;
+
     /**
      * Rappresenta il nome del giocatore.
      */
     private String playerName;
+
+    /**
+     * Costruttore vuoto della classe Player.
+     */
+    public Player() {
+        playerColor = null;
+        playerName = "_";
+    }
     /**
      * Costruttore della classe Player che inizializza il giocatore con il suo colore e il suo nome.
      * @param color colore del giocatore.
@@ -21,6 +30,7 @@ public class Player {
         playerColor = color;
         playerName = name;
     }
+
     /**
      * Restituisce il colore del giocatore.
      * @return colore del giocatore.
@@ -28,6 +38,7 @@ public class Player {
     public Color getColor() {
         return playerColor;
     }
+
     /**
      * Imposta il colore del giocatore.
      * @param color colore del giocatore
@@ -35,6 +46,7 @@ public class Player {
     public void setColor(final Color color) {
         playerColor = color;
     }
+
     /**
      * Restituisce il nome del giocatore.
      * @return nome del giocatore.
@@ -42,6 +54,7 @@ public class Player {
     public String getName() {
         return playerName;
     }
+
     /**
      * Imposta il nome del giocatore.
      * @param name nome del giocatore.
