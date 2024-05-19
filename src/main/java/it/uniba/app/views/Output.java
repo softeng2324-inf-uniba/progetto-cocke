@@ -60,7 +60,7 @@ public final class Output {
             System.out.print("║" + "\u2009" + "\u200a" + num + "\u200a" + "\u2009" + "║");
         }
         for (int i = 0; i < dim; i++) {
-            Coordinate c = new Coordinate(num, i);
+            Coordinate c = new Coordinate(num - 1, i);
             if (field1.getSlot(c).getColorState() == Color.WHITE || field1.getSlot(c).getColorState() == Color.BLACK) {
                 switchCharColor(field1.getSlot(c).getColorState());
                 System.out.print(" " + "\u200a" + "\u200a" + "\u200a" + "\u200a" + "⛂");
