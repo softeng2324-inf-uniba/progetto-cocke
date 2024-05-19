@@ -24,6 +24,11 @@ public class Coordinate {
         col = inCol;
     }
 
+    public Coordinate(Coordinate coordinate) {
+        row = coordinate.getRow();
+        col = coordinate.getCol();
+    }
+
     /**
      * Restituisce il valore row.
      * @return l'indice di riga.
