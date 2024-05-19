@@ -49,7 +49,7 @@ public class Commands {
         Output.printMessages(2, "");
         String answer = "";
         do {
-            //answer = Input.getCommand();
+            answer = Input.getCommand();
             if (answer.equals("s")) {
                 game.setStillPlaying(false);
             } else if (!answer.equals("n")) {
