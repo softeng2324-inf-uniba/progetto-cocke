@@ -12,12 +12,12 @@ public class Field {
     /**
      * Dimensione di default del campo di gioco.
      */
-    static final int DEFAULT_DIM = 7;
+    public static final int DEFAULT_DIM = 7;
 
     /**
      * Costruisce un oggetto Field.
      */
-    Field() {
+    public Field() {
         gameboard = new Slot[DEFAULT_DIM][DEFAULT_DIM];
 
         for (int row = 0; row < DEFAULT_DIM; row++) {
@@ -31,7 +31,7 @@ public class Field {
      * Crea un nuovo campo che è la copia di quello passato come argomento.
      * @param field il campo da copiare.
      */
-    Field(final Field field) {
+    public Field(final Field field) {
         gameboard = new Slot[field.length()][field.length()];
         Coordinate coordinate = new Coordinate(0, 0);
         for (int row = 0; row  < length(); row++) {
@@ -47,7 +47,7 @@ public class Field {
      * Costruisce un oggetto Field.
      * @param dim dimensione del campo di gioco.
      */
-    Field(final int dim) {
+    public Field(final int dim) {
         gameboard = new Slot[dim][dim];
 
         for (int row = 0; row < dim; row++) {

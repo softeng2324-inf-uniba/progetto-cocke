@@ -5,6 +5,8 @@ import it.uniba.app.model.Slot;
 import it.uniba.app.utils.Color;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
+import it.uniba.app.model.Player;
+import it.uniba.app.views.Output;
 
 /**
  * GameController è la classe che gestisce il gioco.
@@ -60,38 +62,30 @@ public class GameController {
         if (game == null) {
             setGame(new Game());
             setStartingPosition(getGame());
-            //printField(getGame().getGameField());
+            Output.printField(getGame().getGameField());
         }
     }
 
-     /**
+
+    /**
      * Inizializza la posizione iniziale delle pedine sul campo da gioco a inizio partita.
      */
-    public void setStartingPosition(final Game game) {
+    void setStartingPosition(final Game game) {
         int[] tempXY = new int[2];
         tempXY[0] = 0;
         tempXY[1] = Field.DEFAULT_DIM - 1;
 
         Field tempField = game.getGameField();
 
-        Slot tempSlot = new Slot();
-
-        for (int x = 0; x < tempXY.length; x++) {
-
-            for (int y = 0; y < tempXY.length; y++) {
-
-                Coordinate tempCoordinate = new Coordinate(tempXY[x], tempXY[y]);
-
-                if ((x + y) % 2 != 0) {
-                    tempSlot.setColorState(Color.BIANCO);
+        for (int row = 0; row < tempXY.length; row++) {
+            for (int column = 0; column < tempXY.length; column++) {
+                Coordinate tempCoordinate = new Coordinate(tempXY[row], tempXY[column]);
+                if ((row + column) % 2 != 0) {
+                    tempField.getSlot(tempCoordinate).setColorState(Color.WHITE);
                 } else {
-                    tempSlot.setColorState(Color.NERO);
+                    tempField.getSlot(tempCoordinate).setColorState(Color.BLACK);
                 }
-
-                tempField.setSlot(tempCoordinate, tempSlot);
-
             }
-
         }
 
     }
@@ -106,9 +100,9 @@ public class GameController {
      * </ul>
      */
     public void legalMoves(final Game game) {
-        Field legalMovesField = game.getGameField();
+        Field legalMovesField = new Field(game.getGameField());
         convertField(legalMovesField, game.whoIsPlaying().getColor());
-        //Output.printField(legalMovesField);
+        Output.printField(legalMovesField);
     }
 
     /**
@@ -118,13 +112,13 @@ public class GameController {
      * @param field il campo da convertire.
      * @param playerColor il colore del giocatore di cui mostrare le mosse.
      */
-    private void convertField(final Field field, final Color playerColor) {
+    void convertField(final Field field, final Color playerColor) {
         Coordinate coordinate = new Coordinate(0, 0);
-        Slot currentSlot = null;
+        Slot currentSlot;
         for (int x = 0; x < field.length(); x++) {
             for (int y = 0; y < field.length(); y++) {
-                coordinate.setX(x);
-                coordinate.setY(y);
+                coordinate.setRow(x);
+                coordinate.setCol(y);
                 currentSlot = field.getSlot(coordinate);
                 if (currentSlot.getColorState() == playerColor) {
                     markNeighboringSlot(field, coordinate);
@@ -133,39 +127,69 @@ public class GameController {
         }
     }
 
+
     /**
      * Evidenzia le caselle adiacenti alla pedina.
      * @param field il campo in cui evidenziare le caselle.
      * @param coordinate la posizione della casella da cui evidenziare le caselle.
      */
-    private void markNeighboringSlot(final Field field, final Coordinate coordinate) {
+    void markNeighboringSlot(final Field field, final Coordinate coordinate) {
         Coordinate markCoordinate = new Coordinate(0, 0);
         for (int distance = 1; distance <= 2; distance++) {
-            for (int row = (coordinate.getX() - distance); row <= (coordinate.getX() + distance); row++) {
-                if ((row == (coordinate.getX() - distance)) || (row == (coordinate.getX() + distance))) {
-                    for (int column = (coordinate.getY() - distance); column <= (coordinate.getY() + distance);
+            for (int row = (coordinate.getRow() - distance); row <= (coordinate.getRow() + distance); row++) {
+                if ((row == (coordinate.getRow() - distance)) || (row == (coordinate.getRow() + distance))) {
+                    for (int column = (coordinate.getCol() - distance); column <= (coordinate.getCol() + distance);
                          column++) {
                         if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
-                            markCoordinate.setX(row);
-                            markCoordinate.setY(column);
+                            markCoordinate.setRow(row);
+                            markCoordinate.setCol(column);
                             field.getSlot(markCoordinate).markSlot(distance);
                         }
                     }
                 } else {
-                    int column = coordinate.getY() - distance;
+                    int column = coordinate.getCol() - distance;
                     if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
-                        markCoordinate.setX(row);
-                        markCoordinate.setY(column);
+                        markCoordinate.setRow(row);
+                        markCoordinate.setCol(column);
                         field.getSlot(markCoordinate).markSlot(distance);
                     }
-                    column = coordinate.getY() + distance;
+                    column = coordinate.getCol() + distance;
                     if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
-                        markCoordinate.setX(row);
-                        markCoordinate.setY(column);
+                        markCoordinate.setRow(row);
+                        markCoordinate.setCol(column);
                         field.getSlot(markCoordinate).markSlot(distance);
                     }
                 }
             }
         }
     }
+
+    /**
+     * Gestisce l'uscita dalla partita.
+     */
+    public void leaveGame() {
+
+        //aggiungere questo messaggio nella funzione printMessages
+        System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
+
+        String answer = "";
+        do {
+            //answer = Input.getCommand();
+            if (answer.equals("s")) {
+                Player winner = getGame().nextPlayer(); //creare il metodo nextPlayer in Game, che restituisce il giocatore successivo a quello attuale
+                int remainingPieces = getGame().countPieces(winner.getColor());
+
+                //aggiungere questo messaggio nella funzione printMessages
+                System.out.println("Il giocatore " + winner.getName() + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
+
+                setGame(null);
+            } else if (!answer.equals("n")) {
+
+                //aggiungere questo messaggio nella funzione printMessages
+                System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare.");
+
+            }
+        } while (!(answer.equals("s") || answer.equals("n")));
+    }
+
 }

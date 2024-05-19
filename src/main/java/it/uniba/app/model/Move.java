@@ -19,7 +19,7 @@ public class Move {
      * @param starting  la coordinata di partenza.
      * @param chosen  la coordinata di arrivo.
      */
-    Move(final Coordinate starting, final Coordinate chosen) {
+    public Move(final Coordinate starting, final Coordinate chosen) {
         startingSlot = starting;
         chosenSlot = chosen;
     }

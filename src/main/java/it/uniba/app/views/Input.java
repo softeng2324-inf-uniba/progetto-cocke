@@ -1,4 +1,8 @@
-package it.uniba.app.utils;
+package it.uniba.app.views;
+import it.uniba.app.model.Coordinate;
+import it.uniba.app.utils.Color;
+import it.uniba.app.model.Move;
+import it.uniba.app.model.Player;
 
 /**
  * Classe Input utile all'acquisizione degli input da tastiera.

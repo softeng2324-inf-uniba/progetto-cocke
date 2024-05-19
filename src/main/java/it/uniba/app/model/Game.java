@@ -1,8 +1,5 @@
 package it.uniba.app.model;
-
-
 import java.util.ArrayList;
-
 import it.uniba.app.utils.Color;
 
 /**
@@ -35,8 +32,8 @@ public class Game {
         moveList = new ArrayList<Move>();
 
         players = new Player[2];
-        players[0] = new Player(Color.NERO, "Giocatore 1");
-        players[1] = new Player(Color.BIANCO, "Giocatore 2");
+        players[0] = new Player(Color.BLACK, "Giocatore 1");
+        players[1] = new Player(Color.WHITE, "Giocatore 2");
     }
 
     /**
@@ -108,4 +105,33 @@ public class Game {
         return getPlayer(getMoveList().size() % 2);
     }
 
+
+    /**
+     * Restituisce il giocatore successivo al giocatore di turno.
+     * @return <code>Player</code> successivo a quello attuale.
+     */
+    public Player nextPlayer() {
+        int turnNumber = getMoveList().size();
+        return getPlayer((turnNumber + 1) % 2);
+    }
+
+    /**
+     * Conta le pedine di un giocatore.
+     * @param color colore del giocatore selezionato.
+     * @return numero delle pedine del giocatore.
+     */
+    public int countPieces(final Color color) {
+        int count = 0;
+        Coordinate coordinata = new Coordinate(0, 0);
+        for (int row = 0; row < getGameField().length(); row++) {
+            coordinata.setRow(row);
+            for (int column = 0; column < getGameField().length(); column++) {
+                coordinata.setCol(column);
+                if (getGameField().getSlot(coordinata).getColorState() == color) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }

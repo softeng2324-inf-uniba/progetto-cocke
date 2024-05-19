@@ -56,7 +56,7 @@ public class Slot {
      * Evidenzia lo slot selezionato in base alla distanza selezionata.
      * @param distance la distanza per cui evidenziare.
      */
-    void markSlot(final int distance) {
+    public void markSlot(final int distance) {
         if ((getColorState() != Color.WHITE) && (getColorState() != Color.BLACK)) {
             switch (distance) {
                 case 1:
