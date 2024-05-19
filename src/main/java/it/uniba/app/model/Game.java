@@ -44,7 +44,23 @@ public class Game {
     public Game(final Player[] newPlayers) {
         gameField = new Field();
         moveList = new ArrayList<Move>();
-        players = newPlayers;
+        for (int n = 0; n < newPlayers.length; n++){
+            players[n] = newPlayers[n];
+        }
+    }
+
+    public Game(Game gioco) {
+        gameField = gioco.getGameField();
+        moveList = gioco.getMoveList();
+        players = gioco.getPlayers();
+    }
+
+    public Player[] getPlayers() {
+        Player[] newPlayers = new Player[players.length];
+        for (int n = 0; n < newPlayers.length; n++){
+            newPlayers[n] = players[n];
+        }
+        return newPlayers;
     }
 
     /**
@@ -52,7 +68,7 @@ public class Game {
      * @return oggetto di tipo <code>Field</code>
      */
     public Field getGameField() {
-        return gameField;
+        return new Field(gameField);
     }
 
     /**
@@ -60,7 +76,7 @@ public class Game {
      * @param f campo da gioco da inserire all'interno di una partita.
      */
     public void setGameField(final Field f) {
-        this.gameField = f;
+        this.gameField = new Field(f);
     }
 
     /**
@@ -68,7 +84,7 @@ public class Game {
      * @return una lista di <code>Move</code>.
      */
     public ArrayList<Move> getMoveList() {
-        return moveList;
+        return new ArrayList<>(moveList);
     }
 
     /**
@@ -76,7 +92,7 @@ public class Game {
      * @param moves lista di <code>Move</code> da inserire come log della partita corrente.
      */
     public void setMoveList(final ArrayList<Move> moves) {
-        this.moveList = moves;
+        this.moveList = new ArrayList<>(moves);
     }
 
     /**
