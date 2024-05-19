@@ -18,6 +18,60 @@ public class Commands {
     private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
     /**
+     * Rappresenta il gioco attualmente in esecuzione.
+     */
+    private Game game = null;
+
+    /**
+     * Indica se il gioco è ancora in esecuzione.
+     */
+    private static boolean stillPlaying = true;
+
+    /**
+     * Restituisce il gioco attualmente in esecuzione.
+     * @return il gioco attualmente in esecuzione.
+     */
+    public Game getGame() {
+        return game;
+    }
+
+    /**
+     * Imposta il gioco attualmente in esecuzione.
+     * @param newGame il nuovo gioco da impostare.
+     */
+    public void setGame(final Game newGame) {
+        game = newGame;
+    }
+
+    /**
+     * Restituisce se il gioco è ancora in esecuzione.
+     * @return (true) se il gioco è ancora in esecuzione, (false) altrimenti.
+     */
+    public boolean getStillPlaying() {
+        return stillPlaying;
+    }
+
+    /**
+     * Imposta se il gioco è ancora in esecuzione.
+     * @param isStillPlaying valore booleano per indicare se il gioco è ancora in esecuzione.
+     */
+    public void setStillPlaying(final boolean isStillPlaying) {
+        stillPlaying = isStillPlaying;
+    }
+
+    /**
+     * Se non vi è una partita in corso, ne viene inizializzata una nuova e viene stampato il campo
+     * da gioco, con le pedine in posizione iniziale.
+     */
+    private void startNewGame() {
+        if (getGame() == null) {
+            setGame(new Game());
+            getGame().setStartingPosition();
+            Output.printField(getGame().getGameField());
+        }
+    }
+
+    /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
      * Se viene passata la flag -h o --help, viene stampato l'help del programma.
      * Se viene passata una flag non riconosciuta, viene stampato un messaggio di errore.
@@ -31,7 +85,7 @@ public class Commands {
                     manageHelp();
                     break;
                 default:
-                    System.err.println("Flag non riconosciuta: " + arg);
+                    Output.printMessages(3, arg);
                     break;
             }
         }
@@ -48,20 +102,68 @@ public class Commands {
      * Gestisce l'uscita dal gioco.
      */
     private void manageExit() {
-        System.out.println("Sicuro di voler uscire? (s/n)");
-        /*if (Input.command().equals("s")) {
-            setStillPlaying(false);
-        }*/
+        Output.printMessages(2, "");
+        String answer = "";
+        do {
+            //answer = Input.getCommand();
+            if (answer.equals("s")) {
+                setStillPlaying(false);
+            } else if (!answer.equals("n")) {
+
+                //aggiungere questo messaggio nella funzione printMessages
+                System.out.println("Errore! Inserire 's' per uscire, 'n' per annullare.");
+
+            }
+        } while (!(answer.equals("s") || answer.equals("n")));
     }
+
+    /**
+     * Gestisce l'uscita dalla partita.
+     */
+    private void leaveGame() {
+
+        //aggiungere questo messaggio nella funzione printMessages
+        System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
+
+        String answer = "";
+        do {
+            //answer = Input.getCommand();
+            if (answer.equals("s")) {
+                Player winner = getGame().nextPlayer(); //creare il metodo nextPlayer in Game, che restituisce il giocatore successivo a quello attuale
+                int remainingPieces = getGame().countPieces(winner.getColor());
+
+                //aggiungere questo messaggio nella funzione printMessages
+                System.out.println("Il giocatore " + winner.getName() + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
+
+                setGame(null);
+            } else if (!answer.equals("n")) {
+
+                //aggiungere questo messaggio nella funzione printMessages
+                System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare.");
+
+            }
+        } while (!(answer.equals("s") || answer.equals("n")));
+    }
+
 
     /**
      * Gestisce il caso /qualimosse del metodo ataxxCommand.
      */
-    private void manageQualimosse(final GameController game) {
-        if (game.getGame() == null) {
-            System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
+    private void manageLegalMoves() {
+        if (getGame() == null) {
+            Output.printMessages(1, "");
         } else {
-            game.legalMoves(game.getGame());
+            getGame().legalMoves();
+        }
+    }
+    /**
+     * Gestisce il caso /tavoliere del metodo ataxxCommand.
+     */
+    private void manageGameField() {
+        if (getGame() == null) {
+            Output.printMessages(1, "");
+        } else {
+            Output.printField(getGame().getGameField());
         }
     }
 
@@ -74,8 +176,10 @@ public class Commands {
         GameController ataxx = new GameController();
         commands.manageFlag(args);
         String command = "";  //da eliminare dopo implementazione di getcommand
+        Ataxx ataxx = new Ataxx();
+        ataxx.manageFlag(args);
         do {
-            //String command = Input.getCommand();
+            String command = ""; //Input.getCommand();
             switch (command) {
                 case "/help":
                     commands.manageHelp();
@@ -84,24 +188,22 @@ public class Commands {
                     ataxx.startNewGame();
                     break;
                 case "/vuoto":
-                    System.out.println("/vuoto");
                     Output.printEmptyField();
                     break;
                 case "/tavoliere":
-                    System.out.println("/tavoliere");
+                    ataxx.manageGameField();
                     break;
                 case "/qualimosse":
-                    System.out.println("/qualimosse");
-                    commands.manageQualimosse(ataxx);
+                    ataxx.manageLegalMoves();
                     break;
                 case "/abbandona":
-                    System.out.println("/abbandona");
+                    ataxx.leaveGame();
                     break;
                 case "/esci":
                     commands.manageExit();
                     break;
                 default:
-                    System.out.println("Comando sconosciuto");
+                    Output.printMessages(4, "");
                     break;
             }
         } while (ataxx.getStillPlaying());

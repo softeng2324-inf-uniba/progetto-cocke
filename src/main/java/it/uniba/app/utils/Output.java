@@ -45,11 +45,48 @@ public final class Output {
     }
 
     /**
+     * Metodo che stampa a video la riga num del campo di gioco, eventualmente con le pedine nelle caselle occupate.
+     * @param dim dimensione del campo di gioco.
+     * @param num riga da stampare a video.
+     * @param field1 campo di gioco da stampare a video.
+     */
+    private static void printStuffedLine(final int dim, final int num, final Field field1) {
+        final int limitDim = 10;
+        if (num < limitDim) {
+            System.out.print("║ " + num + " ║");
+        } else {
+            System.out.print("║" + "\u2009" + "\u200a" + num + "\u200a" + "\u2009" + "║");
+        }
+        for (int i = 0; i < dim; i++) {
+            Coordinate c = new Coordinate(num, i);
+            if (field1.getSlot(c).getColorState() == Color.WHITE || field1.getSlot(c).getColorState() == Color.BLACK) {
+                switchCharColor(field1.getSlot(c).getColorState());
+                System.out.print(" " + "\u200a" + "\u200a" + "\u200a" + "\u200a" + "⛂");
+                System.out.print("\u200a" + "\u200a" + "\u200a");
+                switchCharColor(Color.WHITE); //colore di default dei caratteri del terminale
+                System.out.print(" ║");
+            } else {
+                switchBackgroundColor(field1.getSlot(c).getColorState());
+                System.out.print("     ");
+                switchBackgroundColor(Color.GREY); //da cambiare con variabile globale del colore in ataxx.java
+                System.out.print("║");
+            }
+        }
+        if (num < limitDim) {
+            System.out.print(" " + num + " ║");
+            System.out.print("\n");
+        } else {
+            System.out.print("\u2009" + "\u200a" + num + "\u200a" + "\u2009" + "║");
+            System.out.print("\n");
+        }
+    }
+
+    /**
      * Metodo che stampa la riga num del campo di gioco.
      * @param dim dimensione del campo.
      * @param num riga da stampare.
      */
-    private static void printStuffedLine(final int dim, final int num) {
+    private static void printNumLine(final int dim, final int num) {
         final int limitDim = 10;
         if (num < limitDim) {
             System.out.print("║ " + num + " ║");
@@ -88,13 +125,53 @@ public final class Output {
 
         int i;
         for (i = 0; i < dim - 1; i++) {
-            printStuffedLine(dim, i + 1);
+            printNumLine(dim, i + 1);
             System.out.print("╠═══╬");
             printCrossedHoLine(dim);
             System.out.print("╬═══╣");
             System.out.print("\n");
         }
-        printStuffedLine(dim, i + 1);
+        printNumLine(dim, i + 1);
+        System.out.print("╚═══╬");
+        printCrossedHoLine(dim);
+        System.out.print("╬═══╝");
+        System.out.print("\n");
+        printLetters(dim);
+        System.out.print("    ╚");
+        for (i = 0; i < dim - 1; i++) {
+            System.out.print("═════╩");
+        }
+        System.out.print("═════╝");
+    }
+
+    /**
+     * Metodo che stampa a video il campo di gioco con le pedine nella situazione attuale.
+     * @param f campo di gioco da visualizzare.
+     */
+    public static void printField(final Field f) {
+        final int dim = Field.DEFAULT_DIM; //da sostituire con Field.length successivamente.
+        System.out.print("    ╔");
+        for (int i = 0; i < dim - 1; i++) {
+            System.out.print("═════╦");
+        }
+        System.out.print("═════╗");
+        System.out.print("\n");
+        printLetters(dim);
+
+        System.out.print("╔═══╬");
+        printCrossedHoLine(dim);
+        System.out.print("╬═══╗");
+        System.out.print("\n");
+
+        int i;
+        for (i = 0; i < dim - 1; i++) {
+            printStuffedLine(dim, i + 1, f);
+            System.out.print("╠═══╬");
+            printCrossedHoLine(dim);
+            System.out.print("╬═══╣");
+            System.out.print("\n");
+        }
+        printStuffedLine(dim, i + 1, f);
         System.out.print("╚═══╬");
         printCrossedHoLine(dim);
         System.out.print("╬═══╝");
@@ -139,5 +216,45 @@ public final class Output {
      */
     public static void switchBackgroundColor(final Color color) {
         System.out.print(String.format("\033[48:5:%dm", color.getColorValue()));
+    }
+
+    /**
+     * Metodo che gestisce le stampe dei messaggi di errore.
+     * @param id messaggio che si vuole mostrare.
+     * @param extra stringa da aggiungere al messaggio standard.
+     */
+    public static void printMessages(final int id, final String extra) {
+        switch (id) {
+            case 1:
+                System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
+                break;
+            case 2:
+                System.out.println("Sicuro di voler uscire? (s/n)");
+                break;
+            case 3:
+                System.out.println("Flag non riconosciuta: " + extra);
+                break;
+            case 4:
+                System.out.println("Comando sconosciuto");
+                break;
+            case 5:
+                System.out.println("Inserire il nome del giocatore " + extra);
+                break;
+            case 6:
+                System.out.println("Inserire la riga " + extra);
+                break;
+            case 7:
+                System.out.println("Inserire la colonna " + extra);
+                break;
+            case 8:
+                System.out.println("Inserire un comando");
+                break;
+            case 9:
+                System.out.println(extra);
+                break;
+            default:
+                System.out.println("ID messaggio sconosciuto");
+                break;
+        }
     }
 }

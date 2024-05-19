@@ -15,8 +15,16 @@ public class Slot {
      * Costruttore della classe slot che inizializza una casella libera, indicata con il colore
      * <code>Color.VERDE</code>.
      */
-    public Slot() {
-        colorState = Color.GRIGIO;
+    Slot() {
+        colorState = Color.GREY;
+    }
+
+    /**
+     * Crea un nuovo <code>Slot</code> che è la copia di quello passato come argomento.
+     * @param slot lo slot da copiare.
+     */
+    Slot(final Slot slot) {
+        colorState = slot.getColorState();
     }
 
     /**
@@ -48,21 +56,21 @@ public class Slot {
      * Evidenzia lo slot selezionato in base alla distanza selezionata.
      * @param distance la distanza per cui evidenziare.
      */
-    public void markSlot(final int distance) {
-        if ((getColorState() != Color.BIANCO) && (getColorState() != Color.NERO)) {
+    void markSlot(final int distance) {
+        if ((getColorState() != Color.WHITE) && (getColorState() != Color.BLACK)) {
             switch (distance) {
                 case 1:
-                    if (getColorState() == Color.ARANCIONE) {
-                        setColorState(Color.ROSA);
+                    if (getColorState() == Color.ORANGE) {
+                        setColorState(Color.PINK);
                     } else {
-                        setColorState(Color.GIALLO);
+                        setColorState(Color.YELLOW);
                     }
                     break;
                 case 2:
-                    if (getColorState() == Color.GIALLO) {
-                        setColorState(Color.ROSA);
+                    if (getColorState() == Color.YELLOW) {
+                        setColorState(Color.PINK);
                     } else {
-                        setColorState(Color.ARANCIONE);
+                        setColorState(Color.ORANGE);
                     }
                     break;
                 default:
