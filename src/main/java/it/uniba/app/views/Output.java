@@ -1,9 +1,8 @@
 package it.uniba.app.views;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import it.uniba.app.model.Field;
 import it.uniba.app.utils.Color;
@@ -191,13 +190,11 @@ public final class Output {
      */
     public static void printFile(final String filePath) {
         if (new File(filePath).exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(             new FileInputStream(filePath), "UTF-8"))) {
+                String line;             while ((line = br.readLine()) != null) {                 System.out.println(line);
                 }
-            } catch (IOException e) {
-                System.out.println("Errore durante la lettura del file: " + e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             System.out.println("File non trovato");

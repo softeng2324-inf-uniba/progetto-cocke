@@ -21,14 +21,17 @@ public class GameController {
     /**
      * Indica se il gioco è ancora in esecuzione.
      */
-    private static boolean stillPlaying = true;
+    private boolean stillPlaying = true;
 
     /**
      * Restituisce il gioco attualmente in esecuzione.
      * @return il gioco attualmente in esecuzione.
      */
     public Game getGame() {
-        return game;
+        if (game == null) {
+            return null;
+        }
+        return new Game(game);
     }
 
     /**
@@ -36,7 +39,7 @@ public class GameController {
      * @param newGame il nuovo gioco da impostare.
      */
     public void setGame(final Game newGame) {
-        game = newGame;
+        game = new Game(newGame);
     }
 
     /**
@@ -183,7 +186,7 @@ public class GameController {
                 //aggiungere questo messaggio nella funzione printMessages
                 System.out.println("Il giocatore " + winner.getName() + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
 
-                setGame(null);
+                game = null;
             } else if (!answer.equals("n")) {
 
                 //aggiungere questo messaggio nella funzione printMessages
