@@ -38,7 +38,7 @@ public class Field {
             for (int column = 0; column < length(); column++) {
                 coordinate.setRow(row);
                 coordinate.setCol(column);
-                setSlot(coordinate, new Slot(getSlot(coordinate)));
+                setSlot(coordinate, new Slot(field.getSlot(coordinate)));
             }
         }
     }
