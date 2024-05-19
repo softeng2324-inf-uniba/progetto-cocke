@@ -3,7 +3,6 @@ package it.uniba.app.model;
 /**
  * Classe che rappresenta il campo da gioco.
  */
-
 public class Field {
     /**
      * Contiene le caselle del campo da gioco.
