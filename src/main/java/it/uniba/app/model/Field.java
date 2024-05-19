@@ -1,25 +1,24 @@
 package it.uniba.app.model;
 
 /**
- * Classe che rappresenta il campo di gioco.
+ * Classe che rappresenta il campo da gioco.
  */
 
 public class Field {
     /**
-     * Matrice di slot che rappresenta il campo di gioco.
+     * Contiene le caselle del campo da gioco.
      */
     private Slot[][] gameboard;
     /**
-     * Dimensione di default del campo di gioco.
+     * Dimensione del campo da gioco di default.
      */
     public static final int DEFAULT_DIM = 7;
 
     /**
-     * Costruisce un oggetto Field.
+     * Costruttore della classe <code>Field</code> che utilizza la dimensione di default del campo.
      */
     public Field() {
         gameboard = new Slot[DEFAULT_DIM][DEFAULT_DIM];
-
         for (int row = 0; row < DEFAULT_DIM; row++) {
             for (int column = 0; column < DEFAULT_DIM; column++) {
                 setSlot(new Coordinate(row, column), new Slot());
@@ -44,12 +43,11 @@ public class Field {
     }
 
     /**
-     * Costruisce un oggetto Field.
-     * @param dim dimensione del campo di gioco.
+     * Costruttore della classe <code>Field</code> che utilizza il dato in entrata come dimensione del campo da gioco.
+     * @param dim dimensione del campo da gioco da inizializzare.
      */
     public Field(final int dim) {
         gameboard = new Slot[dim][dim];
-
         for (int row = 0; row < dim; row++) {
             for (int column = 0; column < dim; column++) {
                 setSlot(new Coordinate(row, column), new Slot());
@@ -58,26 +56,26 @@ public class Field {
     }
 
     /**
-     * Imposta uno slot nella coordinata c.
-     * @param c Coordinate x e y.
-     * @param s Slot da inserire.
+     * Inserisce una casella, in entrata, all'interno del campo da gioco, nella posizione data in ingresso.
+     * @param coordinate coordinata all'interno del campo da gioco, in cui inserire la casella.
+     * @param slot casella da inserire nel campo da gioco su cui il metodo è invocato.
      */
-    public void setSlot(final Coordinate c, final Slot s) {
-        gameboard[c.getRow()][c.getColumn()] = s;
+    public void setSlot(final Coordinate coordinate, final Slot slot) {
+        gameboard[coordinate.getRow()][coordinate.getColumn()] = slot;
     }
 
     /**
-     * Restituisce uno slot del campo.
-     * @param c Coordinate x e y.
-     * @return Slot nella posizione c.
+     * Restituisce la casella del campo da gioco nella posizione in ingresso.
+     * @param coordinate coordinata della casella del campo da gioco richiesta.
+     * @return casella presente nel campo da gioco nella posizione inserita.
      */
-    public Slot getSlot(final Coordinate c) {
-        return gameboard[c.getRow()][c.getColumn()];
+    public Slot getSlot(final Coordinate coordinate) {
+        return gameboard[coordinate.getRow()][coordinate.getColumn()];
     }
 
     /**
-     * Restituisce la lunghezza del campo.
-     * @return la lunghezza del campo.
+     * Restituisce la lunghezza del lato del campo da gioco.
+     * @return lunghezza del lato del campo da gioco.
      */
     public int length() {
         return gameboard.length;
