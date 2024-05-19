@@ -1,5 +1,9 @@
 package it.uniba.app;
 
+import it.uniba.app.utils.Color;
+import it.uniba.app.views.Commands;
+import it.uniba.app.views.Output;
+
 /**
  * Main class of the application.
  */
@@ -21,5 +25,10 @@ public final class App {
      */
     public static void main(final String[] args) {
         System.out.println(new App().getGreeting());
+
+        Output.switchBackgroundColor(Color.GREY);
+        Output.switchCharColor(Color.WHITE);
+        Commands terminal = new Commands();
+        terminal.ataxxCommand(args);
     }
 }
