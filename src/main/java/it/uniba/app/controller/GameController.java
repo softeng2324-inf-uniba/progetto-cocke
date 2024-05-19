@@ -6,6 +6,7 @@ import it.uniba.app.utils.Color;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
 import it.uniba.app.model.Player;
+import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 
 /**
@@ -174,7 +175,7 @@ public class GameController {
 
         String answer = "";
         do {
-            //answer = Input.getCommand();
+            answer = Input.getCommand();
             if (answer.equals("s")) {
                 Player winner = getGame().nextPlayer(); //creare il metodo nextPlayer in Game, che restituisce il giocatore successivo a quello attuale
                 int remainingPieces = getGame().countPieces(winner.getColor());
