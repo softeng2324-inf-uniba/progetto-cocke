@@ -142,7 +142,7 @@ public class Game {
         for (int row = 0; row < getGameField().length(); row++) {
             coordinata.setRow(row);
             for (int column = 0; column < getGameField().length(); column++) {
-                coordinata.setCol(column);
+                coordinata.setColumn(column);
                 if (getGameField().getSlot(coordinata).getColorState() == color) {
                     count++;
                 }

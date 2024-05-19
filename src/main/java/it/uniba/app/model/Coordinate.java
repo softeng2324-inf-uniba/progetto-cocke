@@ -61,7 +61,7 @@ public class Coordinate {
      * Inizializza il valore della colonna della coordinata su cui è invocato.
      * @param newCol valore da inserire, come indice di riga, nella coordinata su cui il metodo è invocato.
      */
-    public void setCol(final int newCol) {
+    public void setColumn(final int newCol) {
         column = newCol;
     }
 }

@@ -60,7 +60,7 @@ public final class Input {
         Output.printMessages(6, "");
         c.setRow(row);
         Output.printMessages(7, "");
-        c.setCol(col);
+        c.setColumn(col);
         return c;
     }
 

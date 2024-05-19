@@ -122,7 +122,7 @@ public class GameController {
         for (int x = 0; x < field.length(); x++) {
             for (int y = 0; y < field.length(); y++) {
                 coordinate.setRow(x);
-                coordinate.setCol(y);
+                coordinate.setColumn(y);
                 currentSlot = field.getSlot(coordinate);
                 if (currentSlot.getColorState() == playerColor) {
                     markNeighboringSlot(field, coordinate);
@@ -146,7 +146,7 @@ public class GameController {
                          column++) {
                         if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
                             markCoordinate.setRow(row);
-                            markCoordinate.setCol(column);
+                            markCoordinate.setColumn(column);
                             field.getSlot(markCoordinate).markSlot(distance);
                         }
                     }
@@ -154,13 +154,13 @@ public class GameController {
                     int column = coordinate.getColumn() - distance;
                     if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
                         markCoordinate.setRow(row);
-                        markCoordinate.setCol(column);
+                        markCoordinate.setColumn(column);
                         field.getSlot(markCoordinate).markSlot(distance);
                     }
                     column = coordinate.getColumn() + distance;
                     if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
                         markCoordinate.setRow(row);
-                        markCoordinate.setCol(column);
+                        markCoordinate.setColumn(column);
                         field.getSlot(markCoordinate).markSlot(distance);
                     }
                 }
