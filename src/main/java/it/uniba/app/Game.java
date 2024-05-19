@@ -33,8 +33,8 @@ public class Game {
         moveList = new ArrayList<Move>();
 
         players = new Player[2];
-        players[0] = new Player(Color.NERO, "Giocatore 1");
-        players[1] = new Player(Color.BIANCO, "Giocatore 2");
+        players[0] = new Player(Color.BLACK, "Giocatore 1");
+        players[1] = new Player(Color.WHITE, "Giocatore 2");
     }
 
     /**
@@ -125,9 +125,9 @@ public class Game {
                 Coordinate tempCoordinate = new Coordinate(tempXY[x], tempXY[y]);
 
                 if ((x + y) % 2 != 0) {
-                    tempSlot.setColorState(Color.BIANCO);
+                    tempSlot.setColorState(Color.WHITE);
                 } else {
-                    tempSlot.setColorState(Color.NERO);
+                    tempSlot.setColorState(Color.BLACK);
                 }
 
                 tempField.setSlot(tempCoordinate, tempSlot);

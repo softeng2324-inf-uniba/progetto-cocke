@@ -57,17 +57,17 @@ public final class Output {
         }
         for (int i = 0; i < dim; i++) {
             Coordinate c = new Coordinate(num, i);
-            if (field1.getSlot(c).getColorState() == Color.BIANCO) {
-                switchCharColor(Color.BIANCO);
+            if (field1.getSlot(c).getColorState() == Color.WHITE) {
+                switchCharColor(Color.WHITE);
                 System.out.print(" " + "\u200a" + "\u200a" + "\u200a" + "\u200a" + "⛂");
                 System.out.print("\u200a" + "\u200a" + "\u200a");
-                switchCharColor(Color.BIANCO); //colore di default dei caratteri del terminale
+                switchCharColor(Color.WHITE); //colore di default dei caratteri del terminale
                 System.out.print(" ║");
-            } else if (field1.getSlot(c).getColorState() == Color.NERO) {
-                switchCharColor(Color.NERO);
+            } else if (field1.getSlot(c).getColorState() == Color.BLACK) {
+                switchCharColor(Color.BLACK);
                 System.out.print(" " + "\u200a" + "\u200a" + "\u200a" + "\u200a" + "⛂");
                 System.out.print("\u200a" + "\u200a" + "\u200a");
-                switchCharColor(Color.BIANCO); //colore di default dei caratteri del terminale
+                switchCharColor(Color.WHITE); //colore di default dei caratteri del terminale
                 System.out.print(" ║");
             } else {
                 System.out.print("     ║");
