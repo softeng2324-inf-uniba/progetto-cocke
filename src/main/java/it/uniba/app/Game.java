@@ -120,9 +120,9 @@ public class Game {
             for (int column = 0; column < tempXY.length; column++) {
                 Coordinate tempCoordinate = new Coordinate(tempXY[row], tempXY[column]);
                 if ((row + column) % 2 != 0) {
-                    tempField.getSlot(tempCoordinate).setColorState(Color.BIANCO);
+                    tempField.getSlot(tempCoordinate).setColorState(Color.WHITE);
                 } else {
-                    tempField.getSlot(tempCoordinate).setColorState(Color.NERO);
+                    tempField.getSlot(tempCoordinate).setColorState(Color.BLACK);
                 }
             }
         }
