@@ -90,7 +90,6 @@ public class Commands {
         Commands commands = new Commands();
         GameController ataxx = new GameController();
         commands.manageFlag(args);
-        commands.manageFlag(args);
         do {
             String command = Input.getCommand();
             switch (command) {
