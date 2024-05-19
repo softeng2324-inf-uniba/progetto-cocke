@@ -16,7 +16,7 @@ public final class Input {
      */
     public static Player getPlayersName(final int playerIndex) {
         Player p = null;
-        System.out.println("Enter player " + playerIndex + 1 + " name");
+        Output.printMessages(5, String.valueOf(playerIndex + 1));
         if (playerIndex == 1) {
             p = new Player(Color.WHITE, Keyboard.readString());
         } else {
@@ -32,14 +32,14 @@ public final class Input {
     public static Move getMove() {
         char row = ' ';
         int col = -1;
-        System.out.println("Enter the row of the draught to move");
+        Output.printMessages(6, "della pedina da muovere");
         row = Keyboard.readChar();
-        System.out.println("Enter the column of the draught to move");
+        Output.printMessages(7, "della pedina da muovere");
         col = Keyboard.readInt();
         Coordinate start = new Coordinate(row, col);
-        System.out.println("Enter the row of the designated slot");
+        Output.printMessages(6, "dello slot di arrivo");
         row = Keyboard.readChar();
-        System.out.println("Enter the column of the designated slot");
+        Output.printMessages(7, "dello slot di arrivo");
         col = Keyboard.readInt();
         Coordinate choice = new Coordinate(row, col);
         return new Move(start, choice);
@@ -53,9 +53,9 @@ public final class Input {
         char row = ' ';
         int col = -1;
         Coordinate c = null;
-        System.out.println("Enter row");
+        Output.printMessages(6, "");
         c.setRow(row);
-        System.out.println("Enter column");
+        Output.printMessages(7, "");
         c.setCol(col);
         return c;
     }
@@ -65,7 +65,7 @@ public final class Input {
      * @return il comando letto da tastiera.
      */
     public static String getCommand() {
-        System.out.println("Enter a command");
+        Output.printMessages(8, "");
         return Keyboard.readString();
     }
 }
