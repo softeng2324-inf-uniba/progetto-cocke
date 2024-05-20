@@ -61,15 +61,12 @@ La struttura della repository si presenta nel seguente modo:
 |     |–– ISPIRATORE.md
 |     |–– Report.md
 |–– drawings
-|     |–– .keep
 |–– gradle
 |     |–– wrapper
 |     |     |–– gradle-wrapper.jar
 |     |     |–– gradle-wrapper.properties
 |–– lib
-|     |–– .keep
 |–– res
-|     |–– .keep
 |–– src
 |     |–– main
 |     |     |–– controller
