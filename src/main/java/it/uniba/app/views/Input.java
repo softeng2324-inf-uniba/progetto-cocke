@@ -1,4 +1,9 @@
-package it.uniba.app;
+package it.uniba.app.views;
+import it.uniba.app.model.Coordinate;
+import it.uniba.app.utils.Color;
+import it.uniba.app.model.Move;
+import it.uniba.app.model.Player;
+import it.uniba.app.utils.Messages;
 
 /**
  * Classe Input utile all'acquisizione degli input da tastiera.
@@ -16,7 +21,7 @@ public final class Input {
      */
     public static Player getPlayersName(final int playerIndex) {
         Player p = null;
-        Output.printMessages(5, String.valueOf(playerIndex + 1));
+        Output.printMessages(Messages.INSERIRE_NOME_GIOCATORE, String.valueOf(playerIndex + 1));
         if (playerIndex == 1) {
             p = new Player(Color.WHITE, Keyboard.readString());
         } else {
@@ -32,14 +37,14 @@ public final class Input {
     public static Move getMove() {
         char row = ' ';
         int col = -1;
-        Output.printMessages(6, "della pedina da muovere");
+        Output.printMessages(Messages.INSERIRE_RIGA, "della pedina da muovere");
         row = Keyboard.readChar();
-        Output.printMessages(7, "della pedina da muovere");
+        Output.printMessages(Messages.INSERIRE_COLONNA, "della pedina da muovere");
         col = Keyboard.readInt();
         Coordinate start = new Coordinate(row, col);
-        Output.printMessages(6, "dello slot di arrivo");
+        Output.printMessages(Messages.INSERIRE_RIGA, "dello slot di arrivo");
         row = Keyboard.readChar();
-        Output.printMessages(7, "dello slot di arrivo");
+        Output.printMessages(Messages.INSERIRE_COLONNA, "dello slot di arrivo");
         col = Keyboard.readInt();
         Coordinate choice = new Coordinate(row, col);
         return new Move(start, choice);
@@ -52,11 +57,12 @@ public final class Input {
     private static Coordinate getCoordinate() {
         char row = ' ';
         int col = -1;
-        Coordinate c = null;
-        Output.printMessages(6, "");
+        Coordinate c = new Coordinate(row, col);
+        Output.printMessages(Messages.INSERIRE_RIGA);
+
         c.setRow(row);
-        Output.printMessages(7, "");
-        c.setCol(col);
+        Output.printMessages(Messages.INSERIRE_COLONNA);
+        c.setColumn(col);
         return c;
     }
 
@@ -65,7 +71,7 @@ public final class Input {
      * @return il comando letto da tastiera.
      */
     public static String getCommand() {
-        Output.printMessages(8, "");
+        Output.printMessages(Messages.INSERIRE_COMANDO);
         return Keyboard.readString();
     }
 }

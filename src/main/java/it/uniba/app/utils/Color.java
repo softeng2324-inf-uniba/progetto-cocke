@@ -1,4 +1,4 @@
-package it.uniba.app;
+package it.uniba.app.utils;
 
 /**
  * Color è una enumerazione per la gestione dei colori.

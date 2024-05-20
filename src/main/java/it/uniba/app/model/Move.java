@@ -1,0 +1,68 @@
+package it.uniba.app.model;
+
+/**
+ * Contiene, per ogni mossa, un riferimento alla casella di partenza e di arrivo di una singola mossa.
+ */
+public class Move {
+    /**
+     * startingSlot rappresenta la casella iniziale.
+     */
+    private Coordinate startingSlot;
+    /**
+     * chosenSlot rappresenta la casella d'arrivo.
+     */
+    private Coordinate chosenSlot;
+
+    /**
+     * Costruttore della classe <code>Move</code> che utilizza le coordinate delle caselle di partenza e di arrivo in
+     * ingresso.
+     * @param starting coordinata della casella di partenza.
+     * @param chosen coordinata della casella di arrivo.
+     */
+    public Move(final Coordinate starting, final Coordinate chosen) {
+        startingSlot = new Coordinate(starting);
+        chosenSlot = new Coordinate(chosen);
+    }
+
+    /**
+     * Costruttore di copia della classe <code>Move</code> che inizializza le caselle di arrivo e di partenza con quelle
+     * della mossa in ingresso.
+     * @param srcMove mossa della quale copiare i riferimenti alle caselle di partenza e di arrivo.
+     */
+    public Move(final Move srcMove) {
+        startingSlot = new Coordinate(srcMove.getStartingSlot());
+        chosenSlot = new Coordinate(srcMove.getChosenSlot());
+    }
+
+    /**
+     * Restituisce la coordinata della casella di partenza.
+     * @return coordinata della casella di partenza.
+     */
+    public Coordinate getStartingSlot() {
+        return new Coordinate(startingSlot);
+    }
+
+    /**
+     * Imposta la coordinata della casella di partenza.
+     * @param starting coordinata della casella di partenza.
+     */
+    public void setStartingSlot(final Coordinate starting) {
+        startingSlot = new Coordinate(starting);
+    }
+
+    /**
+     * Restituisce la coordinata della casella di arrivo.
+     * @return la coordinata della casella di arrivo.
+     */
+    public Coordinate getChosenSlot() {
+        return new Coordinate(chosenSlot);
+    }
+
+    /**
+     * Inizializza la coordinata della casella di arrivo.
+     * @param chosen coordinata della casella di arrivo.
+     */
+    public void setChosenSlot(final Coordinate chosen) {
+        chosenSlot = new Coordinate(chosen);
+    }
+}

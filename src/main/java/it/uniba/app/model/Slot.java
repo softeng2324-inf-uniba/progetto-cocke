@@ -1,18 +1,18 @@
-package it.uniba.app;
+package it.uniba.app.model;
 
+import it.uniba.app.utils.Color;
 
 /**
- * Slot è la classe che rappresenta la casella.
+ * Classe che rappresenta una casella del campo da gioco.
  */
 public class Slot {
     /**
-     * Rappresenta lo stato della casella se piena(di che colore) o vuota.
+     * Rappresenta lo stato della casella.
      */
     private Color colorState;
 
     /**
-     * Costruttore della classe slot che inizializza una casella libera, indicata con il colore
-     * <code>Color.VERDE</code>.
+     * Costruttore della classe <code>Slot</code> che inizializza una casella libera.
      */
     Slot() {
         colorState = Color.GREY;
@@ -27,35 +27,35 @@ public class Slot {
     }
 
     /**
-     * Costruttore della classe slot che inizializza il colore della stessa con quello passato
+     * Costruttore della classe <code>Slot</code> che inizializza il colore della stessa con quello passato
      * come parametro attuale.
-     * @param c il colore della casella.
+     * @param newColorState il colore della casella da inizializzare.
      */
-    public Slot(final Color c) {
-        colorState = c;
+    public Slot(final Color newColorState) {
+        colorState = newColorState;
     }
 
     /**
      * Restituisce lo stato della casella.
-     * @return lo stato della casella.
+     * @return stato della casella sulla quale è stato invocato il metodo.
      */
     public Color getColorState() {
         return colorState;
     }
 
     /**
-     * Modifica lo stato della casella.
-     * @param c il colore della casella.
+     * Modifica lo stato della casella attraverso il parametro in ingresso.
+     * @param newColorState il colore della casella da inizializzare.
      */
-    public void setColorState(final Color c) {
-        colorState = c;
+    public void setColorState(final Color newColorState) {
+        colorState = newColorState;
     }
 
     /**
-     * Evidenzia lo slot selezionato in base alla distanza selezionata.
+     * Modifica lo stato della casella su cui il metodo è invocato, in base alla distanza selezionata.
      * @param distance la distanza per cui evidenziare.
      */
-    void markSlot(final int distance) {
+    public void markSlot(final int distance) {
         if ((getColorState() != Color.WHITE) && (getColorState() != Color.BLACK)) {
             switch (distance) {
                 case 1:

@@ -1,7 +1,9 @@
-package it.uniba.app;
+package it.uniba.app.model;
+
+import it.uniba.app.utils.Color;
 
 /**
- * Player è la classe che rappresenta il giocatore con il suo colore e il suo nome.
+ * <code>Player</code> rappresenta il singolo giocatore con il suo colore e il suo nome in partita.
  */
 public class Player {
     /**
@@ -15,20 +17,30 @@ public class Player {
     private String playerName;
 
     /**
-     * Costruttore vuoto della classe Player.
+     * Costruttore della classe <code>Player</code> che inizializza nome e colore delle pedine di un giocatore.
      */
     public Player() {
         playerColor = null;
         playerName = "_";
     }
+
     /**
      * Costruttore della classe Player che inizializza il giocatore con il suo colore e il suo nome.
-     * @param color colore del giocatore.
-     * @param name nome del giocatore.
+     * @param color colore del giocatore da inizializzare.
+     * @param name nome del giocatore da inizializzare.
      */
     public Player(final Color color, final String name) {
         playerColor = color;
         playerName = name;
+    }
+
+    /**
+     * Costruttore di copia della classe <code>Player</code> che inizializza una copia del giocatore in ingresso.
+     * @param srcPlayer istanza del giocatore da copiare.
+     */
+    public Player(final Player srcPlayer) {
+        playerColor = srcPlayer.getColor();
+        playerName = srcPlayer.getName();
     }
 
     /**
@@ -40,8 +52,8 @@ public class Player {
     }
 
     /**
-     * Imposta il colore del giocatore.
-     * @param color colore del giocatore
+     * Inizializza il colore del giocatore.
+     * @param color colore del giocatore da inizializzare.
      */
     public void setColor(final Color color) {
         playerColor = color;
@@ -56,8 +68,8 @@ public class Player {
     }
 
     /**
-     * Imposta il nome del giocatore.
-     * @param name nome del giocatore.
+     * Inizializza il nome del giocatore.
+     * @param name nome del giocatoreda inizializzare.
      */
     public void setName(final String name) {
         playerName = name;
