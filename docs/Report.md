@@ -129,9 +129,7 @@ Windows
 
 **Comando per l’esecuzione del container** Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, 
 Il comando Docker da usare per eseguire il container contenente l’applicazione è:
-> docker run --rm -it ghcr.io/softeng2324-inf-uniba/ataxx-cocke:latest 
- 
-dove *base* sarà sostituito con il nome del gruppo.
+> docker run --rm -it ghcr.io/softeng2324-inf-uniba/ataxx-cocke:latest
 
 ---
 
