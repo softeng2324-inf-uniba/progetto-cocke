@@ -18,6 +18,7 @@ La struttura della repository si presenta nel seguente modo:
 |     |–– pmd
 |–– docs
 |     |–– img
+|     |     |–– Report
 |     |     |–– EmptyFieldTest.png
 |     |–– Assegnazione progetto.md
 |     |–– CODE_OF_CONDUCT.md
@@ -50,15 +51,15 @@ Nel seguito si dettagliano i ruoli dei diversi componenti:
 - `docs/`: ospita la documentazione di progetto, incluse le figure (nella sottocartella `img/`).
   Il file `Report.md` verrà usato per redigere la relazione finale del progetto.
   La cartella raccoglie inoltre:
-  - La sottocartella `img`: contiene immagini di supporto alla documentazione e al progetto stesso;
+  - La sottocartella `img`: contiene immagini di supporto alla documentazione, al progetto stesso e nella sua sottocartella `Report` quelle utili per la stesura del report; 
   - `Assegnazione progetto.md`: contenente la descrizione dettagliata del progetto assegnato;
-  - `CODE_OF_CONDUCT.md`: contenente la descrizione del codice di condotta per il gruppo e le firme simboliche dei componenti.
+  - `CODE_OF_CONDUCT.md`: contenente la descrizione del codice di condotta per il gruppo e le firme simboliche dei componenti;
   - `Guida per lo studente.md`: contenente la descrizione di tutti i passi di configurazione necessari per l'attivazione del flusso di lavoro a supporto dello sviluppo del progetto;
   - `ISPIRATORE.md`: contenente una breve biografia e i principali contributi di John Cocke, cui il nome del nostro gruppo si ispira;
-- `gradle/`: ospita il `.jar` relativo al sistema di gestione delle dipendenze *Gradle*.
+- `gradle/`: ospita il `.jar` relativo al sistema di gestione delle dipendenze *Gradle*;
 - `lib`: include eventuali librerie esterne utilizzate dal progetto;
 - `res`: contiene risorse varie utilizzate dal sistema;
-- `src`: cartella principale del progetto, in cui scrivere tutto il codice dell’applicazione. In `main/` ci saranno i file sorgente e `test/` conterrà i test di unità previsti.
+- `src`: cartella principale del progetto, in cui scrivere tutto il codice dell’applicazione. In `main/` ci saranno i file sorgente e `test/` conterrà i test di unità previsti;
 - `drawings/`: contiene tutti i diagrammi UML usati per descrivere il progetto;
 - `.gitignore`: specifica tutti i file che devono essere esclusi dal sistema di controllo versione;
 - `build.gradle`: esplicita le direttive e la configurazione di *Gradle*;
