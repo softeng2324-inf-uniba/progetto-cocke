@@ -58,7 +58,7 @@ public class Commands {
             } else if (!answer.equals("n")) {
 
                 //aggiungere questo messaggio nella funzione printMessages
-                System.out.println("Errore! Inserire 's' per uscire, 'n' per annullare.");
+                Output.printMessages(Message.BAD_CONFIRMATION_EXIT);
 
             }
         } while (!(answer.equals("s") || answer.equals("n")));

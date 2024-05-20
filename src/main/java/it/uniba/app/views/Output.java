@@ -203,7 +203,7 @@ public final class Output {
                 System.out.println(e);
             }
         } else {
-            System.out.println("File non trovato");
+            Output.printMessages(Message.FILE_NOT_FOUND);
         }
     }
 

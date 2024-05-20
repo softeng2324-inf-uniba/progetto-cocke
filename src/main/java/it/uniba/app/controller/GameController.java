@@ -189,8 +189,9 @@ public class GameController {
                     Player winner = getGame().nextPlayer();
                     int remainingPieces = getGame().countPieces(winner.getColor());
 
-                    System.out.println("Il giocatore " + winner.getName()
-                            + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
+                    Output.printMessages(Message.WINNER_PLAYER, winner.getName().toString(),
+                            Message.PLAYER_WON.getMessageText(), Integer.toString(remainingPieces),
+                            Message.SCORE_0.getMessageText());
 
                     game = null;
                 } else if (!answer.equals("n")) {

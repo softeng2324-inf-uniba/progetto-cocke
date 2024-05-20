@@ -38,14 +38,14 @@ public final class Input {
     public static Move getMove() {
         char row = ' ';
         int col = -1;
-        Output.printMessages(Message.INSERT_ROW, "della pedina da muovere");
+        Output.printMessages(Message.INSERT_ROW, Message.START_SLOT.getMessageText());
         row = Keyboard.readChar();
-        Output.printMessages(Message.INSERT_COLUMN, "della pedina da muovere");
+        Output.printMessages(Message.INSERT_COLUMN, Message.START_SLOT.getMessageText());
         col = Keyboard.readInt();
         Coordinate start = new Coordinate(row, col);
-        Output.printMessages(Message.INSERT_ROW, "dello slot di arrivo");
+        Output.printMessages(Message.INSERT_ROW, Message.ARRIVAL_SLOT.getMessageText());
         row = Keyboard.readChar();
-        Output.printMessages(Message.INSERT_COLUMN, "dello slot di arrivo");
+        Output.printMessages(Message.INSERT_COLUMN, Message.ARRIVAL_SLOT.getMessageText());
         col = Keyboard.readInt();
         Coordinate choice = new Coordinate(row, col);
         return new Move(start, choice);

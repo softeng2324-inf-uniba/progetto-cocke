@@ -9,14 +9,20 @@ public enum Message {
     NO_GAME("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita."),
     CONFIRM_EXIT("Sicuro di voler uscire? (s/n)"),
     UNKNOWN_FLAG("Flag non riconosciuta: "),
-    UNKNOWN_COMMAND("Comando sconosciuto"),
+    UNKNOWN_COMMAND("Comando sconosciuto. '/help' per mostrare la lista dei comandi."),
     INSERT_PLAYER_NAME("Inserire il nome del giocatore "),
     INSERT_ROW("Inserire la riga "),
     INSERT_COLUMN("Inserire la colonna "),
     INSERT_COMMAND("Inserire un comando"),
     BAD_CONFIRMATION_EXIT("Errore! Inserire 's' per uscire, 'n' per annullare."),
     CONFIRM_ABANDONMENT("Sei sicuro di voler abbandonare la partita? (s/n)"),
-    BAD_CONFIRMATION_LEAVE("Errore, inserire 's' per abbandonare o 'n' per annullare.");
+    BAD_CONFIRMATION_LEAVE("Errore, inserire 's' per abbandonare o 'n' per annullare."),
+    FILE_NOT_FOUND("File non trovato"),
+    START_SLOT("della pedina da muovere"),
+    ARRIVAL_SLOT("dello slot di arrivo"),
+    WINNER_PLAYER("Il giocatore "),
+    PLAYER_WON(" ha vinto per abbandono dell'avversario, il punteggio è "),
+    SCORE_0(" a 0.");
     /**
      * Il testo del messaggio.
      */
