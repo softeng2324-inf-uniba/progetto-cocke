@@ -1,23 +1,23 @@
 package it.uniba.app.model;
 
 /**
- * Move è la classe che serve a conservare lo slot iniziale e lo slot finale.
+ * Contiene, per ogni mossa, un riferimento alla casella di partenza e di arrivo di una singola mossa.
  */
-
 public class Move {
     /**
-     * startingSlot è lo slot iniziale.
+     * startingSlot rappresenta la casella iniziale.
      */
     private Coordinate startingSlot;
     /**
-     * chosenSlot è lo slot finale.
+     * chosenSlot rappresenta la casella d'arrivo.
      */
     private Coordinate chosenSlot;
 
     /**
-     * Costruisce un oggetto Move.
-     * @param starting  la coordinata di partenza.
-     * @param chosen  la coordinata di arrivo.
+     * Costruttore della classe <code>Move</code> che utilizza le coordinate delle caselle di partenza e di arrivo in
+     * ingresso.
+     * @param starting coordinata della casella di partenza.
+     * @param chosen coordinata della casella di arrivo.
      */
     public Move(final Coordinate starting, final Coordinate chosen) {
         startingSlot = new Coordinate(starting);
@@ -25,32 +25,42 @@ public class Move {
     }
 
     /**
-     * Restituisce la coordinata dello slot di partenza.
-     * @return la coordinata dello slot di partenza.
+     * Costruttore di copia della classe <code>Move</code> che inizializza le caselle di arrivo e di partenza con quelle
+     * della mossa in ingresso.
+     * @param srcMove mossa della quale copiare i riferimenti alle caselle di partenza e di arrivo.
+     */
+    public Move(final Move srcMove) {
+        startingSlot = new Coordinate(srcMove.getStartingSlot());
+        chosenSlot = new Coordinate(srcMove.getChosenSlot());
+    }
+
+    /**
+     * Restituisce la coordinata della casella di partenza.
+     * @return coordinata della casella di partenza.
      */
     public Coordinate getStartingSlot() {
         return new Coordinate(startingSlot);
     }
 
     /**
-     * Imposta la coordinata dello slot di partenza.
-     * @param starting la coordinata di partenza.
+     * Imposta la coordinata della casella di partenza.
+     * @param starting coordinata della casella di partenza.
      */
     public void setStartingSlot(final Coordinate starting) {
         startingSlot = new Coordinate(starting);
     }
 
     /**
-     * Restituisce la cooridnata dello slot di arrivo.
-     * @return la coordinata dello slot di arrivo.
+     * Restituisce la coordinata della casella di arrivo.
+     * @return la coordinata della casella di arrivo.
      */
     public Coordinate getChosenSlot() {
         return new Coordinate(chosenSlot);
     }
 
     /**
-     * Imposta la coordinata dello slot di arrivo.
-     * @param chosen la coordinata di arrivo.
+     * Inizializza la coordinata della casella di arrivo.
+     * @param chosen coordinata della casella di arrivo.
      */
     public void setChosenSlot(final Coordinate chosen) {
         chosenSlot = new Coordinate(chosen);
