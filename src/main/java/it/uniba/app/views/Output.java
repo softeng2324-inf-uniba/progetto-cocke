@@ -42,7 +42,11 @@ public final class Output {
         System.out.print("    ║");
         char c = 'A';
         for (int i = 0; i < dim; i++) {
-            System.out.print("  " + c + "  ║");
+            System.out.print("  " + c);
+            Output.switchCharColor(Color.GREY);
+            System.out.print("⛂ ");
+            Output.switchCharColor(Color.WHITE);
+            System.out.print("║");
             c++;
         }
         System.out.print("\n");
@@ -65,14 +69,16 @@ public final class Output {
             Coordinate c = new Coordinate(num - 1, i);
             if (field1.getSlot(c).getColorState() == Color.WHITE || field1.getSlot(c).getColorState() == Color.BLACK) {
                 switchCharColor(field1.getSlot(c).getColorState());
-                System.out.print(" " + "\u200a" + "\u200a" + "\u200a" + "\u200a" + "⛂");
-                System.out.print("\u200a" + "\u200a" + "\u200a");
+                System.out.print("  " + "⛂");
+                System.out.print(" ");
                 switchCharColor(Color.WHITE); //colore di default dei caratteri del terminale
                 System.out.print(" ║");
             } else {
                 switchBackgroundColor(field1.getSlot(c).getColorState());
-                System.out.print("     ");
+                switchCharColor(field1.getSlot(c).getColorState());
+                System.out.print("  ⛂  ");
                 switchBackgroundColor(Color.GREY); //da cambiare con variabile globale del colore in ataxx.java
+                switchCharColor(Color.WHITE);
                 System.out.print("║");
             }
         }
