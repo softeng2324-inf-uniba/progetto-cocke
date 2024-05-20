@@ -1,61 +1,67 @@
 package it.uniba.app.model;
 
 /**
- * Coordinate e la classe che serve ad indicare le coordinate di gioco.
+ * Coordinate è la classe che serve ad indicare le coordinate di gioco.
  */
 public class Coordinate {
     /**
-     * row è l'indice di riga.
+     * Rappresenta la riga della coordinata.
      */
     private int row;
 
     /**
-     * col è l'indice di colonna.
+     * Rappresenta la colonna della coordinata.
      */
-    private int col;
+    private int column;
 
     /**
-     * Costruisce le coordinate.
-     * @param inRow è l'indice di riga.
-     * @param inCol è l'indice di colonna.
+     * Costruttore della classe <code>Coordinate</code> con ordinata e ascissa in entrata.
+     * @param newRow valore dell'indice di riga.
+     * @param newColumn valore dell'indice di colonna.
      */
-    public Coordinate(final int inRow, final int inCol) {
-        row = inRow;
-        col = inCol;
+    public Coordinate(final int newRow, final int newColumn) {
+        row = newRow;
+        column = newColumn;
     }
 
-    public Coordinate(Coordinate coordinate) {
+    /**
+     * Costruttore di copia della classe <code>Coordinate</code> con la coordinata da copiare in entrata.
+     * @param coordinate coordinata da copiare.
+     */
+    public Coordinate(final Coordinate coordinate) {
         row = coordinate.getRow();
-        col = coordinate.getCol();
+        column = coordinate.getColumn();
     }
 
     /**
-     * Restituisce il valore row.
-     * @return l'indice di riga.
+     * Restituisce il valore dell'indice di riga della coordinata.
+     * @return valore dell'indice di riga della coordinata su cui è invocato.
      */
     public int getRow() {
         return row;
     }
 
     /**
-     * Restituisce il valore y.
-     * @return y l'indice di colonna.
+     * Restituisce il valore dell'indice di colonna della coordinata.
+     * @return valore dell'indice di colonna della coordinata su cui è invocato.
      */
-    public int getCol() {
-        return col;
+    public int getColumn() {
+        return column;
     }
 
     /**
-     * Imposta il valore dell'indice di riga.
+     * Inizializza il valore della riga della coordinata su cui è invocato.
+     * @param newRow valore da inserire, come indice di riga, nella coordinata su cui il metodo è invocato.
      */
-    public void setRow(final int inRow) {
-        row = inRow;
+    public void setRow(final int newRow) {
+        row = newRow;
     }
 
     /**
-     * Imposta il valore dell'indice di colonna.
+     * Inizializza il valore della colonna della coordinata su cui è invocato.
+     * @param newCol valore da inserire, come indice di riga, nella coordinata su cui il metodo è invocato.
      */
-    public void setCol(final int inCol) {
-        col = inCol;
+    public void setColumn(final int newCol) {
+        column = newCol;
     }
 }

@@ -71,7 +71,7 @@ public class Commands {
         if (game.getGame() == null) {
             Output.printMessages(Messages.PARTITA_NON_AVVIATA);
         } else {
-            game.legalMoves(game.getGame());
+            game.legalMoves();
         }
     }
     /**
