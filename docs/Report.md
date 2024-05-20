@@ -25,8 +25,8 @@ Il seguente progetto riguarda la realizzazione del gioco Ataxx a riga di comando
 Ataxx è un gioco da tavolo strategico per due giocatori, i quali si sfidano su una griglia di 7x7.
 
 In Ataxx, il gioco si svolge in turni alternati. Durante ogni turno, un giocatore potrà scegliere di:
-- **Spostare** una pedina esistente in una cella adiacente vuota (muovendosi di una casella in qualsiasi direzione).
-- **Clonare** una pedina esistente in una cella vuota che si trova entro una distanza di due celle.
+- **Clonare** una pedina esistente in una cella adiacente vuota (muovendosi di una casella in qualsiasi direzione).
+- **Spostare** una pedina esistente in una cella vuota che si trova entro una distanza di due celle.
 
 Lo scopo del gioco è conquistare il maggior numero di celle possibili trasformando le pedine avversarie in proprie.
 
