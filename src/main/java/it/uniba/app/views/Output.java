@@ -191,7 +191,7 @@ public final class Output {
         for (i = 0; i < dim - 1; i++) {
             System.out.print("═════╩");
         }
-        System.out.print("═════╝");
+        System.out.println("═════╝");
     }
 
     /** Prende in input un percorso di un file e ne stampa il suo contenuto.
