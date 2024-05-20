@@ -180,7 +180,7 @@ public class GameController {
     public void leaveGame() {
         if (getGame() != null) {
             //aggiungere questo messaggio nella funzione printMessages
-            System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
+            Output.printMessages(Message.CONFIRM_ABANDONMENT);
 
             String answer = "";
             do {
