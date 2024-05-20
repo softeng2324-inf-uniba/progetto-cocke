@@ -114,14 +114,20 @@ final class Keyboard {
     private static String getNextInputToken(final boolean skip) {
         final String delimiters = " \t\n\r\f";
         String token = null;
-
+        String text = null;
         try {
             if (reader == null) {
-                reader = new StringTokenizer(in.readLine(), delimiters, true);
+                text = in.readLine();
+                if(text != null){
+                    reader = new StringTokenizer(text, delimiters, true);
+                }
             }
             while (token == null || ((delimiters.indexOf(token) >= 0) && skip)) {
                 while (!reader.hasMoreTokens()) {
-                    reader = new StringTokenizer(in.readLine(), delimiters, true);
+                    text = in.readLine();
+                    if(text != null){
+                        reader = new StringTokenizer(text, delimiters, true);
+                    }
                 }
                 token = reader.nextToken();
             }
