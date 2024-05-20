@@ -237,8 +237,9 @@ public final class Output {
             case INSERIRE_COMANDO:
                 System.out.println("Inserire un comando");
                 break;
-            case COMANDO_SCONOSCIUTO:
-                System.out.println("Comando sconosciuto");
+            case ERRORE_COMANDO:
+                System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare.");
+                break;
             default:
                 System.out.println("Comando sconosciuto");
                 break;
@@ -263,6 +264,7 @@ public final class Output {
                 break;
             case INSERIRE_COLONNA:
                 System.out.println("Inserire la colonna " + extra);
+                break;
             default:
                 System.out.println("Comando sconosciuto");
                 break;

@@ -6,6 +6,7 @@ import it.uniba.app.utils.Color;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
 import it.uniba.app.model.Player;
+import it.uniba.app.utils.Messages;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 
@@ -183,20 +184,18 @@ public class GameController {
         String answer = "";
         do {
             answer = Input.getCommand();
-            if (answer.equals("s")) {
+            if (answer.equals("s") && getGame() != null) {
                 Player winner = getGame().nextPlayer();
                 int remainingPieces = getGame().countPieces(winner.getColor());
 
-                //aggiungere questo messaggio nella funzione printMessages
                 System.out.println("Il giocatore " + winner.getName()
                         + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
 
                 game = null;
+            } else if (getGame() == null) {
+                System.out.println(Messages.PARTITA_NON_AVVIATA);
             } else if (!answer.equals("n")) {
-
-                //aggiungere questo messaggio nella funzione printMessages
-                System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare.");
-
+                Output.printMessages(Messages.ERRORE_COMANDO);
             }
         } while (!(answer.equals("s") || answer.equals("n")));
     }

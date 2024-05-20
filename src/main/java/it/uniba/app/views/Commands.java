@@ -119,7 +119,7 @@ public class Commands {
                     commands.manageExit(ataxx);
                     break;
                 default:
-                    Output.printMessages(Messages.COMANDO_SCONOSCIUTO);
+                    Output.printMessages(Messages.NULL);
                     break;
             }
         } while (ataxx.getStillPlaying());
