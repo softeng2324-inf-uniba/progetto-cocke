@@ -65,7 +65,7 @@ public class GameController {
     public void startNewGame() {
         if (game == null) {
             setGame(new Game());
-            setStartingPosition(getGame());
+            setStartingPosition();
             Output.printField(getGame().getGameField());
         }
     }
@@ -74,16 +74,18 @@ public class GameController {
     /**
      * Inizializza la posizione iniziale delle pedine sul campo da gioco a inizio partita.
      */
-    void setStartingPosition(final Game game) {
+    void setStartingPosition() {
         int[] tempXY = new int[2];
         tempXY[0] = 0;
         tempXY[1] = Field.DEFAULT_DIM - 1;
 
-        Field tempField = game.getGameField();
+        Game tempGame = getGame();
+        Field tempField = tempGame.getGameField();
+        Coordinate tempCoordinate;
 
         for (int row = 0; row < tempXY.length; row++) {
             for (int column = 0; column < tempXY.length; column++) {
-                Coordinate tempCoordinate = new Coordinate(tempXY[row], tempXY[column]);
+                tempCoordinate = new Coordinate(tempXY[row], tempXY[column]);
                 if ((row + column) % 2 != 0) {
                     tempField.getSlot(tempCoordinate).setColorState(Color.WHITE);
                 } else {
@@ -91,9 +93,10 @@ public class GameController {
                 }
             }
         }
-
+        tempGame.setGameField(tempField);
+        setGame(tempGame);
     }
-    
+
     /**
      * Stampa il campo con le mosse consentite per il giocatore di turno.
      * <p>Il metodo stampa:
@@ -103,7 +106,7 @@ public class GameController {
      *     <li>in rosa le caselle in cui è possibile effettuare entrambe le azioni.</li>
      * </ul>
      */
-    public void legalMoves(final Game game) {
+    public void legalMoves() {
         Field legalMovesField = new Field(game.getGameField());
         convertField(legalMovesField, game.whoIsPlaying().getColor());
         Output.printField(legalMovesField);
@@ -180,11 +183,12 @@ public class GameController {
         do {
             answer = Input.getCommand();
             if (answer.equals("s")) {
-                Player winner = getGame().nextPlayer(); //creare il metodo nextPlayer in Game, che restituisce il giocatore successivo a quello attuale
+                Player winner = getGame().nextPlayer();
                 int remainingPieces = getGame().countPieces(winner.getColor());
 
                 //aggiungere questo messaggio nella funzione printMessages
-                System.out.println("Il giocatore " + winner.getName() + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
+                System.out.println("Il giocatore " + winner.getName()
+                        + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
 
                 game = null;
             } else if (!answer.equals("n")) {

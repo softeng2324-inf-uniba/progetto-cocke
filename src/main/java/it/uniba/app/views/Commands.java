@@ -68,7 +68,7 @@ public class Commands {
         if (game.getGame() == null) {
             Output.printMessages(1, "");
         } else {
-            game.legalMoves(game.getGame());
+            game.legalMoves();
         }
     }
     /**
