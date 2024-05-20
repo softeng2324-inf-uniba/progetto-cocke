@@ -3,6 +3,7 @@ package it.uniba.app.model;
 import it.uniba.app.utils.Color;
 
 /**
+ * {@literal <<Entity>>}
  * <code>Player</code> rappresenta il singolo giocatore con il suo colore e il suo nome in partita.
  */
 public class Player {

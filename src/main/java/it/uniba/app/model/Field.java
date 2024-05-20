@@ -1,6 +1,7 @@
 package it.uniba.app.model;
 
 /**
+ * {@literal <<Entity>>}
  * Classe che rappresenta il campo da gioco.
  */
 public class Field {

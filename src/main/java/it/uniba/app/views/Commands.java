@@ -4,7 +4,8 @@ import it.uniba.app.controller.GameController;
 import it.uniba.app.utils.Messages;
 
 /**
- * Ataxx è la classe principale del gioco che gestisce l'intero flusso di gioco.
+ * {@literal <<noECB>>}
+ * Commands è la classe principale del gioco che gestisce l'intero flusso di gioco.
  */
 public class Commands {
     /**

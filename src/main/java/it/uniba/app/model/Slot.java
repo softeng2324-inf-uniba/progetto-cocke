@@ -3,6 +3,7 @@ package it.uniba.app.model;
 import it.uniba.app.utils.Color;
 
 /**
+ * {@literal <<Entity>>}
  * Classe che rappresenta una casella del campo da gioco.
  */
 public class Slot {

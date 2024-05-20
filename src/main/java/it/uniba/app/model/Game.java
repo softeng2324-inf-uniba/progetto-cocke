@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import it.uniba.app.utils.Color;
 
 /**
+ * {@literal <<Entity>>}
  * <code>Game</code> contiene gli elementi che costituiscono una partita del gioco.
  * <p>Questa classe permette di inizializzare il campo da gioco, salvare una
  * cronologia delle mosse della partita e inizializzare entrambi i giocatori.</p>

@@ -1,6 +1,7 @@
 package it.uniba.app.utils;
 
 /**
+ * {@literal <<noECB>>}
  * Enumerazione per gestire i messaggi da stampare a schermo.
  */
 public enum Messages {

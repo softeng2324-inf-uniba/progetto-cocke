@@ -1,6 +1,7 @@
 package it.uniba.app.utils;
 
 /**
+ * {@literal <<noECB>>}
  * Color è una enumerazione per la gestione dei colori.
  * In questa enumerazione sono riportati tutti i colori utilizzati nel programma con la rispettiva codifica in 8 bit.
  */
