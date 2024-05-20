@@ -1,6 +1,7 @@
 package it.uniba.app.views;
 import java.nio.file.Paths;
 import it.uniba.app.controller.GameController;
+import it.uniba.app.utils.Messages;
 
 /**
  * Ataxx è la classe principale del gioco che gestisce l'intero flusso di gioco.
@@ -29,7 +30,7 @@ public class Commands {
                     manageHelp();
                     break;
                 default:
-                    Output.printMessages(3, arg);
+                    Output.printMessages(Messages.FLAG_NON_RICONOSCIUTA, arg);
                     break;
             }
         }
@@ -44,9 +45,10 @@ public class Commands {
 
     /**
      * Gestisce l'uscita dal gioco.
+     * @param game gestisce il flusso di gioco.
      */
     private void manageExit(final GameController game) {
-        Output.printMessages(2, "");
+        Output.printMessages(Messages.CONFERMA_USCITA);
         String answer = "";
         do {
             answer = Input.getCommand();
@@ -63,20 +65,22 @@ public class Commands {
 
     /**
      * Gestisce il caso /qualimosse del metodo ataxxCommand.
+     * @param game gestisce il flusso di gioco.
      */
     private void manageLegalMoves(final GameController game) {
         if (game.getGame() == null) {
-            Output.printMessages(1, "");
+            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
         } else {
             game.legalMoves();
         }
     }
     /**
      * Gestisce il caso /tavoliere del metodo ataxxCommand.
+     * @param game gestisce il flusso di gioco.
      */
     private void manageGameField(final GameController game) {
         if (game.getGame() == null) {
-            Output.printMessages(1, "");
+            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
         } else {
             Output.printField(game.getGame().getGameField());
         }
@@ -115,7 +119,7 @@ public class Commands {
                     commands.manageExit(ataxx);
                     break;
                 default:
-                    Output.printMessages(4, "");
+                    Output.printMessages(Messages.COMANDO_SCONOSCIUTO);
                     break;
             }
         } while (ataxx.getStillPlaying());
