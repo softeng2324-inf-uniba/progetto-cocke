@@ -233,5 +233,6 @@ public final class Output {
         for (String string:extra) {
             System.out.print(string);
         }
+        System.out.print("\n");
     }
 }
