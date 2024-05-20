@@ -3,33 +3,69 @@
 La struttura della repository si presenta nel seguente modo:
 
 ```plaintext
-|-- .github
-|    |-- workflows
-|    |      |-- ingsw2122.yml
-|-- build
-|    |-- reports
-|    |      |-- checkstyle
-|    |      |-- spotbugs
-|    |      |-- tests/test
+|–– .github
+|     |–– workflows
+|     |     |–– ingsw2122.yml
+|     |     |–– docker_build&push.yml
+|     |     |–– gradle_build.yml
+|–– build
+|     |–– reports
+|     |     |–– checkstyle
+|     |     |–– spotbugs
+|     |     |–– tests/test
 |–– config
-|    |–– checkstyle
+|     |–– checkstyle
+|     |     |–– checkstyle.xml
+|     |–– pmd
+|     |     |–– pmd-ruleset.xml
 |–– docs
-|    |–– Assegnazione progetto.md
-|    |–– CODE_OF_CONDUCT.md
-|    |–– Guida per lo studente.md
-|    |–– img
-|    |–– ISPIRATORE.md
-|    |–– Report.md
+|     |–– Assegnazione progetto.md
+|     |–– CODE_OF_CONDUCT.md
+|     |–– Guida per lo studente.md
+|     |–– img
+|     |–– ISPIRATORE.md
+|     |–– Report.md
 |–– drawings
+|     |–– .keep
 |–– gradle
+|     |–– wrapper
+|     |     |–– gradle-wrapper.jar
+|     |     |–– gradle-wrapper.properties
+|–– imgs
+|     |–– EmptyFieldTest.png
 |–– lib
+|     |–– .keep
 |–– res
+|     |–– .keep
 |–– src
-|    |–– main
-|    |–– test
+|     |–– main
+|     |     |–– controller
+|     |     |     |–– GameController.java
+|     |     |–– model
+|     |     |     |–– Coordinate.java
+|     |     |     |–– Field.java
+|     |     |     |–– Game.java
+|     |     |     |–– Move.java
+|     |     |     |–– Player.java
+|     |     |     |–– Slot.java
+|     |     |–– utils
+|     |     |     |–– Color.java
+|     |     |     |–– Messages.java
+|     |     |–– views
+|     |     |     |–– Commands.java
+|     |     |     |–– Input.java
+|     |     |     |–– Keyboard.java
+|     |     |     |–– Output.java
+|     |     |–– App.java
+|     |     |–– help.txt
+|     |     |–– package-info.java
+|     |–– test
+|     |     |–– AppTest.java
+|–– .gitattributes
 |–– .gitignore
-|–– build.gradle
+|–– Dockerfile
 |–– README.md
+|–– build.gradle
 |–– gradlew
 |–– gradle.bat
 |–– settings.gradle
