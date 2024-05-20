@@ -37,7 +37,7 @@ Il gioco termina quando non è più possibile effettuare mosse valide, il vincit
 # **2. Modello di dominio**
 
 Questo rappresentato è il modello di dominio del gioco Ataxx:
-<!-- ![nomefile](percorsofile) -->
+![ModelloDiDominio](./img/Report/ModelloDiDominio.png)
 
 ---
 
@@ -135,7 +135,7 @@ dove *base* sarà sostituito con il nome del gruppo.
 
 ---
 
-# **7. Manuale_utente**
+# **7. Manuale utente**
 
 ---
 
@@ -161,7 +161,7 @@ _Ecco i comandi disponibili per il giocatore:_
 
 ---
 
-# **9. Analisi_retrospettiva**
+# **9. Analisi retrospettiva**
 
 ---
 
