@@ -4,6 +4,7 @@ import it.uniba.app.utils.Messages;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.StringTokenizer;
 
 /**
@@ -79,7 +80,7 @@ final class Keyboard {
     /**
      * Contiene l'input da tastiera.
      */
-    private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
 
     /**
      * Restituisce il prossimo token di input senza saltare le linee vuote.

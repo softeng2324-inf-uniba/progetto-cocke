@@ -240,6 +240,7 @@ public final class Output {
             case COMANDO_SCONOSCIUTO:
                 System.out.println("Comando sconosciuto");
             default:
+                System.out.println("Comando sconosciuto");
                 break;
         }
     }
@@ -259,6 +260,7 @@ public final class Output {
                 break;
             case INSERIRE_RIGA:
                 System.out.println("Inserire la riga " + extra);
+                break;
             case INSERIRE_COLONNA:
                 System.out.println("Inserire la colonna " + extra);
             default:
