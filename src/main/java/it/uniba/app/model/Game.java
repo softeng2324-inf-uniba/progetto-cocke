@@ -3,8 +3,7 @@ import java.util.ArrayList;
 import it.uniba.app.utils.Color;
 
 /**
- * Game è la classe che contiene gli elementi che costituiscono una partita del gioco presente
- * in <code>Ataxx</code>.
+ * <code>Game</code> contiene gli elementi che costituiscono una partita del gioco.
  * <p>Questa classe permette di inizializzare il campo da gioco, salvare una
  * cronologia delle mosse della partita e inizializzare entrambi i giocatori.</p>
  */
@@ -29,7 +28,7 @@ public class Game {
      */
     public Game() {
         gameField = new Field();
-        moveList = new ArrayList<Move>();
+        moveList = new ArrayList<>();
 
         players = new Player[2];
         players[0] = new Player(Color.BLACK, "Giocatore 1");
@@ -43,8 +42,29 @@ public class Game {
      */
     public Game(final Player[] newPlayers) {
         gameField = new Field();
-        moveList = new ArrayList<Move>();
-        players = newPlayers;
+        moveList = new ArrayList<>();
+        players = new Player[2];
+        System.arraycopy(newPlayers, 0, players, 0, newPlayers.length);
+    }
+
+    /**
+     * Costruttore di copia della classe <code>Game</code>, che restituisce una copia della partita passata in ingresso.
+     * @param srcGame partita in ingresso da copiare.
+     */
+    public Game(final Game srcGame) {
+        gameField = srcGame.getGameField();
+        moveList = srcGame.getMoveList();
+        players = srcGame.getPlayers();
+    }
+
+    /**
+     * Restituisce un elenco dei giocatori presenti nella partita attuale.
+     * @return Copia dell'elenco dei giocatori in partita.
+     */
+    public Player[] getPlayers() {
+        Player[] playersTemp = new Player[players.length];
+        System.arraycopy(players, 0, playersTemp, 0, playersTemp.length);
+        return playersTemp;
     }
 
     /**
@@ -52,15 +72,15 @@ public class Game {
      * @return oggetto di tipo <code>Field</code>
      */
     public Field getGameField() {
-        return gameField;
+        return new Field(gameField);
     }
 
     /**
      * Inizializza il campo da gioco della partita su cui è invocato, usando il campo dato in entrata al metodo.
-     * @param f campo da gioco da inserire all'interno di una partita.
+     * @param srcField campo da gioco da inserire all'interno di una partita.
      */
-    public void setGameField(final Field f) {
-        this.gameField = f;
+    public void setGameField(final Field srcField) {
+        gameField = new Field(srcField);
     }
 
     /**
@@ -68,15 +88,15 @@ public class Game {
      * @return una lista di <code>Move</code>.
      */
     public ArrayList<Move> getMoveList() {
-        return moveList;
+        return new ArrayList<>(moveList);
     }
 
     /**
      * Inserisce una lista di mosse in entrata, come log della partita su cui tale metodo è invocato.
-     * @param moves lista di <code>Move</code> da inserire come log della partita corrente.
+     * @param srcMoves lista di <code>Move</code> da inserire come log della partita corrente.
      */
-    public void setMoveList(final ArrayList<Move> moves) {
-        this.moveList = moves;
+    public void setMoveList(final ArrayList<Move> srcMoves) {
+        moveList = new ArrayList<>(srcMoves);
     }
 
     /**
@@ -85,16 +105,16 @@ public class Game {
      * @return <code>Player</code> nella posizione richiesta.
      */
     public Player getPlayer(final int index) {
-        return players[index];
+        return new Player(players[index]);
     }
 
     /**
      * Inserisce un'istanza di <code>Player</code> come giocatore della partita su cui tale metodo è invocato.
-     * @param p giocatore da inserire nella posizione <code>index</code> richiesta nella partita.
-     * @param index indice della posizione in cui inserire il giocatore <code>p</code>.
+     * @param srcPlayer giocatore da inserire nella posizione <code>index</code> richiesta nella partita.
+     * @param index indice della posizione in cui inserire il giocatore <code>srcPlayer</code>.
      */
-    public void setPlayer(final Player p, final int index) {
-        players[index] = p;
+    public void setPlayer(final Player srcPlayer, final int index) {
+        players[index] = new Player(srcPlayer);
     }
 
     /**
@@ -104,7 +124,6 @@ public class Game {
     public Player whoIsPlaying() {
         return getPlayer(getMoveList().size() % 2);
     }
-
 
     /**
      * Restituisce il giocatore successivo al giocatore di turno.
@@ -116,7 +135,7 @@ public class Game {
     }
 
     /**
-     * Conta le pedine di un giocatore.
+     * Conta le pedine di un giocatore il cui colore è dato in ingresso.
      * @param color colore del giocatore selezionato.
      * @return numero delle pedine del giocatore.
      */
@@ -126,7 +145,7 @@ public class Game {
         for (int row = 0; row < getGameField().length(); row++) {
             coordinata.setRow(row);
             for (int column = 0; column < getGameField().length(); column++) {
-                coordinata.setCol(column);
+                coordinata.setColumn(column);
                 if (getGameField().getSlot(coordinata).getColorState() == color) {
                     count++;
                 }

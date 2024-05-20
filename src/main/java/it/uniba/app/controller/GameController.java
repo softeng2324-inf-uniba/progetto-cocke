@@ -6,6 +6,7 @@ import it.uniba.app.utils.Color;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
 import it.uniba.app.model.Player;
+import it.uniba.app.utils.Messages;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 
@@ -21,14 +22,17 @@ public class GameController {
     /**
      * Indica se il gioco è ancora in esecuzione.
      */
-    private static boolean stillPlaying = true;
+    private boolean stillPlaying = true;
 
     /**
      * Restituisce il gioco attualmente in esecuzione.
      * @return il gioco attualmente in esecuzione.
      */
     public Game getGame() {
-        return game;
+        if (game == null) {
+            return null;
+        }
+        return new Game(game);
     }
 
     /**
@@ -36,7 +40,7 @@ public class GameController {
      * @param newGame il nuovo gioco da impostare.
      */
     public void setGame(final Game newGame) {
-        game = newGame;
+        game = new Game(newGame);
     }
 
     /**
@@ -62,7 +66,7 @@ public class GameController {
     public void startNewGame() {
         if (game == null) {
             setGame(new Game());
-            setStartingPosition(getGame());
+            setStartingPosition();
             Output.printField(getGame().getGameField());
         }
     }
@@ -71,16 +75,18 @@ public class GameController {
     /**
      * Inizializza la posizione iniziale delle pedine sul campo da gioco a inizio partita.
      */
-    void setStartingPosition(final Game game) {
+    void setStartingPosition() {
         int[] tempXY = new int[2];
         tempXY[0] = 0;
         tempXY[1] = Field.DEFAULT_DIM - 1;
 
-        Field tempField = game.getGameField();
+        Game tempGame = getGame();
+        Field tempField = tempGame.getGameField();
+        Coordinate tempCoordinate;
 
         for (int row = 0; row < tempXY.length; row++) {
             for (int column = 0; column < tempXY.length; column++) {
-                Coordinate tempCoordinate = new Coordinate(tempXY[row], tempXY[column]);
+                tempCoordinate = new Coordinate(tempXY[row], tempXY[column]);
                 if ((row + column) % 2 != 0) {
                     tempField.getSlot(tempCoordinate).setColorState(Color.WHITE);
                 } else {
@@ -88,9 +94,10 @@ public class GameController {
                 }
             }
         }
-
+        tempGame.setGameField(tempField);
+        setGame(tempGame);
     }
-    
+
     /**
      * Stampa il campo con le mosse consentite per il giocatore di turno.
      * <p>Il metodo stampa:
@@ -100,7 +107,7 @@ public class GameController {
      *     <li>in rosa le caselle in cui è possibile effettuare entrambe le azioni.</li>
      * </ul>
      */
-    public void legalMoves(final Game game) {
+    public void legalMoves() {
         Field legalMovesField = new Field(game.getGameField());
         convertField(legalMovesField, game.whoIsPlaying().getColor());
         Output.printField(legalMovesField);
@@ -119,7 +126,7 @@ public class GameController {
         for (int x = 0; x < field.length(); x++) {
             for (int y = 0; y < field.length(); y++) {
                 coordinate.setRow(x);
-                coordinate.setCol(y);
+                coordinate.setColumn(y);
                 currentSlot = field.getSlot(coordinate);
                 if (currentSlot.getColorState() == playerColor) {
                     markNeighboringSlot(field, coordinate);
@@ -139,25 +146,26 @@ public class GameController {
         for (int distance = 1; distance <= 2; distance++) {
             for (int row = (coordinate.getRow() - distance); row <= (coordinate.getRow() + distance); row++) {
                 if ((row == (coordinate.getRow() - distance)) || (row == (coordinate.getRow() + distance))) {
-                    for (int column = (coordinate.getCol() - distance); column <= (coordinate.getCol() + distance);
+                    for (int column = (coordinate.getColumn() - distance);
+                         column <= (coordinate.getColumn() + distance);
                          column++) {
                         if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
                             markCoordinate.setRow(row);
-                            markCoordinate.setCol(column);
+                            markCoordinate.setColumn(column);
                             field.getSlot(markCoordinate).markSlot(distance);
                         }
                     }
                 } else {
-                    int column = coordinate.getCol() - distance;
+                    int column = coordinate.getColumn() - distance;
                     if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
                         markCoordinate.setRow(row);
-                        markCoordinate.setCol(column);
+                        markCoordinate.setColumn(column);
                         field.getSlot(markCoordinate).markSlot(distance);
                     }
-                    column = coordinate.getCol() + distance;
+                    column = coordinate.getColumn() + distance;
                     if ((((row >= 0) && (row < field.length())) && ((column >= 0) && (column < field.length())))) {
                         markCoordinate.setRow(row);
-                        markCoordinate.setCol(column);
+                        markCoordinate.setColumn(column);
                         field.getSlot(markCoordinate).markSlot(distance);
                     }
                 }
@@ -169,28 +177,28 @@ public class GameController {
      * Gestisce l'uscita dalla partita.
      */
     public void leaveGame() {
+        if (getGame() != null) {
+            //aggiungere questo messaggio nella funzione printMessages
+            System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
 
-        //aggiungere questo messaggio nella funzione printMessages
-        System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
+            String answer = "";
+            do {
+                answer = Input.getCommand();
+                if (answer.equals("s")) {
+                    Player winner = getGame().nextPlayer();
+                    int remainingPieces = getGame().countPieces(winner.getColor());
 
-        String answer = "";
-        do {
-            answer = Input.getCommand();
-            if (answer.equals("s")) {
-                Player winner = getGame().nextPlayer(); //creare il metodo nextPlayer in Game, che restituisce il giocatore successivo a quello attuale
-                int remainingPieces = getGame().countPieces(winner.getColor());
+                    System.out.println("Il giocatore " + winner.getName()
+                            + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
 
-                //aggiungere questo messaggio nella funzione printMessages
-                System.out.println("Il giocatore " + winner.getName() + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
-
-                setGame(null);
-            } else if (!answer.equals("n")) {
-
-                //aggiungere questo messaggio nella funzione printMessages
-                System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare.");
-
-            }
-        } while (!(answer.equals("s") || answer.equals("n")));
+                    game = null;
+                } else if (!answer.equals("n")) {
+                    Output.printMessages(Messages.ERRORE_COMANDO);
+                }
+            } while (!(answer.equals("s") || answer.equals("n")));
+        } else {
+            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
+        }
     }
 
 }

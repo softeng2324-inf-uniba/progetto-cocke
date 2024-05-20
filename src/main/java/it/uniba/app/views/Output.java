@@ -1,13 +1,15 @@
 package it.uniba.app.views;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
 import it.uniba.app.model.Field;
 import it.uniba.app.utils.Color;
 import it.uniba.app.model.Coordinate;
+import it.uniba.app.utils.Messages;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 
 /**
  * Output è la classe che si occupa delle stampe a video.
@@ -15,7 +17,6 @@ import it.uniba.app.model.Coordinate;
  * come la stampa del campo da gioco e dell'interfaccia grafica.</p>
  */
 public final class Output {
-
     /**
      * Costruttore privato per evitare che la classe Output venga istanziata.
      */
@@ -191,13 +192,14 @@ public final class Output {
      */
     public static void printFile(final String filePath) {
         if (new File(filePath).exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(filePath), "UTF-8"))) {
                 String line;
-                while ((line = reader.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     System.out.println(line);
                 }
-            } catch (IOException e) {
-                System.out.println("Errore durante la lettura del file: " + e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e);
             }
         } else {
             System.out.println("File non trovato");
@@ -222,40 +224,49 @@ public final class Output {
 
     /**
      * Metodo che gestisce le stampe dei messaggi di errore.
-     * @param id messaggio che si vuole mostrare.
-     * @param extra stringa da aggiungere al messaggio standard.
+     * @param messages messaggio che si vuole mostrare.
      */
-    public static void printMessages(final int id, final String extra) {
-        switch (id) {
-            case 1:
+    public static void printMessages(final Messages messages) {
+        switch (messages) {
+            case PARTITA_NON_AVVIATA:
                 System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
                 break;
-            case 2:
+            case CONFERMA_USCITA:
                 System.out.println("Sicuro di voler uscire? (s/n)");
                 break;
-            case 3:
-                System.out.println("Flag non riconosciuta: " + extra);
-                break;
-            case 4:
-                System.out.println("Comando sconosciuto");
-                break;
-            case 5:
-                System.out.println("Inserire il nome del giocatore " + extra);
-                break;
-            case 6:
-                System.out.println("Inserire la riga " + extra);
-                break;
-            case 7:
-                System.out.println("Inserire la colonna " + extra);
-                break;
-            case 8:
+            case INSERIRE_COMANDO:
                 System.out.println("Inserire un comando");
                 break;
-            case 9:
-                System.out.println(extra);
+            case ERRORE_COMANDO:
+                System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare.");
                 break;
             default:
-                System.out.println("ID messaggio sconosciuto");
+                System.out.println("Comando sconosciuto");
+                break;
+        }
+    }
+
+    /**
+     * Overload del metodo printMessages() che gestisce le stampe dei messaggi di errore in maniera più dinamica.
+     * @param messages messaggio che si vuole mostrare.
+     * @param extra stringa da aggiungere al messaggio standard.
+     */
+    public static void printMessages(final Messages messages, final String extra) {
+        switch (messages) {
+            case FLAG_NON_RICONOSCIUTA:
+                System.out.println("Flag non riconosciuta: " + extra);
+                break;
+            case INSERIRE_NOME_GIOCATORE:
+                System.out.println("Inserire il nome del giocatore " + extra);
+                break;
+            case INSERIRE_RIGA:
+                System.out.println("Inserire la riga " + extra);
+                break;
+            case INSERIRE_COLONNA:
+                System.out.println("Inserire la colonna " + extra);
+                break;
+            default:
+                System.out.println("Comando sconosciuto");
                 break;
         }
     }
