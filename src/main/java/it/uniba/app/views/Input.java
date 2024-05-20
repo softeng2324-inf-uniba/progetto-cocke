@@ -62,7 +62,6 @@ public final class Input {
 
         c.setRow(row);
         Output.printMessages(Messages.INSERIRE_COLONNA);
-        Output.printMessages(7, "");
         c.setColumn(col);
         return c;
     }
