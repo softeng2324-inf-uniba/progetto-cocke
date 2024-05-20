@@ -177,27 +177,28 @@ public class GameController {
      * Gestisce l'uscita dalla partita.
      */
     public void leaveGame() {
+        if (getGame() != null) {
+            //aggiungere questo messaggio nella funzione printMessages
+            System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
 
-        //aggiungere questo messaggio nella funzione printMessages
-        System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
+            String answer = "";
+            do {
+                answer = Input.getCommand();
+                if (answer.equals("s")) {
+                    Player winner = getGame().nextPlayer();
+                    int remainingPieces = getGame().countPieces(winner.getColor());
 
-        String answer = "";
-        do {
-            answer = Input.getCommand();
-            if (answer.equals("s") && getGame() != null) {
-                Player winner = getGame().nextPlayer();
-                int remainingPieces = getGame().countPieces(winner.getColor());
+                    System.out.println("Il giocatore " + winner.getName()
+                            + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
 
-                System.out.println("Il giocatore " + winner.getName()
-                        + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
-
-                game = null;
-            } else if (getGame() == null) {
-                System.out.println(Messages.PARTITA_NON_AVVIATA);
-            } else if (!answer.equals("n")) {
-                Output.printMessages(Messages.ERRORE_COMANDO);
-            }
-        } while (!(answer.equals("s") || answer.equals("n")));
+                    game = null;
+                } else if (!answer.equals("n")) {
+                    Output.printMessages(Messages.ERRORE_COMANDO);
+                }
+            } while (!(answer.equals("s") || answer.equals("n")));
+        } else {
+            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
+        }
     }
 
 }
