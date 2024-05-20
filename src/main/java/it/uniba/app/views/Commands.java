@@ -17,6 +17,9 @@ public class Commands {
      */
     private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
+    static {
+        System.out.print(filePath);
+    }
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
      * Se viene passata la flag -h o --help, viene stampato l'help del programma.
