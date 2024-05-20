@@ -118,14 +118,14 @@ final class Keyboard {
         try {
             if (reader == null) {
                 text = in.readLine();
-                if(text != null){
+                if (text != null) {
                     reader = new StringTokenizer(text, delimiters, true);
                 }
             }
             while (token == null || ((delimiters.indexOf(token) >= 0) && skip)) {
                 while (!reader.hasMoreTokens()) {
                     text = in.readLine();
-                    if(text != null){
+                    if (text != null) {
                         reader = new StringTokenizer(text, delimiters, true);
                     }
                 }
