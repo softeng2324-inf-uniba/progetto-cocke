@@ -15,45 +15,10 @@ La struttura della repository si presenta nel seguente modo:
 |     |     |–– tests/test
 |–– config
 |     |–– checkstyle
-|     |     |–– checkstyle.xml
 |     |–– pmd
-|     |     |–– pmd-ruleset.xml
 |–– docs
 |     |–– img
-|     |     |–– CoverallsBadge_1.png
-|     |     |–– CoverallsBadge_2.png
 |     |     |–– EmptyFieldTest.png
-|     |     |–– ExexuteDockerImage_2.png
-|     |     |–– Import_e_Java_-_Eclipse.png
-|     |     |–– LinkToPackageCocke.png
-|     |     |–– Pipeline.png
-|     |     |–– SaveTokenInSecretCocke_1
-|     |     |–– SaveTokenInSecretCocke_2
-|     |     |–– SaveTokenInSecretCocke_3
-|     |     |–– SaveTokenInSecretCocke_4
-|     |     |–– SaveTokenInSecretCocke_5
-|     |     |–– SaveTokenInSecretCocke_6
-|     |     |–– SaveTokenInSecretCocke_7
-|     |     |–– Update_GitHub_badge_1_Cocke.png
-|     |     |–– Update_GitHub_badge_2.png
-|     |     |–– Update_GitHub_badge_3_Cocke.png
-|     |     |–– Update_GitHub_badge_4.png
-|     |     |–– actions+coveralls-badges.png
-|     |     |–– actions-badge.png
-|     |     |–– add_repo_coveralls.png
-|     |     |–– ataxx.png
-|     |     |–– cloneusingurl.PNG
-|     |     |–– configuringRepository.png
-|     |     |–– javadoc_location.png
-|     |     |–– joinClassroom.png
-|     |     |–– joinTeamCocke.png
-|     |     |–– manageAccessCocke.png
-|     |     |–– packageSettingsCocke.png
-|     |     |–– project-properties.png
-|     |     |–– project_properties.png
-|     |     |–– promptAcceptAssignment.png
-|     |     |–– readyToGoCocke.png
-|     |     |–– run_gradle_check.png
 |     |–– Assegnazione progetto.md
 |     |–– CODE_OF_CONDUCT.md
 |     |–– Guida per lo studente.md
@@ -62,35 +27,11 @@ La struttura della repository si presenta nel seguente modo:
 |     |–– Report.md
 |–– drawings
 |–– gradle
-|     |–– wrapper
-|     |     |–– gradle-wrapper.jar
-|     |     |–– gradle-wrapper.properties
 |–– lib
 |–– res
 |–– src
 |     |–– main
-|     |     |–– controller
-|     |     |     |–– GameController.java
-|     |     |–– model
-|     |     |     |–– Coordinate.java
-|     |     |     |–– Field.java
-|     |     |     |–– Game.java
-|     |     |     |–– Move.java
-|     |     |     |–– Player.java
-|     |     |     |–– Slot.java
-|     |     |–– utils
-|     |     |     |–– Color.java
-|     |     |     |–– Messages.java
-|     |     |–– views
-|     |     |     |–– Commands.java
-|     |     |     |–– Input.java
-|     |     |     |–– Keyboard.java
-|     |     |     |–– Output.java
-|     |     |–– App.java
-|     |     |–– help.txt
-|     |     |–– package-info.java
 |     |–– test
-|     |     |–– AppTest.java
 |–– .gitattributes
 |–– .gitignore
 |–– Dockerfile
