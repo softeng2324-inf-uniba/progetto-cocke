@@ -1,6 +1,7 @@
 package it.uniba.app.model;
 
 /**
+ * {@literal <<Entity>>}
  * Contiene, per ogni mossa, un riferimento alla casella di partenza e di arrivo di una singola mossa.
  */
 public class Move {

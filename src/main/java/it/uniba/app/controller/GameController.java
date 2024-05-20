@@ -11,6 +11,7 @@ import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 
 /**
+ * {@literal <<Control>>}
  * GameController è la classe che gestisce il gioco.
  */
 public class GameController {

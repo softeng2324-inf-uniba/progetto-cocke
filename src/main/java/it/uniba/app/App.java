@@ -5,6 +5,7 @@ import it.uniba.app.views.Commands;
 import it.uniba.app.views.Output;
 
 /**
+ * {@literal <<Boundary>>}
  * Main class of the application.
  */
 public final class App {
