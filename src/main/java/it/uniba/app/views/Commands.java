@@ -1,7 +1,7 @@
 package it.uniba.app.views;
 import java.nio.file.Paths;
 import it.uniba.app.controller.GameController;
-import it.uniba.app.utils.Messages;
+import it.uniba.app.utils.Message;
 
 /**
  * Ataxx è la classe principale del gioco che gestisce l'intero flusso di gioco.
@@ -30,7 +30,7 @@ public class Commands {
                     manageHelp();
                     break;
                 default:
-                    Output.printMessages(Messages.FLAG_NON_RICONOSCIUTA, arg);
+                    Output.printMessages(Message.UNKNOWN_FLAG, arg);
                     break;
             }
         }
@@ -48,7 +48,7 @@ public class Commands {
      * @param game gestisce il flusso di gioco.
      */
     private void manageExit(final GameController game) {
-        Output.printMessages(Messages.CONFERMA_USCITA);
+        Output.printMessages(Message.CONFIRM_EXIT);
         String answer = "";
         do {
             answer = Input.getCommand();
@@ -69,7 +69,7 @@ public class Commands {
      */
     private void manageLegalMoves(final GameController game) {
         if (game.getGame() == null) {
-            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
+            Output.printMessages(Message.NO_GAME);
         } else {
             game.legalMoves();
         }
@@ -80,7 +80,7 @@ public class Commands {
      */
     private void manageGameField(final GameController game) {
         if (game.getGame() == null) {
-            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
+            Output.printMessages(Message.NO_GAME);
         } else {
             Output.printField(game.getGame().getGameField());
         }
@@ -119,7 +119,7 @@ public class Commands {
                     commands.manageExit(ataxx);
                     break;
                 default:
-                    Output.printMessages(Messages.NULL);
+                    Output.printMessages(Message.UNKNOWN_COMMAND);
                     break;
             }
         } while (ataxx.getStillPlaying());

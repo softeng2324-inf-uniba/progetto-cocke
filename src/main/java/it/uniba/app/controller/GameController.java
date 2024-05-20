@@ -6,7 +6,7 @@ import it.uniba.app.utils.Color;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
 import it.uniba.app.model.Player;
-import it.uniba.app.utils.Messages;
+import it.uniba.app.utils.Message;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 
@@ -193,11 +193,11 @@ public class GameController {
 
                     game = null;
                 } else if (!answer.equals("n")) {
-                    Output.printMessages(Messages.ERRORE_COMANDO);
+                    Output.printMessages(Message.BAD_CONFIRMATION_LEAVE);
                 }
             } while (!(answer.equals("s") || answer.equals("n")));
         } else {
-            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
+            Output.printMessages(Message.NO_GAME);
         }
     }
 
