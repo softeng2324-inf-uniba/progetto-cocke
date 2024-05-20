@@ -13,7 +13,7 @@ public enum Message {
     INSERT_PLAYER_NAME("Inserire il nome del giocatore "),
     INSERT_ROW("Inserire la riga "),
     INSERT_COLUMN("Inserire la colonna "),
-    INSERT_COMMAND("Inserire un comando"),
+    INSERT_COMMAND("Inserire un comando: "),
     BAD_CONFIRMATION_EXIT("Errore! Inserire 's' per uscire, 'n' per annullare."),
     CONFIRM_ABANDONMENT("Sei sicuro di voler abbandonare la partita? (s/n)"),
     BAD_CONFIRMATION_LEAVE("Errore, inserire 's' per abbandonare o 'n' per annullare."),
