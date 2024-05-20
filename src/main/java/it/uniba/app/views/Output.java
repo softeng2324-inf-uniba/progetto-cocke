@@ -3,7 +3,7 @@ package it.uniba.app.views;
 import it.uniba.app.model.Field;
 import it.uniba.app.utils.Color;
 import it.uniba.app.model.Coordinate;
-import it.uniba.app.utils.Messages;
+import it.uniba.app.utils.Message;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -203,7 +203,7 @@ public final class Output {
                 System.out.println(e);
             }
         } else {
-            System.out.println("File non trovato");
+            Output.printMessages(Message.FILE_NOT_FOUND);
         }
     }
 
@@ -224,51 +224,15 @@ public final class Output {
     }
 
     /**
-     * Metodo che gestisce le stampe dei messaggi di errore.
-     * @param messages messaggio che si vuole mostrare.
+     * Stampa i messaggi assieme ad eventuali parametri extra.
+     * @param message messaggio che si vuole mostrare.
+     * @param extra stringhe da aggiungere al messaggio standard.
      */
-    public static void printMessages(final Messages messages) {
-        switch (messages) {
-            case PARTITA_NON_AVVIATA:
-                System.out.println("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita.");
-                break;
-            case CONFERMA_USCITA:
-                System.out.println("Sicuro di voler uscire? (s/n)");
-                break;
-            case INSERIRE_COMANDO:
-                System.out.println("Inserire un comando");
-                break;
-            case ERRORE_COMANDO:
-                System.out.println("Errore, inserire 's' per abbandonare o 'n' per annullare.");
-                break;
-            default:
-                System.out.println("Comando sconosciuto");
-                break;
+    public static void printMessages(final Message message, final String... extra) {
+        System.out.print(message.getMessageText());
+        for (String string:extra) {
+            System.out.print(string);
         }
-    }
-
-    /**
-     * Overload del metodo printMessages() che gestisce le stampe dei messaggi di errore in maniera più dinamica.
-     * @param messages messaggio che si vuole mostrare.
-     * @param extra stringa da aggiungere al messaggio standard.
-     */
-    public static void printMessages(final Messages messages, final String extra) {
-        switch (messages) {
-            case FLAG_NON_RICONOSCIUTA:
-                System.out.println("Flag non riconosciuta: " + extra);
-                break;
-            case INSERIRE_NOME_GIOCATORE:
-                System.out.println("Inserire il nome del giocatore " + extra);
-                break;
-            case INSERIRE_RIGA:
-                System.out.println("Inserire la riga " + extra);
-                break;
-            case INSERIRE_COLONNA:
-                System.out.println("Inserire la colonna " + extra);
-                break;
-            default:
-                System.out.println("Comando sconosciuto");
-                break;
-        }
+        System.out.print("\n");
     }
 }

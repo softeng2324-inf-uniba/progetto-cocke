@@ -1,7 +1,7 @@
 package it.uniba.app.views;
 import java.nio.file.Paths;
 import it.uniba.app.controller.GameController;
-import it.uniba.app.utils.Messages;
+import it.uniba.app.utils.Message;
 
 /**
  * {@literal <<noECB>>}
@@ -31,7 +31,7 @@ public class Commands {
                     manageHelp();
                     break;
                 default:
-                    Output.printMessages(Messages.FLAG_NON_RICONOSCIUTA, arg);
+                    Output.printMessages(Message.UNKNOWN_FLAG, arg);
                     break;
             }
         }
@@ -49,7 +49,7 @@ public class Commands {
      * @param game gestisce il flusso di gioco.
      */
     private void manageExit(final GameController game) {
-        Output.printMessages(Messages.CONFERMA_USCITA);
+        Output.printMessages(Message.CONFIRM_EXIT);
         String answer = "";
         do {
             answer = Input.getCommand();
@@ -58,7 +58,7 @@ public class Commands {
             } else if (!answer.equals("n")) {
 
                 //aggiungere questo messaggio nella funzione printMessages
-                System.out.println("Errore! Inserire 's' per uscire, 'n' per annullare.");
+                Output.printMessages(Message.BAD_CONFIRMATION_EXIT);
 
             }
         } while (!(answer.equals("s") || answer.equals("n")));
@@ -70,7 +70,7 @@ public class Commands {
      */
     private void manageLegalMoves(final GameController game) {
         if (game.getGame() == null) {
-            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
+            Output.printMessages(Message.NO_GAME);
         } else {
             game.legalMoves();
         }
@@ -81,7 +81,7 @@ public class Commands {
      */
     private void manageGameField(final GameController game) {
         if (game.getGame() == null) {
-            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
+            Output.printMessages(Message.NO_GAME);
         } else {
             Output.printField(game.getGame().getGameField());
         }
@@ -120,7 +120,7 @@ public class Commands {
                     commands.manageExit(ataxx);
                     break;
                 default:
-                    Output.printMessages(Messages.NULL);
+                    Output.printMessages(Message.UNKNOWN_COMMAND);
                     break;
             }
         } while (ataxx.getStillPlaying());

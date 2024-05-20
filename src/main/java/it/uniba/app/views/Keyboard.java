@@ -1,6 +1,6 @@
 package it.uniba.app.views;
 
-import it.uniba.app.utils.Messages;
+import it.uniba.app.utils.Message;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -32,7 +32,7 @@ final class Keyboard {
     private static void error(final String str) {
         errorCount++;
         if (printErrors) {
-            Output.printMessages(Messages.COMANDO_SCONOSCIUTO, str);
+            Output.printMessages(Message.UNKNOWN_COMMAND, str);
         }
     }
 

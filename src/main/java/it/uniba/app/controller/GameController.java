@@ -6,7 +6,7 @@ import it.uniba.app.utils.Color;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
 import it.uniba.app.model.Player;
-import it.uniba.app.utils.Messages;
+import it.uniba.app.utils.Message;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 
@@ -180,7 +180,7 @@ public class GameController {
     public void leaveGame() {
         if (getGame() != null) {
             //aggiungere questo messaggio nella funzione printMessages
-            System.out.println("Sei sicuro di voler abbandonare la partita? (s/n)");
+            Output.printMessages(Message.CONFIRM_ABANDONMENT);
 
             String answer = "";
             do {
@@ -189,16 +189,17 @@ public class GameController {
                     Player winner = getGame().nextPlayer();
                     int remainingPieces = getGame().countPieces(winner.getColor());
 
-                    System.out.println("Il giocatore " + winner.getName()
-                            + " ha vinto per abbandono dell'avversario, il punteggio è " + remainingPieces + "a 0.");
+                    Output.printMessages(Message.WINNER_PLAYER, winner.getName().toString(),
+                            Message.PLAYER_WON.getMessageText(), Integer.toString(remainingPieces),
+                            Message.SCORE_0.getMessageText());
 
                     game = null;
                 } else if (!answer.equals("n")) {
-                    Output.printMessages(Messages.ERRORE_COMANDO);
+                    Output.printMessages(Message.BAD_CONFIRMATION_LEAVE);
                 }
             } while (!(answer.equals("s") || answer.equals("n")));
         } else {
-            Output.printMessages(Messages.PARTITA_NON_AVVIATA);
+            Output.printMessages(Message.NO_GAME);
         }
     }
 
