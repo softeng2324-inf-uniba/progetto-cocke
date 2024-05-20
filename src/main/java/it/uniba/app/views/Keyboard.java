@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.StringTokenizer;
 
 /**
+ * {@literal <<Boundary>>}
  * Utility class per la lettura di diversi tipi di dati da tastiera.
  */
 final class Keyboard {
@@ -16,7 +17,9 @@ final class Keyboard {
      */
     private Keyboard() { }
 
-    // Sezione per la gestione degli errori.
+    /**
+     *   Sezione per la gestione degli errori.
+     */
 
     private static boolean printErrors = true;
 

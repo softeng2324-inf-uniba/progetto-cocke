@@ -1,6 +1,7 @@
 package it.uniba.app.model;
 
 /**
+ * {@literal <<Entity>>}
  * Coordinate è la classe che serve ad indicare le coordinate di gioco.
  */
 public class Coordinate {

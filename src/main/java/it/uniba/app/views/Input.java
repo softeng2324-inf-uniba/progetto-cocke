@@ -6,6 +6,7 @@ import it.uniba.app.model.Player;
 import it.uniba.app.utils.Message;
 
 /**
+ * {@literal <<Boundary>>}
  * Classe Input utile all'acquisizione degli input da tastiera.
  */
 public final class Input {

@@ -1,6 +1,7 @@
 package it.uniba.app.utils;
 
 /**
+ * {@literal <<noECB>>}
  * Message è una enumerazione per la gestione dei messaggi.
  * <p>In questa enumerazione sono riportati tutti i messaggi principali del programma.</p>
  */
