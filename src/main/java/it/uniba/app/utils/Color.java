@@ -11,7 +11,8 @@ public enum Color {
     ORANGE(208),
     PINK(213),
     YELLOW(226),
-    GREY(244);
+    GREY(244),
+    DARK_GREY(240);
 
     /**
      * Codice del colore. La codifica utilizzata è a 8 bit.
