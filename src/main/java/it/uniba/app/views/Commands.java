@@ -87,6 +87,20 @@ public class Commands {
         }
     }
 
+    private void manageBlocca(final String[] args){
+        //trova l'indice di stringa in args corrispondente al comando blocca
+        //prendi la lettera
+        //converti la parte di stringa dopo la lettera in intero
+        //crea la coordinata da bloccare
+        //tenendo presente che non è possibile bloccare:
+        //- le caselle di partenza del gioco
+        //- tutte le caselle adiacenti a una casella di partenza del gioco, rendendo impossibile la mossa di
+        //espansione di una pedina a inizio gioco
+        //- tutte le caselle a distanza 2 da una casella di partenza del gioco, rendendo impossibile la mossa
+        //di salto di una pedina a inizio gioco
+        //chiamare setBlank
+    }
+
     /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
      * @param args array di argomenti passati da command line.
@@ -118,6 +132,9 @@ public class Commands {
                     break;
                 case "/esci":
                     commands.manageExit(ataxx);
+                    break;
+                case "/blocca %c%d":
+                    commands.manageBlocca(args);
                     break;
                 default:
                     Output.printMessages(Message.UNKNOWN_COMMAND);
