@@ -10,6 +10,9 @@ import it.uniba.app.utils.Message;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 
+import java.time.Duration;
+import java.time.ZonedDateTime;
+
 /**
  * {@literal <<Control>>}
  * GameController è la classe che gestisce il gioco.
@@ -201,6 +204,12 @@ public class GameController {
         } else {
             Output.printMessages(Message.NO_GAME);
         }
+    }
+
+    public void elapsedTime() {
+        ZonedDateTime currentTime = ZonedDateTime.now();
+        Duration elapsedTime = Duration.between(getGame().getStartTime(), currentTime);
+        Output.printElapsedTime(elapsedTime);
     }
 
 }
