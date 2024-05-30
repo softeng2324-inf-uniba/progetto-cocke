@@ -88,6 +88,18 @@ public class Commands {
     }
 
     /**
+     * Gestisce il caso /tempo del metodo ataxxCommand.
+     * @param game gestisce il flusso di gioco.
+     */
+    private void manageTime(final GameController game) {
+        if (game.getGame() == null) {
+            Output.printMessages(Message.NO_GAME);
+        } else {
+            game.elapsedTime();
+        }
+    }
+
+    /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
      * @param args array di argomenti passati da command line.
      */
