@@ -1,8 +1,10 @@
 package it.uniba.app.model;
+import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import it.uniba.app.utils.Color;
+import it.uniba.app.views.Output;
 
 /**
  * {@literal <<Entity>>}
@@ -171,5 +173,14 @@ public class Game {
             }
         }
         return count;
+    }
+
+    /**
+     * Stampa il tempo trascorso dall'inizio del gioco.
+     */
+    public void elapsedTime() {
+        ZonedDateTime currentTime = ZonedDateTime.now();
+        Duration elapsedTime = Duration.between(getStartTime(), currentTime);
+        Output.printElapsedTime(elapsedTime);
     }
 }
