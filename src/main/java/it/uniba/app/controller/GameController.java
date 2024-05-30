@@ -203,4 +203,7 @@ public class GameController {
         }
     }
 
+    public void setBlank(Coordinate coord) {
+        getGame().getGameField().getSlot(coord).setColorState(Color.DARK_GREY);
+    }
 }
