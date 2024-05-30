@@ -243,6 +243,10 @@ public final class Output {
         System.out.print("\n");
     }
 
+    /**
+     * Stampa nel formato ore:minuti:secondi un dato arco temporale.
+     * @param elapsedTime l'arco temporale da stampare.
+     */
     public static void printElapsedTime(final Duration elapsedTime) {
         Duration duration = elapsedTime;
         StringBuilder output = new StringBuilder();
