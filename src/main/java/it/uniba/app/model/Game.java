@@ -1,5 +1,7 @@
 package it.uniba.app.model;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+
 import it.uniba.app.utils.Color;
 
 /**
@@ -23,6 +25,8 @@ public class Game {
      */
     private Player[] players;
 
+    private ZonedDateTime startTime;
+
     /**
      * Costruttore della classe <code>Game</code> privo di parametri formali, che inizializza tutti i rispettivi
      * attributi, inizializzando i giocatori con dei nomi di default (es. Giocatore 1).
@@ -34,6 +38,8 @@ public class Game {
         players = new Player[2];
         players[0] = new Player(Color.BLACK, "Giocatore 1");
         players[1] = new Player(Color.WHITE, "Giocatore 2");
+
+        startTime = ZonedDateTime.now();
     }
 
     /**
@@ -46,6 +52,7 @@ public class Game {
         moveList = new ArrayList<>();
         players = new Player[2];
         System.arraycopy(newPlayers, 0, players, 0, newPlayers.length);
+        startTime = ZonedDateTime.now();
     }
 
     /**
@@ -56,6 +63,7 @@ public class Game {
         gameField = srcGame.getGameField();
         moveList = srcGame.getMoveList();
         players = srcGame.getPlayers();
+        startTime = srcGame.getStartTime();
     }
 
     /**
@@ -116,6 +124,10 @@ public class Game {
      */
     public void setPlayer(final Player srcPlayer, final int index) {
         players[index] = new Player(srcPlayer);
+    }
+
+    public ZonedDateTime getStartTime() {
+        return startTime;
     }
 
     /**
