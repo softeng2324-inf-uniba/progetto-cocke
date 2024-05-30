@@ -18,7 +18,7 @@ import java.time.ZonedDateTime;
  * GameController è la classe che gestisce il gioco.
  */
 public class GameController {
-        /**
+    /**
      * Rappresenta il gioco attualmente in esecuzione.
      */
     private Game game = null;
@@ -206,6 +206,9 @@ public class GameController {
         }
     }
 
+    /**
+     * Stampa il tempo trascorso dall'inizio del gioco.
+     */
     public void elapsedTime() {
         ZonedDateTime currentTime = ZonedDateTime.now();
         Duration elapsedTime = Duration.between(getGame().getStartTime(), currentTime);

@@ -24,7 +24,9 @@ public class Game {
      * Array di <code>Player</code>, contenente i giocatori inizializzati con il loro nome e colore.
      */
     private Player[] players;
-
+    /**
+     * L'istante di tempo in cui è iniziato il gioco.
+     */
     private ZonedDateTime startTime;
 
     /**
@@ -126,6 +128,10 @@ public class Game {
         players[index] = new Player(srcPlayer);
     }
 
+    /**
+     * Restituisce l'istante di tempo in cui è iniziato il gioco.
+     * @return l'istante di tempo in cui è iniziato il gioco.
+     */
     public ZonedDateTime getStartTime() {
         return startTime;
     }
