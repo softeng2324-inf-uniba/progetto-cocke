@@ -128,6 +128,9 @@ public class Commands {
                 case "/abbandona":
                     ataxx.leaveGame();
                     break;
+                case "/tempo":
+                    commands.manageTime(ataxx);
+                    break;
                 case "/esci":
                     commands.manageExit(ataxx);
                     break;
