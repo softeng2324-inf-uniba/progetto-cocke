@@ -115,6 +115,21 @@ public class GameController {
     }
 
     /**
+     * Stampa a video il log delle mosse effettuate fino ad ora.
+     */
+    public void moveHistory() {
+        if (game.getMoveList().isEmpty()) {
+            Output.printMessages(Message.NO_MOVES);
+        }
+        else {
+            for (int i = 0; i < game.getMoveList().size(); i++) {
+                String move = game.getMoveList().get(i).toString();
+                System.out.print(i++ + ". " + move + " " + "(da aggiungere)colore giocatore mossa" + "; ");
+            }
+        }
+    }
+
+    /**
      * Converte il campo per mostrare le mosse consentite al giocatore di turno.
      * <p>Il <code>field</code> passato come parametro
      * è convertito in un campo con le caselle colorate a seconda delle mosse consentite.
@@ -182,7 +197,7 @@ public class GameController {
             //aggiungere questo messaggio nella funzione printMessages
             Output.printMessages(Message.CONFIRM_ABANDONMENT);
 
-            String answer = "";
+            String answer;
             do {
                 answer = Input.getCommand();
                 if (answer.equals("s")) {
