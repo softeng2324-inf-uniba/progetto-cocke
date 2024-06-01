@@ -1,6 +1,7 @@
 package it.uniba.app.views;
 import java.nio.file.Paths;
 import it.uniba.app.controller.GameController;
+import it.uniba.app.model.Coordinate;
 import it.uniba.app.utils.Message;
 
 /**
@@ -88,6 +89,18 @@ public class Commands {
     }
 
     /**
+     * Gestisce il caso /mossa del metodo ataxxCommand.
+     * @param game gestisce il flusso di gioco.
+     */
+    private void manageMove(final GameController game) {
+        if (game.getGame() == null) {
+            Output.printMessages(Message.NO_GAME);
+        } else {
+            Input.getNextMove();
+        }
+    }
+
+    /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
      * @param args array di argomenti passati da command line.
      */
@@ -103,6 +116,9 @@ public class Commands {
                     break;
                 case "/gioca":
                     ataxx.startNewGame();
+                    break;
+                case "/mossa":
+                    commands.manageMove(ataxx);
                     break;
                 case "/vuoto":
                     Output.printEmptyField();
