@@ -2,6 +2,7 @@ package it.uniba.app.views;
 import java.nio.file.Paths;
 import it.uniba.app.controller.GameController;
 import it.uniba.app.model.Coordinate;
+import it.uniba.app.model.Move;
 import it.uniba.app.utils.Message;
 
 /**
@@ -89,6 +90,34 @@ public class Commands {
     }
 
     /**
+     * Controlla l'indice della riga e lo trasforma in un intero.
+     * @param row la riga da controllare.
+     * @return
+     */
+    private static int checkRowIndex(String row) {
+        switch (row.charAt(0)) {
+            case 'a':
+                return 0;
+            case 'b':
+                return 1;
+            case 'c':
+                return 2;
+            case 'd':
+                return 3;
+            case 'e':
+                return 4;
+            case 'f':
+                return 5;
+            case 'g':
+                return 6;
+            case 'h':
+                return 7;
+            default:
+                return -1;
+        }
+    }
+
+    /**
      * Gestisce il caso /mossa del metodo ataxxCommand.
      * @param game gestisce il flusso di gioco.
      */
@@ -96,7 +125,10 @@ public class Commands {
         if (game.getGame() == null) {
             Output.printMessages(Message.NO_GAME);
         } else {
-            Input.getNextMove();
+            String[] nextMove = Input.getNextMove();
+            Coordinate start = new Coordinate(checkRowIndex(nextMove[0].toLowerCase()), Integer.parseInt(nextMove[0].substring(1)));
+            Coordinate destination = new Coordinate(checkRowIndex(nextMove[1].toLowerCase()), Integer.parseInt(nextMove[1].substring(1)));
+            game.movePiece(start, destination);
         }
     }
 
