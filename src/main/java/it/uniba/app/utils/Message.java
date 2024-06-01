@@ -22,7 +22,8 @@ public enum Message {
     ARRIVAL_SLOT("dello slot di arrivo"),
     WINNER_PLAYER("Il giocatore "),
     PLAYER_WON(" ha vinto per abbandono dell'avversario, il punteggio è "),
-    SCORE_0(" a 0.");
+    SCORE_0(" a 0."),
+    ILLEGAL_MOVE("Mossa non valida, riprova.");
     /**
      * Il testo del messaggio.
      */
