@@ -1,7 +1,6 @@
 package it.uniba.app.views;
 import it.uniba.app.model.Coordinate;
 import it.uniba.app.utils.Color;
-import it.uniba.app.model.Move;
 import it.uniba.app.model.Player;
 import it.uniba.app.utils.Message;
 
@@ -31,40 +30,39 @@ public final class Input {
         return p;
     }
 
-    /**
-     * Metodo per l'acquisizione di una mossa da effettuare.
-     * @return la mossa letta da tastiera.
-     */
-    public static Move getMove() {
-        char row = ' ';
-        int col = -1;
-        Output.printMessages(Message.INSERT_ROW, Message.START_SLOT.getMessageText());
-        row = Keyboard.readChar();
-        Output.printMessages(Message.INSERT_COLUMN, Message.START_SLOT.getMessageText());
-        col = Keyboard.readInt();
-        Coordinate start = new Coordinate(row, col);
-        Output.printMessages(Message.INSERT_ROW, Message.ARRIVAL_SLOT.getMessageText());
-        row = Keyboard.readChar();
-        Output.printMessages(Message.INSERT_COLUMN, Message.ARRIVAL_SLOT.getMessageText());
-        col = Keyboard.readInt();
-        Coordinate choice = new Coordinate(row, col);
-        return new Move(start, choice);
+
+    private static int checkRowIndex(String row) {
+        switch (row.charAt(0)) {
+            case 'a':
+                return 0;
+            case 'b':
+                return 1;
+            case 'c':
+                return 2;
+            case 'd':
+                return 3;
+            case 'e':
+                return 4;
+            case 'f':
+                return 5;
+            case 'g':
+                return 6;
+            case 'H':
+                return 7;
+            default:
+                return -1;
+        }
     }
 
     /**
-     * Metodo per l'acquisizione di una coordinata.
-     * @return le coordinate lette da tastiera.
+     * Metodo per l'acquisizione della prossima mossa dove il pattern è casella di partenza - casella di arrivo.
      */
-    private static Coordinate getCoordinate() {
-        char row = ' ';
-        int col = -1;
-        Coordinate c = new Coordinate(row, col);
-        Output.printMessages(Message.INSERT_ROW);
-
-        c.setRow(row);
-        Output.printMessages(Message.INSERT_COLUMN);
-        c.setColumn(col);
-        return c;
+    public static void getNextMove() {
+        String nextMove = Keyboard.readString();
+        String[] nextMoveArray = nextMove.split("-");
+        Coordinate start = new Coordinate(checkRowIndex(nextMoveArray[0].toLowerCase()), Integer.parseInt(nextMoveArray[0].substring(1)));
+        Coordinate destination = new Coordinate(checkRowIndex(nextMoveArray[1].toLowerCase()), Integer.parseInt(nextMoveArray[1].substring(1)));
+        System.out.println(start.getRow() + " " + start.getColumn() + " " + destination.getRow() + " " + destination.getColumn());
     }
 
     /**
