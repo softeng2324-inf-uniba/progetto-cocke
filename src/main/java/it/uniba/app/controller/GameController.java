@@ -9,7 +9,6 @@ import it.uniba.app.model.Player;
 import it.uniba.app.utils.Message;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
-
 /**
  * {@literal <<Control>>}
  * GameController è la classe che gestisce il gioco.
@@ -120,11 +119,10 @@ public class GameController {
     public void moveHistory() {
         if (game.getMoveList().isEmpty()) {
             Output.printMessages(Message.NO_MOVES);
-        }
-        else {
+        } else {
             for (int i = 0; i < game.getMoveList().size(); i++) {
                 String move = game.getMoveList().get(i).toString();
-                System.out.print(i++ + ". " + move + " " + "(da aggiungere)colore giocatore mossa" + "; ");
+                System.out.print(i++ + ". " + move + " " + game.whoIsPlaying().getColor() + "; ");
             }
         }
     }

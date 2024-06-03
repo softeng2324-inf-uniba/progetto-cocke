@@ -126,14 +126,15 @@ public class Commands {
                 case "/qualimosse":
                     commands.manageLegalMoves(ataxx);
                     break;
+                case "/mosse":
+                    commands.manageMoveHistory(ataxx);
+                    break;
                 case "/abbandona":
                     ataxx.leaveGame();
                     break;
                 case "/esci":
                     commands.manageExit(ataxx);
                     break;
-                case "/mosse":
-                    commands.manageMoveHistory(ataxx);
                 default:
                     Output.printMessages(Message.UNKNOWN_COMMAND);
                     break;
