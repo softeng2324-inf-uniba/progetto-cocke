@@ -202,8 +202,5 @@ public class GameController {
             Output.printMessages(Message.NO_GAME);
         }
     }
-
-    public void setBlank(Coordinate coord) {
-        getGame().getGameField().getSlot(coord).setColorState(Color.DARK_GREY);
-    }
+    
 }
