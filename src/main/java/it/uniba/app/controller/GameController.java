@@ -1,11 +1,12 @@
 package it.uniba.app.controller;
 
 import it.uniba.app.model.Coordinate;
-import it.uniba.app.model.Slot;
-import it.uniba.app.utils.Color;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
+import it.uniba.app.model.Move;
 import it.uniba.app.model.Player;
+import it.uniba.app.model.Slot;
+import it.uniba.app.utils.Color;
 import it.uniba.app.utils.Message;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
@@ -120,10 +121,17 @@ public class GameController {
         if (game.getMoveList().isEmpty()) {
             Output.printMessages(Message.NO_MOVES);
         } else {
-            for (int i = 0; i < game.getMoveList().size(); i++) {
-                String move = game.getMoveList().get(i).toString();
-                System.out.print(i++ + ". " + move + " " + game.whoIsPlaying().getColor() + "; ");
+            StringBuilder moveList = new StringBuilder();
+            for (Integer i = 0; i < game.getMoveList().size(); i++) {
+                Move move = game.getMoveList().get(i);
+                int playerColor = i % 2;
+                if (playerColor == 0) {
+                    moveList.append(i).append(". ").append(move).append(" ").append("(B);");
+                } else {
+                    moveList.append(i).append(". ").append(move).append(" ").append("(N);");
+                }
             }
+            Output.printMessages(Message.MOVE_LIST, moveList.toString());
         }
     }
 

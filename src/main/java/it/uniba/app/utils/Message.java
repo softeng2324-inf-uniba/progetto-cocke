@@ -23,6 +23,7 @@ public enum Message {
     WINNER_PLAYER("Il giocatore "),
     PLAYER_WON(" ha vinto per abbandono dell'avversario, il punteggio è "),
     NO_MOVES("Non è stata giocata nessuna mossa."),
+    MOVE_LIST("Ecco la lista delle mosse: "),
     SCORE_0(" a 0.");
     /**
      * Il testo del messaggio.
