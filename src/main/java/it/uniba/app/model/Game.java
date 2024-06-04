@@ -154,4 +154,24 @@ public class Game {
         }
         return count;
     }
+
+    //Da valutare se inserire il colore come parametro così sia attua lo spostamento che la cattura
+    /**
+     * Modifica lo stato delle caselle circostanti e adiacenti alla casella presente nella posizione indicata
+     * dalla coordinata in ingresso, eguagliandone il colore.
+     * @param coordinata posizione, sul campo da gioco, della casella da cui parte la cattura delle circostanti
+     */
+    void captureSlot(final Coordinate coordinata) {
+        Coordinate tempCoordinate = coordinata;
+        Field gameFieldCopy = getGameField();
+        Color colorSlot = gameFieldCopy.getSlot(coordinata).getColorState();
+        for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
+            tempCoordinate.setRow(coordinata.getRow() + rowOffset);
+            for (int columnOffset = -1; columnOffset < 2; columnOffset++) {
+                tempCoordinate.setColumn(coordinata.getColumn() + columnOffset);
+                gameFieldCopy.getSlot(tempCoordinate).setColorState(colorSlot);
+            }
+        }
+    }
+
 }
