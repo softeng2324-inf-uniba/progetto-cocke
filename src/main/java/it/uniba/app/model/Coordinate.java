@@ -72,8 +72,8 @@ public class Coordinate {
      */
     @Override
     public String toString() {
-        char rowChar = (char) ('a' + getRow());
-        int column1 = getColumn() + 1;
-        return rowChar + "" + column1;
+        char columnChar = (char) ('a' + getColumn());
+        int row1 = getRow() + 1;
+        return columnChar + "" + row1;
     }
 }
