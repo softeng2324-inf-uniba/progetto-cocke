@@ -172,6 +172,7 @@ public class Game {
                 gameFieldCopy.getSlot(tempCoordinate).setColorState(colorSlot);
             }
         }
+        setGameField(gameFieldCopy);
     }
 
 }
