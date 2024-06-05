@@ -229,8 +229,6 @@ public class GameController {
     public void movePiece(final Move move) {
         Field tempField = new Field(game.getGameField());
         ArrayList<Move> tempMoveList = game.getMoveList();
-        tempMoveList.add(move);
-        game.setMoveList(tempMoveList);
         Slot startSlot = tempField.getSlot(move.getStartingSlot());
         Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
         if (startSlot != null && destinationSlot != null) {
@@ -246,5 +244,7 @@ public class GameController {
             Output.printField(game.getGameField());
             Output.printMessages(Message.ILLEGAL_MOVE);
         }
+        tempMoveList.add(move);
+        game.setMoveList(tempMoveList);
     }
 }
