@@ -15,7 +15,7 @@ import it.uniba.app.views.Output;
  * GameController è la classe che gestisce il gioco.
  */
 public class GameController {
-        /**
+    /**
      * Rappresenta il gioco attualmente in esecuzione.
      */
     private Game game = null;
