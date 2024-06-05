@@ -24,8 +24,16 @@ public class Commands {
     /**
      * Lista contenente le coordinate degli slot da bloccare.
      */
-    public static LinkedList<Coordinate> coordsToLock = new LinkedList<Coordinate>();
+    private static LinkedList<Coordinate> coordsToLock = new LinkedList<Coordinate>();
 
+    /**
+     * Metodo che determina la presenza di una coordinata nella lista coordsToLock.
+     * @param c coordinata di cui determinare la presenza nella lista coordsToLock.
+     * @return esito del controllo.
+     */
+    public static boolean isInCoordsToLock(final Coordinate c) {
+        return Commands.coordsToLock.contains(c);
+    }
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
      * Se viene passata la flag -h o --help, viene stampato l'help del programma.
