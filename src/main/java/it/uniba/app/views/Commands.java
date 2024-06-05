@@ -24,7 +24,7 @@ public class Commands {
     /**
      * Lista contenente le coordinate degli slot da bloccare.
      */
-    private static LinkedList<Coordinate> coordsToLock = new LinkedList<Coordinate>();
+    public static LinkedList<Coordinate> coordsToLock = new LinkedList<Coordinate>();
 
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
