@@ -121,6 +121,28 @@ public class GameController {
     }
 
     /**
+     * Stampa a video il log delle mosse effettuate fino ad ora.
+     */
+    public void moveHistory() {
+        if (game.getMoveList().isEmpty()) {
+            Output.printMessages(Message.NO_MOVES);
+        } else {
+            StringBuilder moveList = new StringBuilder();
+            int i = 0;
+            for (Move move : game.getMoveList()) {
+                int playerColor = i % 2;
+                if (playerColor == 0) {
+                    moveList.append(i).append(". ").append(move).append(" ").append("(B);");
+                } else {
+                    moveList.append(i).append(". ").append(move).append(" ").append("(N);");
+                }
+                i++;
+            }
+            Output.printMessages(Message.MOVE_LIST, moveList.toString());
+        }
+    }
+
+    /**
      * Converte il campo per mostrare le mosse consentite al giocatore di turno.
      * <p>Il <code>field</code> passato come parametro
      * è convertito in un campo con le caselle colorate a seconda delle mosse consentite.

@@ -65,4 +65,15 @@ public class Coordinate {
     public void setColumn(final int newCol) {
         column = newCol;
     }
+
+    /**
+     * Stampa la singola coordinata.
+     * @return la coordinata in formato stringa.
+     */
+    @Override
+    public String toString() {
+        char columnChar = (char) ('a' + getColumn());
+        int row1 = getRow() + 1;
+        return columnChar + "" + row1;
+    }
 }

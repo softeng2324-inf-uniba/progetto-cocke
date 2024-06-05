@@ -113,6 +113,19 @@ public class Commands {
     }
 
     /**
+     * Gestisce il caso /mosse nel metodo ataxxCommand.
+     * @param game gestisce il flusso di gioco.
+     */
+
+    private void manageMoveHistory(final GameController game) {
+        if (game.getGame() == null) {
+            Output.printMessages(Message.NO_GAME);
+        } else {
+            game.moveHistory();
+        }
+    }
+
+    /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
      * @param args array di argomenti passati da command line.
      */
@@ -137,6 +150,9 @@ public class Commands {
                     break;
                 case "/qualimosse":
                     commands.manageLegalMoves(ataxx);
+                    break;
+                case "/mosse":
+                    commands.manageMoveHistory(ataxx);
                     break;
                 case "/abbandona":
                     ataxx.leaveGame();

@@ -79,4 +79,16 @@ public class Move {
                 java.lang.Math.abs(start.getColumn() - destination.getColumn()));
     }
 
+
+    /**
+     * Restituisce la mossa nel formato per la stampa.
+     * @return una stringa in formato "casella di partenza-casella di arrivo".
+     */
+    @Override
+    public String toString() {
+        Coordinate sSlot = getStartingSlot();
+        Coordinate cSlot = getChosenSlot();
+        String formatoMossa = sSlot + "-" + cSlot;
+        return formatoMossa;
+    }
 }
