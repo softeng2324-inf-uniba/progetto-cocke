@@ -11,9 +11,15 @@ import it.uniba.app.utils.Message;
  */
 public class Commands {
     /**
+     * Stringa contenente il comando inserito dall'utente.
+     */
+    private static String command;
+
+    /**
      * Stringa contenente il percorso relativo del file da leggere.
      */
     private static String relativePath = "/src/main/java/it/uniba/app/help.txt";
+
     /**
      * Workspace attuale.
      */
@@ -59,7 +65,6 @@ public class Commands {
                 game.setStillPlaying(false);
             } else if (!answer.equals("n")) {
 
-                //aggiungere questo messaggio nella funzione printMessages
                 Output.printMessages(Message.BAD_CONFIRMATION_EXIT);
 
             }
@@ -89,47 +94,25 @@ public class Commands {
         }
     }
 
-    /**
-     * Controlla l'indice della riga e lo trasforma in un intero.
-     * @param row la riga da controllare.
-     * @return
-     */
-    private static int checkRowIndex(String row) {
-        switch (row.charAt(0)) {
-            case 'a':
-                return 0;
-            case 'b':
-                return 1;
-            case 'c':
-                return 2;
-            case 'd':
-                return 3;
-            case 'e':
-                return 4;
-            case 'f':
-                return 5;
-            case 'g':
-                return 6;
-            case 'h':
-                return 7;
-            default:
-                return -1;
-        }
-    }
 
     /**
      * Gestisce il caso /mossa del metodo ataxxCommand.
      * @param game gestisce il flusso di gioco.
      */
-    private void manageMove(final GameController game) {
+    private Move manageMove(final GameController game) {
         if (game.getGame() == null) {
             Output.printMessages(Message.NO_GAME);
         } else {
-            String[] nextMove = Input.getNextMove();
-            Coordinate start = new Coordinate(checkRowIndex(nextMove[0].toLowerCase()), Integer.parseInt(nextMove[0].substring(1)));
-            Coordinate destination = new Coordinate(checkRowIndex(nextMove[1].toLowerCase()), Integer.parseInt(nextMove[1].substring(1)));
-            game.movePiece(start, destination);
+            String[] nextMove = Input.getNextMove(command);
+            if (nextMove != null) {
+                Coordinate start = new Coordinate(Integer.parseInt(nextMove[0].substring(1)) - 1,
+                        nextMove[0].charAt(0) - 'a');
+                Coordinate destination = new Coordinate(Integer.parseInt(nextMove[1].substring(1)) - 1,
+                        nextMove[1].charAt(0) - 'a');
+                return new Move(start, destination);
+            }
         }
+        return null;
     }
 
     /**
@@ -141,16 +124,14 @@ public class Commands {
         GameController ataxx = new GameController();
         commands.manageFlag(args);
         do {
-            String command = Input.getCommand();
+            command = Input.getCommand();
+            Move move = commands.manageMove(ataxx);
             switch (command) {
                 case "/help":
                     commands.manageHelp();
                     break;
                 case "/gioca":
                     ataxx.startNewGame();
-                    break;
-                case "/mossa":
-                    commands.manageMove(ataxx);
                     break;
                 case "/vuoto":
                     Output.printEmptyField();
@@ -168,7 +149,11 @@ public class Commands {
                     commands.manageExit(ataxx);
                     break;
                 default:
-                    Output.printMessages(Message.UNKNOWN_COMMAND);
+                    if (move != null) {
+                        ataxx.movePiece(move);
+                    } else {
+                        Output.printMessages(Message.UNKNOWN_COMMAND);
+                    }
                     break;
             }
         } while (ataxx.getStillPlaying());
