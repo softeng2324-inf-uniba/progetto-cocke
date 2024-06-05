@@ -10,7 +10,6 @@ import it.uniba.app.utils.Color;
 import it.uniba.app.utils.Message;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
-
 import java.util.ArrayList;
 
 /**
@@ -18,7 +17,7 @@ import java.util.ArrayList;
  * GameController è la classe che gestisce il gioco.
  */
 public class GameController {
-        /**
+    /**
      * Rappresenta il gioco attualmente in esecuzione.
      */
     private Game game = null;
@@ -232,7 +231,8 @@ public class GameController {
         Slot startSlot = tempField.getSlot(move.getStartingSlot());
         Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
         if (startSlot != null && destinationSlot != null) {
-            if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot)) {
+            int distance = move.getDistance();
+            if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot) && checkDistance(distance)) {
                 destinationSlot.setColorState(game.whoIsPlaying().getColor());
                 game.setGameField(tempField);
                 Output.printField(game.getGameField());
@@ -247,4 +247,14 @@ public class GameController {
         tempMoveList.add(move);
         game.setMoveList(tempMoveList);
     }
+
+    /**
+     * Verifica la correttezza della distanza tra le coordinate delle caselle coinvolte in una mossa.
+     * @param distance distanza tra le caselle sul campo da gioco.
+     * @return vero se la distanza è consentita, falso in caso contrario.
+     */
+    boolean checkDistance(int distance) {
+        return distance > 0 && distance < 3;
+    }
+
 }
