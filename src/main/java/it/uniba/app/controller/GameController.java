@@ -266,12 +266,12 @@ public class GameController {
                 destinationSlot.setColorState(game.whoIsPlaying().getColor());
                 game.setGameField(tempField);
                 Output.printField(game.getGameField());
+                tempMoveList.add(move);
+                game.setMoveList(tempMoveList);
             } else {
                 Output.printField(game.getGameField());
                 Output.printMessages(Message.ILLEGAL_MOVE);
             }
-            tempMoveList.add(move);
-            game.setMoveList(tempMoveList);
         } else {
             Output.printField(game.getGameField());
             Output.printMessages(Message.ILLEGAL_MOVE);

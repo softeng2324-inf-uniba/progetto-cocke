@@ -164,6 +164,8 @@ public class Commands {
                     Move move = commands.manageMove(ataxx);
                     if (move != null && ataxx.getGame() != null) {
                         ataxx.movePiece(move);
+                    } else if (move != null) {
+                        Output.printMessages(Message.NO_GAME);
                     } else {
                         Output.printMessages(Message.UNKNOWN_COMMAND);
                     }

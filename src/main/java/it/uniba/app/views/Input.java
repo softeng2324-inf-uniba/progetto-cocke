@@ -47,17 +47,18 @@ public final class Input {
     public static String[] getNextMove(final String command) {
         if (command.length() == MAX_COMMAND_LENGTH) {
             String[] nextMoveArray = command.split("-");
-            if (nextMoveArray.length == MAX_COORDINATE_LENGTH)  {
+            if (nextMoveArray.length == MAX_COORDINATE_LENGTH) {
                 int startRow = Integer.parseInt(nextMoveArray[0].substring(1));
                 String startCol = nextMoveArray[0].substring(0, 1);
                 int destRow = Integer.parseInt(nextMoveArray[1].substring(1));
                 String destCol = nextMoveArray[1].substring(0, 1);
                 if (startRow != -1 && !startCol.equals(" ") && destRow != -1 && !destCol.equals(" ")) {
                     return new String[]{nextMoveArray[0], nextMoveArray[1]};
+                } else {
+                    Output.printMessages(Message.ILLEGAL_MOVE);
                 }
             }
         }
-        Output.printMessages(Message.ILLEGAL_MOVE);
         return null;
     }
 
