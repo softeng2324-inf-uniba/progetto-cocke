@@ -1,5 +1,8 @@
 package it.uniba.app.model;
 
+import it.uniba.app.utils.Color;
+import it.uniba.app.views.Commands;
+
 /**
  * {@literal <<Entity>>}
  * Classe che rappresenta il campo da gioco.
@@ -79,5 +82,16 @@ public class Field {
      */
     public int length() {
         return gameboard.length;
+    }
+
+    public void setLockedSlots(){
+        for (int row = 0; row < DEFAULT_DIM; row++) {
+            for (int column = 0; column < DEFAULT_DIM; column++) {
+                Coordinate tempCoord = new Coordinate(row, column);
+                if (Commands.coordsToLock.contains(tempCoord)){
+                    getSlot(tempCoord).setColorState(Color.BLACK);
+                }
+            }
+        }
     }
 }
