@@ -1,6 +1,7 @@
 package it.uniba.app.model;
 
 import it.uniba.app.utils.Color;
+import it.uniba.app.views.Output;
 
 /**
  * {@literal <<Entity>>}
@@ -16,7 +17,7 @@ public class Slot {
      * Costruttore della classe <code>Slot</code> che inizializza una casella libera.
      */
     Slot() {
-        colorState = Color.GREY;
+        colorState = Output.DEFAULT_BACKGROUND;
     }
 
     /**

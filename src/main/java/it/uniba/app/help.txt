@@ -11,5 +11,6 @@ Quando una pedina è generata o spostata vicino ad una avversaria, le pedine avv
 /vuoto      : Mostra il tavoliere vuoto.
 /tavoliere  : Mostra la posizione delle pedine sul tavoliere.
 /qualimosse : Mostra le mosse disponibili al giocatore.
+/mosse      : Mostra le mosse effettuate fino ad ora nella partita.
 /abbandona  : Chiude la partita in gioco e viene dichiarata vittoria all' avversario.
 /esci       : Esci dal gioco.
