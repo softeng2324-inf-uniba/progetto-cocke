@@ -270,12 +270,12 @@ public class GameController {
                 Output.printField(game.getGameField());
                 Output.printMessages(Message.ILLEGAL_MOVE);
             }
+            tempMoveList.add(move);
+            game.setMoveList(tempMoveList);
         } else {
             Output.printField(game.getGameField());
             Output.printMessages(Message.ILLEGAL_MOVE);
         }
-        tempMoveList.add(move);
-        game.setMoveList(tempMoveList);
     }
 
     /**
