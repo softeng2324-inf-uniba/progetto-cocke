@@ -68,6 +68,7 @@ public class GameController {
         if (game == null) {
             setGame(new Game());
             setStartingPosition();
+            Field.setLockedSlots();
             Output.printField(getGame().getGameField());
         }
     }
@@ -202,5 +203,4 @@ public class GameController {
             Output.printMessages(Message.NO_GAME);
         }
     }
-
 }
