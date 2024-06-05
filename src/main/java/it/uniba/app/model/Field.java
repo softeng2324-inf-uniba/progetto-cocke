@@ -91,7 +91,7 @@ public class Field {
         for (int row = 0; row < DEFAULT_DIM; row++) {
             for (int column = 0; column < DEFAULT_DIM; column++) {
                 Coordinate tempCoord = new Coordinate(row, column);
-                if (Commands.coordsToLock.contains(tempCoord)) {
+                if (Commands.isInCoordsToLock(tempCoord)) {
                     getSlot(tempCoord).setColorState(Color.BLACK);
                 }
             }
