@@ -1,6 +1,7 @@
 package it.uniba.app.views;
 
 import it.uniba.app.model.Field;
+import it.uniba.app.model.Game;
 import it.uniba.app.utils.Color;
 import it.uniba.app.model.Coordinate;
 import it.uniba.app.utils.Message;
@@ -9,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 
 
 /**
@@ -18,6 +20,21 @@ import java.io.InputStreamReader;
  * come la stampa del campo da gioco e dell'interfaccia grafica.</p>
  */
 public final class Output {
+
+    /**
+     * Numero di righe presenti nel file Winner.txt.
+     */
+    private static int winnerLine = 36;
+
+    /**
+     * Stringa contenente il percorso relativo del file Winner.txt.
+     */
+    private static String relativeWinnerPath = "/src/main/java/it/uniba/app/Winner.txt";
+    /**
+     * Workspace attuale.
+     */
+    private static String winnerPath = Paths.get(System.getProperty("user.dir"), relativeWinnerPath).toString();
+
     /**
      * Costruttore privato per evitare che la classe Output venga istanziata.
      */
@@ -241,4 +258,32 @@ public final class Output {
         }
         System.out.print("\n");
     }
+
+
+    public static void printWinner() {
+        if (new File(winnerPath).exists()) {
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(winnerPath), "UTF-8"))) {
+                String line;
+                int nLine = 0;
+
+                while (nLine < winnerLine){
+                    nLine = nLine +1;
+                    if((line = br.readLine()) != null) {
+                        System.out.println(line);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else {
+            Output.printMessages(Message.FILE_NOT_FOUND);
+        }
+    }
+
+    public static void moveXY(int x, int y) {
+
+    }
+
 }
+
