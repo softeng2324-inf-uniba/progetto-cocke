@@ -1,11 +1,12 @@
 package it.uniba.app.controller;
 
 import it.uniba.app.model.Coordinate;
-import it.uniba.app.model.Slot;
-import it.uniba.app.utils.Color;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
+import it.uniba.app.model.Move;
 import it.uniba.app.model.Player;
+import it.uniba.app.model.Slot;
+import it.uniba.app.utils.Color;
 import it.uniba.app.utils.Message;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
@@ -203,4 +204,48 @@ public class GameController {
         }
     }
 
+    /**
+     * Controlla se è il colore della casella di partenza del giocatore che deve effettuare il turno.
+     * @param startSlot casella di partenza
+     * @return (true) se il colore della casella di partenza è corretto, (false) altrimenti.
+     */
+    private boolean checkStartSlot(final Slot startSlot) {
+        if (startSlot.getColorState() != game.whoIsPlaying().getColor()) {
+            Output.printMessages(Message.ILLEGAL_MOVE);
+            Output.printField(game.getGameField());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Controlla se la casella di destinazione è una casella vuota.
+     * @param destinationSlot casella di destinazione
+     * @return (true) se la casella di destinazione è vuota, (false) altrimenti.
+     */
+    private boolean checkDestinationSlot(final Slot destinationSlot) {
+        return destinationSlot.getColorState() == Color.GREY;
+    }
+
+    /**
+     * Gestisce la mossa del giocatore.
+     * @param move la mossa da effettuare.
+     */
+    public void movePiece(final Move move) {
+        game.getMoveList().add(move);
+        Field tempField = new Field(game.getGameField());
+        try {
+            Slot startSlot = tempField.getSlot(move.getStartingSlot());
+            Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
+            if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot)) {
+                destinationSlot.setColorState(game.whoIsPlaying().getColor());
+                game.setGameField(tempField);
+                Output.printField(game.getGameField());
+            } else {
+                Output.printMessages(Message.ILLEGAL_MOVE);
+            }
+        } catch (NullPointerException e) {
+            Output.printMessages(Message.ILLEGAL_MOVE);
+        }
+    }
 }
