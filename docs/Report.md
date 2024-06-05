@@ -45,71 +45,40 @@ Questo rappresentato è il modello di dominio del gioco Ataxx:
 ## 3.1 Requisiti funzionali
 
 ---
->-E' stata abbozzata la relazione tecnica
->- Formato: Markdown
->- Dove: nel repository /docs/
->- Nome file: Report.md
->- Sezioni: 
-   >   - 1.0. Introduzione;
-   >   - 2.0. Modello di dominio;
-   >   - 3.0. Requisiti specifici;
-   >   - 3.1. Requisiti funzionali;
-   >   - 3.2. Requisiti non funzionali;
-   >   - 7.0. Manuale utente;
-   >   - 9.0. Analisi retrospettiva;
-   >   - 9.1. Sprint 0;
 
----
+Il programma permette all'utente di creare una nuova partita con il comando ***`/gioca`***.
 
->- Criteri che devono essere soddisfatti per qualsiasi user story;
->- C'è un issue con label «user story»;
->- La issue è in un Milestone e in una Project Board;
->- Assegnazione a uno o al più due componenti del team;
->- I commit devono avere una descrizione breve ma significativa;
->- C'è una Pull Request (PR) che corrisponde alla user story;
->- La PR è in un Milestone ma non in una Project Board;
->- C'è un commento che linka la PR all'issue (es; "closes #22");
->- La PR è accettata a review avvenuto ed esplicito;
->- Build costruito con successo;
->- Docker image caricata con successo;
->- L'esecuzione rispetta i criteri di accettazione;
+Una volta creata la partita, è possibile mostrare le mosse disponibili per il giocatore di turno con il comando ***`/qualimosse`***.
 
----
+Il giocatore di turno può effettuare una mossa specificando la casella in cui è situata la pedina di partenza, seguita dalla casella in cui si desidera spostare la pedina.
+Il formato con cui indicare la mossa che si intende effettuare è:
+**`Aa-Bb`**
 
-Le seguenti user story inizierebbero con Come Giocatore voglio ...
+>**`A`**: è il carattere indicante la colonna della pedina di partenza. ***`[a...g]`**(lowercase)*
+**`a`**: è l'intero rappresentante la riga della pedina di partenza. ***`[1...7]`***
+**`-`**: carattere separatore. ***`[-]`***
+**`B`**: è il carattere indicante la colonna della casella di arrivo. ***`[a...g]`**(lowercase)*
+**`b`**: è l'intero rappresentante la riga della casella di arrivo. ***`[1...7]`***
 
-1. Voglio mostrare l'help con elenco comandi al comando **/help** o invocando l'app con flag --help o -h:
-   il risultato è una descrizione concisa seguita dalla lista di comandi disponibili, uno per riga, come da esempio
-   successivo: 
- - gioca
- - esci
- - ...
+Con il comando ***`/tavoliere`*** è possibile visualizzare la posizione attuale di tutte le pedine presenti sul campo da gioco.
 
-2. Voglio iniziare una nuova partita: al comando **/gioca**, se nessuna partita è in corso l'app mostra il tavoliere con le pedine in posizione iniziale come in figura e si
-   predispone a ricevere la prima mossa di gioco del nero o altri comandi.
+È possibile vedere lo storico delle mosse effettuate dall'inizio della partita con il comando ***`/mosse`***, ed è inoltre possibile visualizzare il tempo trascorso dall'inizio della partita con il comando ***`/tempo`***.
 
-   ![tavoliere](./img/Report/tavoliere.png)
+Prima dell'inizio di una nuova partita, è possibile bloccare fino ad un massimo di 9 caselle, a scelta tra quelle sulla colonna D o sulla riga 4.
+Una volta bloccata, la casella non può più essere sbloccata.
+Il comando con cui indicare la casella da bloccare è:
+***`/blocca Xy`***
 
-3. Voglio mostrare il tavoliere vuoto con la numerazione al comando **/vuoto** l'app mostra il tavoliere vuoto di 49 caselle quadrate (7 per lato) con le righe numerate da 1 a 7 e le colonne
-   numerate da ‘a’ a ‘g’.
+>***`X`***: è il carattere indicante la colonna della casella da bloccare. ***`[a...g]`**(lowercase)*
+***`y`***: è l'intero rappresentante la riga della casella da bloccare. ***`[1...7]`***
 
-4. Voglio visualizzare le mosse possibili di una pedina al comando **/qualimosse** 
-- se il gioco non è iniziato l'app suggerisce il comando gioca.
-- se il gioco è iniziato l'app mostra quali mosse sono disponibili per il giocatore di turno, evidenziando:
-  - a) in giallo le caselle raggiungibili con mosse che generano una nuova pedina
-  - b) in arancione raggiungibili con mosse che consentono un salto
-  - c) in rosa le caselle raggiungibili con mosse di tipo a) o b)
-  
-  ![tavolierees1](./img/Report/tavolierees1.png)
+Per visualizzare la plancia di gioco vuota, con le eventuali caselle bloccate, occorre usare il comando ***`/vuoto`***.
 
-5. Voglio abbandonare la partita, al comando **/abbandona** l'applicazione chiede conferma:
-- se la conferma è positiva, l'app comunica che il Bianco (o Nero) ha vinto per abbandono e dichiara come
-  vincitore l’avversario per x a 0 dove x è il numero di pedine rimaste dell’avversario.
-- se la conferma è negativa, l'app si predispone a ricevere nuovi tentativi o comandi.
+Per abbandonare una partita in corso, è possibile utilizzare il comando ***`/abbandona`***. In tal caso il giocatore avversario sarà decretato vincitore.
 
-6.  voglio chiudere il gioco al comando **/esci** l'applicazione chiede conferma:
-- se la conferma è positiva, l'app si chiude restituendo il controllo al sistema operativo.
-- se la conferma è negativa, l'app si predispone a ricevere nuovi tentativi o comandi
+Per mostrare una schermata di aiuto, è possibile invocare l'applicazione con la flag **`--help`** o **`-h`**, oppure con il comando ***`/help`***.
+
+Con il comando ***`/esci`*** è possibile terminare l'esecuzione del programma.
 
 ---
 
