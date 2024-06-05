@@ -77,7 +77,7 @@ public final class Input {
                 int startCol = checkColsWord(nextMoveArray[0].substring(0, 1));
                 int destRow = Integer.parseInt(nextMoveArray[1].substring(1));
                 int destCol = checkColsWord(nextMoveArray[1].substring(0, 1));
-                if (startRow != -1 || startCol != -1 || destRow != -1 || destCol != -1) {
+                if (startRow != -1 && startCol != -1 && destRow != -1 && destCol != -1) {
                     return new String[]{nextMoveArray[0], nextMoveArray[1]};
                 }
             }
