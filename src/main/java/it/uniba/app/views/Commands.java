@@ -103,8 +103,8 @@ public class Commands {
     private void manageBlocca(final String[] args) {
         if (GameController.getGame() == null) {
             String s = args[args.length - 1];
-            int row = (int) s.charAt(9) - 97;
-            int column = (int) s.charAt(10) - 49;
+            int column = (int) s.charAt(9) - 97;
+            int row = (int) s.charAt(10) - 49;
             if ((row >= 0 && row < Field.DEFAULT_DIM) && (column >= 0 && column < Field.DEFAULT_DIM)) {
                 int distance = 2;
                 boolean a = row >= 0 || row <= distance;
