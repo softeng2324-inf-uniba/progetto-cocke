@@ -106,11 +106,10 @@ public class Commands {
 
     /**
      * Gestisce il caso /blocca xn del metodo ataxxCommand.
-     * @param args argomenti in input al programma.
+     * @param s comando inserito dall'utente.
      */
-    private void manageBlocca(final String[] args) {
+    private void manageBlocca(final String s) {
         if (GameController.getGame() == null) {
-            String s = args[args.length - 1];
             int column = (int) s.charAt(9) - 97;
             int row = (int) s.charAt(10) - 49;
             if ((row >= 0 && row < Field.DEFAULT_DIM) && (column >= 0 && column < Field.DEFAULT_DIM)) {
@@ -152,6 +151,9 @@ public class Commands {
         commands.manageFlag(args);
         do {
             String command = Input.getCommand();
+            if(command.startsWith("/blocca ")){
+                commands.manageBlocca(command);
+            }
             switch (command) {
                 case "/help":
                     commands.manageHelp();
@@ -173,9 +175,6 @@ public class Commands {
                     break;
                 case "/esci":
                     commands.manageExit(ataxx);
-                    break;
-                case "/blocca %c%d":
-                    commands.manageBlocca(args);
                     break;
                 default:
                     Output.printMessages(Message.UNKNOWN_COMMAND);
