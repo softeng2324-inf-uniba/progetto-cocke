@@ -8,6 +8,16 @@ import it.uniba.app.utils.Message;
  * Classe Input utile all'acquisizione degli input da tastiera.
  */
 public final class Input {
+    static final int MAX_COMMAND_LENGTH = 5;
+    static final int MAX_COORDINATE_LENGTH = 2;
+    static final int ROW_A = 0;
+    static final int ROW_B = 1;
+    static final int ROW_C = 2;
+    static final int ROW_D = 3;
+    static final int ROW_E = 4;
+    static final int ROW_F = 5;
+    static final int ROW_G = 6;
+
     /**
      * Costruttore per la classe Input.
      */
@@ -37,63 +47,35 @@ public final class Input {
     private static int checkColsWord(final String row) {
         switch (row.charAt(0)) {
             case 'a':
-                return 0;
+                return ROW_A;
             case 'b':
-                return 1;
+                return ROW_B;
             case 'c':
-                return 2;
+                return ROW_C;
             case 'd':
-                return 3;
+                return ROW_D;
             case 'e':
-                return 4;
+                return ROW_E;
             case 'f':
-                return 5;
+                return ROW_F;
             case 'g':
-                return 6;
-            case 'h':
-                return 7;
+                return ROW_G;
             default:
                 return -1;
         }
     }
 
-    /**
-     * Controlla l'indice della riga.
-     * @param col la colonna da controllare.
-     */
-    private static int checkRowsWord(final String col) {
-        switch (col.charAt(0)) {
-            case '1':
-                return 0;
-            case '2':
-                return 1;
-            case '3':
-                return 2;
-            case '4':
-                return 3;
-            case '5':
-                return 4;
-            case '6':
-                return 5;
-            case '7':
-                return 6;
-            case '8':
-                return 7;
-            default:
-                return -1;
-        }
-    }
 
     /**
      * Metodo per l'acquisizione della prossima mossa dove il pattern è casella di partenza - casella di arrivo.
      */
-    public static String[] getNextMove(String command) {
-        if (command.length() == 5) {
+    public static String[] getNextMove(final String command) {
+        if (command.length() == MAX_COMMAND_LENGTH) {
             String[] nextMoveArray = command.split("-");
-            if (nextMoveArray.length == 2)  {
-                int startRow = checkRowsWord(nextMoveArray[0].substring(1));
+            if (nextMoveArray.length == MAX_COORDINATE_LENGTH)  {
+                int startRow = Integer.parseInt(nextMoveArray[0].substring(1));
                 int startCol = checkColsWord(nextMoveArray[0].substring(0, 1));
-                int destRow = checkRowsWord(nextMoveArray[1].substring(1));
+                int destRow = Integer.parseInt(nextMoveArray[1].substring(1));
                 int destCol = checkColsWord(nextMoveArray[1].substring(0, 1));
                 if (startRow != -1 || startCol != -1 || destRow != -1 || destCol != -1) {
                     return new String[]{nextMoveArray[0], nextMoveArray[1]};

@@ -210,12 +210,7 @@ public class GameController {
      * @return (true) se il colore della casella di partenza è corretto, (false) altrimenti.
      */
     private boolean checkStartSlot(final Slot startSlot) {
-        if (startSlot.getColorState() != game.whoIsPlaying().getColor()) {
-            Output.printMessages(Message.ILLEGAL_MOVE);
-            Output.printField(game.getGameField());
-            return false;
-        }
-        return true;
+        return startSlot.getColorState() == game.whoIsPlaying().getColor();
     }
 
     /**
@@ -234,17 +229,19 @@ public class GameController {
     public void movePiece(final Move move) {
         game.getMoveList().add(move);
         Field tempField = new Field(game.getGameField());
-        try {
-            Slot startSlot = tempField.getSlot(move.getStartingSlot());
-            Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
+        Slot startSlot = tempField.getSlot(move.getStartingSlot());
+        Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
+        if (startSlot != null && destinationSlot != null) {
             if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot)) {
                 destinationSlot.setColorState(game.whoIsPlaying().getColor());
                 game.setGameField(tempField);
                 Output.printField(game.getGameField());
             } else {
+                Output.printField(game.getGameField());
                 Output.printMessages(Message.ILLEGAL_MOVE);
             }
-        } catch (NullPointerException e) {
+        } else {
+            Output.printField(game.getGameField());
             Output.printMessages(Message.ILLEGAL_MOVE);
         }
     }
