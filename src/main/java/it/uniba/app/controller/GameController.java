@@ -234,6 +234,10 @@ public class GameController {
         if (startSlot != null && destinationSlot != null) {
             int distance = move.getDistance();
             if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot) && checkDistance(distance)) {
+                System.out.println(game.whoIsPlaying().getColor());
+                if (distance == MAX_DISTANCE) {
+                    startSlot.setColorState(Color.GREY);
+                }
                 destinationSlot.setColorState(game.whoIsPlaying().getColor());
                 game.setGameField(tempField);
                 Output.printField(game.getGameField());
