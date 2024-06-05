@@ -8,15 +8,24 @@
 
 [3. Requisiti specifici](#3-requisiti-specifici)
 
+
 - [3.1 Requisiti funzionali](#31-requisiti-funzionali)
 - [3.2 Requisiti non funzionali](#32-requisiti-non-funzionali)
 
+[4. System Design](#4-system-design)
+
+[5. OO Design](#5-oo-design)
+
+[6. Riepilogo dei test](#6-riepilogo-dei-test)
+
 [7. Manuale utente](#7-manuale-utente)
+
+[8. Processo di sviluppo e organizzazione del lavoro](#8-processo-di-sviluppo-e-organizzazione-del-lavoro)
 
 [9. Analisi retrospettiva](#9-analisi-retrospettiva)
 
 - [9.1 Sprint 0](#91-sprint-0)
-
+- [9.2 Sprint 1](#92-sprint-1)
 ---
 
 # **1. Introduzione**
@@ -133,6 +142,24 @@ Il comando Docker da usare per eseguire il container contenente l’applicazione
 
 ---
 
+# **4. System Design**
+
+---
+
+
+---
+
+# **5. OO Design**
+
+---
+
+---
+
+# **6. Riepilogo dei test**
+
+---
+
+
 # **7. Manuale utente**
 
 ---
@@ -159,6 +186,12 @@ _Ecco i comandi disponibili per il giocatore:_
 
 ---
 
+# **8. Processo di sviluppo e organizzazione del lavoro**
+
+---
+
+---
+
 # **9. Analisi retrospettiva**
 
 ---
@@ -167,3 +200,12 @@ _Ecco i comandi disponibili per il giocatore:_
 
 ---
 ![Retrospettiva0](./img/Report/Retrospettiva0.jpg)
+
+---
+
+## 9.2 Sprint 1
+
+---
+
+
+---
