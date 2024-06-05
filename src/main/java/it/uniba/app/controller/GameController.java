@@ -11,6 +11,8 @@ import it.uniba.app.utils.Message;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 
+import java.util.ArrayList;
+
 /**
  * {@literal <<Control>>}
  * GameController è la classe che gestisce il gioco.
@@ -225,8 +227,10 @@ public class GameController {
      * @param move la mossa da effettuare.
      */
     public void movePiece(final Move move) {
-        game.getMoveList().add(move);
         Field tempField = new Field(game.getGameField());
+        ArrayList<Move> tempMoveList = game.getMoveList();
+        tempMoveList.add(move);
+        game.setMoveList(tempMoveList);
         Slot startSlot = tempField.getSlot(move.getStartingSlot());
         Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
         if (startSlot != null && destinationSlot != null) {
