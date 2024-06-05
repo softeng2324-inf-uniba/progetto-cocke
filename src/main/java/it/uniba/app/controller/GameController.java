@@ -122,14 +122,15 @@ public class GameController {
             Output.printMessages(Message.NO_MOVES);
         } else {
             StringBuilder moveList = new StringBuilder();
-            for (Integer i = 0; i < game.getMoveList().size(); i++) {
-                Move move = game.getMoveList().get(i);
+            int i = 0;
+            for (Move move : game.getMoveList()) {
                 int playerColor = i % 2;
                 if (playerColor == 0) {
                     moveList.append(i).append(". ").append(move).append(" ").append("(B);");
                 } else {
                     moveList.append(i).append(". ").append(move).append(" ").append("(N);");
                 }
+                i++;
             }
             Output.printMessages(Message.MOVE_LIST, moveList.toString());
         }
