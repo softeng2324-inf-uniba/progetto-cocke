@@ -17,7 +17,11 @@ import java.util.ArrayList;
  * GameController è la classe che gestisce il gioco.
  */
 public class GameController {
+    /**
+     * Distanza massima tra le coordinate delle caselle coinvolte in una mossa.
+     */
     static final int MAX_DISTANCE = 2;
+
     /**
      * Rappresenta il gioco attualmente in esecuzione.
      */
@@ -252,7 +256,7 @@ public class GameController {
     /**
      * Verifica la correttezza della distanza tra le coordinate delle caselle coinvolte in una mossa.
      * @param distance distanza tra le caselle sul campo da gioco.
-     * @return vero se la distanza è consentita, falso in caso contrario.
+     * @return (true) se la distanza è consentita, (false) in caso contrario.
      */
     boolean checkDistance(final int distance) {
         return distance > 0 && distance <= MAX_DISTANCE;

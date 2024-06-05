@@ -98,6 +98,7 @@ public class Commands {
     /**
      * Gestisce la mossa inserita dall'utente.
      * @param game gestisce il flusso di gioco.
+     * @return la mossa inserita dall'utente, null se la mossa non è valida.
      */
     private Move manageMove(final GameController game) {
         String[] nextMove = Input.getNextMove(command);

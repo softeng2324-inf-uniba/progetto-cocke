@@ -8,8 +8,19 @@ import it.uniba.app.utils.Message;
  * Classe Input utile all'acquisizione degli input da tastiera.
  */
 public final class Input {
+    /**
+     * Lunghezza massima del comando per gestire le coordinate.
+     */
     static final int MAX_COMMAND_LENGTH = 5;
+
+    /**
+     * Lunghezza massima di una singola coordinata.
+     */
     static final int MAX_COORDINATE_LENGTH = 2;
+
+    /**
+     * Costanti per le righe del tavoliere.
+     */
     static final int ROW_A = 0;
     static final int ROW_B = 1;
     static final int ROW_C = 2;
@@ -42,7 +53,7 @@ public final class Input {
     /**
      * Controlla l'indice della colonna e lo trasforma in un intero.
      * @param row la riga da controllare.
-     * @return
+     * @return l'indice della riga.
      */
     private static int checkColsWord(final String row) {
         switch (row.charAt(0)) {
@@ -68,6 +79,8 @@ public final class Input {
 
     /**
      * Metodo per l'acquisizione della prossima mossa dove il pattern è casella di partenza - casella di arrivo.
+     * @param command il comando da analizzare.
+     * @return un array di stringhe contenente la casella di partenza e la casella di arrivo, null altrimenti.
      */
     public static String[] getNextMove(final String command) {
         if (command.length() == MAX_COMMAND_LENGTH) {
