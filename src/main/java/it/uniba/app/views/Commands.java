@@ -95,30 +95,28 @@ public class Commands {
     private void manageBlocca(final String[] args) {
         if (GameController.getGame() == null) {
             String s = args[args.length - 1];
-            int row = -1;
-            int column = -1;
-            if ((int) s.charAt(9) > 96 && (int) s.charAt(9) < 104 && (int) s.charAt(9) > 48 && (int) s.charAt(9) < 56) {
-                row = s.charAt(9);
-                column = s.charAt(10);
+            int row = (int) s.charAt(9) - 97;
+            int column = (int) s.charAt(10) - 49;
+            if ((row >= 0 && row < Field.DEFAULT_DIM) && (column >= 0 && column < Field.DEFAULT_DIM)) {
+                int distance = 2;
+                boolean a = row >= 0 || row <= distance;
+                boolean b = row <= Field.DEFAULT_DIM || row >= Field.DEFAULT_DIM - distance;
+                boolean c = column >= 0 || column <= distance;
+                boolean d = column <= Field.DEFAULT_DIM || column >= Field.DEFAULT_DIM - distance;
+                if (!(a && b && c && d)) {
+                    if (coordsToLock.size() < 9) {
+                        Coordinate coord = new Coordinate(row, column);
+                        coordsToLock.add(coord);
+                    } else {
+                        //numero massimo di slot bloccabili raggiunto
+                        return;
+                    }
+                } else {
+                    //non è possibile bloccare uno slot entro una distanza 2 da quelli di partenza
+                    return;
+                }
             } else {
                 //coordinate non corrette
-                return;
-            }
-            int distance = 2;
-            boolean a = row >0 || row<=distance;
-            boolean b = row<=Field.DEFAULT_DIM || row>=Field.DEFAULT_DIM-distance;
-            boolean c = column >0 || column<=distance;
-            boolean d = column<=Field.DEFAULT_DIM || column>=Field.DEFAULT_DIM-distance;
-            if (!(a && b && c && d)){
-                if (coordsToLock.size()>9){
-                    //numero massimo di slot bloccabili raggiunto
-                    return;
-                } else {
-                    Coordinate coord = new Coordinate(row, column);
-                    coordsToLock.add(coord);
-                }
-            }else{
-                //non è possibile bloccare uno slot entro una distanza 2 da quelli di partenza
                 return;
             }
         } else {
@@ -126,6 +124,7 @@ public class Commands {
             return;
         }
     }
+
 
     /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
