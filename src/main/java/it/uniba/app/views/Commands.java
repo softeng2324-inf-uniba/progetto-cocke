@@ -96,21 +96,17 @@ public class Commands {
 
 
     /**
-     * Gestisce il caso /mossa del metodo ataxxCommand.
+     * Gestisce la mossa inserita dall'utente.
      * @param game gestisce il flusso di gioco.
      */
     private Move manageMove(final GameController game) {
-        if (game.getGame() == null) {
-            Output.printMessages(Message.NO_GAME);
-        } else {
-            String[] nextMove = Input.getNextMove(command);
-            if (nextMove != null) {
-                Coordinate start = new Coordinate(Integer.parseInt(nextMove[0].substring(1)) - 1,
-                        nextMove[0].charAt(0) - 'a');
-                Coordinate destination = new Coordinate(Integer.parseInt(nextMove[1].substring(1)) - 1,
-                        nextMove[1].charAt(0) - 'a');
-                return new Move(start, destination);
-            }
+        String[] nextMove = Input.getNextMove(command);
+        if (nextMove != null) {
+            Coordinate start = new Coordinate(Integer.parseInt(nextMove[0].substring(1)) - 1,
+                    nextMove[0].charAt(0) - 'a');
+            Coordinate destination = new Coordinate(Integer.parseInt(nextMove[1].substring(1)) - 1,
+                    nextMove[1].charAt(0) - 'a');
+            return new Move(start, destination);
         }
         return null;
     }
@@ -125,7 +121,6 @@ public class Commands {
         commands.manageFlag(args);
         do {
             command = Input.getCommand();
-            Move move = commands.manageMove(ataxx);
             switch (command) {
                 case "/help":
                     commands.manageHelp();
@@ -149,7 +144,8 @@ public class Commands {
                     commands.manageExit(ataxx);
                     break;
                 default:
-                    if (move != null) {
+                    Move move = commands.manageMove(ataxx);
+                    if (move != null && ataxx.getGame() != null) {
                         ataxx.movePiece(move);
                     } else {
                         Output.printMessages(Message.UNKNOWN_COMMAND);
