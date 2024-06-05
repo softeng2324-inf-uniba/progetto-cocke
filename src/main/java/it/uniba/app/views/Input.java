@@ -19,17 +19,6 @@ public final class Input {
     static final int MAX_COORDINATE_LENGTH = 2;
 
     /**
-     * Costanti per le righe del tavoliere.
-     */
-    static final int ROW_A = 0;
-    static final int ROW_B = 1;
-    static final int ROW_C = 2;
-    static final int ROW_D = 3;
-    static final int ROW_E = 4;
-    static final int ROW_F = 5;
-    static final int ROW_G = 6;
-
-    /**
      * Costruttore per la classe Input.
      */
     private Input() { }
@@ -51,33 +40,6 @@ public final class Input {
     }
 
     /**
-     * Controlla l'indice della colonna e lo trasforma in un intero.
-     * @param row la riga da controllare.
-     * @return l'indice della riga.
-     */
-    private static int checkColsWord(final String row) {
-        switch (row.charAt(0)) {
-            case 'a':
-                return ROW_A;
-            case 'b':
-                return ROW_B;
-            case 'c':
-                return ROW_C;
-            case 'd':
-                return ROW_D;
-            case 'e':
-                return ROW_E;
-            case 'f':
-                return ROW_F;
-            case 'g':
-                return ROW_G;
-            default:
-                return -1;
-        }
-    }
-
-
-    /**
      * Metodo per l'acquisizione della prossima mossa dove il pattern è casella di partenza - casella di arrivo.
      * @param command il comando da analizzare.
      * @return un array di stringhe contenente la casella di partenza e la casella di arrivo, null altrimenti.
@@ -87,10 +49,10 @@ public final class Input {
             String[] nextMoveArray = command.split("-");
             if (nextMoveArray.length == MAX_COORDINATE_LENGTH)  {
                 int startRow = Integer.parseInt(nextMoveArray[0].substring(1));
-                int startCol = checkColsWord(nextMoveArray[0].substring(0, 1));
+                String startCol = nextMoveArray[0].substring(0, 1);
                 int destRow = Integer.parseInt(nextMoveArray[1].substring(1));
-                int destCol = checkColsWord(nextMoveArray[1].substring(0, 1));
-                if (startRow != -1 && startCol != -1 && destRow != -1 && destCol != -1) {
+                String destCol = nextMoveArray[1].substring(0, 1);
+                if (startRow != -1 && !startCol.equals(" ") && destRow != -1 && !destCol.equals(" ")) {
                     return new String[]{nextMoveArray[0], nextMoveArray[1]};
                 }
             }
