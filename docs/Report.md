@@ -55,10 +55,14 @@ Il formato con cui indicare la mossa che si intende effettuare è:
 **`Aa-Bb`**
 
 >**`A`**: è il carattere indicante la colonna della pedina di partenza. ***`[a...g]`**(lowercase)*
-**`a`**: è l'intero rappresentante la riga della pedina di partenza. ***`[1...7]`***
-**`-`**: carattere separatore. ***`[-]`***
-**`B`**: è il carattere indicante la colonna della casella di arrivo. ***`[a...g]`**(lowercase)*
-**`b`**: è l'intero rappresentante la riga della casella di arrivo. ***`[1...7]`***
+>
+>**`a`**: è l'intero rappresentante la riga della pedina di partenza. ***`[1...7]`***
+>
+>**`-`**: carattere separatore. ***`[-]`***
+>
+>**`B`**: è il carattere indicante la colonna della casella di arrivo. ***`[a...g]`**(lowercase)*
+>
+>**`b`**: è l'intero rappresentante la riga della casella di arrivo. ***`[1...7]`***
 
 Con il comando ***`/tavoliere`*** è possibile visualizzare la posizione attuale di tutte le pedine presenti sul campo da gioco.
 
@@ -70,7 +74,8 @@ Il comando con cui indicare la casella da bloccare è:
 ***`/blocca Xy`***
 
 >***`X`***: è il carattere indicante la colonna della casella da bloccare. ***`[a...g]`**(lowercase)*
-***`y`***: è l'intero rappresentante la riga della casella da bloccare. ***`[1...7]`***
+>
+>***`y`***: è l'intero rappresentante la riga della casella da bloccare. ***`[1...7]`***
 
 Per visualizzare la plancia di gioco vuota, con le eventuali caselle bloccate, occorre usare il comando ***`/vuoto`***.
 
