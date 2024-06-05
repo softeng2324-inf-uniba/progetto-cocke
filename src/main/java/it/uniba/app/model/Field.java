@@ -11,7 +11,7 @@ public class Field {
     /**
      * Contiene le caselle del campo da gioco.
      */
-    private Slot[][] gameboard;
+    private static Slot[][] gameboard;
     /**
      * Dimensione del campo da gioco di default.
      */
@@ -72,7 +72,7 @@ public class Field {
      * @param coordinate coordinata della casella del campo da gioco richiesta.
      * @return casella presente nel campo da gioco nella posizione inserita.
      */
-    public Slot getSlot(final Coordinate coordinate) {
+    public static Slot getSlot(final Coordinate coordinate) {
         return gameboard[coordinate.getRow()][coordinate.getColumn()];
     }
 
@@ -84,7 +84,7 @@ public class Field {
         return gameboard.length;
     }
 
-    public void setLockedSlots(){
+    public static void setLockedSlots(){
         for (int row = 0; row < DEFAULT_DIM; row++) {
             for (int column = 0; column < DEFAULT_DIM; column++) {
                 Coordinate tempCoord = new Coordinate(row, column);
@@ -94,4 +94,5 @@ public class Field {
             }
         }
     }
+
 }
