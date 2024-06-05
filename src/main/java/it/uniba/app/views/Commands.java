@@ -15,11 +15,15 @@ public class Commands {
      * Stringa contenente il percorso relativo del file da leggere.
      */
     private static String relativePath = "/src/main/java/it/uniba/app/help.txt";
+
     /**
      * Workspace attuale.
      */
     private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
+    /**
+     * Lista contenente le coordinate degli slot da bloccare.
+     */
     private static LinkedList<Coordinate> coordsToLock = new LinkedList<Coordinate>();
 
     /**
@@ -92,6 +96,10 @@ public class Commands {
         }
     }
 
+    /**
+     * Gestisce il caso /blocca xn del metodo ataxxCommand.
+     * @param args argomenti in input al programma.
+     */
     private void manageBlocca(final String[] args) {
         if (GameController.getGame() == null) {
             String s = args[args.length - 1];
