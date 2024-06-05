@@ -86,19 +86,13 @@ Con il comando ***`/esci`*** è possibile terminare l'esecuzione del programma.
 
 ---
 
-Il container docker dell’app deve essere eseguito da terminali che supportano Unicode con encoding UTF-8 o UTF-16. 
-**Elenco di terminali supportati Linux:**
+Il programma è scritto utilizzando il linguaggio di programmazione Java, linguaggio indipendente dalla piattaforma hardware di esecuzione; ciò rende il programma multipiattaforma.
 
-- terminal
+La sicurezza del programma è garantita con l'analisi statica del codice per mezzo del programma SpotBugs.
 
-Windows 
+Sono stati effettuati test sul codice del programma, in modo da rendere il programma affidabile, scongiurando la presenza di errori di logica.
 
-- PowerShell
-- Git Bash (in questo caso il comando Docker ha come prefisso winpty; es: winpty docker -it ....)
-
-**Comando per l’esecuzione del container** Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, 
-Il comando Docker da usare per eseguire il container contenente l’applicazione è:
-> docker run --rm -it ghcr.io/softeng2324-inf-uniba/ataxx-cocke:latest
+L'applicazione è distribuita come Container Docker.
 
 ---
 
