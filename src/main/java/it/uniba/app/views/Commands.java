@@ -1,5 +1,6 @@
 package it.uniba.app.views;
 import java.nio.file.Paths;
+import java.util.LinkedList;
 import it.uniba.app.controller.GameController;
 import it.uniba.app.model.Coordinate;
 import it.uniba.app.utils.Message;
@@ -17,6 +18,8 @@ public class Commands {
      * Workspace attuale.
      */
     private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
+
+    private static LinkedList<Coordinate> coordToLock = new LinkedList<Coordinate>();
 
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
@@ -90,8 +93,13 @@ public class Commands {
 
     private void manageBlocca(final String[] args) {
         String s = args[args.length - 1];
-        int row = s.charAt(9);
-        int column = s.charAt(10);
+        if (((int) s.charAt(9) > 96 && (int) s.charAt(9) < 104)&& (int) s.charAt(9) > 48 && (int) s.charAt(9) < 56) {
+            int row = s.charAt(9);
+            int column = s.charAt(10);
+        } else {
+            //coordinate non corrette
+        }
+        //blocca popola una linked list di coordinate da bloccare, che viene passata in seguito quando viene inizializzato il campo
         //tenendo presente che tale procedura può avvenire prima dell'inizio della partita e che non è possibile bloccare:
         //- le caselle di partenza del gioco
         //- tutte le caselle adiacenti a una casella di partenza del gioco, rendendo impossibile la mossa di
