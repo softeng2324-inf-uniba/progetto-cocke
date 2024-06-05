@@ -72,6 +72,7 @@ public class Coordinate {
      */
     @Override
     public String toString() {
-        return getRow() + "" + getColumn();
+        char rowChar = (char) ('a' + row);
+        return rowChar + "" + getColumn();
     }
 }
