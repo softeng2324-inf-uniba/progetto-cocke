@@ -79,7 +79,6 @@ public class GameController {
      */
     void setStartingPosition() {
         int[] tempXY = new int[2];
-        tempXY[0] = 0;
         tempXY[1] = Field.DEFAULT_DIM - 1;
 
         Game tempGame = getGame();
@@ -180,10 +179,9 @@ public class GameController {
      */
     public void leaveGame() {
         if (getGame() != null) {
-            //aggiungere questo messaggio nella funzione printMessages
             Output.printMessages(Message.CONFIRM_ABANDONMENT);
 
-            String answer = "";
+            String answer;
             do {
                 answer = Input.getCommand();
                 if (answer.equals("s")) {
