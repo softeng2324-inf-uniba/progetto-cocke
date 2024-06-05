@@ -1,6 +1,5 @@
 package it.uniba.app.model;
 
-import java.lang.Math.*;
 
 /**
  * {@literal <<Entity>>}
@@ -74,8 +73,10 @@ public class Move {
      * @return restituisce la distanza tra le coordinate contenute nella mossa.
      */
     public int getDistance() {
-        Coordinate start = getStartingSlot(), destination = getChosenSlot();
-        return Math.max( Math.abs(start.getRow() - destination.getRow()), Math.abs(start.getColumn() - destination.getColumn()));
+        Coordinate start = getStartingSlot();
+        Coordinate destination = getChosenSlot();
+        return java.lang.Math.max(java.lang.Math.abs(start.getRow() - destination.getRow()),
+                java.lang.Math.abs(start.getColumn() - destination.getColumn()));
     }
 
 }
