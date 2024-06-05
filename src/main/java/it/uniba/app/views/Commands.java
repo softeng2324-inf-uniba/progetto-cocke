@@ -3,6 +3,7 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import it.uniba.app.controller.GameController;
 import it.uniba.app.model.Coordinate;
+import it.uniba.app.model.Field;
 import it.uniba.app.utils.Message;
 
 /**
@@ -19,7 +20,7 @@ public class Commands {
      */
     private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
-    private static LinkedList<Coordinate> coordToLock = new LinkedList<Coordinate>();
+    private static LinkedList<Coordinate> coordsToLock = new LinkedList<Coordinate>();
 
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
@@ -92,22 +93,38 @@ public class Commands {
     }
 
     private void manageBlocca(final String[] args) {
-        String s = args[args.length - 1];
-        if (((int) s.charAt(9) > 96 && (int) s.charAt(9) < 104)&& (int) s.charAt(9) > 48 && (int) s.charAt(9) < 56) {
-            int row = s.charAt(9);
-            int column = s.charAt(10);
+        if (GameController.getGame() == null) {
+            String s = args[args.length - 1];
+            int row = -1;
+            int column = -1;
+            if ((int) s.charAt(9) > 96 && (int) s.charAt(9) < 104 && (int) s.charAt(9) > 48 && (int) s.charAt(9) < 56) {
+                row = s.charAt(9);
+                column = s.charAt(10);
+            } else {
+                //coordinate non corrette
+                return;
+            }
+            int distance = 2;
+            boolean a = row >0 || row<=distance;
+            boolean b = row<=Field.DEFAULT_DIM || row>=Field.DEFAULT_DIM-distance;
+            boolean c = column >0 || column<=distance;
+            boolean d = column<=Field.DEFAULT_DIM || column>=Field.DEFAULT_DIM-distance;
+            if (!(a && b && c && d)){
+                if (coordsToLock.size()>9){
+                    //numero massimo di slot bloccabili raggiunto
+                    return;
+                } else {
+                    Coordinate coord = new Coordinate(row, column);
+                    coordsToLock.add(coord);
+                }
+            }else{
+                //non è possibile bloccare uno slot entro una distanza 2 da quelli di partenza
+                return;
+            }
         } else {
-            //coordinate non corrette
+            //non è possibile bloccare uno slot durante una partita in corso
+            return;
         }
-        //blocca popola una linked list di coordinate da bloccare, che viene passata in seguito quando viene inizializzato il campo
-        //tenendo presente che tale procedura può avvenire prima dell'inizio della partita e che non è possibile bloccare:
-        //- le caselle di partenza del gioco
-        //- tutte le caselle adiacenti a una casella di partenza del gioco, rendendo impossibile la mossa di
-        //espansione di una pedina a inizio gioco
-        //- tutte le caselle a distanza 2 da una casella di partenza del gioco, rendendo impossibile la mossa
-        //di salto di una pedina a inizio gioco
-        Coordinate c = new Coordinate(row, column);
-        GameController.setBlank(c);
     }
 
     /**
