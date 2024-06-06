@@ -105,6 +105,30 @@ public class Commands {
     }
 
     /**
+     * Gestisce il caso /tempo del metodo ataxxCommand.
+     * @param game gestisce il flusso di gioco.
+     */
+    private void manageTime(final GameController game) {
+        if (game.getGame() == null) {
+            Output.printMessages(Message.NO_GAME);
+        } else {
+            game.getGame().elapsedTime();
+        }
+    }
+
+    /**
+     * Gestisce il caso /mosse nel metodo ataxxCommand.
+     * @param game gestisce il flusso di gioco.
+     */
+    private void manageMoveHistory(final GameController game) {
+        if (game.getGame() == null) {
+            Output.printMessages(Message.NO_GAME);
+        } else {
+            game.moveHistory();
+        }
+    }
+
+    /**
      * Gestisce il caso /blocca xn del metodo ataxxCommand.
      * @param s comando inserito dall'utente.
      */
@@ -174,8 +198,14 @@ public class Commands {
                     case "/qualimosse":
                         commands.manageLegalMoves(ataxx);
                         break;
+                    case "/mosse":
+                        commands.manageMoveHistory(ataxx);
+                        break;
                     case "/abbandona":
                         ataxx.leaveGame();
+                        break;
+                    case "/tempo":
+                        commands.manageTime(ataxx);
                         break;
                     case "/esci":
                         commands.manageExit(ataxx);
