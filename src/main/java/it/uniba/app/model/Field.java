@@ -73,7 +73,11 @@ public class Field {
      * @return casella presente nel campo da gioco nella posizione inserita.
      */
     public static Slot getSlot(final Coordinate coordinate) {
-        return gameboard[coordinate.getRow()][coordinate.getColumn()];
+        try {
+            return gameboard[coordinate.getRow()][coordinate.getColumn()];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
     /**
