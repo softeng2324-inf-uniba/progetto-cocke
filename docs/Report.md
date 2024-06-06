@@ -16,6 +16,8 @@
 
 
 - [4.1 Stile architetturale adottato](#41-stile-architetturale-adottato)
+- [4.2 Diagramma dei package](#42-diagramma-dei-package)
+- [4.3 Diagramma dei componenti](#43-diagramma-dei-componenti)
 
 [5. OO Design](#5-oo-design)
 
@@ -150,6 +152,10 @@ Rappresenta le classi che contengono la logica dell'applicazione:
 ---
 
 ![Diagrammadeipackage](./img/Report/Diagrammadeipackage.png)
+
+---
+
+## 4.2 Diagramma dei componenti
 
 ---
 
