@@ -1,4 +1,5 @@
 package it.uniba.app.model;
+
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -55,7 +56,9 @@ public class Game {
      */
     public Game(final Player[] newPlayers) {
         gameField = new Field();
-        setLockedSlots();
+        for (int i = 0; i < Commands.getCoordsToLockSize(); i++) {
+            getGameField().getSlot(Commands.getCoordToLock(i)).setColorState(Color.DARK_GREY);
+        }
         moveList = new ArrayList<>();
         players = new Player[2];
         System.arraycopy(newPlayers, 0, players, 0, newPlayers.length);
@@ -214,17 +217,4 @@ public class Game {
         setGameField(gameFieldCopy);
     }
 
-    /**
-     * Blocca gli slot se presenti nella lista degli slot da bloccare.
-     */
-    public void setLockedSlots() {
-        for (int row = 0; row < Field.DEFAULT_DIM - 1; row++) {
-            for (int column = 0; column < Field.DEFAULT_DIM - 1; column++) {
-                Coordinate tempCoord = new Coordinate(row, column);
-                if (Commands.isInCoordsToLock(tempCoord)) {
-                    getGameField().getSlot(tempCoord).setColorState(Color.DARK_GREY);
-                }
-            }
-        }
-    }
 }
