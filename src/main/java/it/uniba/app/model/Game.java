@@ -1,6 +1,10 @@
 package it.uniba.app.model;
+import java.time.Duration;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+
 import it.uniba.app.utils.Color;
+import it.uniba.app.views.Output;
 
 /**
  * {@literal <<Entity>>}
@@ -22,6 +26,10 @@ public class Game {
      * Array di <code>Player</code>, contenente i giocatori inizializzati con il loro nome e colore.
      */
     private Player[] players;
+    /**
+     * L'istante di tempo in cui è iniziato il gioco.
+     */
+    private ZonedDateTime startTime;
 
     /**
      * Costruttore della classe <code>Game</code> privo di parametri formali, che inizializza tutti i rispettivi
@@ -34,6 +42,8 @@ public class Game {
         players = new Player[2];
         players[0] = new Player(Color.BLACK, "Giocatore 1");
         players[1] = new Player(Color.WHITE, "Giocatore 2");
+
+        startTime = ZonedDateTime.now();
     }
 
     /**
@@ -46,6 +56,7 @@ public class Game {
         moveList = new ArrayList<>();
         players = new Player[2];
         System.arraycopy(newPlayers, 0, players, 0, newPlayers.length);
+        startTime = ZonedDateTime.now();
     }
 
     /**
@@ -56,6 +67,7 @@ public class Game {
         gameField = srcGame.getGameField();
         moveList = srcGame.getMoveList();
         players = srcGame.getPlayers();
+        startTime = srcGame.getStartTime();
     }
 
     /**
@@ -119,6 +131,14 @@ public class Game {
     }
 
     /**
+     * Restituisce l'istante di tempo in cui è iniziato il gioco.
+     * @return l'istante di tempo in cui è iniziato il gioco.
+     */
+    public ZonedDateTime getStartTime() {
+        return startTime;
+    }
+
+    /**
      * Restituisce il giocatore di turno.
      * @return giocatore del turno appena iniziato/in corso.
      */
@@ -153,5 +173,14 @@ public class Game {
             }
         }
         return count;
+    }
+
+    /**
+     * Stampa il tempo trascorso dall'inizio del gioco.
+     */
+    public void elapsedTime() {
+        ZonedDateTime currentTime = ZonedDateTime.now();
+        Duration elapsedTime = Duration.between(getStartTime(), currentTime);
+        Output.printElapsedTime(elapsedTime);
     }
 }
