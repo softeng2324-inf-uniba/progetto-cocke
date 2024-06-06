@@ -1,6 +1,8 @@
 package it.uniba.app.views;
 import java.nio.file.Paths;
 import it.uniba.app.controller.GameController;
+import it.uniba.app.model.Coordinate;
+import it.uniba.app.model.Move;
 import it.uniba.app.utils.Message;
 
 /**
@@ -9,9 +11,15 @@ import it.uniba.app.utils.Message;
  */
 public class Commands {
     /**
+     * Stringa contenente il comando inserito dall'utente.
+     */
+    private static String command;
+
+    /**
      * Stringa contenente il percorso relativo del file da leggere.
      */
     private static String relativePath = "/src/main/java/it/uniba/app/help.txt";
+
     /**
      * Workspace attuale.
      */
@@ -57,7 +65,6 @@ public class Commands {
                 game.setStillPlaying(false);
             } else if (!answer.equals("n")) {
 
-                //aggiungere questo messaggio nella funzione printMessages
                 Output.printMessages(Message.BAD_CONFIRMATION_EXIT);
 
             }
@@ -87,22 +94,29 @@ public class Commands {
         }
     }
 
+
     /**
-     * Gestisce il caso /tempo del metodo ataxxCommand.
+     * Gestisce la mossa inserita dall'utente.
      * @param game gestisce il flusso di gioco.
+     * @return la mossa inserita dall'utente, null se la mossa non è valida.
      */
-    private void manageTime(final GameController game) {
-        if (game.getGame() == null) {
-            Output.printMessages(Message.NO_GAME);
-        } else {
-            game.getGame().elapsedTime();
+    private Move manageMove(final GameController game) {
+        String[] nextMove = Input.getNextMove(command);
+        if (nextMove != null) {
+            Coordinate start = new Coordinate(Integer.parseInt(nextMove[0].substring(1)) - 1,
+                    nextMove[0].charAt(0) - 'a');
+            Coordinate destination = new Coordinate(Integer.parseInt(nextMove[1].substring(1)) - 1,
+                    nextMove[1].charAt(0) - 'a');
+            return new Move(start, destination);
         }
+        return null;
     }
 
     /**
      * Gestisce il caso /mosse nel metodo ataxxCommand.
      * @param game gestisce il flusso di gioco.
      */
+
     private void manageMoveHistory(final GameController game) {
         if (game.getGame() == null) {
             Output.printMessages(Message.NO_GAME);
@@ -120,7 +134,7 @@ public class Commands {
         GameController ataxx = new GameController();
         commands.manageFlag(args);
         do {
-            String command = Input.getCommand();
+            command = Input.getCommand();
             switch (command) {
                 case "/help":
                     commands.manageHelp();
@@ -143,14 +157,18 @@ public class Commands {
                 case "/abbandona":
                     ataxx.leaveGame();
                     break;
-                case "/tempo":
-                    commands.manageTime(ataxx);
-                    break;
                 case "/esci":
                     commands.manageExit(ataxx);
                     break;
                 default:
-                    Output.printMessages(Message.UNKNOWN_COMMAND);
+                    Move move = commands.manageMove(ataxx);
+                    if (move != null && ataxx.getGame() != null) {
+                        ataxx.movePiece(move);
+                    } else if (move != null) {
+                        Output.printMessages(Message.NO_GAME);
+                    } else {
+                        Output.printMessages(Message.UNKNOWN_COMMAND);
+                    }
                     break;
             }
         } while (ataxx.getStillPlaying());

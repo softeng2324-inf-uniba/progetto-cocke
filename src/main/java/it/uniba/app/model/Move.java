@@ -1,5 +1,6 @@
 package it.uniba.app.model;
 
+
 /**
  * {@literal <<Entity>>}
  * Contiene, per ogni mossa, un riferimento alla casella di partenza e di arrivo di una singola mossa.
@@ -66,6 +67,18 @@ public class Move {
     public void setChosenSlot(final Coordinate chosen) {
         chosenSlot = new Coordinate(chosen);
     }
+
+    /**
+     * Data una mossa, ne calcola la distanza tra le coordinate ad'essa appartenenti.
+     * @return restituisce la distanza tra le coordinate contenute nella mossa.
+     */
+    public int getDistance() {
+        Coordinate start = getStartingSlot();
+        Coordinate destination = getChosenSlot();
+        return java.lang.Math.max(java.lang.Math.abs(start.getRow() - destination.getRow()),
+                java.lang.Math.abs(start.getColumn() - destination.getColumn()));
+    }
+
 
     /**
      * Restituisce la mossa nel formato per la stampa.

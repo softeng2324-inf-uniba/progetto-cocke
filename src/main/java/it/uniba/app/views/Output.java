@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.time.Duration;
 
 
 /**
@@ -251,18 +250,5 @@ public final class Output {
             System.out.print(string);
         }
         System.out.print("\n");
-    }
-
-    /**
-     * Stampa nel formato ore:minuti:secondi un dato arco temporale.
-     * @param elapsedTime l'arco temporale da stampare.
-     */
-    public static void printElapsedTime(final Duration elapsedTime) {
-        Duration duration = elapsedTime;
-        StringBuilder output = new StringBuilder();
-        output.append(duration.toHours()).append(":");
-        output.append(duration.minusHours(duration.toHours()).toMinutes()).append(":");
-        output.append(duration.minusMinutes(duration.toMinutes()).toSeconds());
-        Output.printMessages(Message.ELAPSED_TIME, output.toString());
     }
 }
