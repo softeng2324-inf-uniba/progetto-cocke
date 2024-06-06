@@ -11,7 +11,7 @@ public class Field {
     /**
      * Contiene le caselle del campo da gioco.
      */
-    private static Slot[][] gameboard;
+    private Slot[][] gameboard;
     /**
      * Dimensione del campo da gioco di default.
      */
@@ -72,7 +72,7 @@ public class Field {
      * @param coordinate coordinata della casella del campo da gioco richiesta.
      * @return casella presente nel campo da gioco nella posizione inserita.
      */
-    public static Slot getSlot(final Coordinate coordinate) {
+    public Slot getSlot(final Coordinate coordinate) {
         try {
             return gameboard[coordinate.getRow()][coordinate.getColumn()];
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -86,20 +86,6 @@ public class Field {
      */
     public int length() {
         return gameboard.length;
-    }
-
-    /**
-     * Blocca gli slot se presenti nella lista degli slot da bloccare.
-     */
-    public static void setLockedSlots() {
-        for (int row = 0; row < DEFAULT_DIM - 1; row++) {
-            for (int column = 0; column < DEFAULT_DIM - 1; column++) {
-                Coordinate tempCoord = new Coordinate(row, column);
-                if (Commands.isInCoordsToLock(tempCoord)) {
-                    getSlot(tempCoord).setColorState(Color.BLACK);//temporary color
-                }
-            }
-        }
     }
 
 }
