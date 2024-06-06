@@ -1,6 +1,6 @@
 package it.uniba.app.views;
 import java.nio.file.Paths;
-import java.util.LinkedList;
+import java.util.Vector;
 import it.uniba.app.controller.GameController;
 import it.uniba.app.model.Coordinate;
 import it.uniba.app.model.Field;
@@ -28,9 +28,14 @@ public class Commands {
     private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
 
     /**
+     * Dimensione massima consentita per il vettore di coordinate da bloccare.
+     */
+    private static final int COORDSTOLOCK_DIM = 9;
+
+    /**
      * Lista contenente le coordinate degli slot da bloccare.
      */
-    private static LinkedList<Coordinate> coordsToLock = new LinkedList<Coordinate>();
+    private static Vector<Coordinate> coordsToLock = new Vector<Coordinate>();
 
     /**
      * Metodo che determina la presenza di una coordinata nella lista coordsToLock.
@@ -38,8 +43,16 @@ public class Commands {
      * @return esito del controllo.
      */
     public static boolean isInCoordsToLock(final Coordinate c) {
-        return Commands.coordsToLock.contains(c);
+        boolean isThere = false;
+        for (int i = 0; i < coordsToLock.size(); i++) {
+           if ((coordsToLock.get(i).getRow() == c.getRow()) && (coordsToLock.get(i).getColumn() == c.getColumn())) {
+               isThere = true;
+               return isThere;
+           }
+        }
+        return isThere;
     }
+
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
      * Se viene passata la flag -h o --help, viene stampato l'help del programma.
@@ -164,8 +177,9 @@ public class Commands {
                 boolean a = row >= distance && row <= Field.DEFAULT_DIM - distance;
                 boolean b = column >= distance && column <= Field.DEFAULT_DIM - distance;
                 if (a || b) {
-                    if (coordsToLock.size() < 9) {
+                    if (coordsToLock.size() < COORDSTOLOCK_DIM) {
                         Coordinate coord = new Coordinate(row, column);
+                        System.out.println(isInCoordsToLock(coord));
                         if (!isInCoordsToLock(coord)) {
                             coordsToLock.add(coord);
                         } else {
@@ -202,48 +216,46 @@ public class Commands {
         commands.manageFlag(args);
         do {
             command = Input.getCommand();
-            if (command.startsWith("/blocca ") && command.length() == 10) {
-                commands.manageBlocca(command);
-            } else {
-                switch (command) {
-                    case "/help":
-                        commands.manageHelp();
-                        break;
-                    case "/gioca":
-                        ataxx.startNewGame();
-                        break;
-                    case "/vuoto":
-                        Output.printEmptyField();
-                        break;
-                    case "/tavoliere":
-                        commands.manageGameField(ataxx);
-                        break;
-                    case "/qualimosse":
-                        commands.manageLegalMoves(ataxx);
-                        break;
-                    case "/mosse":
-                        commands.manageMoveHistory(ataxx);
-                        break;
-                    case "/abbandona":
-                        ataxx.leaveGame();
-                        break;
-                    case "/tempo":
-                        commands.manageTime(ataxx);
-                        break;
-                    case "/esci":
-                        commands.manageExit(ataxx);
-                        break;
-                    default:
-                        Move move = commands.manageMove(ataxx);
-                        if (move != null && ataxx.getGame() != null) {
-                            ataxx.movePiece(move);
-                        } else if (move != null) {
-                            Output.printMessages(Message.NO_GAME);
-                        } else {
-                            Output.printMessages(Message.UNKNOWN_COMMAND);
-                        }
-                        break;
-                }
+            switch (command) {
+                case "/help":
+                    commands.manageHelp();
+                    break;
+                case "/gioca":
+                    ataxx.startNewGame();
+                    break;
+                case "/vuoto":
+                    Output.printEmptyField();
+                    break;
+                case "/tavoliere":
+                    commands.manageGameField(ataxx);
+                    break;
+                case "/qualimosse":
+                    commands.manageLegalMoves(ataxx);
+                    break;
+                case "/mosse":
+                    commands.manageMoveHistory(ataxx);
+                    break;
+                case "/abbandona":
+                    ataxx.leaveGame();
+                    break;
+                case "/tempo":
+                    commands.manageTime(ataxx);
+                    break;
+                case "/esci":
+                    commands.manageExit(ataxx);
+                    break;
+                default:
+                    Move move = commands.manageMove(ataxx);
+                    if (move != null && ataxx.getGame() != null) {
+                        ataxx.movePiece(move);
+                    } else if (move != null) {
+                        Output.printMessages(Message.NO_GAME);
+                    } else if (command.startsWith("/blocca ") && command.length() == 10) {
+                        commands.manageBlocca(command);
+                    } else {
+                        Output.printMessages(Message.UNKNOWN_COMMAND);
+                    }
+                    break;
             }
         } while (ataxx.getStillPlaying());
     }
