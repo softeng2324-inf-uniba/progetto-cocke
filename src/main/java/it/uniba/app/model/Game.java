@@ -154,4 +154,24 @@ public class Game {
         }
         return count;
     }
+
+    /**
+     * Modifica lo stato delle caselle circostanti e adiacenti alla casella presente nella posizione indicata
+     * dalla coordinata in ingresso, eguagliandone il colore.
+     * @param coordinate posizione, sul campo da gioco, della casella da cui parte la cattura delle circostanti
+     */
+    void captureSlot(final Coordinate coordinate) {
+        Coordinate tempCoordinate = coordinate;
+        Field gameFieldCopy = getGameField();
+        Color colorSlot = gameFieldCopy.getSlot(coordinate).getColorState();
+        for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
+            tempCoordinate.setRow(coordinate.getRow() + rowOffset);
+            for (int columnOffset = -1; columnOffset < 2; columnOffset++) {
+                tempCoordinate.setColumn(coordinate.getColumn() + columnOffset);
+                gameFieldCopy.getSlot(tempCoordinate).setColorState(colorSlot);
+            }
+        }
+        setGameField(gameFieldCopy);
+    }
+
 }
