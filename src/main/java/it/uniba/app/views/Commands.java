@@ -119,7 +119,11 @@ public class Commands {
                 if (a || b) {
                     if (coordsToLock.size() < 9) {
                         Coordinate coord = new Coordinate(row, column);
-                        coordsToLock.add(coord);
+                        if (isInCoordsToLock(coord)){
+                            Output.printMessages(Message.CANTDO, "casella già bloccata");
+                        } else {
+                            coordsToLock.add(coord);
+                        }
                     } else {
                         Output.printMessages(Message.CANTDO, "numero massimo di slot bloccabili raggiunto.");
                         return;
@@ -152,32 +156,33 @@ public class Commands {
             String command = Input.getCommand();
             if (command.startsWith("/blocca ") && command.length() == 10) {
                 commands.manageBlocca(command);
-            }
-            switch (command) {
-                case "/help":
-                    commands.manageHelp();
-                    break;
-                case "/gioca":
-                    ataxx.startNewGame();
-                    break;
-                case "/vuoto":
-                    Output.printEmptyField();
-                    break;
-                case "/tavoliere":
-                    commands.manageGameField(ataxx);
-                    break;
-                case "/qualimosse":
-                    commands.manageLegalMoves(ataxx);
-                    break;
-                case "/abbandona":
-                    ataxx.leaveGame();
-                    break;
-                case "/esci":
-                    commands.manageExit(ataxx);
-                    break;
-                default:
-                    Output.printMessages(Message.UNKNOWN_COMMAND);
-                    break;
+            } else {
+                switch (command) {
+                    case "/help":
+                        commands.manageHelp();
+                        break;
+                    case "/gioca":
+                        ataxx.startNewGame();
+                        break;
+                    case "/vuoto":
+                        Output.printEmptyField();
+                        break;
+                    case "/tavoliere":
+                        commands.manageGameField(ataxx);
+                        break;
+                    case "/qualimosse":
+                        commands.manageLegalMoves(ataxx);
+                        break;
+                    case "/abbandona":
+                        ataxx.leaveGame();
+                        break;
+                    case "/esci":
+                        commands.manageExit(ataxx);
+                        break;
+                    default:
+                        Output.printMessages(Message.UNKNOWN_COMMAND);
+                        break;
+                }
             }
         } while (ataxx.getStillPlaying());
     }
