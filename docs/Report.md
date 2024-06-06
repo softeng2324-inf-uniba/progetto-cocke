@@ -151,7 +151,7 @@ Rappresenta le classi che contengono la logica dell'applicazione:
 
 ---
 
-![Diagrammadeipackage](./img/Report/Diagrammadeipackage.png)
+![Diagrammadeipackage](./img/Report/DiagrammadeiPackage.png)
 
 ---
 
