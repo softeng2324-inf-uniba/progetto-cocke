@@ -265,6 +265,7 @@ public class GameController {
                 }
                 destinationSlot.setColorState(game.whoIsPlaying().getColor());
                 game.setGameField(tempField);
+                game.captureSlot(move.getChosenSlot());
                 Output.printField(game.getGameField());
                 tempMoveList.add(move);
                 game.setMoveList(tempMoveList);
