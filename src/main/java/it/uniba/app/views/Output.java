@@ -1,11 +1,13 @@
 package it.uniba.app.views;
 
+import it.uniba.app.controller.GameController;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
 import it.uniba.app.utils.Color;
 import it.uniba.app.model.Coordinate;
 import it.uniba.app.utils.Message;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +26,22 @@ public final class Output {
     /**
      * Numero di righe presenti nel file Winner.txt.
      */
-    private static int winnerLine = 36;
+    private static int WINNER_LINE = 36;
+
+    /**
+     * Numero massimo di colonne presenti nel file Winner.txt.
+     */
+    private static int WINNER_COLUMN = 110;
+
+    /**
+     * Numero massimo di caratteri da utilizzare nella stampa del numero di pedine.
+     */
+    private static int CHARPEDINE = 2;
+
+    /**
+     * Numero massimo di carattteri da utilizzare nella stampa del tempo.
+     */
+    private static int CHARTIME = 8;
 
     /**
      * Stringa contenente il percorso relativo del file Winner.txt.
@@ -46,7 +63,7 @@ public final class Output {
      */
     private static void printCrossedHoLine(final int dim) {
         for (int i = 0; i < dim - 1; i++) {
-            System.out.print("═════╬");
+            System.out.print("══                                                                    ═══╬");
         }
         System.out.print("═════");
     }
@@ -266,7 +283,6 @@ public final class Output {
                     new InputStreamReader(new FileInputStream(winnerPath), "UTF-8"))) {
                 String line;
                 int nLine = 0;
-
                 while (nLine < winnerLine){
                     nLine = nLine +1;
                     if((line = br.readLine()) != null) {
@@ -281,8 +297,37 @@ public final class Output {
         }
     }
 
-    public static void moveXY(int x, int y) {
-
+    public static void printWinner2(final Game game) {
+        if (new File(winnerPath).exists()) {
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(winnerPath), "UTF-8"))) {
+                StringBuilder completeTextBuilder = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    completeTextBuilder.append(line);
+                }
+                String completeText = completeTextBuilder.toString();
+                Character actualCharacter = '\0';
+                for (int row = 0; row < WINNER_LINE; row++) {
+                    for (int column = 0; (actualCharacter = completeText.charAt(column)) != '\n'; column++) {
+                        if(actualCharacter == '#') {
+                            System.out.print(game.countPieces(Color.BLACK));
+                        } else if(actualCharacter == '*') {
+                            System.out.print(game.countPieces(Color.WHITE));
+                        } else if(actualCharacter == '@') {
+                            System.out.print("");
+                        } else {
+                            System.out.print(actualCharacter);
+                        }
+                    }
+                    System.out.print('\n');
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        } else {
+            Output.printMessages(Message.FILE_NOT_FOUND);
+        }
     }
 
 }
