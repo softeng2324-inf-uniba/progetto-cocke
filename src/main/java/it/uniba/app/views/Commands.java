@@ -1,4 +1,5 @@
 package it.uniba.app.views;
+
 import java.nio.file.Paths;
 import java.util.Vector;
 import it.uniba.app.controller.GameController;
@@ -35,7 +36,7 @@ public class Commands {
     /**
      * Lista contenente le coordinate degli slot da bloccare.
      */
-    private static Vector<Coordinate> coordsToLock = new Vector<Coordinate>();
+    private static Vector<Coordinate> coordsToLock = new Vector<>();
 
     /**
      * Metodo che determina la presenza di una coordinata nella lista coordsToLock.
@@ -49,6 +50,23 @@ public class Commands {
            }
         }
         return false;
+    }
+
+    /**
+     * Metodo che restituisce la cordinata in posizione pos del vettore coordsToLock.
+     * @param pos posizione dell'elemento da restituire.
+     * @return elemento da restituire.
+     */
+    public static Coordinate getCoordToLock(final int pos) {
+        return coordsToLock.get(pos);
+    }
+
+    /**
+     * Metodo che restituisce la dimensione del vettore coordsToLock.
+     * @return dimensione del vettore coordsToLock.
+     */
+    public static int getCoordsToLockSize() {
+        return coordsToLock.size();
     }
 
     /**
@@ -178,7 +196,7 @@ public class Commands {
                 boolean a = row >= distance && row <= Field.DEFAULT_DIM - distance;
                 boolean b = column >= distance && column <= Field.DEFAULT_DIM - distance;
                 if (a && b) {
-                    if (coordsToLock.size() < COORDSTOLOCK_DIM) {
+                    if (getCoordsToLockSize() < COORDSTOLOCK_DIM) {
                         Coordinate coord = new Coordinate(row, column);
                         if (!isInCoordsToLock(coord)) {
                             coordsToLock.add(coord);
