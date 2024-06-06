@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import it.uniba.app.utils.Color;
-import it.uniba.app.views.Commands;
 import it.uniba.app.views.Output;
 
 import static it.uniba.app.model.Field.DEFAULT_DIM;
@@ -41,7 +40,6 @@ public class Game {
     public Game() {
         gameField = new Field();
         moveList = new ArrayList<>();
-
         players = new Player[2];
         players[0] = new Player(Color.BLACK, "Giocatore 1");
         players[1] = new Player(Color.WHITE, "Giocatore 2");
@@ -56,9 +54,6 @@ public class Game {
      */
     public Game(final Player[] newPlayers) {
         gameField = new Field();
-        for (int i = 0; i < Commands.getCoordsToLockSize(); i++) {
-            getGameField().getSlot(Commands.getCoordToLock(i)).setColorState(Color.DARK_GREY);
-        }
         moveList = new ArrayList<>();
         players = new Player[2];
         System.arraycopy(newPlayers, 0, players, 0, newPlayers.length);
