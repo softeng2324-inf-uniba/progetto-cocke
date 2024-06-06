@@ -2,8 +2,8 @@ package it.uniba.app.model;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-
 import it.uniba.app.utils.Color;
+import it.uniba.app.views.Commands;
 import it.uniba.app.views.Output;
 
 /**
@@ -53,6 +53,7 @@ public class Game {
      */
     public Game(final Player[] newPlayers) {
         gameField = new Field();
+        setLockedSlots();
         moveList = new ArrayList<>();
         players = new Player[2];
         System.arraycopy(newPlayers, 0, players, 0, newPlayers.length);
@@ -182,5 +183,19 @@ public class Game {
         ZonedDateTime currentTime = ZonedDateTime.now();
         Duration elapsedTime = Duration.between(getStartTime(), currentTime);
         Output.printElapsedTime(elapsedTime);
+    }
+
+    /**
+     * Blocca gli slot se presenti nella lista degli slot da bloccare.
+     */
+    public void setLockedSlots() {
+        for (int row = 0; row < Field.DEFAULT_DIM - 1; row++) {
+            for (int column = 0; column < Field.DEFAULT_DIM - 1; column++) {
+                Coordinate tempCoord = new Coordinate(row, column);
+                if (Commands.isInCoordsToLock(tempCoord)) {
+                    getGameField().getSlot(tempCoord).setColorState(Color.DARK_GREY);
+                }
+            }
+        }
     }
 }
