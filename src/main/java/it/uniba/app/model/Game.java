@@ -178,9 +178,9 @@ public class Game {
     /**
      * Stampa il tempo trascorso dall'inizio del gioco.
      */
-    public void elapsedTime() {
+    public Duration getElapsedTime() {
         ZonedDateTime currentTime = ZonedDateTime.now();
         Duration elapsedTime = Duration.between(getStartTime(), currentTime);
-        Output.printElapsedTime(elapsedTime);
+        return elapsedTime;
     }
 }
