@@ -88,11 +88,11 @@ public class Field {
      * Blocca gli slot se presenti nella lista degli slot da bloccare.
      */
     public static void setLockedSlots() {
-        for (int row = 0; row < DEFAULT_DIM; row++) {
-            for (int column = 0; column < DEFAULT_DIM; column++) {
+        for (int row = 0; row < DEFAULT_DIM - 1; row++) {
+            for (int column = 0; column < DEFAULT_DIM - 1; column++) {
                 Coordinate tempCoord = new Coordinate(row, column);
                 if (Commands.isInCoordsToLock(tempCoord)) {
-                    getSlot(tempCoord).setColorState(Color.BLACK);
+                    getSlot(tempCoord).setColorState(Color.BLACK);//temporary color
                 }
             }
         }

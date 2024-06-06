@@ -143,11 +143,11 @@ public class Commands {
                 if (a || b) {
                     if (coordsToLock.size() < 9) {
                         Coordinate coord = new Coordinate(row, column);
-                        if (isInCoordsToLock(coord)) {
+                        if (!isInCoordsToLock(coord)) {
+                            coordsToLock.add(coord);
+                        } else {
                             Output.printMessages(Message.CANTDO, "casella già bloccata.");
                             return;
-                        } else {
-                            coordsToLock.add(coord);
                         }
                     } else {
                         Output.printMessages(Message.CANTDO, "numero massimo di slot bloccabili raggiunto.");
