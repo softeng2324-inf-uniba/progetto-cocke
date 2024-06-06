@@ -43,14 +43,12 @@ public class Commands {
      * @return esito del controllo.
      */
     public static boolean isInCoordsToLock(final Coordinate c) {
-        boolean isThere = false;
         for (int i = 0; i < coordsToLock.size(); i++) {
            if ((coordsToLock.get(i).getRow() == c.getRow()) && (coordsToLock.get(i).getColumn() == c.getColumn())) {
-               isThere = true;
-               return isThere;
+               return true;
            }
         }
-        return isThere;
+        return false;
     }
 
     /**
@@ -170,16 +168,18 @@ public class Commands {
      */
     private void manageBlocca(final String s, final GameController gg) {
         if (gg.getGame() == null) {
-            int column = (int) s.charAt(8) - 97;
-            int row = (int) s.charAt(9) - 49;
+            final int firstCord = 8;
+            final int asciiA = 97;
+            final int ascii1 = 49;
+            int column = s.charAt(firstCord) - asciiA;
+            int row = s.charAt(firstCord + 1) - ascii1;
             if ((row >= 0 && row < Field.DEFAULT_DIM) && (column >= 0 && column < Field.DEFAULT_DIM)) {
                 int distance = 2;
                 boolean a = row >= distance && row <= Field.DEFAULT_DIM - distance;
                 boolean b = column >= distance && column <= Field.DEFAULT_DIM - distance;
-                if (a || b) {
+                if (a && b) {
                     if (coordsToLock.size() < COORDSTOLOCK_DIM) {
                         Coordinate coord = new Coordinate(row, column);
-                        System.out.println(isInCoordsToLock(coord));
                         if (!isInCoordsToLock(coord)) {
                             coordsToLock.add(coord);
                         } else {
@@ -200,7 +200,7 @@ public class Commands {
                 return;
             }
         } else {
-            Output.printMessages(Message.GAME_IS_PLAYING, "");
+            Output.printMessages(Message.GAME_IS_PLAYING);
             return;
         }
     }
@@ -211,6 +211,7 @@ public class Commands {
      * @param args array di argomenti passati da command line.
      */
     public static void ataxxCommand(final String[] args) {
+        final int bloccaLength = 10;
         Commands commands = new Commands();
         GameController ataxx = new GameController();
         commands.manageFlag(args);
@@ -250,7 +251,7 @@ public class Commands {
                         ataxx.movePiece(move);
                     } else if (move != null) {
                         Output.printMessages(Message.NO_GAME);
-                    } else if (command.startsWith("/blocca ") && command.length() == 10) {
+                    } else if (command.startsWith("/blocca ") && command.length() == bloccaLength) {
                         commands.manageBlocca(command, ataxx);
                     } else {
                         Output.printMessages(Message.UNKNOWN_COMMAND);
