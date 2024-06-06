@@ -1,8 +1,5 @@
 package it.uniba.app.model;
 
-import it.uniba.app.utils.Color;
-import it.uniba.app.views.Commands;
-
 /**
  * {@literal <<Entity>>}
  * Classe che rappresenta il campo da gioco.
