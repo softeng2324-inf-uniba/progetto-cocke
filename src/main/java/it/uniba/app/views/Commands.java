@@ -120,7 +120,7 @@ public class Commands {
         if (game.getGame() == null) {
             Output.printMessages(Message.NO_GAME);
         } else {
-            game.getGame().elapsedTime();
+            Output.printElapsedTime(game.getGame().getElapsedTime());
         }
     }
 
