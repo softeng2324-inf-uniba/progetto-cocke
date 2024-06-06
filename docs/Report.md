@@ -155,7 +155,11 @@ Rappresenta le classi che contengono la logica dell'applicazione:
 
 ---
 
-## 4.2 Diagramma dei componenti
+## 4.3 Diagramma dei componenti
+
+---
+
+![Diagrammadeicomponenti](./img/Report/Diagrammadeicomponenti.png)
 
 ---
 
