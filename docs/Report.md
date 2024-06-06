@@ -145,6 +145,14 @@ Rappresenta le classi che contengono la logica dell'applicazione:
 
 ---
 
+## 4.2 Diagramma dei package
+
+---
+
+![Diagrammadeipackage](./img/Report/Diagrammadeipackage.png)
+
+---
+
 # **5. OO Design**
 
 ---
