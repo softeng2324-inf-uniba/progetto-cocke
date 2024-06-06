@@ -1,5 +1,7 @@
 package it.uniba.app.views;
+import it.uniba.app.model.Coordinate;
 import it.uniba.app.utils.Color;
+import it.uniba.app.model.Move;
 import it.uniba.app.model.Player;
 import it.uniba.app.utils.Message;
 
@@ -8,16 +10,6 @@ import it.uniba.app.utils.Message;
  * Classe Input utile all'acquisizione degli input da tastiera.
  */
 public final class Input {
-    /**
-     * Lunghezza massima del comando per gestire le coordinate.
-     */
-    static final int MAX_COMMAND_LENGTH = 5;
-
-    /**
-     * Lunghezza massima di una singola coordinata.
-     */
-    static final int MAX_COORDINATE_LENGTH = 2;
-
     /**
      * Costruttore per la classe Input.
      */
@@ -29,7 +21,7 @@ public final class Input {
      * @return il nuovo oggetto giocatore.
      */
     public static Player getPlayersName(final int playerIndex) {
-        Player p;
+        Player p = null;
         Output.printMessages(Message.INSERT_PLAYER_NAME, String.valueOf(playerIndex + 1));
         if (playerIndex == 1) {
             p = new Player(Color.WHITE, Keyboard.readString());
@@ -40,30 +32,39 @@ public final class Input {
     }
 
     /**
-     * Metodo per l'acquisizione della prossima mossa dove il pattern è casella di partenza - casella di arrivo.
-     * @param command il comando da analizzare.
-     * @return un array di stringhe contenente la casella di partenza e la casella di arrivo, null altrimenti.
+     * Metodo per l'acquisizione di una mossa da effettuare.
+     * @return la mossa letta da tastiera.
      */
-    public static String[] getNextMove(final String command) {
-        if (command.length() == MAX_COMMAND_LENGTH) {
-            String[] nextMoveArray = command.split("-");
-            try {
-                if (nextMoveArray.length == MAX_COORDINATE_LENGTH) {
-                    int startRow = Integer.parseInt(nextMoveArray[0].substring(1));
-                    String startCol = nextMoveArray[0].substring(0, 1);
-                    int destRow = Integer.parseInt(nextMoveArray[1].substring(1));
-                    String destCol = nextMoveArray[1].substring(0, 1);
-                    if (startRow != -1 && !startCol.equals(" ") && destRow != -1 && !destCol.equals(" ")) {
-                        return new String[]{nextMoveArray[0], nextMoveArray[1]};
-                    }  else {
-                        Output.printMessages(Message.ILLEGAL_MOVE);
-                    }
-                }
-            } catch (NumberFormatException e) {
-                Output.printMessages(Message.ILLEGAL_MOVE);
-            }
-        }
-        return null;
+    public static Move getMove() {
+        char row = ' ';
+        int col = -1;
+        Output.printMessages(Message.INSERT_ROW, Message.START_SLOT.getMessageText());
+        row = Keyboard.readChar();
+        Output.printMessages(Message.INSERT_COLUMN, Message.START_SLOT.getMessageText());
+        col = Keyboard.readInt();
+        Coordinate start = new Coordinate(row, col);
+        Output.printMessages(Message.INSERT_ROW, Message.ARRIVAL_SLOT.getMessageText());
+        row = Keyboard.readChar();
+        Output.printMessages(Message.INSERT_COLUMN, Message.ARRIVAL_SLOT.getMessageText());
+        col = Keyboard.readInt();
+        Coordinate choice = new Coordinate(row, col);
+        return new Move(start, choice);
+    }
+
+    /**
+     * Metodo per l'acquisizione di una coordinata.
+     * @return le coordinate lette da tastiera.
+     */
+    private static Coordinate getCoordinate() {
+        char row = ' ';
+        int col = -1;
+        Coordinate c = new Coordinate(row, col);
+        Output.printMessages(Message.INSERT_ROW);
+
+        c.setRow(row);
+        Output.printMessages(Message.INSERT_COLUMN);
+        c.setColumn(col);
+        return c;
     }
 
     /**
