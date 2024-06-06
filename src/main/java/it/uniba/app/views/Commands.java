@@ -119,8 +119,9 @@ public class Commands {
                 if (a || b) {
                     if (coordsToLock.size() < 9) {
                         Coordinate coord = new Coordinate(row, column);
-                        if (isInCoordsToLock(coord)){
-                            Output.printMessages(Message.CANTDO, "casella già bloccata");
+                        if (isInCoordsToLock(coord)) {
+                            Output.printMessages(Message.CANTDO, "casella già bloccata.");
+                            return;
                         } else {
                             coordsToLock.add(coord);
                         }
@@ -129,7 +130,7 @@ public class Commands {
                         return;
                     }
                 } else {
-                    String msg = "lo slot scelto si trova entro una distanza due da quelli di partenza";
+                    String msg = "lo slot scelto si trova entro una distanza due da quelli di partenza.";
                     Output.printMessages(Message.CANTDO, msg);
                     return;
                 }
