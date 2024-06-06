@@ -110,15 +110,13 @@ public class Commands {
      */
     private void manageBlocca(final String s) {
         if (GameController.getGame() == null) {
-            int column = (int) s.charAt(9) - 97;
-            int row = (int) s.charAt(10) - 49;
+            int column = (int) s.charAt(8) - 97;
+            int row = (int) s.charAt(9) - 49;
             if ((row >= 0 && row < Field.DEFAULT_DIM) && (column >= 0 && column < Field.DEFAULT_DIM)) {
                 int distance = 2;
-                boolean a = row >= 0 || row <= distance;
-                boolean b = row <= Field.DEFAULT_DIM || row >= Field.DEFAULT_DIM - distance;
-                boolean c = column >= 0 || column <= distance;
-                boolean d = column <= Field.DEFAULT_DIM || column >= Field.DEFAULT_DIM - distance;
-                if (!(a && b && c && d)) {
+                boolean a = row >= distance && row <= Field.DEFAULT_DIM - distance;
+                boolean b = column >= distance && column <= Field.DEFAULT_DIM - distance;
+                if (a || b) {
                     if (coordsToLock.size() < 9) {
                         Coordinate coord = new Coordinate(row, column);
                         coordsToLock.add(coord);
@@ -128,11 +126,11 @@ public class Commands {
                     }
                 } else {
                     String msg = "lo slot scelto si trova entro una distanza due da quelli di partenza";
-                    Output.printMessages(Message.CANTDO,msg);
+                    Output.printMessages(Message.CANTDO, msg);
                     return;
                 }
             } else {
-                Output.printMessages(Message.COORD_ERR,"");
+                Output.printMessages(Message.COORD_ERR, "");
                 return;
             }
         } else {
