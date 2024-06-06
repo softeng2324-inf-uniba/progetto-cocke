@@ -118,6 +118,29 @@ L'applicazione è distribuita come Container Docker.
 
 ---
 
+Abbiamo utilizzato come pattern architetturale l'**Entity-Control-Boundary (ECB)**, 
+in quanto è un pattern che permette di separare le responsabilità all'interno dell'applicazione, 
+garantendo una maggiore manutenibilità e flessibilità:
+
+### Entity
+Rappresenta le classi che contengono i dati e le regole di business dell'applicazione:
+- **Coordinate**
+- **Field**
+- **Game**
+- **Move**
+- **Player**
+- **Slot**
+
+### Boundary
+Rappresenta le classi che interagiscono con l'utente:
+- **App**
+- **Input**
+- **Keyboard**
+- **Output**
+
+### Control
+Rappresenta le classi che contengono la logica dell'applicazione:
+- **GameController**
 
 
 ---
