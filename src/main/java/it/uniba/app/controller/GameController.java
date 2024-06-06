@@ -25,7 +25,7 @@ public class GameController {
     /**
      * Rappresenta il gioco attualmente in esecuzione.
      */
-    private static Game game = null;
+    private Game game = null;
 
     /**
      * Indica se il gioco è ancora in esecuzione.
@@ -36,7 +36,7 @@ public class GameController {
      * Restituisce il gioco attualmente in esecuzione.
      * @return il gioco attualmente in esecuzione.
      */
-    public static Game getGame() {
+    public Game getGame() {
         if (game == null) {
             return null;
         }
