@@ -168,6 +168,25 @@ _Ecco i comandi disponibili per il giocatore:_
 
 ---
 
+Nel team di sviluppo, è stato applicato il metodo di sviluppo software **SCRUM** per la gestione del progetto, seguendo il modello di sviluppo software **Agile**, che prevede lo sviluppo incrementale e iterativo del software. Il progetto è stato quindi suddiviso in 3 sprint, ognuno della durata di circa 2 settimane.
+
+Ad ogni inizio sprint, si sono tenuti meeting di **Sprint Planning** con il **Product Owner Filippo Lanubile**, durante i quali sono stati definiti gli obiettivi dello sprint e assegnati i task al team.
+
+Il nostro team di sviluppo è stato gestito da uno **Scrum Master**,il quale ha tenuto riunioni di **Daily Scrum Meeting** per monitorare lo stato di avanzamento del progetto.
+Queste riunioni, della durata massima di 15 minuti, hanno seguito la prassi standard dove ogni membro del team ha risposto alle domande guida di **SCRUM**:
+- *Cosa si è fatto ieri?*
+- *Cosa si è fatto oggi?*
+- *Ci sono problemi?*
+
+Eventuali problemi emersi sono stati approfonditi in un momento successivo.
+
+Inoltre abbiamo utilizzato in ogni sprint una **Scrum Board** fornita da GitHub, in cui abbiamo diviso i task in 5 colonne:
+
+- **To Do**
+- **In Progress**
+- **Review**
+- **Ready**
+- **Done**
 
 ---
 
