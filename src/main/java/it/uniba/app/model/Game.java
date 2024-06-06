@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import it.uniba.app.utils.Color;
 import it.uniba.app.views.Output;
 
+import static it.uniba.app.model.Field.DEFAULT_DIM;
+
 /**
  * {@literal <<Entity>>}
  * <code>Game</code> contiene gli elementi che costituiscono una partita del gioco.
@@ -195,14 +197,15 @@ public class Game {
         Color colorSlot = gameFieldCopy.getSlot(coordinate).getColorState();
         for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
             int tempRow = coordinate.getRow() + rowOffset;
-            if (tempRow >= 0 && tempRow <= 6) {
+            if (tempRow >= 0 && tempRow < DEFAULT_DIM) {
                 tempCoordinate.setRow(tempRow);
                 for (int columnOffset = -1; columnOffset < 2; columnOffset++) {
                     int tempColumn = coordinate.getColumn() + columnOffset;
-                    if (tempColumn >= 0 && tempColumn <= 6) {
+                    if (tempColumn >= 0 && tempColumn < DEFAULT_DIM) {
                         tempCoordinate.setColumn(tempColumn);
-                        if (gameFieldCopy.getSlot(tempCoordinate).getColorState() != Color.GREY)
+                        if (gameFieldCopy.getSlot(tempCoordinate).getColorState() != Color.GREY) {
                             gameFieldCopy.getSlot(tempCoordinate).setColorState(colorSlot);
+                        }
                     }
                 }
             }
