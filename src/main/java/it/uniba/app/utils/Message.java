@@ -24,7 +24,9 @@ public enum Message {
     PLAYER_WON(" ha vinto per abbandono dell'avversario, il punteggio è "),
     SCORE_0(" a 0."),
     COORD_ERR("Coordinate non riconosciute."),
-    GAME_IS_PLAYING("Non è possibile effettuare tale operazione, poichè è in corso una partita.");
+    GAME_IS_PLAYING("Non è possibile effettuare tale operazione, poichè è in corso una partita."),
+    CANTDO("Operazione non possibile: ");
+    
     /**
      * Il testo del messaggio.
      */
