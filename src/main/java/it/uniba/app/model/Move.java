@@ -66,4 +66,27 @@ public class Move {
     public void setChosenSlot(final Coordinate chosen) {
         chosenSlot = new Coordinate(chosen);
     }
+
+    /**
+     * Data una mossa, ne calcola la distanza tra le coordinate ad'essa appartenenti.
+     * @return restituisce la distanza tra le coordinate contenute nella mossa.
+     */
+    public int getDistance() {
+        Coordinate start = getStartingSlot();
+        Coordinate destination = getChosenSlot();
+        return java.lang.Math.max(java.lang.Math.abs(start.getRow() - destination.getRow()),
+                java.lang.Math.abs(start.getColumn() - destination.getColumn()));
+    }
+
+    /**
+     * Restituisce la mossa nel formato per la stampa.
+     * @return una stringa in formato "casella di partenza-casella di arrivo".
+     */
+    @Override
+    public String toString() {
+        Coordinate sSlot = getStartingSlot();
+        Coordinate cSlot = getChosenSlot();
+        String formatoMossa = sSlot + "-" + cSlot;
+        return formatoMossa;
+    }
 }

@@ -1,21 +1,28 @@
 package it.uniba.app.controller;
 
 import it.uniba.app.model.Coordinate;
-import it.uniba.app.model.Slot;
-import it.uniba.app.utils.Color;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
+import it.uniba.app.model.Move;
 import it.uniba.app.model.Player;
+import it.uniba.app.model.Slot;
+import it.uniba.app.utils.Color;
 import it.uniba.app.utils.Message;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
+import java.util.ArrayList;
 
 /**
  * {@literal <<Control>>}
  * GameController è la classe che gestisce il gioco.
  */
 public class GameController {
-        /**
+    /**
+     * Distanza massima tra le coordinate delle caselle coinvolte in una mossa.
+     */
+    static final int MAX_DISTANCE = 2;
+
+    /**
      * Rappresenta il gioco attualmente in esecuzione.
      */
     private Game game = null;
@@ -78,7 +85,6 @@ public class GameController {
      */
     void setStartingPosition() {
         int[] tempXY = new int[2];
-        tempXY[0] = 0;
         tempXY[1] = Field.DEFAULT_DIM - 1;
 
         Game tempGame = getGame();
@@ -112,6 +118,28 @@ public class GameController {
         Field legalMovesField = new Field(game.getGameField());
         convertField(legalMovesField, game.whoIsPlaying().getColor());
         Output.printField(legalMovesField);
+    }
+
+    /**
+     * Stampa a video il log delle mosse effettuate fino ad ora.
+     */
+    public void moveHistory() {
+        if (game.getMoveList().isEmpty()) {
+            Output.printMessages(Message.NO_MOVES);
+        } else {
+            StringBuilder moveList = new StringBuilder();
+            int i = 0;
+            for (Move move : game.getMoveList()) {
+                int playerColor = i % 2;
+                if (playerColor == 0) {
+                    moveList.append(i).append(". ").append(move).append(" ").append("(B);");
+                } else {
+                    moveList.append(i).append(". ").append(move).append(" ").append("(N);");
+                }
+                i++;
+            }
+            Output.printMessages(Message.MOVE_LIST, moveList.toString());
+        }
     }
 
     /**
@@ -179,10 +207,9 @@ public class GameController {
      */
     public void leaveGame() {
         if (getGame() != null) {
-            //aggiungere questo messaggio nella funzione printMessages
             Output.printMessages(Message.CONFIRM_ABANDONMENT);
 
-            String answer = "";
+            String answer;
             do {
                 answer = Input.getCommand();
                 if (answer.equals("s")) {
@@ -201,6 +228,63 @@ public class GameController {
         } else {
             Output.printMessages(Message.NO_GAME);
         }
+    }
+
+    /**
+     * Controlla se è il colore della casella di partenza del giocatore che deve effettuare il turno.
+     * @param startSlot casella di partenza
+     * @return (true) se il colore della casella di partenza è corretto, (false) altrimenti.
+     */
+    private boolean checkStartSlot(final Slot startSlot) {
+        return startSlot.getColorState() == game.whoIsPlaying().getColor();
+    }
+
+    /**
+     * Controlla se la casella di destinazione è una casella vuota.
+     * @param destinationSlot casella di destinazione
+     * @return (true) se la casella di destinazione è vuota, (false) altrimenti.
+     */
+    private boolean checkDestinationSlot(final Slot destinationSlot) {
+        return destinationSlot.getColorState() == Color.GREY;
+    }
+
+    /**
+     * Gestisce la mossa del giocatore.
+     * @param move la mossa da effettuare.
+     */
+    public void movePiece(final Move move) {
+        Field tempField = new Field(game.getGameField());
+        ArrayList<Move> tempMoveList = game.getMoveList();
+        Slot startSlot = tempField.getSlot(move.getStartingSlot());
+        Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
+        if (startSlot != null && destinationSlot != null) {
+            int distance = move.getDistance();
+            if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot) && checkDistance(distance)) {
+                if (distance == MAX_DISTANCE) {
+                    startSlot.setColorState(Color.GREY);
+                }
+                destinationSlot.setColorState(game.whoIsPlaying().getColor());
+                game.setGameField(tempField);
+                Output.printField(game.getGameField());
+                tempMoveList.add(move);
+                game.setMoveList(tempMoveList);
+            } else {
+                Output.printField(game.getGameField());
+                Output.printMessages(Message.ILLEGAL_MOVE);
+            }
+        } else {
+            Output.printField(game.getGameField());
+            Output.printMessages(Message.ILLEGAL_MOVE);
+        }
+    }
+
+    /**
+     * Verifica la correttezza della distanza tra le coordinate delle caselle coinvolte in una mossa.
+     * @param distance distanza tra le caselle sul campo da gioco.
+     * @return (true) se la distanza è consentita, (false) in caso contrario.
+     */
+    boolean checkDistance(final int distance) {
+        return distance > 0 && distance <= MAX_DISTANCE;
     }
 
 }

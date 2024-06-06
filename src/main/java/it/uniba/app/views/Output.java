@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
+import java.time.Duration;
 
 
 /**
@@ -58,6 +59,16 @@ public final class Output {
     private Output() { };
 
     /**
+     * Colore di background di default.
+     */
+    public static final Color DEFAULT_BACKGROUND = Color.GREY;
+
+    /**
+     * Colore di background di default.
+     */
+    public static final Color DEFAULT_CHAR = Color.WHITE;
+
+    /**
      * Stampa le linee interne del campo di gioco.
      * @param dim dimensione del campo di gioco
      */
@@ -77,9 +88,9 @@ public final class Output {
         char c = 'A';
         for (int i = 0; i < dim; i++) {
             System.out.print("  " + c);
-            Output.switchCharColor(Color.GREY);
+            Output.switchCharColor(DEFAULT_BACKGROUND);
             System.out.print("⛂ ");
-            Output.switchCharColor(Color.WHITE);
+            Output.switchCharColor(DEFAULT_CHAR);
             System.out.print("║");
             c++;
         }
@@ -105,14 +116,14 @@ public final class Output {
                 switchCharColor(field1.getSlot(c).getColorState());
                 System.out.print("  " + "⛂");
                 System.out.print(" ");
-                switchCharColor(Color.WHITE); //colore di default dei caratteri del terminale
+                switchCharColor(DEFAULT_CHAR);
                 System.out.print(" ║");
             } else {
                 switchBackgroundColor(field1.getSlot(c).getColorState());
                 switchCharColor(field1.getSlot(c).getColorState());
                 System.out.print("  ⛂  ");
-                switchBackgroundColor(Color.GREY); //da cambiare con variabile globale del colore in ataxx.java
-                switchCharColor(Color.WHITE);
+                switchBackgroundColor(DEFAULT_BACKGROUND);
+                switchCharColor(DEFAULT_CHAR);
                 System.out.print("║");
             }
         }
@@ -330,5 +341,17 @@ public final class Output {
         }
     }
 
+    /**
+     * Stampa nel formato ore:minuti:secondi un dato arco temporale.
+     * @param elapsedTime l'arco temporale da stampare.
+     */
+    public static void printElapsedTime(final Duration elapsedTime) {
+        Duration duration = elapsedTime;
+        StringBuilder output = new StringBuilder();
+        output.append(duration.toHours()).append(":");
+        output.append(duration.minusHours(duration.toHours()).toMinutes()).append(":");
+        output.append(duration.minusMinutes(duration.toMinutes()).toSeconds());
+        Output.printMessages(Message.ELAPSED_TIME, output.toString());
+    }
 }
 

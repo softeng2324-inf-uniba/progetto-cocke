@@ -22,7 +22,12 @@ public enum Message {
     ARRIVAL_SLOT("dello slot di arrivo"),
     WINNER_PLAYER("Il giocatore "),
     PLAYER_WON(" ha vinto per abbandono dell'avversario, il punteggio è "),
-    SCORE_0(" a 0.");
+    NO_MOVES("Non è stata giocata nessuna mossa."),
+    MOVE_LIST("Ecco la lista delle mosse: "),
+    SCORE_0(" a 0."),
+    ILLEGAL_MOVE("Mossa non valida, riprova."),
+    ELAPSED_TIME("Tempo trascorso dall'inizio del gioco: ");
+
     /**
      * Il testo del messaggio.
      */

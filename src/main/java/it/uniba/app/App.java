@@ -1,6 +1,5 @@
 package it.uniba.app;
 
-import it.uniba.app.utils.Color;
 import it.uniba.app.views.Commands;
 import it.uniba.app.views.Output;
 
@@ -19,8 +18,8 @@ public final class App {
      */
     public static void main(final String[] args) {
 
-        Output.switchBackgroundColor(Color.GREY);
-        Output.switchCharColor(Color.WHITE);
+        Output.switchBackgroundColor(Output.DEFAULT_BACKGROUND);
+        Output.switchCharColor(Output.DEFAULT_CHAR);
         Commands.ataxxCommand(args);
     }
 }
