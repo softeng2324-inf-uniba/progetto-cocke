@@ -6,6 +6,8 @@ import it.uniba.app.utils.Color;
 import it.uniba.app.views.Commands;
 import it.uniba.app.views.Output;
 
+import static it.uniba.app.model.Field.DEFAULT_DIM;
+
 /**
  * {@literal <<Entity>>}
  * <code>Game</code> contiene gli elementi che costituiscono una partita del gioco.
@@ -183,6 +185,33 @@ public class Game {
         ZonedDateTime currentTime = ZonedDateTime.now();
         Duration elapsedTime = Duration.between(getStartTime(), currentTime);
         Output.printElapsedTime(elapsedTime);
+    }
+
+    /**
+     * Modifica lo stato delle caselle circostanti e adiacenti alla casella presente nella posizione indicata
+     * dalla coordinata in ingresso, eguagliandone il colore.
+     * @param coordinate posizione, sul campo da gioco, della casella da cui parte la cattura delle circostanti
+     */
+    public void captureSlot(final Coordinate coordinate) {
+        Coordinate tempCoordinate = new Coordinate(coordinate);
+        Field gameFieldCopy = getGameField();
+        Color colorSlot = gameFieldCopy.getSlot(coordinate).getColorState();
+        for (int rowOffset = -1; rowOffset < 2; rowOffset++) {
+            int tempRow = coordinate.getRow() + rowOffset;
+            if (tempRow >= 0 && tempRow < DEFAULT_DIM) {
+                tempCoordinate.setRow(tempRow);
+                for (int columnOffset = -1; columnOffset < 2; columnOffset++) {
+                    int tempColumn = coordinate.getColumn() + columnOffset;
+                    if (tempColumn >= 0 && tempColumn < DEFAULT_DIM) {
+                        tempCoordinate.setColumn(tempColumn);
+                        if (gameFieldCopy.getSlot(tempCoordinate).getColorState() != Color.GREY) {
+                            gameFieldCopy.getSlot(tempCoordinate).setColorState(colorSlot);
+                        }
+                    }
+                }
+            }
+        }
+        setGameField(gameFieldCopy);
     }
 
     /**
