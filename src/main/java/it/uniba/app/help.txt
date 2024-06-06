@@ -14,7 +14,7 @@ Quando una pedina è generata o spostata vicino ad una avversaria, le pedine avv
 /qualimosse : Mostra le mosse disponibili al giocatore.
 /mosse      : Mostra le mosse effettuate fino ad ora nella partita.
 /blocca xn  : Blocca una casella xn, le pedine non possono arrivarci. 
-xn-xn       : Sposta la pedina con le cordinate nel formato (partenza-arrivo).
+xn-xn       : Esegue una mossa con le cordinate nel formato (partenza-arrivo).
 /abbandona  : Chiude la partita in gioco e viene dichiarata vittoria all' avversario.
 /tempo      : Stampa il tempo passato dall'inizio della partita.
 /esci       : Esci dal gioco.
