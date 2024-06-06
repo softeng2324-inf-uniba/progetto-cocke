@@ -14,6 +14,9 @@
 
 [4. System Design](#4-system-design)
 
+
+- [4.1 Stile architetturale adottato](#41-stile-architetturale-adottato)
+
 [5. OO Design](#5-oo-design)
 
 [6. Riepilogo dei test](#6-riepilogo-dei-test)
@@ -111,8 +114,10 @@ L'applicazione è distribuita come Container Docker.
 ---
 
 # **4. System Design**
+## 4.1 Stile architetturale adottato
 
 ---
+
 
 
 ---
@@ -144,11 +149,16 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, il coma
 Ataxx è un gioco da tavolo strategico per due giocatori, l'obiettivo è conquistare il maggior numero di celle possibili trasformando le pedine avversarie in proprie.
 
 _Ecco i comandi disponibili per il giocatore:_
+> - **/help** : Mostra l'elenco dei comandi.
 > - **/gioca** : Crea una nuova partita se non ci sono partite in corso.
 > - **/vuoto** : Mostra il tavoliere vuoto.
 > - **/tavoliere** : Mostra la posizione delle pedine sul tavoliere.
 > - **/qualimosse** : Mostra le mosse disponibili al giocatore.
+> - **/mosse** : Mostra le mosse effettuate fino ad ora nella partita. 
+> - **/blocca xn** : Blocca una casella xn, le pedine non possono arrivarci. 
+> - **xn-xn** : Esegue una mossa con le cordinate nel formato (partenza-arrivo).
 > - **/abbandona** : Chiude la partita in gioco e viene dichiarata vittoria all' avversario.
+> - **/tempo** : Stampa il tempo passato dall'inizio della partita.
 > - **/esci** : Esci dal gioco.
 
 
@@ -157,6 +167,7 @@ _Ecco i comandi disponibili per il giocatore:_
 # **8. Processo di sviluppo e organizzazione del lavoro**
 
 ---
+
 
 ---
 
@@ -167,6 +178,7 @@ _Ecco i comandi disponibili per il giocatore:_
 ## 9.1 Sprint 0
 
 ---
+
 ![Retrospettiva0](./img/Report/Retrospettiva0.jpg)
 
 ---
@@ -175,5 +187,6 @@ _Ecco i comandi disponibili per il giocatore:_
 
 ---
 
+![Retrospettiva1](./img/Report/Retrospettiva1.jpg)
 
 ---
