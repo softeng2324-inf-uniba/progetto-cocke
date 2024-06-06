@@ -214,7 +214,7 @@ public class Commands {
                     return;
                 }
             } else {
-                Output.printMessages(Message.COORD_ERR, "");
+                Output.printMessages(Message.COORD_ERR);
                 return;
             }
         } else {
