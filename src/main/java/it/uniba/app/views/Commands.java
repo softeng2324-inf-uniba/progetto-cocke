@@ -202,24 +202,19 @@ public class Commands {
                             coordsToLock.add(coord);
                         } else {
                             Output.printMessages(Message.CANTDO, "casella già bloccata.");
-                            return;
                         }
                     } else {
                         Output.printMessages(Message.CANTDO, "numero massimo di slot bloccabili raggiunto.");
-                        return;
                     }
                 } else {
                     String msg = "lo slot scelto si trova entro una distanza due da quelli di partenza.";
                     Output.printMessages(Message.CANTDO, msg);
-                    return;
                 }
             } else {
                 Output.printMessages(Message.COORD_ERR);
-                return;
             }
         } else {
             Output.printMessages(Message.GAME_IS_PLAYING);
-            return;
         }
     }
 
