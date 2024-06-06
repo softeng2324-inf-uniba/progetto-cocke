@@ -123,19 +123,20 @@ public class Commands {
                         Coordinate coord = new Coordinate(row, column);
                         coordsToLock.add(coord);
                     } else {
-                        //numero massimo di slot bloccabili raggiunto
+                        Output.printMessages(Message.CANTDO, "numero massimo di slot bloccabili raggiunto.");
                         return;
                     }
                 } else {
-                    //non è possibile bloccare uno slot entro una distanza 2 da quelli di partenza
+                    String msg = "lo slot scelto si trova entro una distanza due da quelli di partenza";
+                    Output.printMessages(Message.CANTDO,msg);
                     return;
                 }
             } else {
-                //coordinate non corrette
+                Output.printMessages(Message.COORD_ERR,"");
                 return;
             }
         } else {
-            //non è possibile bloccare uno slot durante una partita in corso
+            Output.printMessages(Message.GAME_IS_PLAYING, "");
             return;
         }
     }
@@ -151,7 +152,7 @@ public class Commands {
         commands.manageFlag(args);
         do {
             String command = Input.getCommand();
-            if(command.startsWith("/blocca ")){
+            if (command.startsWith("/blocca ") && command.length() == 10) {
                 commands.manageBlocca(command);
             }
             switch (command) {
