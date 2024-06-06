@@ -25,6 +25,7 @@ public enum Message {
     NO_MOVES("Non è stata giocata nessuna mossa."),
     MOVE_LIST("Ecco la lista delle mosse: "),
     SCORE_0(" a 0."),
+    ILLEGAL_MOVE("Mossa non valida, riprova."),
     ELAPSED_TIME("Tempo trascorso dall'inizio del gioco: ");
 
     /**
