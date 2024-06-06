@@ -23,6 +23,7 @@ public class GameController {
     static final int MAX_DISTANCE = 2;
 
     /**
+    /**
      * Rappresenta il gioco attualmente in esecuzione.
      */
     private Game game = null;

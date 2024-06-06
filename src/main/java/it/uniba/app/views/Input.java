@@ -55,9 +55,9 @@ public final class Input {
                     String destCol = nextMoveArray[1].substring(0, 1);
                     if (startRow != -1 && !startCol.equals(" ") && destRow != -1 && !destCol.equals(" ")) {
                         return new String[]{nextMoveArray[0], nextMoveArray[1]};
+                    }  else {
+                        Output.printMessages(Message.ILLEGAL_MOVE);
                     }
-                } else {
-                    Output.printMessages(Message.ILLEGAL_MOVE);
                 }
             } catch (NumberFormatException e) {
                 Output.printMessages(Message.ILLEGAL_MOVE);
