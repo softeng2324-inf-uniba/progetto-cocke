@@ -30,21 +30,6 @@ public final class Output {
     private static int WINNER_LINE = 36;
 
     /**
-     * Numero massimo di colonne presenti nel file Winner.txt.
-     */
-    private static int WINNER_COLUMN = 110;
-
-    /**
-     * Numero massimo di caratteri da utilizzare nella stampa del numero di pedine.
-     */
-    private static int CHARPEDINE = 2;
-
-    /**
-     * Numero massimo di carattteri da utilizzare nella stampa del tempo.
-     */
-    private static int CHARTIME = 8;
-
-    /**
      * Stringa contenente il percorso relativo del file Winner.txt.
      */
     private static String relativeWinnerPath = "/src/main/java/it/uniba/app/Winner.txt";
@@ -287,52 +272,55 @@ public final class Output {
         System.out.print("\n");
     }
 
-
-    public static void printWinner() {
-        if (new File(winnerPath).exists()) {
-            try (BufferedReader br = new BufferedReader(
-                    new InputStreamReader(new FileInputStream(winnerPath), "UTF-8"))) {
-                String line;
-                int nLine = 0;
-                while (nLine < winnerLine){
-                    nLine = nLine +1;
-                    if((line = br.readLine()) != null) {
-                        System.out.println(line);
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        } else {
-            Output.printMessages(Message.FILE_NOT_FOUND);
-        }
-    }
-
-    public static void printWinner2(final Game game) {
+    /**
+     * Stampa il file Winner.txt contenente la schermata di vittoria nel fine partita.
+     * @param game la partita in corso.
+     */
+    public static void printWinner(final Game game) {
         if (new File(winnerPath).exists()) {
             try (BufferedReader br = new BufferedReader(
                     new InputStreamReader(new FileInputStream(winnerPath), "UTF-8"))) {
                 StringBuilder completeTextBuilder = new StringBuilder();
                 String line;
                 while ((line = br.readLine()) != null) {
-                    completeTextBuilder.append(line);
+                    completeTextBuilder.append(line).append('\n');
                 }
                 String completeText = completeTextBuilder.toString();
-                Character actualCharacter = '\0';
-                for (int row = 0; row < WINNER_LINE; row++) {
-                    for (int column = 0; (actualCharacter = completeText.charAt(column)) != '\n'; column++) {
-                        if(actualCharacter == '#') {
-                            System.out.print(game.countPieces(Color.BLACK));
-                        } else if(actualCharacter == '*') {
-                            System.out.print(game.countPieces(Color.WHITE));
-                        } else if(actualCharacter == '@') {
-                            System.out.print("");
-                        } else {
-                            System.out.print(actualCharacter);
+                Character actualCharacter;
+                Output.switchCharColor(game.whoIsPlaying().getColor());
+                    for (int character = 0; character < completeText.length(); character++) {
+                        actualCharacter = completeText.charAt(character);
+                        switch (actualCharacter.toString()) {
+                            case "#":
+                                System.out.print(String.format("%2s" , game.countPieces(Color.BLACK)).replace(' ', '0'));
+                                break;
+                            case "*":
+                                System.out.print(String.format("%2s" , game.countPieces(Color.WHITE)).replace(' ', '0'));
+                                break;
+                            case "@":
+                                Duration duration = game.getElapsedTime();
+                                StringBuilder output = new StringBuilder();
+                                output.append(String.format("%2s" , duration.toHours()).replace(' ', '0')).append(":");
+                                output.append(String.format("%2s" , duration.minusHours(duration.toHours()).toMinutes()).replace(' ', '0')).append(":");
+                                output.append(String.format("%2s" , duration.minusMinutes(duration.toMinutes()).toSeconds()).replace(' ', '0'));
+                                System.out.print(output);
+                                break;
+                            case "§":
+                                Output.switchCharColor(Color.BLACK);
+                                break;
+                            case "^":
+                                Output.switchCharColor(Color.WHITE);
+                                break;
+                            case "ò":
+                                Output.switchCharColor(game.whoIsPlaying().getColor());
+                                break;
+                            default:
+                                System.out.print(actualCharacter);
+                                break;
                         }
                     }
-                    System.out.print('\n');
-                }
+                    Output.switchCharColor(DEFAULT_CHAR);
+                    System.out.println();
             } catch (Exception e) {
                 System.out.println(e);
             }
