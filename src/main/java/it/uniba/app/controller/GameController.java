@@ -216,7 +216,7 @@ public class GameController {
                     Player winner = getGame().nextPlayer();
                     int remainingPieces = getGame().countPieces(winner.getColor());
 
-                    Output.printMessages(Message.WINNER_PLAYER, winner.getName().toString(),
+                    Output.printMessages(Message.WINNER_PLAYER, winner.getName(),
                             Message.PLAYER_WON.getMessageText(), Integer.toString(remainingPieces),
                             Message.SCORE_0.getMessageText());
 
@@ -269,6 +269,7 @@ public class GameController {
                 Output.printField(game.getGameField());
                 tempMoveList.add(move);
                 game.setMoveList(tempMoveList);
+                checkTurn();
             } else {
                 Output.printField(game.getGameField());
                 Output.printMessages(Message.ILLEGAL_MOVE);
@@ -288,4 +289,60 @@ public class GameController {
         return distance > 0 && distance <= MAX_DISTANCE;
     }
 
+    /**
+     * Verifica che il giocatore di turno abbia mosse disponibili.
+     *
+     */
+    public void checkTurn() {
+        Player currentPlayer = game.whoIsPlaying();
+        if (!isLegalMoves(currentPlayer)) {
+            Move emptyMove = new Move(new Coordinate(0, 0), new Coordinate(0, 0));
+            Output.printMessages(Message.UNAVAILABLE_MOVE,
+                    currentPlayer.getName(), ". ", Message.PASS_TURN.getMessageText());
+            ArrayList<Move> tempMoveList = getGame().getMoveList();
+            tempMoveList.add(emptyMove);
+            game.setMoveList(tempMoveList);
+            if (containsEmptyMove(tempMoveList)) {
+                Output.printMessages(Message.UNAVAILABLE_MOVE, "entrambi i giocatori.");
+                game = null;
+                //Output.printWinner(getgame());
+            }
+        }
+    }
+    /**
+     * Verifica che non sia stata fatta una mossa vuota in precedenza.
+     *
+     *  @param moveList la lista delle mosse effettuate nel gioco
+     *  @return true se l'ultima mossa nella lista è una mossa vuota,altrimenti false
+     */
+    public boolean containsEmptyMove(final ArrayList<Move> moveList) {
+        Coordinate emptyCoordinate = new Coordinate(0, 0);
+        Move lastMove = moveList.get(moveList.size() - 1);
+        return lastMove.getStartingSlot().equalsCoordinate(emptyCoordinate)
+                && lastMove.getChosenSlot().equalsCoordinate(emptyCoordinate);
+    }
+
+    /**
+     * Verifica che ci siano mosse disponibili per l'utente.
+     *
+     * @param player il giocatore per il quale verificare la disponibilità di mosse.
+     * @return true se ci sono mosse legali disponibili per il giocatore, false altrimenti.
+     */
+    private boolean isLegalMoves(final Player player) {
+        Field field = getGame().getGameField();
+        convertField(field, player.getColor());
+        Coordinate coordinate = new Coordinate(0, 0);
+        for (int row = 0; row < field.length(); row++) {
+            for (int column = 0; column < field.length(); column++) {
+                coordinate.setRow(row);
+                coordinate.setColumn(column);
+                Slot currentSlot = field.getSlot(coordinate);
+               if (currentSlot.getColorState() == Color.YELLOW
+                        || currentSlot.getColorState() == Color.ORANGE || currentSlot.getColorState() == Color.PINK) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
