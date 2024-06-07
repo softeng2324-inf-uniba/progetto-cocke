@@ -182,4 +182,21 @@ public class Game {
         Duration elapsedTime = Duration.between(getStartTime(), currentTime);
         return elapsedTime;
     }
+
+    /**
+     * Decreta il vincitore in base al numero di pedine.
+     * @return il colore del vincitore.
+     */
+    public Color colorWinner() {
+        if (countPieces(Color.BLACK) > countPieces(Color.WHITE)) {
+            return Color.BLACK;
+        } else {
+            return Color.WHITE;
+        }
 }
+
+
+}
+
+
+
