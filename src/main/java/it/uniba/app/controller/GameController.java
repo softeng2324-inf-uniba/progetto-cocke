@@ -128,13 +128,13 @@ public class GameController {
             Output.printMessages(Message.NO_MOVES);
         } else {
             StringBuilder moveList = new StringBuilder();
-            int i = 0;
+            int i = 1;
             for (Move move : game.getMoveList()) {
                 int playerColor = i % 2;
                 if (playerColor == 0) {
-                    moveList.append(i + 1).append(". ").append(move).append(" ").append("(N);");
+                    moveList.append(i).append(". ").append(move).append(" ").append("(B);");
                 } else {
-                    moveList.append(i + 1).append(". ").append(move).append(" ").append("(B);");
+                    moveList.append(i).append(". ").append(move).append(" ").append("(N);");
                 }
                 i++;
             }
