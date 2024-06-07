@@ -193,8 +193,8 @@ public class Commands {
             int row = s.charAt(firstCord + 1) - ascii1;
             if ((row >= 0 && row < Field.DEFAULT_DIM) && (column >= 0 && column < Field.DEFAULT_DIM)) {
                 int distance = 2;
-                boolean a = row > distance && row <= Field.DEFAULT_DIM - distance;
-                boolean b = column > distance && column <= Field.DEFAULT_DIM - distance;
+                boolean a = row > distance && row < (Field.DEFAULT_DIM - distance - 1);
+                boolean b = column > distance && column < (Field.DEFAULT_DIM - distance - 1);
                 if (a || b) {
                     if (getCoordsToLockSize() < COORDSTOLOCK_DIM) {
                         Coordinate coord = new Coordinate(row, column);
