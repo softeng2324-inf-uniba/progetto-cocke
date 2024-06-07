@@ -133,9 +133,9 @@ public class GameController {
                 int playerColor = i % 2;
                 moveList.append(i).append(". ").append(move).append(" ");
                 if (playerColor == 0) {
-                    moveList.append("(B);");
+                    moveList.append("(B); ");
                 } else {
-                    moveList.append("(N);");
+                    moveList.append("(N); ");
                 }
                 i++;
             }
