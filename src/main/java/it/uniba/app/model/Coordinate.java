@@ -76,11 +76,14 @@ public class Coordinate {
         int row1 = getRow() + 1;
         return columnChar + "" + row1;
     }
-    public boolean equals(final Coordinate coordinate) {
-        if (coordinate.getRow() == row && coordinate.getColumn() == column) {
-            return true;
-        }
-        return false;
+
+    /**
+     * Verifica se due coordinate sono uguali.
+     * @param coordinate coordinata da confrontare.
+     * @return (true) se le coordinate sono uguali, (false) altrimenti.
+     */
+    public boolean equalsCoordinate(final Coordinate coordinate) {
+        return coordinate.getRow() == row && coordinate.getColumn() == column;
     }
 }
 
