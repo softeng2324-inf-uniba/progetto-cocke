@@ -269,6 +269,7 @@ public class GameController {
                 Output.printField(game.getGameField());
                 tempMoveList.add(move);
                 game.setMoveList(tempMoveList);
+                checkTurn();
             } else {
                 Output.printField(game.getGameField());
                 Output.printMessages(Message.ILLEGAL_MOVE);
@@ -277,7 +278,6 @@ public class GameController {
             Output.printField(game.getGameField());
             Output.printMessages(Message.ILLEGAL_MOVE);
         }
-        checkTurn();
     }
 
     /**
