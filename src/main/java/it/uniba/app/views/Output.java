@@ -6,7 +6,11 @@ import it.uniba.app.utils.Color;
 import it.uniba.app.model.Coordinate;
 import it.uniba.app.utils.Message;
 
-import java.io.*;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.Duration;
 
@@ -277,7 +281,7 @@ public final class Output {
                 }
                 String completeText = completeTextBuilder.toString();
                 Character actualCharacter;
-                Output.switchCharColor(game.whoIsPlaying().getColor());
+                Output.switchCharColor(game.colorWinner());
                     for (int character = 0; character < completeText.length(); character++) {
                         actualCharacter = completeText.charAt(character);
                         switch (actualCharacter.toString()) {
@@ -285,13 +289,13 @@ public final class Output {
                                 Output.switchCharColor(Color.BLACK);
                                 System.out.print(String.format("%2s", game.countPieces(Color.BLACK)).
                                         replace(' ', '0'));
-                                Output.switchCharColor(game.whoIsPlaying().getColor());
+                                Output.switchCharColor(game.colorWinner());
                                 break;
                             case "*":
                                 Output.switchCharColor(Color.WHITE);
                                 System.out.print(String.format("%2s", game.countPieces(Color.WHITE)).
                                         replace(' ', '0'));
-                                Output.switchCharColor(game.whoIsPlaying().getColor());
+                                Output.switchCharColor(game.colorWinner());
                                 break;
                             case "@":
                                 Duration duration = game.getElapsedTime();
@@ -309,19 +313,21 @@ public final class Output {
                                 break;
                             case "<":
                                 Output.switchCharColor(Color.BLACK);
-                                if (game.whoIsPlaying().getColor() == Color.BLACK) {
+                                if (game.colorWinner() == Color.BLACK) {
                                     System.out.print("\033[21m");
+                                    Output.switchBackgroundColor(Color.GOLD);
                                 }
                                 break;
                             case ">":
                                 Output.switchCharColor(Color.WHITE);
-                                if (game.whoIsPlaying().getColor() == Color.WHITE) {
+                                if (game.colorWinner() == Color.WHITE) {
                                     System.out.print("\033[21m");
+                                    Output.switchBackgroundColor(Color.GOLD);
                                 }
                                 break;
                             case "+":
                                 System.out.print("\033[0m");
-                                Output.switchCharColor(game.whoIsPlaying().getColor());
+                                Output.switchCharColor(game.colorWinner());
                                 Output.switchBackgroundColor(DEFAULT_BACKGROUND);
                                 break;
                             default:
