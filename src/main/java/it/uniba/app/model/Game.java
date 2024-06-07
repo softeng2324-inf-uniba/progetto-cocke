@@ -4,7 +4,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import it.uniba.app.utils.Color;
-import it.uniba.app.views.Output;
 
 import static it.uniba.app.model.Field.DEFAULT_DIM;
 
@@ -180,10 +179,22 @@ public class Game {
     /**
      * Stampa il tempo trascorso dall'inizio del gioco.
      */
-    public void elapsedTime() {
+    public Duration getElapsedTime() {
         ZonedDateTime currentTime = ZonedDateTime.now();
         Duration elapsedTime = Duration.between(getStartTime(), currentTime);
-        Output.printElapsedTime(elapsedTime);
+        return elapsedTime;
+    }
+
+    /**
+     * Decreta il vincitore in base al numero di pedine.
+     * @return il colore del vincitore.
+     */
+    public Color colorWinner() {
+        if (countPieces(Color.BLACK) > countPieces(Color.WHITE)) {
+            return Color.BLACK;
+        } else {
+            return Color.WHITE;
+        }
     }
 
     /**

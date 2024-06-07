@@ -1,14 +1,17 @@
 package it.uniba.app.views;
 
 import it.uniba.app.model.Field;
+import it.uniba.app.model.Game;
 import it.uniba.app.utils.Color;
 import it.uniba.app.model.Coordinate;
 import it.uniba.app.utils.Message;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 
@@ -19,6 +22,16 @@ import java.time.Duration;
  * come la stampa del campo da gioco e dell'interfaccia grafica.</p>
  */
 public final class Output {
+
+    /**
+     * Stringa contenente il percorso relativo del file Winner.txt.
+     */
+    private static String relativeWinnerPath = "/src/main/java/it/uniba/app/Winner.txt";
+    /**
+     * Workspace attuale.
+     */
+    private static String winnerPath = Paths.get(System.getProperty("user.dir"), relativeWinnerPath).toString();
+
     /**
      * Costruttore privato per evitare che la classe Output venga istanziata.
      */
@@ -254,6 +267,85 @@ public final class Output {
     }
 
     /**
+     * Stampa il file Winner.txt contenente la schermata di vittoria nel fine partita.
+     * @param game la partita in corso.
+     */
+    public static void printWinner(final Game game) {
+        if (new File(winnerPath).exists()) {
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(winnerPath), "UTF-8"))) {
+                StringBuilder completeTextBuilder = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    completeTextBuilder.append(line).append('\n');
+                }
+                String completeText = completeTextBuilder.toString();
+                Character actualCharacter;
+                Output.switchCharColor(game.colorWinner());
+                    for (int character = 0; character < completeText.length(); character++) {
+                        actualCharacter = completeText.charAt(character);
+                        switch (actualCharacter.toString()) {
+                            case "#":
+                                Output.switchCharColor(Color.BLACK);
+                                System.out.print(String.format("%2s", game.countPieces(Color.BLACK)).
+                                        replace(' ', '0'));
+                                Output.switchCharColor(game.colorWinner());
+                                break;
+                            case "*":
+                                Output.switchCharColor(Color.WHITE);
+                                System.out.print(String.format("%2s", game.countPieces(Color.WHITE)).
+                                        replace(' ', '0'));
+                                Output.switchCharColor(game.colorWinner());
+                                break;
+                            case "@":
+                                Duration duration = game.getElapsedTime();
+                                StringBuilder output = new StringBuilder();
+                                output.append(String.
+                                        format("%2s", duration.toHours()).
+                                        replace(' ', '0')).append(":");
+                                output.append(String.
+                                        format("%2s", duration.minusHours(duration.toHours()).toMinutes()).
+                                        replace(' ', '0')).append(":");
+                                output.append(String.
+                                        format("%2s", duration.minusMinutes(duration.toMinutes()).toSeconds()).
+                                        replace(' ', '0'));
+                                System.out.print(output);
+                                break;
+                            case "<":
+                                Output.switchCharColor(Color.BLACK);
+                                if (game.colorWinner() == Color.BLACK) {
+                                    System.out.print("\033[21m");
+                                    Output.switchBackgroundColor(Color.GOLD);
+                                }
+                                break;
+                            case ">":
+                                Output.switchCharColor(Color.WHITE);
+                                if (game.colorWinner() == Color.WHITE) {
+                                    System.out.print("\033[21m");
+                                    Output.switchBackgroundColor(Color.GOLD);
+                                }
+                                break;
+                            case "+":
+                                System.out.print("\033[0m");
+                                Output.switchCharColor(game.colorWinner());
+                                Output.switchBackgroundColor(DEFAULT_BACKGROUND);
+                                break;
+                            default:
+                                System.out.print(actualCharacter);
+                                break;
+                        }
+                    }
+                    Output.switchCharColor(DEFAULT_CHAR);
+                    System.out.println();
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        } else {
+            Output.printMessages(Message.FILE_NOT_FOUND);
+        }
+    }
+
+    /**
      * Stampa nel formato ore:minuti:secondi un dato arco temporale.
      * @param elapsedTime l'arco temporale da stampare.
      */
@@ -266,3 +358,4 @@ public final class Output {
         Output.printMessages(Message.ELAPSED_TIME, output.toString());
     }
 }
+

@@ -304,8 +304,8 @@ public class GameController {
             game.setMoveList(tempMoveList);
             if (containsEmptyMove(tempMoveList)) {
                 Output.printMessages(Message.UNAVAILABLE_MOVE, "entrambi i giocatori.");
+                Output.printWinner(game);
                 game = null;
-                //Output.printWinner(getgame());
             }
         }
     }
