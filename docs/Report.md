@@ -21,6 +21,10 @@
 
 [5. OO Design](#5-oo-design)
 
+
+- [5.1 Diagramma delle classi](#51-diagramma-delle-classi)
+- [5.2 Diagramma di sequenza](#52-diagramma-di-sequenza)
+
 [6. Riepilogo dei test](#6-riepilogo-dei-test)
 
 [7. Manuale utente](#7-manuale-utente)
@@ -164,8 +168,19 @@ Rappresenta le classi che contengono la logica dell'applicazione:
 ---
 
 # **5. OO Design**
+## 5.1 Diagramma delle classi
 
 ---
+
+
+
+---
+
+## 5.2 Diagramma di sequenza
+
+---
+
+
 
 ---
 
