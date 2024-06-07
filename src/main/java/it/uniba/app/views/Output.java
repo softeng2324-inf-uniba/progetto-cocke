@@ -1,17 +1,12 @@
 package it.uniba.app.views;
 
-import it.uniba.app.controller.GameController;
 import it.uniba.app.model.Field;
 import it.uniba.app.model.Game;
 import it.uniba.app.utils.Color;
 import it.uniba.app.model.Coordinate;
 import it.uniba.app.utils.Message;
 
-import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Paths;
 import java.time.Duration;
 
@@ -23,11 +18,6 @@ import java.time.Duration;
  * come la stampa del campo da gioco e dell'interfaccia grafica.</p>
  */
 public final class Output {
-
-    /**
-     * Numero di righe presenti nel file Winner.txt.
-     */
-    private static int WINNER_LINE = 36;
 
     /**
      * Stringa contenente il percorso relativo del file Winner.txt.
@@ -59,7 +49,7 @@ public final class Output {
      */
     private static void printCrossedHoLine(final int dim) {
         for (int i = 0; i < dim - 1; i++) {
-            System.out.print("══                                                                    ═══╬");
+            System.out.print("═════╬");
         }
         System.out.print("═════");
     }
@@ -292,27 +282,47 @@ public final class Output {
                         actualCharacter = completeText.charAt(character);
                         switch (actualCharacter.toString()) {
                             case "#":
-                                System.out.print(String.format("%2s" , game.countPieces(Color.BLACK)).replace(' ', '0'));
+                                Output.switchCharColor(Color.BLACK);
+                                System.out.print(String.format("%2s", game.countPieces(Color.BLACK)).
+                                        replace(' ', '0'));
+                                Output.switchCharColor(game.whoIsPlaying().getColor());
                                 break;
                             case "*":
-                                System.out.print(String.format("%2s" , game.countPieces(Color.WHITE)).replace(' ', '0'));
+                                Output.switchCharColor(Color.WHITE);
+                                System.out.print(String.format("%2s", game.countPieces(Color.WHITE)).
+                                        replace(' ', '0'));
+                                Output.switchCharColor(game.whoIsPlaying().getColor());
                                 break;
                             case "@":
                                 Duration duration = game.getElapsedTime();
                                 StringBuilder output = new StringBuilder();
-                                output.append(String.format("%2s" , duration.toHours()).replace(' ', '0')).append(":");
-                                output.append(String.format("%2s" , duration.minusHours(duration.toHours()).toMinutes()).replace(' ', '0')).append(":");
-                                output.append(String.format("%2s" , duration.minusMinutes(duration.toMinutes()).toSeconds()).replace(' ', '0'));
+                                output.append(String.
+                                        format("%2s", duration.toHours()).
+                                        replace(' ', '0')).append(":");
+                                output.append(String.
+                                        format("%2s", duration.minusHours(duration.toHours()).toMinutes()).
+                                        replace(' ', '0')).append(":");
+                                output.append(String.
+                                        format("%2s", duration.minusMinutes(duration.toMinutes()).toSeconds()).
+                                        replace(' ', '0'));
                                 System.out.print(output);
                                 break;
-                            case "§":
+                            case "<":
                                 Output.switchCharColor(Color.BLACK);
+                                if (game.whoIsPlaying().getColor() == Color.BLACK) {
+                                    System.out.print("\033[21m");
+                                }
                                 break;
-                            case "^":
+                            case ">":
                                 Output.switchCharColor(Color.WHITE);
+                                if (game.whoIsPlaying().getColor() == Color.WHITE) {
+                                    System.out.print("\033[21m");
+                                }
                                 break;
-                            case "ò":
+                            case "+":
+                                System.out.print("\033[0m");
                                 Output.switchCharColor(game.whoIsPlaying().getColor());
+                                Output.switchBackgroundColor(DEFAULT_BACKGROUND);
                                 break;
                             default:
                                 System.out.print(actualCharacter);
@@ -321,7 +331,7 @@ public final class Output {
                     }
                     Output.switchCharColor(DEFAULT_CHAR);
                     System.out.println();
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.out.println(e);
             }
         } else {

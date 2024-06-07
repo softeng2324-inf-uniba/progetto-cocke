@@ -4,7 +4,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import it.uniba.app.utils.Color;
-import it.uniba.app.views.Output;
 
 /**
  * {@literal <<Entity>>}
