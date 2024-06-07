@@ -132,9 +132,9 @@ public class GameController {
             for (Move move : game.getMoveList()) {
                 int playerColor = i % 2;
                 if (playerColor == 0) {
-                    moveList.append(i).append(". ").append(move).append(" ").append("(B);");
+                    moveList.append(i + 1).append(". ").append(move).append(" ").append("(N);");
                 } else {
-                    moveList.append(i).append(". ").append(move).append(" ").append("(N);");
+                    moveList.append(i + 1).append(". ").append(move).append(" ").append("(B);");
                 }
                 i++;
             }
