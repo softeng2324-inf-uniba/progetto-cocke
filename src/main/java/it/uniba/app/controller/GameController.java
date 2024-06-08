@@ -246,7 +246,7 @@ public class GameController {
      * @return (true) se la casella di destinazione è vuota, (false) altrimenti.
      */
     private boolean checkDestinationSlot(final Slot destinationSlot) {
-        return destinationSlot.getColorState() == Color.GREY && destinationSlot.getColorState != Color.DARK_GREY;
+        return destinationSlot.getColorState() == Color.GREY && destinationSlot.getColorState() != Color.DARK_GREY;
     }
 
     /**

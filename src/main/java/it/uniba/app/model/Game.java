@@ -214,7 +214,8 @@ public class Game {
                     int tempColumn = coordinate.getColumn() + columnOffset;
                     if (tempColumn >= 0 && tempColumn < DEFAULT_DIM) {
                         tempCoordinate.setColumn(tempColumn);
-                        if (gameFieldCopy.getSlot(tempCoordinate).getColorState() != Color.GREY) {
+                        if (gameFieldCopy.getSlot(tempCoordinate).getColorState() != Color.GREY
+                         && gameFieldCopy.getSlot(tempCoordinate).getColorState() != Color.DARK_GREY) {
                             gameFieldCopy.getSlot(tempCoordinate).setColorState(colorSlot);
                         }
                     }
