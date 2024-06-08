@@ -78,12 +78,32 @@ public class Coordinate {
     }
 
     /**
-     * Verifica se due coordinate sono uguali.
-     * @param coordinate coordinata da confrontare.
-     * @return (true) se le coordinate sono uguali, (false) altrimenti.
+     * Verifica, se l'oggetto in entrata è una coordinata, se è uguale all'oggetto su cui
+     * il metodo è stato invocato.
+     * @param obj oggetto secondo membro dell'uguaglianza.
+     * @return <code>true</code> se le due coordinate hanno stessa ascissa e ordinata, <code>false</code>
+     * in tutti gli altri casi.
      */
-    public boolean equalsCoordinate(final Coordinate coordinate) {
-        return coordinate.getRow() == row && coordinate.getColumn() == column;
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Coordinate temp) {
+            return Integer.valueOf(getRow()).equals(temp.getRow())
+                    && Integer.valueOf(getColumn()).equals(temp.getColumn());
+        }
+        return false;
+    }
+
+    /**
+     * Calcola il valore hash relativo all'ascissa e ordinata della coordinata sulla quale
+     * il metodo è invocato.
+     * @return il valore hash della coordinata.
+     */
+    public int hashCode() {
+        String temp = String.valueOf(getRow());
+        temp += String.valueOf(getColumn());
+        return temp.hashCode();
     }
 }
 
