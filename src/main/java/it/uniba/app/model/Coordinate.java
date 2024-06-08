@@ -78,15 +78,6 @@ public class Coordinate {
     }
 
     /**
-     * Verifica se due coordinate sono uguali.
-     * @param coordinate coordinata da confrontare.
-     * @return (true) se le coordinate sono uguali, (false) altrimenti.
-     */
-    public boolean equalsCoordinate(final Coordinate coordinate) {
-        return coordinate.getRow() == row && coordinate.getColumn() == column;
-    }
-
-    /**
      * Verifica, se l'oggetto in entrata è una coordinata, se è uguale all'oggetto su cui
      * il metodo è stato invocato.
      * @param obj oggetto secondo membro dell'uguaglianza.
