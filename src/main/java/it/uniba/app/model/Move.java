@@ -34,27 +34,11 @@ public class Move {
     }
 
     /**
-     * Imposta la coordinata della casella di partenza.
-     * @param starting coordinata della casella di partenza.
-     */
-    public void setStartingSlot(final Coordinate starting) {
-        startingSlot = new Coordinate(starting);
-    }
-
-    /**
      * Restituisce la coordinata della casella di arrivo.
      * @return la coordinata della casella di arrivo.
      */
     public Coordinate getChosenSlot() {
         return new Coordinate(chosenSlot);
-    }
-
-    /**
-     * Inizializza la coordinata della casella di arrivo.
-     * @param chosen coordinata della casella di arrivo.
-     */
-    public void setChosenSlot(final Coordinate chosen) {
-        chosenSlot = new Coordinate(chosen);
     }
 
     /**
