@@ -34,10 +34,6 @@ public final class Output {
     private static final String WINNER_PATH = Paths.get(
             System.getProperty("user.dir"), RELATIVE_WINNER_PATH).toString();
 
-    /**
-     * Dimensione del campo.
-     */
-    private static final int DIM = Field.DEFAULT_DIM;
 
 
     /**
@@ -59,7 +55,7 @@ public final class Output {
      * Stampa le linee interne del campo di gioco.
      */
     private static void printCrossedHoLine() {
-        for (int i = 0; i < DIM - 1; i++) {
+        for (int i = 0; i < Field.DEFAULT_DIM - 1; i++) {
             System.out.print("═════╬");
         }
         System.out.print("═════");
@@ -71,7 +67,7 @@ public final class Output {
     private static void printLetters() {
         System.out.print("    ║");
         char c = 'A';
-        for (int i = 0; i < DIM; i++) {
+        for (int i = 0; i < Field.DEFAULT_DIM; i++) {
             System.out.print("  " + c);
             Output.switchCharColor(DEFAULT_BACKGROUND);
             System.out.print("⛂ ");
@@ -94,7 +90,7 @@ public final class Output {
         } else {
             System.out.print("║" + "\u2009" + "\u200a" + num + "\u200a" + "\u2009" + "║");
         }
-        for (int i = 0; i < DIM; i++) {
+        for (int i = 0; i < Field.DEFAULT_DIM; i++) {
             Coordinate c = new Coordinate(num - 1, i);
             if (field1.getSlot(c).getColorState() == Color.WHITE || field1.getSlot(c).getColorState() == Color.BLACK) {
                 switchCharColor(field1.getSlot(c).getColorState());
@@ -131,7 +127,7 @@ public final class Output {
         } else {
             System.out.print("║" + "\u2009" + "\u200a" + num + "\u200a" + "\u2009" + "║");
         }
-        for (int i = 0; i < DIM; i++) {
+        for (int i = 0; i < Field.DEFAULT_DIM; i++) {
             System.out.print("     ║");
         }
         if (num < limitDim) {
@@ -149,7 +145,7 @@ public final class Output {
     public static void printEmptyField() {
         printTopField();
         int i;
-        for (i = 0; i < DIM - 1; i++) {
+        for (i = 0; i < Field.DEFAULT_DIM - 1; i++) {
             printNumLine(i + 1);
             System.out.print("╠═══╬");
             printCrossedHoLine();
@@ -165,7 +161,7 @@ public final class Output {
      */
     private static void printTopField() {
         System.out.print("    ╔");
-        for (int i = 0; i < DIM - 1; i++) {
+        for (int i = 0; i < Field.DEFAULT_DIM - 1; i++) {
             System.out.print("═════╦");
         }
         System.out.print("═════╗");
@@ -189,7 +185,7 @@ public final class Output {
         printLetters();
         System.out.print("    ╚");
 
-        for (int i = 0; i < DIM - 1; i++) {
+        for (int i = 0; i < Field.DEFAULT_DIM - 1; i++) {
             System.out.print("═════╩");
         }
         System.out.println("═════╝");
@@ -203,7 +199,7 @@ public final class Output {
         printTopField();
 
         int i;
-        for (i = 0; i < DIM - 1; i++) {
+        for (i = 0; i < Field.DEFAULT_DIM - 1; i++) {
             printStuffedLine(i + 1, f);
             System.out.print("╠═══╬");
             printCrossedHoLine();
