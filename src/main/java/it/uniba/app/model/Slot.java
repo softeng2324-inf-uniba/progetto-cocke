@@ -58,7 +58,10 @@ public class Slot {
      * @param distance la distanza per cui evidenziare.
      */
     public void markSlot(final int distance) {
-        if ((getColorState() != Color.WHITE) && (getColorState() != Color.BLACK) && (getColorState() != Color.PINK) && (getColorState() != Color.DARK_GREY)) {
+        if ((getColorState() != Color.WHITE)
+                && (getColorState() != Color.BLACK)
+                && (getColorState() != Color.PINK)
+                && (getColorState() != Color.DARK_GREY)) {
             switch (distance) {
                 case 1:
                     if (getColorState() == Color.ORANGE) {
