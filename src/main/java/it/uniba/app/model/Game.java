@@ -26,11 +26,11 @@ public class Game {
     /**
      * Array di <code>Player</code>, contenente i giocatori inizializzati con il loro nome e colore.
      */
-    private Player[] players;
+    private final Player[] players;
     /**
      * L'istante di tempo in cui è iniziato il gioco.
      */
-    private ZonedDateTime startTime;
+    private final ZonedDateTime startTime;
 
     /**
      * Costruttore della classe <code>Game</code> privo di parametri formali, che inizializza tutti i rispettivi
@@ -181,8 +181,7 @@ public class Game {
      */
     public Duration getElapsedTime() {
         ZonedDateTime currentTime = ZonedDateTime.now();
-        Duration elapsedTime = Duration.between(getStartTime(), currentTime);
-        return elapsedTime;
+        return Duration.between(getStartTime(), currentTime);
     }
 
     /**

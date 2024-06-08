@@ -86,7 +86,6 @@ public class Move {
     public String toString() {
         Coordinate sSlot = getStartingSlot();
         Coordinate cSlot = getChosenSlot();
-        String formatoMossa = sSlot + "-" + cSlot;
-        return formatoMossa;
+        return sSlot + "-" + cSlot;
     }
 }

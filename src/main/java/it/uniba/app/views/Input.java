@@ -1,6 +1,4 @@
 package it.uniba.app.views;
-import it.uniba.app.utils.Color;
-import it.uniba.app.model.Player;
 import it.uniba.app.utils.Message;
 
 /**
@@ -23,21 +21,6 @@ public final class Input {
      */
     private Input() { }
 
-    /**
-     * Metodo per l'acquisizione del nome di un giocatore.
-     * @param playerIndex id del nuovo giocatore.
-     * @return il nuovo oggetto giocatore.
-     */
-    public static Player getPlayersName(final int playerIndex) {
-        Player p;
-        Output.printMessages(Message.INSERT_PLAYER_NAME, String.valueOf(playerIndex + 1));
-        if (playerIndex == 1) {
-            p = new Player(Color.WHITE, Keyboard.readString());
-        } else {
-            p = new Player(Color.BLACK, Keyboard.readString());
-        }
-        return p;
-    }
 
     /**
      * Prende in input il command e lo gestisce per ottenere le mosse desiderate dall'utente.
