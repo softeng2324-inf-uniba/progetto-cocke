@@ -7,20 +7,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
-public class ColorTest {
+class ColorTest {
     /**
      * Variabile di istanza di tipo Color per i casi di test.
      */
     Color color;
 
     /**
+     * Variabile di istanza che rappresenta il messaggio di errore
+     * quando un test fallisce.
+     */
+    private static final String TEST_FAILED = "Test fallito, il messaggio passato non è corretto.";
+
+    /**
      * Test per il metodo getColorValue della classe Color.
      * Verifica che il metodo restituisca il valore corretto del colore.
      */
     @Test
-    public void testColorValue() {
+    void testColorValue() {
         color = Color.BLACK;
-        assertEquals(0, color.getColorValue());
+        assertEquals(0, color.getColorValue(), TEST_FAILED);
     }
 
     /**
@@ -28,9 +34,9 @@ public class ColorTest {
      * Verifica che il metodo restituisca il valore corretto del colore.
      */
     @Test
-    public void testAnotherColorValue() {
+    void testAnotherColorValue() {
         color = Color.WHITE;
-        assertEquals(15, color.getColorValue());
+        assertEquals(15, color.getColorValue(), TEST_FAILED);
     }
 
     /**
@@ -38,7 +44,7 @@ public class ColorTest {
      * Verifica che un colore esistente è diverso rispetto a un valore sbagliato.
      */
     @Test
-    public void testWrongColorValue() {
+    void testWrongColorValue() {
         color = Color.BLACK;
         assertNotEquals(16, color.getColorValue());
     }
@@ -49,7 +55,7 @@ public class ColorTest {
      * Inserendo un colore inesistente, il test fallisce.
      */
     @Test
-    public void testAnotherWrongColorValue() {
+    void testAnotherWrongColorValue() {
         assertThrows(IllegalArgumentException.class, () -> Color.valueOf("GOLDEN"));
     }
 }
