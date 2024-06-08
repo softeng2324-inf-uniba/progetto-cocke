@@ -21,12 +21,12 @@ public class Commands {
     /**
      * Stringa contenente il percorso relativo del file da leggere.
      */
-    private static String relativePath = "/src/main/java/it/uniba/app/help.txt";
+    private static final String RELATIVE_PATH = "/src/main/java/it/uniba/app/help.txt";
 
     /**
      * Workspace attuale.
      */
-    private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
+    private static final String FILE_PATH = Paths.get(System.getProperty("user.dir"), RELATIVE_PATH).toString();
 
     /**
      * Dimensione massima consentita per il vettore di coordinate da bloccare.
@@ -93,7 +93,7 @@ public class Commands {
      * Gestisce il file da stampare a video.
      */
     private void manageHelp() {
-        Output.printFile(filePath);
+        Output.printFile(FILE_PATH);
     }
 
     /**
@@ -102,7 +102,7 @@ public class Commands {
      */
     private void manageExit(final GameController game) {
         Output.printMessages(Message.CONFIRM_EXIT);
-        String answer = "";
+        String answer;
         do {
             answer = Input.getCommand();
             if (answer.equals("s")) {
@@ -141,10 +141,9 @@ public class Commands {
 
     /**
      * Gestisce la mossa inserita dall'utente.
-     * @param game gestisce il flusso di gioco.
      * @return la mossa inserita dall'utente, null se la mossa non è valida.
      */
-    private Move manageMove(final GameController game) {
+    private Move manageMove() {
         String[] nextMove = Input.getNextMove(command);
         if (nextMove != null) {
             Coordinate start = new Coordinate(Integer.parseInt(nextMove[0].substring(1)) - 1,
@@ -259,7 +258,7 @@ public class Commands {
                     commands.manageExit(ataxx);
                     break;
                 default:
-                    Move move = commands.manageMove(ataxx);
+                    Move move = commands.manageMove();
                     if (move != null && ataxx.getGame() != null) {
                         ataxx.movePiece(move);
                     } else if (move != null) {
