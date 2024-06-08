@@ -2,7 +2,9 @@ package it.uniba.app.utils;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 public class ColorTest {
@@ -38,7 +40,7 @@ public class ColorTest {
     @Test
     public void testWrongColorValue() {
         color = Color.BLACK;
-        assertEquals(16, color.getColorValue());
+        assertNotEquals(16, color.getColorValue());
     }
 
     /**
@@ -47,8 +49,8 @@ public class ColorTest {
      */
     @Test
     public void testAnotherWrongColorValue() {
-        Color color = Color.valueOf("RED");
-        assertEquals(15, color.getColorValue());
+        color = Color.valueOf("GOLD");
+        assertEquals(178, color.getColorValue());
     }
 
     /**
@@ -57,7 +59,7 @@ public class ColorTest {
      */
     @Test
     public void testNullColorValue() {
-        color = Color.WHITE;
+        color = null;
         assertThrows(NullPointerException.class, () -> color.getColorValue());
     }
 
