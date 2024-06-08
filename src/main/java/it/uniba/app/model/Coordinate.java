@@ -85,5 +85,21 @@ public class Coordinate {
     public boolean equalsCoordinate(final Coordinate coordinate) {
         return coordinate.getRow() == row && coordinate.getColumn() == column;
     }
+
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj instanceof Coordinate temp) {
+            return Integer.valueOf(getRow()).equals(temp.getRow()) &&
+                    Integer.valueOf(getColumn()).equals(temp.getColumn());
+        }
+        return false;
+    }
+
+    public int hashCode() {
+        String temp = String.valueOf(getRow());
+        temp += String.valueOf(getColumn());
+        return temp.hashCode();
+    }
 }
 
