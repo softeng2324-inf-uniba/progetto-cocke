@@ -352,9 +352,13 @@ public class GameController {
      * Imposta come bloccati gli slot presenti nel vettore coordsToLock.
      */
     private void setSlotToLock() {
+        Game tempGame = getGame();
+        Field tempField = tempGame.getGameField();
         for (int i = 0; i < Commands.getCoordsToLockSize(); i++) {
-            getGame().getGameField().getSlot(Commands.getCoordToLock(i)).setColorState(Color.DARK_GREY);
+            tempField.getSlot(Commands.getCoordToLock(i)).setColorState(Color.DARK_GREY);
         }
+        tempGame.setGameField(tempField);
+        setGame(tempGame);
     }
 
 }
