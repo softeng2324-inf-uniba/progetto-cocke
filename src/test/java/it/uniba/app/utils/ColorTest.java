@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ColorTest {
     /**
-     *
+     * Variabile di istanza di tipo Color per i casi di test.
      */
     Color color;
 
@@ -62,6 +62,4 @@ public class ColorTest {
         color = null;
         assertThrows(NullPointerException.class, () -> color.getColorValue());
     }
-
-
 }
