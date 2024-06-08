@@ -258,7 +258,7 @@ public class GameController {
         ArrayList<Move> tempMoveList = game.getMoveList();
         Slot startSlot = tempField.getSlot(move.getStartingSlot());
         Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
-        if (startSlot != null && destinationSlot != null) {
+        if (startSlot != null && destinationSlot != null && destinationSlot.getColorState() != Color.DARK_GREY) {
             int distance = move.getDistance();
             if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot) && checkDistance(distance)) {
                 if (distance == MAX_DISTANCE) {
