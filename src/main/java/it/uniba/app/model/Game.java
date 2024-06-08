@@ -1,8 +1,8 @@
 package it.uniba.app.model;
+
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-
 import it.uniba.app.utils.Color;
 
 import static it.uniba.app.model.Field.DEFAULT_DIM;
@@ -39,7 +39,6 @@ public class Game {
     public Game() {
         gameField = new Field();
         moveList = new ArrayList<>();
-
         players = new Player[2];
         players[0] = new Player(Color.BLACK, "Giocatore 1");
         players[1] = new Player(Color.WHITE, "Giocatore 2");
@@ -224,4 +223,5 @@ public class Game {
         }
         setGameField(gameFieldCopy);
     }
+
 }

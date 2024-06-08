@@ -84,4 +84,5 @@ public class Field {
     public int length() {
         return gameboard.length;
     }
+
 }

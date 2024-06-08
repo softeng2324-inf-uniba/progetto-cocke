@@ -1,7 +1,10 @@
 package it.uniba.app.views;
+
 import java.nio.file.Paths;
+import java.util.Vector;
 import it.uniba.app.controller.GameController;
 import it.uniba.app.model.Coordinate;
+import it.uniba.app.model.Field;
 import it.uniba.app.model.Move;
 import it.uniba.app.utils.Message;
 
@@ -24,6 +27,47 @@ public class Commands {
      * Workspace attuale.
      */
     private static String filePath = Paths.get(System.getProperty("user.dir"), relativePath).toString();
+
+    /**
+     * Dimensione massima consentita per il vettore di coordinate da bloccare.
+     */
+    private static final int COORDSTOLOCK_DIM = 9;
+
+    /**
+     * Lista contenente le coordinate degli slot da bloccare.
+     */
+    private static Vector<Coordinate> coordsToLock = new Vector<>();
+
+    /**
+     * Metodo che determina la presenza di una coordinata nella lista coordsToLock.
+     * @param c coordinata di cui determinare la presenza nella lista coordsToLock.
+     * @return esito del controllo.
+     */
+    public static boolean isInCoordsToLock(final Coordinate c) {
+        for (int i = 0; i < coordsToLock.size(); i++) {
+           if ((coordsToLock.get(i).getRow() == c.getRow()) && (coordsToLock.get(i).getColumn() == c.getColumn())) {
+               return true;
+           }
+        }
+        return false;
+    }
+
+    /**
+     * Metodo che restituisce la cordinata in posizione pos del vettore coordsToLock.
+     * @param pos posizione dell'elemento da restituire.
+     * @return elemento da restituire.
+     */
+    public static Coordinate getCoordToLock(final int pos) {
+        return coordsToLock.get(pos);
+    }
+
+    /**
+     * Metodo che restituisce la dimensione del vettore coordsToLock.
+     * @return dimensione del vettore coordsToLock.
+     */
+    public static int getCoordsToLockSize() {
+        return coordsToLock.size();
+    }
 
     /**
      * Gestisce le flag passate come argomenti al programma (tramite CLI).
@@ -137,10 +181,50 @@ public class Commands {
     }
 
     /**
+     * Gestisce il caso /blocca xn del metodo ataxxCommand.
+     * @param s comando inserito dall'utente.
+     */
+    private void manageBlock(final String s, final GameController gg) {
+        if (gg.getGame() == null) {
+            final int firstCord = 8;
+            final int asciiA = 97;
+            final int ascii1 = 49;
+            int column = s.charAt(firstCord) - asciiA;
+            int row = s.charAt(firstCord + 1) - ascii1;
+            if ((row >= 0 && row < Field.DEFAULT_DIM) && (column >= 0 && column < Field.DEFAULT_DIM)) {
+                int distance = 2;
+                boolean a = row > distance && row < (Field.DEFAULT_DIM - distance - 1);
+                boolean b = column > distance && column < (Field.DEFAULT_DIM - distance - 1);
+                if (a || b) {
+                    if (getCoordsToLockSize() < COORDSTOLOCK_DIM) {
+                        Coordinate coord = new Coordinate(row, column);
+                        if (!isInCoordsToLock(coord)) {
+                            coordsToLock.add(coord);
+                        } else {
+                            Output.printMessages(Message.CANTDO, "casella già bloccata.");
+                        }
+                    } else {
+                        Output.printMessages(Message.CANTDO, "numero massimo di slot bloccabili raggiunto.");
+                    }
+                } else {
+                    String msg = "lo slot scelto si trova entro una distanza due da quelli di partenza.";
+                    Output.printMessages(Message.CANTDO, msg);
+                }
+            } else {
+                Output.printMessages(Message.COORD_ERR);
+            }
+        } else {
+            Output.printMessages(Message.GAME_IS_PLAYING);
+        }
+    }
+
+
+    /**
      * Gestisce il flusso di esecuzione in base al comando ricevuto.
      * @param args array di argomenti passati da command line.
      */
     public static void ataxxCommand(final String[] args) {
+        final int bloccaLength = 10;
         Commands commands = new Commands();
         GameController ataxx = new GameController();
         commands.manageFlag(args);
@@ -180,6 +264,8 @@ public class Commands {
                         ataxx.movePiece(move);
                     } else if (move != null) {
                         Output.printMessages(Message.NO_GAME);
+                    } else if (command.startsWith("/blocca ") && command.length() == bloccaLength) {
+                        commands.manageBlock(command, ataxx);
                     } else {
                         Output.printMessages(Message.UNKNOWN_COMMAND);
                     }

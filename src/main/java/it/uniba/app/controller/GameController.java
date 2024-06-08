@@ -8,6 +8,7 @@ import it.uniba.app.model.Player;
 import it.uniba.app.model.Slot;
 import it.uniba.app.utils.Color;
 import it.uniba.app.utils.Message;
+import it.uniba.app.views.Commands;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 import java.util.ArrayList;
@@ -75,6 +76,7 @@ public class GameController {
         if (game == null) {
             setGame(new Game());
             setStartingPosition();
+            setSlotToLock();
             Output.printField(getGame().getGameField());
         }
     }
@@ -346,4 +348,17 @@ public class GameController {
         }
         return false;
     }
+    /**
+     * Imposta come bloccati gli slot presenti nel vettore coordsToLock.
+     */
+    private void setSlotToLock() {
+        Game tempGame = getGame();
+        Field tempField = tempGame.getGameField();
+        for (int i = 0; i < Commands.getCoordsToLockSize(); i++) {
+            tempField.getSlot(Commands.getCoordToLock(i)).setColorState(Color.DARK_GREY);
+        }
+        tempGame.setGameField(tempField);
+        setGame(tempGame);
+    }
+
 }
