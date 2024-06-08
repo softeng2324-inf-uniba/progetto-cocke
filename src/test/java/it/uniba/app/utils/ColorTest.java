@@ -2,11 +2,14 @@ package it.uniba.app.utils;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ColorTest {
+    /**
+     *
+     */
+    Color color;
 
     /**
      * Test per il metodo getColorValue della classe Color.
@@ -14,7 +17,7 @@ public class ColorTest {
      */
     @Test
     public void testColorValue() {
-        Color color = Color.BLACK;
+        color = Color.BLACK;
         assertEquals(0, color.getColorValue());
     }
 
@@ -24,7 +27,7 @@ public class ColorTest {
      */
     @Test
     public void testAnotherColorValue() {
-        Color color = Color.WHITE;
+        color = Color.WHITE;
         assertEquals(15, color.getColorValue());
     }
 
@@ -34,7 +37,7 @@ public class ColorTest {
      */
     @Test
     public void testWrongColorValue() {
-        Color color = Color.WHITE;
+        color = Color.BLACK;
         assertEquals(16, color.getColorValue());
     }
 
@@ -47,4 +50,16 @@ public class ColorTest {
         Color color = Color.valueOf("RED");
         assertEquals(15, color.getColorValue());
     }
+
+    /**
+     * Test per il metodo getColorValue della classe Color.
+     * Inserendo un valore non nullo, il test fallisce.
+     */
+    @Test
+    public void testNullColorValue() {
+        color = Color.WHITE;
+        assertThrows(NullPointerException.class, () -> color.getColorValue());
+    }
+
+
 }
