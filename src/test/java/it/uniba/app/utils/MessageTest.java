@@ -3,8 +3,11 @@ package it.uniba.app.utils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MessageTest {
+
 
     /**
      * Test per il metodo getMessageText della classe Message.
@@ -26,19 +29,19 @@ public class MessageTest {
 
     /**
      * Test per il metodo getMessageText della classe Message.
-     * Inserendo un messaggio sbagliato e confrontandolo con un messaggio corretto, il test fallisce.
+     * Verifica che il metodo restituisca il testo del messaggio corretto.
      */
     @Test
     public void testWrongMessageText() {
-        assertEquals("Nessuna mossa disponibile per ", Message.ILLEGAL_MOVE.getMessageText());
+        assertNotEquals("Nessuna mossa disponibile per ", Message.ILLEGAL_MOVE.getMessageText());
     }
 
     /**
      * Test per il metodo getMessageText della classe Message.
-     * Inserendo un messaggio inesistente, il test fallisce.
+     * Verifica che il metodo restituisca il testo del messaggio corretto.
      */
     @Test
     public void testAnotherWrongMessageText() {
-        assertEquals("Nessuna mossa disponibile per ", Message.valueOf("IPPEGAL_MOVE").getMessageText());
+        assertThrows(IllegalArgumentException.class, () -> Message.valueOf("IPPEGAL_MOVE"));
     }
 }

@@ -35,7 +35,7 @@ public class ColorTest {
 
     /**
      * Test per il metodo getColorValue della classe Color.
-     * Inserendo un valore sbagliato, il test fallisce.
+     * Verifica che un colore esistente è diverso rispetto a un valore sbagliato.
      */
     @Test
     public void testWrongColorValue() {
@@ -43,23 +43,13 @@ public class ColorTest {
         assertNotEquals(16, color.getColorValue());
     }
 
+
     /**
      * Test per il metodo getColorValue della classe Color.
      * Inserendo un colore inesistente, il test fallisce.
      */
     @Test
     public void testAnotherWrongColorValue() {
-        color = Color.valueOf("GOLD");
-        assertEquals(178, color.getColorValue());
-    }
-
-    /**
-     * Test per il metodo getColorValue della classe Color.
-     * Inserendo un valore non nullo, il test fallisce.
-     */
-    @Test
-    public void testNullColorValue() {
-        color = null;
-        assertThrows(NullPointerException.class, () -> color.getColorValue());
+        assertThrows(IllegalArgumentException.class, () -> Color.valueOf("GOLDEN"));
     }
 }
