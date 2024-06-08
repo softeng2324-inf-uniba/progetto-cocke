@@ -246,7 +246,7 @@ public class GameController {
      * @return (true) se la casella di destinazione è vuota, (false) altrimenti.
      */
     private boolean checkDestinationSlot(final Slot destinationSlot) {
-        return destinationSlot.getColorState() == Color.GREY;
+        return destinationSlot.getColorState() == Color.GREY && destinationSlot.getColorState != Color.DARK_GREY;
     }
 
     /**
@@ -258,7 +258,7 @@ public class GameController {
         ArrayList<Move> tempMoveList = game.getMoveList();
         Slot startSlot = tempField.getSlot(move.getStartingSlot());
         Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
-        if (startSlot != null && destinationSlot != null && destinationSlot.getColorState() != Color.DARK_GREY) {
+        if (startSlot != null && destinationSlot != null) {
             int distance = move.getDistance();
             if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot) && checkDistance(distance)) {
                 if (distance == MAX_DISTANCE) {
