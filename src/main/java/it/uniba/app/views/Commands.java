@@ -184,7 +184,7 @@ public class Commands {
      * Gestisce il caso /blocca xn del metodo ataxxCommand.
      * @param s comando inserito dall'utente.
      */
-    private void manageBlocca(final String s, final GameController gg) {
+    private void manageBlock(final String s, final GameController gg) {
         if (gg.getGame() == null) {
             final int firstCord = 8;
             final int asciiA = 97;
@@ -193,9 +193,9 @@ public class Commands {
             int row = s.charAt(firstCord + 1) - ascii1;
             if ((row >= 0 && row < Field.DEFAULT_DIM) && (column >= 0 && column < Field.DEFAULT_DIM)) {
                 int distance = 2;
-                boolean a = row >= distance && row <= Field.DEFAULT_DIM - distance;
-                boolean b = column >= distance && column <= Field.DEFAULT_DIM - distance;
-                if (a && b) {
+                boolean a = row > distance && row < (Field.DEFAULT_DIM - distance - 1);
+                boolean b = column > distance && column < (Field.DEFAULT_DIM - distance - 1);
+                if (a || b) {
                     if (getCoordsToLockSize() < COORDSTOLOCK_DIM) {
                         Coordinate coord = new Coordinate(row, column);
                         if (!isInCoordsToLock(coord)) {
@@ -265,7 +265,7 @@ public class Commands {
                     } else if (move != null) {
                         Output.printMessages(Message.NO_GAME);
                     } else if (command.startsWith("/blocca ") && command.length() == bloccaLength) {
-                        commands.manageBlocca(command, ataxx);
+                        commands.manageBlock(command, ataxx);
                     } else {
                         Output.printMessages(Message.UNKNOWN_COMMAND);
                     }
