@@ -1,5 +1,7 @@
 package it.uniba.app.model;
 
+import java.util.Arrays;
+
 /**
  * {@literal <<Entity>>}
  * Classe che rappresenta il campo da gioco.
@@ -70,6 +72,31 @@ public class Field {
      */
     public int length() {
         return gameboard.length;
+    }
+
+    /**
+     * Verifica, se l'oggetto in entrata è un <code>Field</code>, se è uguale all'oggetto su cui
+     * il metodo è stato invocato.
+     * @param obj oggetto secondo membro dell'uguaglianza.
+     * @return <code>true</code> se i due campi da gioco hanno le medesime caselle nello stesso stato,
+     * <code>false</code> in tutti gli altri casi.
+     */
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof Field castObj) {
+            return Arrays.deepEquals(gameboard, castObj.gameboard);
+        }
+        return false;
+    }
+
+    /**
+     * Calcola il valore hash relativo alle caselle presenti nel campo da gioco su cui il metodo
+     * è invocato.
+     * @return il valore hash del <code>Field</code>.
+     */
+    public int hashCode() {
+        return Arrays.deepToString(gameboard).hashCode();
     }
 
 }
