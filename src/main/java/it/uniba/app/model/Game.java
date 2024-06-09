@@ -113,7 +113,7 @@ public class Game {
      * Restituisce l'istante di tempo in cui è iniziato il gioco.
      * @return l'istante di tempo in cui è iniziato il gioco.
      */
-    public ZonedDateTime getStartTime() {
+    private ZonedDateTime getStartTime() {
         return startTime;
     }
 
