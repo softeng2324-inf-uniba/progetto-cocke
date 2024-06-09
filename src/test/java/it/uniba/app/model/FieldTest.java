@@ -4,7 +4,6 @@ import it.uniba.app.utils.Color;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FieldTest {
@@ -12,32 +11,32 @@ class FieldTest {
     /**
      * Campo temporaneo per i casi di test.
      */
-    Field tempField;
+    private Field tempField;
 
     /**
      * Slot temporaneo per i casi di test.
      */
-    Slot tempSlot;
+    private Slot tempSlot;
 
     /**
      * Messaggio di errore quando il campo copiato non coincide con quello atteso.
      */
-    final static String WRONG_COPY = "Il campo copiato non coincide con quello atteso";
+    static final String WRONG_COPY = "Il campo copiato non coincide con quello atteso";
 
     /**
      * Messaggio di errore quando lo slot restituito non coincide con quello atteso.
      */
-    final static String BAD_RETURN_SLOT = "Lo slot restituito non coincide con quello atteso";
+    static final String BAD_RETURN_SLOT = "Lo slot restituito non coincide con quello atteso";
 
     /**
      * Messaggio di errore quando lo slot non è stato modificato correttamente.
      */
-    final static String BAD_SLOT = "Lo slot non è stato modificato correttamente";
+    static final String BAD_SLOT = "Lo slot non è stato modificato correttamente";
 
     /**
      * Messaggio di errore quando la dimensione restituita non coincide con quella attesa.
      */
-    final static String BAD_LENGTH = "La dimensione restituita non coincide con quella attesa";
+    static final String BAD_LENGTH = "La dimensione restituita non coincide con quella attesa";
 
     /**
      * Imposta il campo temporaneo di default per i test.

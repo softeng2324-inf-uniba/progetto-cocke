@@ -4,74 +4,73 @@ import it.uniba.app.utils.Color;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.Duration;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
-import static it.uniba.app.model.FieldTest.BAD_RETURN_SLOT;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class GameTest {
 
     /**
      * Gioco temporaneo per i casi di test.
      */
-    Game tempGame;
+    private Game tempGame;
 
     /**
      * Messaggio di errore restituito quando il gioco copiato non coincide con quello atteso.
      */
-    final static String BAD_COPY_GAME = "Il gioco copiato non coincide con quello atteso";
+    static final String BAD_COPY_GAME = "Il gioco copiato non coincide con quello atteso";
 
     /**
      * Messaggio di errore restituito quando uno slot viene catturato senza motivo.
      */
-    final static String BAD_CAPTURE = "È stato modificato il colore dello slot impropriamente";
+    static final String BAD_CAPTURE = "È stato modificato il colore dello slot impropriamente";
 
     /**
      * Messaggio di errore restituito quando viene restituito un campo non corrispondente a quello atteso.
      */
-    final static String WRONG_FIELD = "Il campo restituito non coincide con quello atteso";
+    static final String WRONG_FIELD = "Il campo restituito non coincide con quello atteso";
 
     /**
      * Messaggio di errore restituito quando viene restituito un'array di giocatori non corrispondente a quello atteso .
      */
-    final static String WRONG_PLAYERS = "L'array di giocatori restituito non coincide con quello atteso";
+    static final String WRONG_PLAYERS = "L'array di giocatori restituito non coincide con quello atteso";
 
     /**
      * Messaggio di errore restituito quando viene assegnato un campo diverso da quello previsto.
      */
-    final static String BAD_FIELD_SET = "Il campo non è stato assegnato correttamente";
+    static final String BAD_FIELD_SET = "Il campo non è stato assegnato correttamente";
 
     /**
      * Messaggio di errore restituito quando viene restituita una lista di mosse diversa da quella attesa.
      */
-    final static String BAD_MOVE_LIST = "La lista di mosse restituita non coincide con quella attesa";
+    static final String BAD_MOVE_LIST = "La lista di mosse restituita non coincide con quella attesa";
 
     /**
      * Messaggio di errore restituito quando viene assegnata una lista di mosse diversa da quella prevista.
      */
-    final static String BAD_MOVE_LIST_SET = "La lista di mosse non è stata assegnata correttamente";
+    static final String BAD_MOVE_LIST_SET = "La lista di mosse non è stata assegnata correttamente";
 
     /**
      * Messaggio di errore restituito quando viene restituito un giocatore diverso da quello atteso.
      */
-    final static String WRONG_PLAYER = "Il giocatore restituito non coincide con quello atteso";
+    static final String WRONG_PLAYER = "Il giocatore restituito non coincide con quello atteso";
 
     /**
      * Messaggio di errore restituito quando viene restituito un numero di pedine diverso da quello atteso.
      */
-    final static String WRONG_PIECES_NUMBER = "Il numero di pedine restituito non coincide con quello atteso";
+    static final String WRONG_PIECES_NUMBER = "Il numero di pedine restituito non coincide con quello atteso";
 
     /**
      * Messaggio di errore restituito quando viene restituito un intervallo di tempo diverso da quello atteso.
      */
-    final static String WRONG_DURATION = "L'intervallo di tempo restituito non coincide con quello atteso";
+    static final String WRONG_DURATION = "L'intervallo di tempo restituito non coincide con quello atteso";
 
     /**
      * Messaggio di errore restituito quando viene restituito un intervallo di tempo diverso da quello atteso.
      */
-    final static String WRONG_COLOR = "Il colore restituito non coincide con quello atteso";
+    static final String WRONG_COLOR = "Il colore restituito non coincide con quello atteso";
 
     /**
      * Imposta il gioco temporaneo di default per i test.
@@ -253,14 +252,14 @@ class GameTest {
         Field testField = new Field();
         Slot tempSlot = new Slot();
         tempSlot.setColorState(Color.WHITE);
-        testField.setSlot(new Coordinate(0,0), tempSlot);
-        testField.setSlot(new Coordinate(0,1), tempSlot);
-        testField.setSlot(new Coordinate(0,5), tempSlot);
-        testField.setSlot(new Coordinate(6,6), tempSlot);
-        testField.setSlot(new Coordinate(5,5), tempSlot);
+        testField.setSlot(new Coordinate(0, 0), tempSlot);
+        testField.setSlot(new Coordinate(0, 1), tempSlot);
+        testField.setSlot(new Coordinate(0, 5), tempSlot);
+        testField.setSlot(new Coordinate(6, 6), tempSlot);
+        testField.setSlot(new Coordinate(5, 5), tempSlot);
         tempSlot = new Slot();
         tempSlot.setColorState(Color.BLACK);
-        testField.setSlot(new Coordinate(4,4), tempSlot);
+        testField.setSlot(new Coordinate(4, 4), tempSlot);
         tempGame.setGameField(testField);
 
         assertEquals(5, tempGame.countPieces(Color.WHITE), WRONG_PIECES_NUMBER);
@@ -286,14 +285,14 @@ class GameTest {
         Field testField = tempGame.getGameField();
         Slot tempSlot = new Slot();
         tempSlot.setColorState(Color.BLACK);
-        testField.setSlot(new Coordinate(0,0), tempSlot);
-        testField.setSlot(new Coordinate(0,1), tempSlot);
-        testField.setSlot(new Coordinate(0,5), tempSlot);
-        testField.setSlot(new Coordinate(6,6), tempSlot);
-        testField.setSlot(new Coordinate(5,5), tempSlot);
+        testField.setSlot(new Coordinate(0, 0), tempSlot);
+        testField.setSlot(new Coordinate(0, 1), tempSlot);
+        testField.setSlot(new Coordinate(0, 5), tempSlot);
+        testField.setSlot(new Coordinate(6, 6), tempSlot);
+        testField.setSlot(new Coordinate(5, 5), tempSlot);
         tempSlot = new Slot();
         tempSlot.setColorState(Color.WHITE);
-        testField.setSlot(new Coordinate(4,4), tempSlot);
+        testField.setSlot(new Coordinate(4, 4), tempSlot);
         tempGame.setGameField(testField);
 
         assertEquals(Color.BLACK, tempGame.colorWinner(), WRONG_COLOR);
@@ -308,30 +307,30 @@ class GameTest {
         Field testField = tempGame.getGameField();
         Slot tempSlot = new Slot();
         tempSlot.setColorState(Color.BLACK);
-        testField.setSlot(new Coordinate(0,0), tempSlot);
-        testField.setSlot(new Coordinate(0,1), tempSlot);
-        testField.setSlot(new Coordinate(0,2), tempSlot);
-        testField.setSlot(new Coordinate(1,0), tempSlot);
-        testField.setSlot(new Coordinate(1,2), tempSlot);
-        testField.setSlot(new Coordinate(2,0), tempSlot);
-        testField.setSlot(new Coordinate(2,1), tempSlot);
-        testField.setSlot(new Coordinate(2,2), tempSlot);
-        testField.setSlot(new Coordinate(2,3), tempSlot);
-        testField.setSlot(new Coordinate(3,1), tempSlot);
+        testField.setSlot(new Coordinate(0, 0), tempSlot);
+        testField.setSlot(new Coordinate(0, 1), tempSlot);
+        testField.setSlot(new Coordinate(0, 2), tempSlot);
+        testField.setSlot(new Coordinate(1, 0), tempSlot);
+        testField.setSlot(new Coordinate(1, 2), tempSlot);
+        testField.setSlot(new Coordinate(2, 0), tempSlot);
+        testField.setSlot(new Coordinate(2, 1), tempSlot);
+        testField.setSlot(new Coordinate(2, 2), tempSlot);
+        testField.setSlot(new Coordinate(2, 3), tempSlot);
+        testField.setSlot(new Coordinate(3, 1), tempSlot);
         tempSlot.setColorState(Color.WHITE);
-        testField.setSlot(new Coordinate(1,1), tempSlot);
+        testField.setSlot(new Coordinate(1, 1), tempSlot);
         tempGame.setGameField(testField);
 
         Field testFieldResult = testField;
         tempSlot.setColorState(Color.WHITE);
-        testFieldResult.setSlot(new Coordinate(0,0), tempSlot);
-        testFieldResult.setSlot(new Coordinate(0,1), tempSlot);
-        testFieldResult.setSlot(new Coordinate(0,2), tempSlot);
-        testFieldResult.setSlot(new Coordinate(1,0), tempSlot);
-        testFieldResult.setSlot(new Coordinate(1,2), tempSlot);
-        testFieldResult.setSlot(new Coordinate(2,0), tempSlot);
-        testFieldResult.setSlot(new Coordinate(2,1), tempSlot);
-        testFieldResult.setSlot(new Coordinate(2,2), tempSlot);
+        testFieldResult.setSlot(new Coordinate(0, 0), tempSlot);
+        testFieldResult.setSlot(new Coordinate(0, 1), tempSlot);
+        testFieldResult.setSlot(new Coordinate(0, 2), tempSlot);
+        testFieldResult.setSlot(new Coordinate(1, 0), tempSlot);
+        testFieldResult.setSlot(new Coordinate(1, 2), tempSlot);
+        testFieldResult.setSlot(new Coordinate(2, 0), tempSlot);
+        testFieldResult.setSlot(new Coordinate(2, 1), tempSlot);
+        testFieldResult.setSlot(new Coordinate(2, 2), tempSlot);
 
         tempGame.captureSlot(new Coordinate(1, 1));
         assertEquals(testFieldResult, tempGame.getGameField(), BAD_CAPTURE);
