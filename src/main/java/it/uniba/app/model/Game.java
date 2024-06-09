@@ -81,12 +81,7 @@ public class Game {
      * @param srcField campo da gioco da inserire all'interno di una partita.
      */
     public void setGameField(final Field srcField) {
-        if (srcField != null) {
-            gameField = new Field(srcField);
-        } else {
-            gameField = null;
-        }
-
+        gameField = new Field(srcField);
     }
 
     /**
