@@ -8,6 +8,7 @@ import it.uniba.app.model.Player;
 import it.uniba.app.model.Slot;
 import it.uniba.app.utils.Color;
 import it.uniba.app.utils.Message;
+import it.uniba.app.views.Commands;
 import it.uniba.app.views.Input;
 import it.uniba.app.views.Output;
 import java.util.ArrayList;
@@ -17,11 +18,6 @@ import java.util.ArrayList;
  * GameController è la classe che gestisce il gioco.
  */
 public class GameController {
-    /**
-     * Distanza massima tra le coordinate delle caselle coinvolte in una mossa.
-     */
-    static final int MAX_DISTANCE = 2;
-
     /**
      * Rappresenta il gioco attualmente in esecuzione.
      */
@@ -75,6 +71,7 @@ public class GameController {
         if (game == null) {
             setGame(new Game());
             setStartingPosition();
+            setSlotToLock();
             Output.printField(getGame().getGameField());
         }
     }
@@ -83,7 +80,7 @@ public class GameController {
     /**
      * Inizializza la posizione iniziale delle pedine sul campo da gioco a inizio partita.
      */
-    void setStartingPosition() {
+    private void setStartingPosition() {
         int[] tempXY = new int[2];
         tempXY[1] = Field.DEFAULT_DIM - 1;
 
@@ -150,7 +147,7 @@ public class GameController {
      * @param field il campo da convertire.
      * @param playerColor il colore del giocatore di cui mostrare le mosse.
      */
-    void convertField(final Field field, final Color playerColor) {
+    private void convertField(final Field field, final Color playerColor) {
         Coordinate coordinate = new Coordinate(0, 0);
         Slot currentSlot;
         for (int x = 0; x < field.length(); x++) {
@@ -171,7 +168,7 @@ public class GameController {
      * @param field il campo in cui evidenziare le caselle.
      * @param coordinate la posizione della casella da cui evidenziare le caselle.
      */
-    void markNeighboringSlot(final Field field, final Coordinate coordinate) {
+    private void markNeighboringSlot(final Field field, final Coordinate coordinate) {
         Coordinate markCoordinate = new Coordinate(0, 0);
         for (int distance = 1; distance <= 2; distance++) {
             for (int row = (coordinate.getRow() - distance); row <= (coordinate.getRow() + distance); row++) {
@@ -246,7 +243,7 @@ public class GameController {
      * @return (true) se la casella di destinazione è vuota, (false) altrimenti.
      */
     private boolean checkDestinationSlot(final Slot destinationSlot) {
-        return destinationSlot.getColorState() == Color.GREY;
+        return destinationSlot.getColorState() == Color.GREY && destinationSlot.getColorState() != Color.DARK_GREY;
     }
 
     /**
@@ -260,8 +257,8 @@ public class GameController {
         Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
         if (startSlot != null && destinationSlot != null) {
             int distance = move.getDistance();
-            if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot) && checkDistance(distance)) {
-                if (distance == MAX_DISTANCE) {
+            if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot) && Move.checkDistance(distance)) {
+                if (distance == Move.MAX_DISTANCE) {
                     startSlot.setColorState(Color.GREY);
                 }
                 destinationSlot.setColorState(game.whoIsPlaying().getColor());
@@ -279,15 +276,6 @@ public class GameController {
             Output.printField(game.getGameField());
             Output.printMessages(Message.ILLEGAL_MOVE);
         }
-    }
-
-    /**
-     * Verifica la correttezza della distanza tra le coordinate delle caselle coinvolte in una mossa.
-     * @param distance distanza tra le caselle sul campo da gioco.
-     * @return (true) se la distanza è consentita, (false) in caso contrario.
-     */
-    boolean checkDistance(final int distance) {
-        return distance > 0 && distance <= MAX_DISTANCE;
     }
 
     /**
@@ -314,9 +302,9 @@ public class GameController {
      * Verifica che non sia stata fatta una mossa vuota in precedenza.
      *
      *  @param moveList la lista delle mosse effettuate nel gioco
-     *  @return true se l'ultima mossa nella lista è una mossa vuota,altrimenti false
+     *  @return true se l'ultima mossa nella lista è una mossa vuota, altrimenti false
      */
-    public boolean containsEmptyMove(final ArrayList<Move> moveList) {
+    private boolean containsEmptyMove(final ArrayList<Move> moveList) {
         Coordinate emptyCoordinate = new Coordinate(0, 0);
         Move lastMove = moveList.get(moveList.size() - 1);
         return lastMove.getStartingSlot().equalsCoordinate(emptyCoordinate)
@@ -346,4 +334,17 @@ public class GameController {
         }
         return false;
     }
+    /**
+     * Imposta come bloccati gli slot presenti nel vettore coordsToLock.
+     */
+    private void setSlotToLock() {
+        Game tempGame = getGame();
+        Field tempField = tempGame.getGameField();
+        for (int i = 0; i < Commands.getCoordsToLockSize(); i++) {
+            tempField.getSlot(Commands.getCoordToLock(i)).setColorState(Color.DARK_GREY);
+        }
+        tempGame.setGameField(tempField);
+        setGame(tempGame);
+    }
+
 }

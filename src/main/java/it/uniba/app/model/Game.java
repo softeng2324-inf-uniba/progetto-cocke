@@ -1,8 +1,8 @@
 package it.uniba.app.model;
+
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-
 import it.uniba.app.utils.Color;
 
 import static it.uniba.app.model.Field.DEFAULT_DIM;
@@ -26,11 +26,11 @@ public class Game {
     /**
      * Array di <code>Player</code>, contenente i giocatori inizializzati con il loro nome e colore.
      */
-    private Player[] players;
+    private final Player[] players;
     /**
      * L'istante di tempo in cui è iniziato il gioco.
      */
-    private ZonedDateTime startTime;
+    private final ZonedDateTime startTime;
 
     /**
      * Costruttore della classe <code>Game</code> privo di parametri formali, che inizializza tutti i rispettivi
@@ -39,24 +39,10 @@ public class Game {
     public Game() {
         gameField = new Field();
         moveList = new ArrayList<>();
-
         players = new Player[2];
         players[0] = new Player(Color.BLACK, "Giocatore 1");
         players[1] = new Player(Color.WHITE, "Giocatore 2");
 
-        startTime = ZonedDateTime.now();
-    }
-
-    /**
-     * Costruttore della classe <code>Game</code> che inizializza i rispettivi attributi, usando gli oggetti di tipo
-     * <code>Player</code> passati come dati in entrata.
-     * @param newPlayers Array contenente i giocatori, con i rispettivi campi inizializzati.
-     */
-    public Game(final Player[] newPlayers) {
-        gameField = new Field();
-        moveList = new ArrayList<>();
-        players = new Player[2];
-        System.arraycopy(newPlayers, 0, players, 0, newPlayers.length);
         startTime = ZonedDateTime.now();
     }
 
@@ -123,15 +109,6 @@ public class Game {
     }
 
     /**
-     * Inserisce un'istanza di <code>Player</code> come giocatore della partita su cui tale metodo è invocato.
-     * @param srcPlayer giocatore da inserire nella posizione <code>index</code> richiesta nella partita.
-     * @param index indice della posizione in cui inserire il giocatore <code>srcPlayer</code>.
-     */
-    public void setPlayer(final Player srcPlayer, final int index) {
-        players[index] = new Player(srcPlayer);
-    }
-
-    /**
      * Restituisce l'istante di tempo in cui è iniziato il gioco.
      * @return l'istante di tempo in cui è iniziato il gioco.
      */
@@ -181,8 +158,7 @@ public class Game {
      */
     public Duration getElapsedTime() {
         ZonedDateTime currentTime = ZonedDateTime.now();
-        Duration elapsedTime = Duration.between(getStartTime(), currentTime);
-        return elapsedTime;
+        return Duration.between(getStartTime(), currentTime);
     }
 
     /**
@@ -214,7 +190,8 @@ public class Game {
                     int tempColumn = coordinate.getColumn() + columnOffset;
                     if (tempColumn >= 0 && tempColumn < DEFAULT_DIM) {
                         tempCoordinate.setColumn(tempColumn);
-                        if (gameFieldCopy.getSlot(tempCoordinate).getColorState() != Color.GREY) {
+                        if (gameFieldCopy.getSlot(tempCoordinate).getColorState() != Color.GREY
+                         && gameFieldCopy.getSlot(tempCoordinate).getColorState() != Color.DARK_GREY) {
                             gameFieldCopy.getSlot(tempCoordinate).setColorState(colorSlot);
                         }
                     }
@@ -223,4 +200,5 @@ public class Game {
         }
         setGameField(gameFieldCopy);
     }
+
 }
