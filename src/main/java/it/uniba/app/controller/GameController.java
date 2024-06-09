@@ -19,11 +19,6 @@ import java.util.ArrayList;
  */
 public class GameController {
     /**
-     * Distanza massima tra le coordinate delle caselle coinvolte in una mossa.
-     */
-    static final int MAX_DISTANCE = 2;
-
-    /**
      * Rappresenta il gioco attualmente in esecuzione.
      */
     private Game game = null;
@@ -262,8 +257,8 @@ public class GameController {
         Slot destinationSlot = tempField.getSlot(move.getChosenSlot());
         if (startSlot != null && destinationSlot != null) {
             int distance = move.getDistance();
-            if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot) && checkDistance(distance)) {
-                if (distance == MAX_DISTANCE) {
+            if (checkStartSlot(startSlot) && checkDestinationSlot(destinationSlot) && Move.checkDistance(distance)) {
+                if (distance == Move.MAX_DISTANCE) {
                     startSlot.setColorState(Color.GREY);
                 }
                 destinationSlot.setColorState(game.whoIsPlaying().getColor());
@@ -281,15 +276,6 @@ public class GameController {
             Output.printField(game.getGameField());
             Output.printMessages(Message.ILLEGAL_MOVE);
         }
-    }
-
-    /**
-     * Verifica la correttezza della distanza tra le coordinate delle caselle coinvolte in una mossa.
-     * @param distance distanza tra le caselle sul campo da gioco.
-     * @return (true) se la distanza è consentita, (false) in caso contrario.
-     */
-    boolean checkDistance(final int distance) {
-        return distance > 0 && distance <= MAX_DISTANCE;
     }
 
     /**

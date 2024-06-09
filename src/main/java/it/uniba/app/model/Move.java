@@ -6,6 +6,11 @@ package it.uniba.app.model;
  */
 public class Move {
     /**
+     * Distanza massima tra le coordinate delle caselle coinvolte in una mossa.
+     */
+    public static final int MAX_DISTANCE = 2;
+
+    /**
      * startingSlot rappresenta la casella iniziale.
      */
     private Coordinate startingSlot;
@@ -76,6 +81,15 @@ public class Move {
         Coordinate destination = getChosenSlot();
         return java.lang.Math.max(java.lang.Math.abs(start.getRow() - destination.getRow()),
                 java.lang.Math.abs(start.getColumn() - destination.getColumn()));
+    }
+
+    /**
+     * Verifica la correttezza della distanza tra le coordinate delle caselle coinvolte in una mossa.
+     * @param distance distanza tra le caselle sul campo da gioco.
+     * @return (true) se la distanza è consentita, (false) in caso contrario.
+     */
+    public static boolean checkDistance(final int distance) {
+        return distance > 0 && distance <= MAX_DISTANCE;
     }
 
     /**
