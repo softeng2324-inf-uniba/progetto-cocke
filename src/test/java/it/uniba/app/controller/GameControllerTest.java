@@ -158,8 +158,8 @@ class GameControllerTest {
      */
     @Test
     void testWrongMovePiece() {
-        final int COLUMN_COORDINATE = 5;
-        Move move = new Move(new Coordinate(0, 0), new Coordinate(0, COLUMN_COORDINATE));
+        final int columnCoordinate = 5;
+        Move move = new Move(new Coordinate(0, 0), new Coordinate(0, columnCoordinate));
         controller.movePiece(move);
 
         Field field = controller.getGame().getGameField();
