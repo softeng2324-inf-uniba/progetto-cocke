@@ -302,9 +302,9 @@ public class GameController {
      * Verifica che non sia stata fatta una mossa vuota in precedenza.
      *
      *  @param moveList la lista delle mosse effettuate nel gioco
-     *  @return true se l'ultima mossa nella lista è una mossa vuota,altrimenti false
+     *  @return true se l'ultima mossa nella lista è una mossa vuota, altrimenti false
      */
-    public boolean containsEmptyMove(final ArrayList<Move> moveList) {
+    private boolean containsEmptyMove(final ArrayList<Move> moveList) {
         Coordinate emptyCoordinate = new Coordinate(0, 0);
         Move lastMove = moveList.get(moveList.size() - 1);
         return lastMove.getStartingSlot().equalsCoordinate(emptyCoordinate)
