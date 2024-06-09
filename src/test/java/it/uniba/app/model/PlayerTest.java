@@ -70,7 +70,7 @@ class PlayerTest {
     }
 
     /**
-     * Test del metodo <code>equals()</code> su testPlayer e una sua copia, che verifica l'uguaglianza viene verificata.
+     * Test del metodo <code>equals()</code> su testPlayer e una sua copia, che ne verifica l'uguaglianza.
      */
     @Test
     void testEquals() {

@@ -101,6 +101,6 @@ public class Slot {
      * @return il valore hash della casella.
      */
     public int hashCode() {
-        return getColorState().hashCode();
+        return getColorState().toString().hashCode();
     }
 }
