@@ -10,20 +10,12 @@ public class Player {
     /**
      * Rappresenta il colore del giocatore.
      */
-    private Color playerColor;
+    private final Color playerColor;
 
     /**
      * Rappresenta il nome del giocatore.
      */
-    private String playerName;
-
-    /**
-     * Costruttore della classe <code>Player</code> che inizializza nome e colore delle pedine di un giocatore.
-     */
-    public Player() {
-        playerColor = null;
-        playerName = "_";
-    }
+    private final String playerName;
 
     /**
      * Costruttore della classe Player che inizializza il giocatore con il suo colore e il suo nome.
@@ -53,14 +45,6 @@ public class Player {
     }
 
     /**
-     * Inizializza il colore del giocatore.
-     * @param color colore del giocatore da inizializzare.
-     */
-    public void setColor(final Color color) {
-        playerColor = color;
-    }
-
-    /**
      * Restituisce il nome del giocatore.
      * @return nome del giocatore.
      */
@@ -68,12 +52,5 @@ public class Player {
         return playerName;
     }
 
-    /**
-     * Inizializza il nome del giocatore.
-     * @param name nome del giocatoreda inizializzare.
-     */
-    public void setName(final String name) {
-        playerName = name;
-    }
 }
 

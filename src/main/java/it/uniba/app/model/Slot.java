@@ -29,15 +29,6 @@ public class Slot {
     }
 
     /**
-     * Costruttore della classe <code>Slot</code> che inizializza il colore della stessa con quello passato
-     * come parametro attuale.
-     * @param newColorState il colore della casella da inizializzare.
-     */
-    public Slot(final Color newColorState) {
-        colorState = newColorState;
-    }
-
-    /**
      * Restituisce lo stato della casella.
      * @return stato della casella sulla quale è stato invocato il metodo.
      */
