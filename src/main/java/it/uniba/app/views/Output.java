@@ -34,13 +34,6 @@ public final class Output {
     private static final String WINNER_PATH = Paths.get(
             System.getProperty("user.dir"), RELATIVE_WINNER_PATH).toString();
 
-
-
-    /**
-     * Costruttore privato per evitare che la classe Output venga istanziata.
-     */
-    private Output() { }
-
     /**
      * Colore di background di default.
      */
@@ -50,6 +43,12 @@ public final class Output {
      * Colore di background di default.
      */
     public static final Color DEFAULT_CHAR = Color.WHITE;
+
+    /**
+     * Costruttore privato per evitare che la classe Output venga istanziata.
+     */
+    private Output() { }
+
 
     /**
      * Stampa le linee interne del campo di gioco.
