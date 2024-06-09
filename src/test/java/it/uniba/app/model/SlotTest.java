@@ -1,6 +1,7 @@
 package it.uniba.app.model;
 
 import it.uniba.app.utils.Color;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,7 +11,7 @@ class SlotTest {
     /**
      * Casella utilizzata per testare la classe <code>Slot</code>, inizializzata con <code>Color.GREY</code>.
      */
-    private final Slot testSlot = new Slot(Color.GREY);
+    private final Slot testSlot = new Slot();
 
     /**
      * Messaggio d'errore nel caso in cui la copia eseguita attraverso il costruttore di copia della classe
@@ -53,6 +54,14 @@ class SlotTest {
      * Valore hash di testSlot con colore <code>Color.GREY</code>.
      */
     private static final int HASH_GREY_SLOT = 2196191;
+
+    /**
+     * Inizializza testSlot con il colore grigio prima dell'esecuzione di ogni test.
+     */
+    @BeforeEach
+    void setUp() {
+        testSlot.setColorState(Color.GREY);
+    }
 
     /**
      * Test del costruttore di copia della classe <code>Slot</code>, per cui viene inizializzato una nuova casella con
