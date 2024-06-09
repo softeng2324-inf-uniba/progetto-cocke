@@ -44,8 +44,8 @@ class MoveTest {
      * Messaggio di errore corrispondente alla disuguaglianza tra la stringa calcolata attraverso il metodo
      * <code>toString()</code> della mossa su cui il metodo è invocato, e quella ipotizzata.
      */
-    static final String WRONG_STRING = "La stringa corrispondente alla mossa in analisi, non coincide con quella " +
-            "attesa.";
+    static final String WRONG_STRING = "La stringa corrispondente alla mossa in analisi, non coincide con quella "
+            + "attesa.";
 
 
     /**
