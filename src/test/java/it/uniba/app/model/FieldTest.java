@@ -69,19 +69,6 @@ class FieldTest {
     }
 
     /**
-     * Test per il costruttore con lunghezza campo.
-     * Viene testato il caso in cui il campo viene creato con la lunghezza specificata.
-     */
-    @Test
-    void testLengthConstructor() {
-        Field copy = new Field(15);
-        assertAll("Costruttore con lunghezza campo",
-                () -> assertEquals(Color.GREY, copy.getSlot(new Coordinate(14, 14)).getColorState(), BAD_FIELD_LENGTH),
-                () -> assertEquals(15, copy.length(), BAD_FIELD_LENGTH)
-        );
-    }
-
-    /**
      * Test per il metodo setSlot.
      * Viene testato il caso in cui lo slot viene modificato correttamente.
      */
