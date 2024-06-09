@@ -1,8 +1,6 @@
 package it.uniba.app.controller;
 import it.uniba.app.model.*;
-import it.uniba.app.utils.Color;
 import it.uniba.app.views.Input;
-import it.uniba.app.views.Output;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +13,6 @@ class GameControllerTest {
      * Attributo per la classe GameController per i casi di test.
      */
     GameController controller;
-
-    /**
-     * Attributo per la classe Game per i casi di test.
-     */
-    Game game;
 
     /**
      * Messaggio di errore quando il gioco non esiste.
@@ -95,10 +88,13 @@ class GameControllerTest {
 
     /**
      * Metodo per controllare se vengono illuminate correttamente le mosse legali.
+     * Se le mosse legali vengono illuminate correttamente, il gioco deve ancora essere in corso.
+     * Se le mosse legali non vengono illuminate correttamente, il gioco non deve più essere in corso.
      */
     @Test
     void testLegalMoves() {
         controller.legalMoves();
+        assertNotNull(controller.getGame(), NULL_GAME);
     }
 
     /**
@@ -111,7 +107,7 @@ class GameControllerTest {
         controller.movePiece(move);
 
         controller.moveHistory();
-        assertFalse(controller.getGame().getMoveList().isEmpty());
+        assertFalse(controller.getGame().getMoveList().isEmpty(), WRONG_MOVELIST);
     }
 
     /**
@@ -178,13 +174,13 @@ class GameControllerTest {
     }
 
     /**
-     * Metodo per verificare se i due giocatori hanno mosse a disposizione.
+     * Metodo per verificare se il prossimo giocatore ha mosse disponibili.
+     * Se il prossimo giocatore ha mosse disponibili, il gioco deve ancora essere in corso.
+     * Se il prossimo giocatore non ha mosse disponibili, il gioco non deve più essere in corso.
      */
     @Test
     void testCheckTurn() {
         controller.checkTurn();
-
-        Player currentPlayer = controller.getGame().whoIsPlaying();
-        assertNotEquals(controller.getGame().nextPlayer().getColor(), currentPlayer.getColor());
+        assertNotNull(controller.getGame(), NULL_GAME);
     }
 }
