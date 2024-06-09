@@ -3,6 +3,8 @@ package it.uniba.app.model;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import it.uniba.app.utils.Color;
 
 import static it.uniba.app.model.Field.DEFAULT_DIM;
@@ -199,6 +201,33 @@ public class Game {
             }
         }
         setGameField(gameFieldCopy);
+    }
+
+    /**
+     * Verifica, se l'oggetto in entrata è un <code>Game</code>, se è uguale all'oggetto su cui
+     * il metodo è stato invocato.
+     * @param obj oggetto secondo membro dell'uguaglianza.
+     * @return <code>true</code> se le due partite hanno il campo da gioco, l'elenco delle mosse giocate e i giocatori
+     * nel medesimo stato, <code>false</code> in tutti gli altri casi.
+     */
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof Game castObj) {
+            return gameField.equals(castObj.gameField) && moveList.equals(castObj.getMoveList())
+                    && Arrays.equals(getPlayers(), castObj.getPlayers());
+        }
+        return false;
+    }
+
+    /**
+     * Calcola il valore hash relativo alla partita su cui il metodo è invocato.
+     * @return il valore hash del <code>Game</code>.
+     */
+    public int hashCode() {
+        StringBuilder temp = new StringBuilder();
+        temp.append(getGameField().toString()).append(getMoveList().toString()).append(Arrays.toString(getPlayers()));
+        return temp.hashCode();
     }
 
 }
