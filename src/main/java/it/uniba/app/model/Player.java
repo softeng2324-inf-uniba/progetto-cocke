@@ -52,5 +52,29 @@ public class Player {
         return playerName;
     }
 
+    /**
+     * Verifica, se l'oggetto in entrata è un <code>Player</code>, se è uguale all'oggetto su cui
+     * il metodo è stato invocato.
+     * @param obj oggetto secondo membro dell'uguaglianza.
+     * @return <code>true</code> se i due giocatori hanno stesso colore e nome, <code>false</code>
+     * in tutti gli altri casi.
+     */
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof Player castObj) {
+            return getColor().equals(castObj.getColor()) && getName().equals(castObj.getName());
+        }
+        return false;
+    }
+
+    /**
+     * Calcola il valore hash relativo al nome e al colore del <code>Player</code> su cui il metodo è invocato.
+     * @return il valore hash del giocatore.
+     */
+    public int hashCode() {
+        return (getName() + getColor().toString()).hashCode();
+    }
+
 }
 
