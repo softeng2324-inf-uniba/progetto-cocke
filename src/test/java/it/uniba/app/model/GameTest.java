@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
 
@@ -71,6 +69,21 @@ class GameTest {
      * Messaggio di errore restituito quando viene restituito un intervallo di tempo diverso da quello atteso.
      */
     static final String WRONG_COLOR = "Il colore restituito non coincide con quello atteso";
+
+    /**
+     * Messaggio di errore restituito quando due partite risultano diverse tra loro.
+     */
+    static final String BAD_MATCH = "Le partite non risultano uguali";
+
+    /**
+     * Messaggio di errore restituito quando l'hash della partita non coincide con quello atteso.
+     */
+    static final String WRONG_HASH = "L'hash della partita non corrisponde con quello atteso";
+
+    /**
+     * L'hash calcolato su tempGame.
+     */
+    static final int HASH_TEMP_GAME = 839998248;
 
     /**
      * La coordinata utilizzata durante i test.
@@ -350,7 +363,7 @@ class GameTest {
         testField.setSlot(TEST_COORDINATE, tempSlot);
         tempGame.setGameField(testField);
 
-        Field testFieldResult = testField;
+        Field testFieldResult = new Field(testField);
         for (Coordinate coordinate : COORDINATES_CAPTURE) {
             testFieldResult.setSlot(coordinate, tempSlot);
         }
@@ -374,5 +387,27 @@ class GameTest {
         tempGame.captureSlot(TEST_COORDINATE);
         assertEquals(testField, tempGame.getGameField(), BAD_CAPTURE);
     }
+
+    /**
+     * Test per il metodo equals.
+     * Verifica l'uguaglianza tra una copia della partita e la partita effettiva.
+     */
+    @Test
+    void testEquals() {
+        Game copy = new Game(tempGame);
+
+        boolean match = tempGame.equals(copy);
+        assertTrue(match, BAD_MATCH);
+    }
+
+    /**
+     * Test per il metodo hashCode.
+     * Verifica che l'hash restituito corrisponda a quello della partita di test.
+     */
+    @Test
+    void testHashCode() {
+        assertEquals(HASH_TEMP_GAME, tempGame.hashCode(), WRONG_HASH);
+    }
+
 }
 

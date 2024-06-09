@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FieldTest {
 
@@ -37,6 +38,21 @@ class FieldTest {
      * Messaggio di errore quando la dimensione restituita non coincide con quella attesa.
      */
     static final String BAD_LENGTH = "La dimensione restituita non coincide con quella attesa";
+
+    /**
+     * Messaggio di errore restituito quando due campi risultano diversi tra loro.
+     */
+    static final String BAD_MATCH = "I campi non risultano uguali";
+
+    /**
+     * Messaggio di errore restituito quando l'hash del campo non coincide con quello atteso.
+     */
+    static final String WRONG_HASH = "L'hash del campo non corrisponde con quello atteso";
+
+    /**
+     * L'hash calcolato su tempField.
+     */
+    static final int HASH_TEMP_FIELD = 941589020;
 
     /**
      * Coordinata pre impostata prima di ogni test.
@@ -96,6 +112,27 @@ class FieldTest {
     @Test
     void testLength() {
         assertEquals(Field.DEFAULT_DIM, tempField.length(), BAD_LENGTH);
+    }
+
+    /**
+     * Test per il metodo equals.
+     * Verifica l'uguaglianza tra una copia del campo e il campo effettivo.
+     */
+    @Test
+    void testEquals() {
+        Field copy = new Field(tempField);
+
+        boolean match = tempField.equals(copy);
+        assertTrue(match, BAD_MATCH);
+    }
+
+    /**
+     * Test per il metodo hashCode.
+     * Verifica che l'hash restituito corrisponda a quello del campo di test.
+     */
+    @Test
+    void testHashCode() {
+        assertEquals(HASH_TEMP_FIELD, tempField.hashCode(), WRONG_HASH);
     }
 
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CoordinateTest {
 
@@ -33,11 +34,6 @@ class CoordinateTest {
     static final String BAD_COLUMN = "La colonna non è stata modificata correttamente";
 
     /**
-     * Messaggio di errore restituito quando le coordinate risultano diverse.
-     */
-    static final String BAD_EQUALS = "Le coordinate non risultano uguali";
-
-    /**
      * Messaggio di errore restituito quando la stampa della coordinata non è corretta.
      */
     static final String BAD_TO_STRING = "La stampa della coordinata non è corretta";
@@ -46,6 +42,21 @@ class CoordinateTest {
      * Messaggio di errore restituito quando la coordinata non è stata copiata correttamente.
      */
     static final String WRONG_COPY = "La coordinata non è stata copiata correttamante";
+
+    /**
+     * Messaggio di errore restituito quando due coordinate risultano diverse tra loro.
+     */
+    static final String BAD_MATCH = "Le coordinate non risultano uguali";
+
+    /**
+     * Messaggio di errore restituito quando l'hash della coordinata non coincide con quello atteso.
+     */
+    static final String WRONG_HASH = "L'hash della coordinata non corrisponde con quello atteso";
+
+    /**
+     * L'hash calcolato su tempCoordinate.
+     */
+    static final int HASH_TEMP_COORDINATE = 1697;
 
     /**
      * Riga della coordinata di test.
@@ -131,6 +142,27 @@ class CoordinateTest {
     @Test
     void testToString() {
         assertEquals("g6", tempCoordinate.toString(), BAD_TO_STRING);
+    }
+
+    /**
+     * Test per il metodo equals.
+     * Verifica l'uguaglianza tra una copia della coordinata e la coordinata effettiva.
+     */
+    @Test
+    void testEquals() {
+        Coordinate copy = new Coordinate(tempCoordinate);
+
+        boolean match = tempCoordinate.equals(copy);
+        assertTrue(match, BAD_MATCH);
+    }
+
+    /**
+     * Test per il metodo hashCode.
+     * Verifica che l'hash restituito corrisponda a quello della coordinata di test.
+     */
+    @Test
+    void testHashCode() {
+        assertEquals(HASH_TEMP_COORDINATE, tempCoordinate.hashCode(), WRONG_HASH);
     }
 
 }
