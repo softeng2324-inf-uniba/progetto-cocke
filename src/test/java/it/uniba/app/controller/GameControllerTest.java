@@ -43,16 +43,7 @@ class GameControllerTest {
         controller = new GameController();
         controller.startNewGame();
     }
-
-
-    /**
-     * Metodo per controllare se il gioco è null.
-     */
-    @Test
-    void testGetGameIsNull() {
-        assertNull(controller.getGame(), NULL_GAME);
-    }
-
+    
     /**
      * Metodo per controllare se il gioco non è null.
      */
