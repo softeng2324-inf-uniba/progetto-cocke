@@ -81,7 +81,7 @@ public class Field {
      * @return <code>true</code> se i due campi da gioco hanno le medesime caselle nello stesso stato,
      * <code>false</code> in tutti gli altri casi.
      */
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         } else if (obj instanceof Field castObj) {
