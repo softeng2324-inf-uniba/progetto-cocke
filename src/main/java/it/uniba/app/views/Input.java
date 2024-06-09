@@ -73,7 +73,7 @@ public final class Input {
     /**
      * Metodo per testare un comando preso input evitando di leggere da tastiera.
      */
-    public static void setTestCommand(final String command) {
+    public static void setTestCommand(String command) {
         testCommand = command;
     }
 }
