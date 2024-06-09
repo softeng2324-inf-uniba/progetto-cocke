@@ -10,12 +10,12 @@ class MoveTest {
     /**
      * Coordinate del campo da gioco corrispondenti a una casella di partenza di una mossa.
      */
-    private final Coordinate starting = new Coordinate(0,0);
+    private final Coordinate starting = new Coordinate(0, 0);
 
     /**
      * Coordinate del campo da gioco corrispondenti a una casella di arrivo di una mossa.
      */
-    private final Coordinate destination = new Coordinate(1,1);
+    private final Coordinate destination = new Coordinate(1, 1);
 
     /**
      * Mossa temporanea, usata durante i test, inizializzata nel costruttore <code>setUp()</code>.
@@ -26,25 +26,26 @@ class MoveTest {
      * Messaggio di errore relativo alla non corrispondenza della casella di partenza utilizzata per l'inizializzazione
      * della mossa e la stessa ottenuta dalla relativa mossa attraverso il metodo <code>getStartingSlot()</code>.
      */
-    final static String WRONG_START = "Lo slot di partenza non coincide con quello inizializzato nella mossa.";
+    static final String WRONG_START = "Lo slot di partenza non coincide con quello inizializzato nella mossa.";
 
     /**
      * Messaggio di errore relativo alla non corrispondenza della casella di arrivo utilizzata per l'inizializzazione
      * della mossa e la stessa ottenuta dalla relativa mossa attraverso il metodo <code>getChosenSlot()</code>.
      */
-    final static String WRONG_DESTINATION = "Lo slot di arrivo non coincide con quello inizializzato nella mossa.";
+    static final String WRONG_DESTINATION = "Lo slot di arrivo non coincide con quello inizializzato nella mossa.";
 
     /**
      * Messaggio di errore nel caso in cui la distanza ipotizzata tra le due caselle, coinvolte nella mossa, non
      * corrisponda a quella calcolata attraverso il metodo <code>getDistance()</code>.
      */
-    final static String WRONG_DISTANCE = "La distanza calcolata tra le due coordinate non coincide con quella attesa.";
+    static final String WRONG_DISTANCE = "La distanza calcolata tra le due coordinate non coincide con quella attesa.";
 
     /**
-     * Messaggio di errore corrispondente alla disuguaglianza tra la stringa calcolata attraverso il metodo <code>toString()</code>
-     * della mossa su cui il metodo è invocato, e quella ipotizzata.
+     * Messaggio di errore corrispondente alla disuguaglianza tra la stringa calcolata attraverso il metodo
+     * <code>toString()</code> della mossa su cui il metodo è invocato, e quella ipotizzata.
      */
-    final static String WRONG_STRING = "La stringa corrispondente alla mossa in analisi, non coincide con quella attesa.";
+    static final String WRONG_STRING = "La stringa corrispondente alla mossa in analisi, non coincide con quella " +
+            "attesa.";
 
 
     /**
