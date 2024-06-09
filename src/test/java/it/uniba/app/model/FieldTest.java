@@ -39,6 +39,16 @@ class FieldTest {
     static final String BAD_LENGTH = "La dimensione restituita non coincide con quella attesa";
 
     /**
+     * Coordinata pre impostata prima di ogni test.
+     */
+    static final Coordinate TEMP_COORDINATE = new Coordinate(5, 5);
+
+    /**
+     * Coordinata utilizzata per effettuare test.
+     */
+    static final Coordinate TEST_COORDINATE = new Coordinate(3, 3);
+
+    /**
      * Imposta il campo temporaneo di default per i test.
      * Imposta uno slot di colore GOLD nella posizione (5,5).
      */
@@ -47,7 +57,7 @@ class FieldTest {
         tempField = new Field();
         tempSlot = new Slot();
         tempSlot.setColorState(Color.GOLD);
-        tempField.setSlot(new Coordinate(5, 5), tempSlot);
+        tempField.setSlot(TEMP_COORDINATE, tempSlot);
     }
 
     /**
@@ -66,8 +76,8 @@ class FieldTest {
      */
     @Test
     void testSetSlot() {
-        tempField.setSlot(new Coordinate(3, 3), tempSlot);
-        assertEquals(tempSlot.getColorState(), tempField.getSlot(new Coordinate(3, 3)).getColorState(), BAD_SLOT);
+        tempField.setSlot(TEST_COORDINATE, tempSlot);
+        assertEquals(tempSlot.getColorState(), tempField.getSlot(TEST_COORDINATE).getColorState(), BAD_SLOT);
     }
 
     /**
@@ -76,7 +86,7 @@ class FieldTest {
      */
     @Test
     void testGetSlot() {
-        assertEquals(Color.GOLD, tempField.getSlot(new Coordinate(5, 5)).getColorState(), BAD_RETURN_SLOT);
+        assertEquals(Color.GOLD, tempField.getSlot(TEMP_COORDINATE).getColorState(), BAD_RETURN_SLOT);
     }
 
     /**

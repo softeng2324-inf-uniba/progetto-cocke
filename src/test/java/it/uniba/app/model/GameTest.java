@@ -73,6 +73,45 @@ class GameTest {
     static final String WRONG_COLOR = "Il colore restituito non coincide con quello atteso";
 
     /**
+     * La coordinata utilizzata durante i test.
+     */
+    static final Coordinate TEST_COORDINATE = new Coordinate(2, 4);
+
+    /**
+     * Coordinate circostanti la coordinata di test.
+     */
+    static final Coordinate[] COORDINATES_CAPTURE = {
+            new Coordinate(2, 3),
+            new Coordinate(2, 5),
+            new Coordinate(1, 3),
+            new Coordinate(1, 4),
+            new Coordinate(1, 5),
+            new Coordinate(3, 3),
+            new Coordinate(3, 4),
+            new Coordinate(3, 5)
+    };
+
+    /**
+     * Coordinata a distanza 2 rispetto a quella di test.
+     */
+    static final Coordinate NEAR_COORDINATE = new Coordinate(4, 4);
+
+    /**
+     * Millisecondi da attendere per il test del tempo trascorso.
+     */
+    static final int WAIT_MILLIS = 2000;
+
+    /**
+     * Secondi trascorsi dall'inizio del gioco.
+     */
+    static final int SECOND_WAITED = 2;
+
+    /**
+     * Numero di pedine sul campo.
+     */
+    static final int SLOT_ON_FIELD = 5;
+
+    /**
      * Imposta il gioco temporaneo di default per i test.
      */
     @BeforeEach
@@ -119,7 +158,7 @@ class GameTest {
         Field testField = new Field();
         Slot tempSlot = new Slot();
         tempSlot.setColorState(Color.ORANGE);
-        testField.setSlot(new Coordinate(2, 4), tempSlot);
+        testField.setSlot(TEST_COORDINATE, tempSlot);
 
         tempGame.setGameField(testField);
         assertEquals(testField, tempGame.getGameField(), BAD_FIELD_SET);
@@ -141,8 +180,8 @@ class GameTest {
     @Test
     void testSetMoveList() {
         ArrayList<Move> testMoveList = new ArrayList<>();
-        testMoveList.add(new Move(new Coordinate(2, 1), new Coordinate(4, 3)));
-        testMoveList.add(new Move(new Coordinate(0, 5), new Coordinate(7, 2)));
+        testMoveList.add(new Move(COORDINATES_CAPTURE[0], COORDINATES_CAPTURE[1]));
+        testMoveList.add(new Move(COORDINATES_CAPTURE[1], COORDINATES_CAPTURE[0]));
 
         tempGame.setMoveList(testMoveList);
         assertEquals(testMoveList, tempGame.getMoveList(), BAD_MOVE_LIST_SET);
@@ -166,10 +205,10 @@ class GameTest {
     @Test
     void testWhoIsPlayingFirstPlayer() {
         ArrayList<Move> testList = tempGame.getMoveList();
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
         tempGame.setMoveList(testList);
 
         assertEquals(tempGame.getPlayer(0), tempGame.whoIsPlaying(), WRONG_PLAYER);
@@ -182,9 +221,9 @@ class GameTest {
     @Test
     void testWhoIsPlayingSecondPlayer() {
         ArrayList<Move> testList = tempGame.getMoveList();
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
         tempGame.setMoveList(testList);
 
         assertEquals(tempGame.getPlayer(1), tempGame.whoIsPlaying(), WRONG_PLAYER);
@@ -209,9 +248,9 @@ class GameTest {
     @Test
     void testNextPlayerFirstPlayer() {
         ArrayList<Move> testList = tempGame.getMoveList();
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
         tempGame.setMoveList(testList);
 
         assertEquals(tempGame.getPlayer(0), tempGame.nextPlayer(), WRONG_PLAYER);
@@ -224,8 +263,8 @@ class GameTest {
     @Test
     void testNextPlayerSecondPlayer() {
         ArrayList<Move> testList = tempGame.getMoveList();
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
-        testList.add(new Move(new Coordinate(0, 0), new Coordinate(0, 0)));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
+        testList.add(new Move(TEST_COORDINATE, TEST_COORDINATE));
         tempGame.setMoveList(testList);
 
         assertEquals(tempGame.getPlayer(1), tempGame.nextPlayer(), WRONG_PLAYER);
@@ -252,17 +291,15 @@ class GameTest {
         Field testField = new Field();
         Slot tempSlot = new Slot();
         tempSlot.setColorState(Color.WHITE);
-        testField.setSlot(new Coordinate(0, 0), tempSlot);
-        testField.setSlot(new Coordinate(0, 1), tempSlot);
-        testField.setSlot(new Coordinate(0, 5), tempSlot);
-        testField.setSlot(new Coordinate(6, 6), tempSlot);
-        testField.setSlot(new Coordinate(5, 5), tempSlot);
+        for (int i = 0; i < SLOT_ON_FIELD; i++) {
+            testField.setSlot(COORDINATES_CAPTURE[i], tempSlot);
+        }
         tempSlot = new Slot();
         tempSlot.setColorState(Color.BLACK);
-        testField.setSlot(new Coordinate(4, 4), tempSlot);
+        testField.setSlot(NEAR_COORDINATE, tempSlot);
         tempGame.setGameField(testField);
 
-        assertEquals(5, tempGame.countPieces(Color.WHITE), WRONG_PIECES_NUMBER);
+        assertEquals(SLOT_ON_FIELD, tempGame.countPieces(Color.WHITE), WRONG_PIECES_NUMBER);
     }
 
     /**
@@ -271,9 +308,9 @@ class GameTest {
      */
     @Test
     void testGetElapsedTime() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(WAIT_MILLIS);
 
-        assertEquals(2, tempGame.getElapsedTime().getSeconds(), WRONG_DURATION);
+        assertEquals(SECOND_WAITED, tempGame.getElapsedTime().getSeconds(), WRONG_DURATION);
     }
 
     /**
@@ -285,14 +322,12 @@ class GameTest {
         Field testField = tempGame.getGameField();
         Slot tempSlot = new Slot();
         tempSlot.setColorState(Color.BLACK);
-        testField.setSlot(new Coordinate(0, 0), tempSlot);
-        testField.setSlot(new Coordinate(0, 1), tempSlot);
-        testField.setSlot(new Coordinate(0, 5), tempSlot);
-        testField.setSlot(new Coordinate(6, 6), tempSlot);
-        testField.setSlot(new Coordinate(5, 5), tempSlot);
+        for (Coordinate coordinate : COORDINATES_CAPTURE) {
+            testField.setSlot(coordinate, tempSlot);
+        }
         tempSlot = new Slot();
         tempSlot.setColorState(Color.WHITE);
-        testField.setSlot(new Coordinate(4, 4), tempSlot);
+        testField.setSlot(NEAR_COORDINATE, tempSlot);
         tempGame.setGameField(testField);
 
         assertEquals(Color.BLACK, tempGame.colorWinner(), WRONG_COLOR);
@@ -307,33 +342,37 @@ class GameTest {
         Field testField = tempGame.getGameField();
         Slot tempSlot = new Slot();
         tempSlot.setColorState(Color.BLACK);
-        testField.setSlot(new Coordinate(0, 0), tempSlot);
-        testField.setSlot(new Coordinate(0, 1), tempSlot);
-        testField.setSlot(new Coordinate(0, 2), tempSlot);
-        testField.setSlot(new Coordinate(1, 0), tempSlot);
-        testField.setSlot(new Coordinate(1, 2), tempSlot);
-        testField.setSlot(new Coordinate(2, 0), tempSlot);
-        testField.setSlot(new Coordinate(2, 1), tempSlot);
-        testField.setSlot(new Coordinate(2, 2), tempSlot);
-        testField.setSlot(new Coordinate(2, 3), tempSlot);
-        testField.setSlot(new Coordinate(3, 1), tempSlot);
+        for (Coordinate coordinate : COORDINATES_CAPTURE) {
+            testField.setSlot(coordinate, tempSlot);
+        }
+        tempSlot = new Slot();
         tempSlot.setColorState(Color.WHITE);
-        testField.setSlot(new Coordinate(1, 1), tempSlot);
+        testField.setSlot(TEST_COORDINATE, tempSlot);
         tempGame.setGameField(testField);
 
         Field testFieldResult = testField;
-        tempSlot.setColorState(Color.WHITE);
-        testFieldResult.setSlot(new Coordinate(0, 0), tempSlot);
-        testFieldResult.setSlot(new Coordinate(0, 1), tempSlot);
-        testFieldResult.setSlot(new Coordinate(0, 2), tempSlot);
-        testFieldResult.setSlot(new Coordinate(1, 0), tempSlot);
-        testFieldResult.setSlot(new Coordinate(1, 2), tempSlot);
-        testFieldResult.setSlot(new Coordinate(2, 0), tempSlot);
-        testFieldResult.setSlot(new Coordinate(2, 1), tempSlot);
-        testFieldResult.setSlot(new Coordinate(2, 2), tempSlot);
+        for (Coordinate coordinate : COORDINATES_CAPTURE) {
+            testFieldResult.setSlot(coordinate, tempSlot);
+        }
 
-        tempGame.captureSlot(new Coordinate(1, 1));
+        tempGame.captureSlot(TEST_COORDINATE);
         assertEquals(testFieldResult, tempGame.getGameField(), BAD_CAPTURE);
+    }
+
+    /**
+     * Test del metodo captureSlot.
+     * Verifica che il metodo capture slot non cambi colore alle caselle a distanza 2.
+     */
+    @Test
+    void testCaptureSlotNearSlot() {
+        Field testField = tempGame.getGameField();
+        Slot tempSlot = new Slot();
+        tempSlot.setColorState(Color.BLACK);
+        testField.setSlot(NEAR_COORDINATE, tempSlot);
+        tempGame.setGameField(testField);
+
+        tempGame.captureSlot(TEST_COORDINATE);
+        assertEquals(testField, tempGame.getGameField(), BAD_CAPTURE);
     }
 }
 

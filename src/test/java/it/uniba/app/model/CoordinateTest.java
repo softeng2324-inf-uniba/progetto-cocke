@@ -48,11 +48,31 @@ class CoordinateTest {
     static final String WRONG_COPY = "La coordinata non è stata copiata correttamante";
 
     /**
+     * Riga della coordinata di test.
+     */
+    static final int COORDINATE_ROW = 5;
+
+    /**
+     * Colonna della coordinata di test.
+     */
+    static final int COORDINATE_COLUMN = 6;
+
+    /**
+     * Riga di test.
+     */
+    static final int TEST_ROW = 10;
+
+    /**
+     * Colonna di test
+     */
+    static final int TEST_COLUMN = 10;
+
+    /**
      * Imposta le coordinate temporanee di default (5,6) per i test.
      */
     @BeforeEach
     void setUp() {
-        tempCoordinate = new Coordinate(5, 6);
+        tempCoordinate = new Coordinate(COORDINATE_ROW, COORDINATE_COLUMN);
     }
 
     /**
@@ -61,8 +81,8 @@ class CoordinateTest {
      */
     @Test
     void testSetRow() {
-        tempCoordinate.setRow(10);
-        assertEquals(10, tempCoordinate.getRow(), BAD_ROW);
+        tempCoordinate.setRow(TEST_ROW);
+        assertEquals(TEST_ROW, tempCoordinate.getRow(), BAD_ROW);
     }
 
     /**
@@ -71,7 +91,7 @@ class CoordinateTest {
      */
     @Test
     void testGetRow() {
-        assertEquals(5, tempCoordinate.getRow(), WRONG_ROW);
+        assertEquals(COORDINATE_ROW, tempCoordinate.getRow(), WRONG_ROW);
     }
 
     /**
@@ -80,8 +100,8 @@ class CoordinateTest {
      */
     @Test
     void testSetColumn() {
-        tempCoordinate.setColumn(10);
-        assertEquals(10, tempCoordinate.getColumn(), BAD_COLUMN);
+        tempCoordinate.setColumn(TEST_COLUMN);
+        assertEquals(TEST_COLUMN, tempCoordinate.getColumn(), BAD_COLUMN);
     }
 
     /**
@@ -90,7 +110,7 @@ class CoordinateTest {
      */
     @Test
     void testGetColumn() {
-        assertEquals(6, tempCoordinate.getColumn(), WRONG_COLUMN);
+        assertEquals(COORDINATE_COLUMN, tempCoordinate.getColumn(), WRONG_COLUMN);
     }
 
     /**
@@ -110,7 +130,7 @@ class CoordinateTest {
      */
     @Test
     void testEqualsCoordinate() {
-        Coordinate equalCoordinate = new Coordinate(5, 6);
+        Coordinate equalCoordinate = new Coordinate(COORDINATE_ROW, COORDINATE_COLUMN);
 
         assertEquals(equalCoordinate, tempCoordinate, BAD_EQUALS);
     }
