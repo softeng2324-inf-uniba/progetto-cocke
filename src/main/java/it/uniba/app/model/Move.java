@@ -6,13 +6,18 @@ package it.uniba.app.model;
  */
 public class Move {
     /**
+     * Distanza massima tra le coordinate delle caselle coinvolte in una mossa.
+     */
+    public static final int MAX_DISTANCE = 2;
+
+    /**
      * startingSlot rappresenta la casella iniziale.
      */
-    private Coordinate startingSlot;
+    private final Coordinate startingSlot;
     /**
      * chosenSlot rappresenta la casella d'arrivo.
      */
-    private Coordinate chosenSlot;
+    private final Coordinate chosenSlot;
 
     /**
      * Costruttore della classe <code>Move</code> che utilizza le coordinate delle caselle di partenza e di arrivo in
@@ -53,6 +58,15 @@ public class Move {
     }
 
     /**
+     * Verifica la correttezza della distanza tra le coordinate delle caselle coinvolte in una mossa.
+     * @param distance distanza tra le caselle sul campo da gioco.
+     * @return (true) se la distanza è consentita, (false) in caso contrario.
+     */
+    public static boolean checkDistance(final int distance) {
+        return distance > 0 && distance <= MAX_DISTANCE;
+    }
+
+    /**
      * Restituisce la mossa nel formato per la stampa.
      * @return una stringa in formato "casella di partenza-casella di arrivo".
      */
@@ -60,7 +74,6 @@ public class Move {
     public String toString() {
         Coordinate sSlot = getStartingSlot();
         Coordinate cSlot = getChosenSlot();
-        String formatoMossa = sSlot + "-" + cSlot;
-        return formatoMossa;
+        return sSlot + "-" + cSlot;
     }
 }

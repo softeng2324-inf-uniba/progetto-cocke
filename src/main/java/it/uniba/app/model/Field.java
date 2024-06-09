@@ -8,7 +8,7 @@ public class Field {
     /**
      * Contiene le caselle del campo da gioco.
      */
-    private Slot[][] gameboard;
+    private final Slot[][] gameboard;
     /**
      * Dimensione del campo da gioco di default.
      */
@@ -71,4 +71,5 @@ public class Field {
     public int length() {
         return gameboard.length;
     }
+
 }

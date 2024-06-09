@@ -29,15 +29,6 @@ public class Slot {
     }
 
     /**
-     * Costruttore della classe <code>Slot</code> che inizializza il colore della stessa con quello passato
-     * come parametro attuale.
-     * @param newColorState il colore della casella da inizializzare.
-     */
-    public Slot(final Color newColorState) {
-        colorState = newColorState;
-    }
-
-    /**
      * Restituisce lo stato della casella.
      * @return stato della casella sulla quale è stato invocato il metodo.
      */
@@ -58,7 +49,10 @@ public class Slot {
      * @param distance la distanza per cui evidenziare.
      */
     public void markSlot(final int distance) {
-        if ((getColorState() != Color.WHITE) && (getColorState() != Color.BLACK) && (getColorState() != Color.PINK)) {
+        if ((getColorState() != Color.WHITE)
+                && (getColorState() != Color.BLACK)
+                && (getColorState() != Color.PINK)
+                && (getColorState() != Color.DARK_GREY)) {
             switch (distance) {
                 case 1:
                     if (getColorState() == Color.ORANGE) {
