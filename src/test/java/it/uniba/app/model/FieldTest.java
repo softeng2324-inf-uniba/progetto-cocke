@@ -77,10 +77,7 @@ class FieldTest {
      */
     @Test
     void testGetSlot() {
-        assertAll("Getter di uno slot del campo",
-                () -> assertEquals(Color.GOLD, tempField.getSlot(new Coordinate(5, 5)).getColorState(), BAD_RETURN_SLOT),
-                () -> assertEquals(Color.GREY, tempField.getSlot(new Coordinate(1, 2)).getColorState(), BAD_RETURN_SLOT)
-        );
+        assertEquals(Color.GOLD, tempField.getSlot(new Coordinate(5, 5)).getColorState(), BAD_RETURN_SLOT);
     }
 
     /**

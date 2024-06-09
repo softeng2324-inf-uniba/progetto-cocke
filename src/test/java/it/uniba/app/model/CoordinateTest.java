@@ -13,34 +13,39 @@ class CoordinateTest {
     Coordinate tempCoordinate;
 
     /**
-     * Messaggio di errore quando la riga non è corretta.
+     * Messaggio di errore restituito quando la riga restituita non è corretta.
      */
     final static String WRONG_ROW = "La riga restituita non coincide con quella attesa";
 
     /**
-     * Messaggio di errore quando la colonna non è corretta.
+     * Messaggio di errore restituito quando la colonna restituita non è corretta.
      */
     final static String WRONG_COLUMN = "La colonna restituita non coincide con quella attesa";
 
     /**
-     * Messaggio di errore quando la riga non è stata modificata correttamente.
+     * Messaggio di errore restituito quando la riga non è stata modificata correttamente.
      */
     final static String BAD_ROW = "La riga non è stata modificata correttamente";
 
     /**
-     * Messaggio di errore quando la colonna non è stata modificata correttamente.
+     * Messaggio di errore restituito quando la colonna non è stata modificata correttamente.
      */
     final static String BAD_COLUMN = "La colonna non è stata modificata correttamente";
 
     /**
-     * Messaggio di errore quando le coordinate risultano diverse.
+     * Messaggio di errore restituito quando le coordinate risultano diverse.
      */
     final static String BAD_EQUALS = "Le coordinate non risultano uguali";
 
     /**
-     * Messaggio di errore quando la stampa della coordinata non è corretta.
+     * Messaggio di errore restituito quando la stampa della coordinata non è corretta.
      */
     final static String BAD_TO_STRING = "La stampa della coordinata non è corretta";
+
+    /**
+     * Messaggio di errore restituito quando la coordinata non è stata copiata correttamente.
+     */
+    final static String WRONG_COPY = "La coordinata non è stata copiata correttamante";
 
     /**
      * Imposta le coordinate temporanee di default (5,6) per i test.
@@ -95,10 +100,8 @@ class CoordinateTest {
     @Test
     void testCopyConstructor() {
         Coordinate copy = new Coordinate(tempCoordinate);
-        assertAll("Costruttore di copia",
-                () -> assertEquals(5, copy.getRow(), WRONG_ROW),
-                () -> assertEquals(6, copy.getColumn(), WRONG_COLUMN)
-        );
+
+        assertEquals(tempCoordinate, copy, WRONG_COPY);
     }
 
     /**
@@ -108,6 +111,7 @@ class CoordinateTest {
     @Test
     void testEqualsCoordinate() {
         Coordinate equalCoordinate = new Coordinate(5, 6);
+
         assertEquals(equalCoordinate, tempCoordinate, BAD_EQUALS);
     }
 
