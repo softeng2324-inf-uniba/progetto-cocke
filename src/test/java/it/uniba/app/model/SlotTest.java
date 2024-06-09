@@ -13,29 +13,29 @@ class SlotTest {
     private final Slot testSlot = new Slot(Color.GREY);
 
     /**
-     * Messaggio d'errore nel caso in cui la copia eseguita attraverso il costruttore di copia della classe <code>Slot</code>,
-     * non corrisponda all'istanza di <code>Slot</code> in ingresso al costruttore stesso.
+     * Messaggio d'errore nel caso in cui la copia eseguita attraverso il costruttore di copia della classe
+     * <code>Slot</code>, non corrisponda all'istanza di <code>Slot</code> in ingresso al costruttore stesso.
      */
-    private final static String WRONG_COPY = "La copia della casella non corrisponde alla casella copiata.";
+    private static final String WRONG_COPY = "La copia della casella non corrisponde alla casella copiata.";
 
     /**
      * Messaggio d'errore nel caso in cui il colore dello <code>Slot</code> in esame non corrisponda al colore atteso.
      */
-    private final static String WRONG_GET_COLOR = "Il colore della casella in esame non corrisponde con quello atteso.";
+    private static final String WRONG_GET_COLOR = "Il colore della casella in esame non corrisponde con quello atteso.";
 
     /**
      * Messaggio d'errore nel caso in cui il colore dello <code>Slot</code> modificato attraverso il metodo
      * <code>setColorState()</code> non corrisponda al colore atteso.
      */
-    private final static String WRONG_SET_COLOR = "Il colore inserito nella casella in esame non corrisponde con quello" +
-            " atteso.";
+    private static final String WRONG_SET_COLOR = "Il colore inserito nella casella in esame non corrisponde con"
+            + " quello atteso.";
 
     /**
      * Messaggio d'errore nel caso in cui il colore dello <code>Slot</code>, modificato attraverso il metodo
      * <code>markSlot()</code>, basato sulla distanza rispetto a una data casella, non corrisponda al colore previsto.
      */
-    private final static String WRONG_MARK_SLOT = "Il colore della casella in esame, in base alla distanza prevista, " +
-            "non corrisponde con quello atteso.";
+    private static final String WRONG_MARK_SLOT = "Il colore della casella in esame, in base alla distanza prevista, "
+            + "non corrisponde con quello atteso.";
 
     /**
      * Messaggio d'errore nel caso in cui gli <code>Slot</code> in esame, uno copia dell'altro, risultino diversi.
@@ -46,8 +46,13 @@ class SlotTest {
      * Messaggio d'errore nel caso in cui il valore hash calcolato attraverso il metodo <code>hashCode()</code> sia
      * diverso da quello atteso.
      */
-    private static final String WRONG_HASH = "Il valore hash, della casella, calcolato non corrisponde a quello atteso.";
+    private static final String WRONG_HASH = "Il valore hash, della casella, calcolato non corrisponde a quello "
+            + "atteso.";
 
+    /**
+     * Valore hash di testSlot con colore <code>Color.GREY</code>.
+     */
+    private static final int HASH_GREY_SLOT = 2196191;
 
     /**
      * Test del costruttore di copia della classe <code>Slot</code>, per cui viene inizializzato una nuova casella con
@@ -115,7 +120,7 @@ class SlotTest {
      */
     @Test
     void testHashCode() {
-        assertEquals(2196191, testSlot.hashCode(), WRONG_HASH);
+        assertEquals(HASH_GREY_SLOT, testSlot.hashCode(), WRONG_HASH);
     }
 
 }
