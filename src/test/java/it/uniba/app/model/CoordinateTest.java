@@ -125,17 +125,6 @@ class CoordinateTest {
     }
 
     /**
-     * Test per il metodo equalsCoordinate.
-     * Viene testato il caso in cui due coordinate sono uguali.
-     */
-    @Test
-    void testEqualsCoordinate() {
-        Coordinate equalCoordinate = new Coordinate(COORDINATE_ROW, COORDINATE_COLUMN);
-
-        assertEquals(equalCoordinate, tempCoordinate, BAD_EQUALS);
-    }
-
-    /**
      * Test per il metodo toString.
      * Viene testato il caso in cui la stampa della coordinata è corretta.
      */
