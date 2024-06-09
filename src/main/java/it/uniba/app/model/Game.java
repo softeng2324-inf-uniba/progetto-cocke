@@ -48,19 +48,6 @@ public class Game {
     }
 
     /**
-     * Costruttore della classe <code>Game</code> che inizializza i rispettivi attributi, usando gli oggetti di tipo
-     * <code>Player</code> passati come dati in entrata.
-     * @param newPlayers Array contenente i giocatori, con i rispettivi campi inizializzati.
-     */
-    public Game(final Player[] newPlayers) {
-        gameField = new Field();
-        moveList = new ArrayList<>();
-        players = new Player[2];
-        System.arraycopy(newPlayers, 0, players, 0, newPlayers.length);
-        startTime = ZonedDateTime.now();
-    }
-
-    /**
      * Costruttore di copia della classe <code>Game</code>, che restituisce una copia della partita passata in ingresso.
      * @param srcGame partita in ingresso da copiare.
      */
@@ -123,19 +110,10 @@ public class Game {
     }
 
     /**
-     * Inserisce un'istanza di <code>Player</code> come giocatore della partita su cui tale metodo è invocato.
-     * @param srcPlayer giocatore da inserire nella posizione <code>index</code> richiesta nella partita.
-     * @param index indice della posizione in cui inserire il giocatore <code>srcPlayer</code>.
-     */
-    public void setPlayer(final Player srcPlayer, final int index) {
-        players[index] = new Player(srcPlayer);
-    }
-
-    /**
      * Restituisce l'istante di tempo in cui è iniziato il gioco.
      * @return l'istante di tempo in cui è iniziato il gioco.
      */
-    public ZonedDateTime getStartTime() {
+    private ZonedDateTime getStartTime() {
         return startTime;
     }
 
