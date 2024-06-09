@@ -11,7 +11,7 @@ class MessageTest {
     /**
      * Variabile di istanza di tipo Message per i casi di test.
      */
-    Message message;
+    private Message message;
 
     /**
      * Variabile di istanza che rappresenta il messaggio di errore
