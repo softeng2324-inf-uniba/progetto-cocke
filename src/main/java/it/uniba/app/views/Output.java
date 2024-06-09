@@ -34,13 +34,6 @@ public final class Output {
     private static final String WINNER_PATH = Paths.get(
             System.getProperty("user.dir"), RELATIVE_WINNER_PATH).toString();
 
-
-
-    /**
-     * Costruttore privato per evitare che la classe Output venga istanziata.
-     */
-    private Output() { }
-
     /**
      * Colore di background di default.
      */
@@ -50,6 +43,12 @@ public final class Output {
      * Colore di background di default.
      */
     public static final Color DEFAULT_CHAR = Color.WHITE;
+
+    /**
+     * Costruttore privato per evitare che la classe Output venga istanziata.
+     */
+    private Output() { }
+
 
     /**
      * Stampa le linee interne del campo di gioco.
@@ -140,23 +139,6 @@ public final class Output {
     }
 
     /**
-     * Metodo che mostra a video il campo vuoto su cui giocare.
-     */
-    public static void printEmptyField() {
-        printTopField();
-        int i;
-        for (i = 0; i < Field.DEFAULT_DIM - 1; i++) {
-            printNumLine(i + 1);
-            System.out.print("╠═══╬");
-            printCrossedHoLine();
-            System.out.print("╬═══╣");
-            System.out.print("\n");
-        }
-        printNumLine(i + 1);
-        printBottomField();
-    }
-
-    /**
      * Metodo che stampa la parte superiore del campo.
      */
     private static void printTopField() {
@@ -190,6 +172,24 @@ public final class Output {
         }
         System.out.println("═════╝");
     }
+
+    /**
+     * Metodo che mostra a video il campo vuoto su cui giocare.
+     */
+    public static void printEmptyField() {
+        printTopField();
+        int i;
+        for (i = 0; i < Field.DEFAULT_DIM - 1; i++) {
+            printNumLine(i + 1);
+            System.out.print("╠═══╬");
+            printCrossedHoLine();
+            System.out.print("╬═══╣");
+            System.out.print("\n");
+        }
+        printNumLine(i + 1);
+        printBottomField();
+    }
+
 
     /**
      * Metodo che stampa a video il campo di gioco con le pedine nella situazione attuale.

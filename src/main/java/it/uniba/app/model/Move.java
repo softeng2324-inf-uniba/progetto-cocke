@@ -6,13 +6,18 @@ package it.uniba.app.model;
  */
 public class Move {
     /**
+     * Distanza massima tra le coordinate delle caselle coinvolte in una mossa.
+     */
+    public static final int MAX_DISTANCE = 2;
+
+    /**
      * startingSlot rappresenta la casella iniziale.
      */
-    private Coordinate startingSlot;
+    private final Coordinate startingSlot;
     /**
      * chosenSlot rappresenta la casella d'arrivo.
      */
-    private Coordinate chosenSlot;
+    private final Coordinate chosenSlot;
 
     /**
      * Costruttore della classe <code>Move</code> che utilizza le coordinate delle caselle di partenza e di arrivo in
@@ -26,29 +31,11 @@ public class Move {
     }
 
     /**
-     * Costruttore di copia della classe <code>Move</code> che inizializza le caselle di arrivo e di partenza con quelle
-     * della mossa in ingresso.
-     * @param srcMove mossa della quale copiare i riferimenti alle caselle di partenza e di arrivo.
-     */
-    public Move(final Move srcMove) {
-        startingSlot = new Coordinate(srcMove.getStartingSlot());
-        chosenSlot = new Coordinate(srcMove.getChosenSlot());
-    }
-
-    /**
      * Restituisce la coordinata della casella di partenza.
      * @return coordinata della casella di partenza.
      */
     public Coordinate getStartingSlot() {
         return new Coordinate(startingSlot);
-    }
-
-    /**
-     * Imposta la coordinata della casella di partenza.
-     * @param starting coordinata della casella di partenza.
-     */
-    public void setStartingSlot(final Coordinate starting) {
-        startingSlot = new Coordinate(starting);
     }
 
     /**
@@ -60,14 +47,6 @@ public class Move {
     }
 
     /**
-     * Inizializza la coordinata della casella di arrivo.
-     * @param chosen coordinata della casella di arrivo.
-     */
-    public void setChosenSlot(final Coordinate chosen) {
-        chosenSlot = new Coordinate(chosen);
-    }
-
-    /**
      * Data una mossa, ne calcola la distanza tra le coordinate ad'essa appartenenti.
      * @return restituisce la distanza tra le coordinate contenute nella mossa.
      */
@@ -76,6 +55,15 @@ public class Move {
         Coordinate destination = getChosenSlot();
         return java.lang.Math.max(java.lang.Math.abs(start.getRow() - destination.getRow()),
                 java.lang.Math.abs(start.getColumn() - destination.getColumn()));
+    }
+
+    /**
+     * Verifica la correttezza della distanza tra le coordinate delle caselle coinvolte in una mossa.
+     * @param distance distanza tra le caselle sul campo da gioco.
+     * @return (true) se la distanza è consentita, (false) in caso contrario.
+     */
+    public static boolean checkDistance(final int distance) {
+        return distance > 0 && distance <= MAX_DISTANCE;
     }
 
     /**
