@@ -1,18 +1,25 @@
 package it.uniba.app.controller;
-import it.uniba.app.model.*;
+import it.uniba.app.model.Coordinate;
+import it.uniba.app.model.Field;
+import it.uniba.app.model.Move;
+import it.uniba.app.model.Slot;
 import it.uniba.app.views.Input;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class GameControllerTest {
     /**
      * Attributo per la classe GameController per i casi di test.
      */
-    GameController controller;
+    private GameController controller;
 
     /**
      * Messaggio di errore quando il gioco non esiste.
@@ -43,7 +50,7 @@ class GameControllerTest {
         controller = new GameController();
         controller.startNewGame();
     }
-    
+
     /**
      * Metodo per controllare se il gioco non è null.
      */
@@ -151,7 +158,8 @@ class GameControllerTest {
      */
     @Test
     void testWrongMovePiece() {
-        Move move = new Move(new Coordinate(0, 0), new Coordinate(0, 5));
+        final int COLUMN_COORDINATE = 5;
+        Move move = new Move(new Coordinate(0, 0), new Coordinate(0, COLUMN_COORDINATE));
         controller.movePiece(move);
 
         Field field = controller.getGame().getGameField();
