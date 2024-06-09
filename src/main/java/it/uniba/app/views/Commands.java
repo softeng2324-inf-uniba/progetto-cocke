@@ -36,7 +36,7 @@ public class Commands {
     /**
      * Lista contenente le coordinate degli slot da bloccare.
      */
-    private static Vector<Coordinate> coordsToLock = new Vector<>();
+    private static final Vector<Coordinate> COORDS_TO_LOCK = new Vector<>();
 
     /**
      * Metodo che determina la presenza di una coordinata nella lista coordsToLock.
@@ -44,10 +44,10 @@ public class Commands {
      * @return esito del controllo.
      */
     public static boolean isInCoordsToLock(final Coordinate c) {
-        for (int i = 0; i < coordsToLock.size(); i++) {
-           if ((coordsToLock.get(i).getRow() == c.getRow()) && (coordsToLock.get(i).getColumn() == c.getColumn())) {
-               return true;
-           }
+        for (Coordinate coordinate : COORDS_TO_LOCK) {
+            if ((coordinate.getRow() == c.getRow()) && (coordinate.getColumn() == c.getColumn())) {
+                return true;
+            }
         }
         return false;
     }
@@ -58,7 +58,7 @@ public class Commands {
      * @return elemento da restituire.
      */
     public static Coordinate getCoordToLock(final int pos) {
-        return coordsToLock.get(pos);
+        return COORDS_TO_LOCK.get(pos);
     }
 
     /**
@@ -66,7 +66,7 @@ public class Commands {
      * @return dimensione del vettore coordsToLock.
      */
     public static int getCoordsToLockSize() {
-        return coordsToLock.size();
+        return COORDS_TO_LOCK.size();
     }
 
     /**
@@ -108,8 +108,6 @@ public class Commands {
             if (answer.equals("s")) {
                 game.setStillPlaying(false);
             } else if (!answer.equals("n")) {
-
-                //aggiungere questo messaggio nella funzione printMessages
                 Output.printMessages(Message.BAD_CONFIRMATION_EXIT);
 
             }
@@ -198,7 +196,7 @@ public class Commands {
                     if (getCoordsToLockSize() < COORDSTOLOCK_DIM) {
                         Coordinate coord = new Coordinate(row, column);
                         if (!isInCoordsToLock(coord)) {
-                            coordsToLock.add(coord);
+                            COORDS_TO_LOCK.add(coord);
                         } else {
                             Output.printMessages(Message.CANTDO, "casella già bloccata.");
                         }
