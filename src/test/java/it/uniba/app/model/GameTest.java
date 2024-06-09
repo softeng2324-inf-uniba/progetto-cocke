@@ -221,13 +221,14 @@ class GameTest {
     @Test
     void testCountPieces() {
         Field testField = tempGame.getGameField();
-        Slot tempSlot = new Slot(Color.WHITE);
+        Slot tempSlot = new Slot();
+        tempSlot.setColorState(Color.WHITE);
         testField.setSlot(new Coordinate(0,0), tempSlot);
         testField.setSlot(new Coordinate(0,1), tempSlot);
         testField.setSlot(new Coordinate(0,5), tempSlot);
         testField.setSlot(new Coordinate(6,6), tempSlot);
         testField.setSlot(new Coordinate(5,5), tempSlot);
-        tempSlot = new Slot(Color.BLACK);
+        tempSlot.setColorState(Color.BLACK);
         testField.setSlot(new Coordinate(4,4), tempSlot);
         tempGame.setGameField(testField);
 
@@ -252,13 +253,14 @@ class GameTest {
     @Test
     void testColorWinner() {
         Field testField = tempGame.getGameField();
-        Slot tempSlot = new Slot(Color.BLACK);
+        Slot tempSlot = new Slot();
+        tempSlot.setColorState(Color.BLACK);
         testField.setSlot(new Coordinate(0,0), tempSlot);
         testField.setSlot(new Coordinate(0,1), tempSlot);
         testField.setSlot(new Coordinate(0,5), tempSlot);
         testField.setSlot(new Coordinate(6,6), tempSlot);
         testField.setSlot(new Coordinate(5,5), tempSlot);
-        tempSlot = new Slot(Color.WHITE);
+        tempSlot.setColorState(Color.WHITE);
         testField.setSlot(new Coordinate(4,4), tempSlot);
         tempGame.setGameField(testField);
 
@@ -272,7 +274,8 @@ class GameTest {
     @Test
     void testCaptureSlot() {
         Field testField = tempGame.getGameField();
-        Slot tempSlot = new Slot(Color.BLACK);
+        Slot tempSlot = new Slot();
+        tempSlot.setColorState(Color.BLACK);
         testField.setSlot(new Coordinate(0,0), tempSlot);
         testField.setSlot(new Coordinate(0,1), tempSlot);
         testField.setSlot(new Coordinate(0,2), tempSlot);
@@ -283,7 +286,7 @@ class GameTest {
         testField.setSlot(new Coordinate(2,2), tempSlot);
         testField.setSlot(new Coordinate(2,3), tempSlot);
         testField.setSlot(new Coordinate(3,1), tempSlot);
-        tempSlot = new Slot(Color.WHITE);
+        tempSlot.setColorState(Color.WHITE);
         testField.setSlot(new Coordinate(1,1), tempSlot);
         tempGame.setGameField(testField);
 

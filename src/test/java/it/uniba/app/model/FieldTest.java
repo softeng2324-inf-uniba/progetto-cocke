@@ -51,7 +51,8 @@ class FieldTest {
     @BeforeEach
     void setUp() {
         tempField = new Field();
-        tempSlot = new Slot(Color.GOLD);
+        tempSlot = new Slot();
+        tempSlot.setColorState(Color.GOLD);
         tempField.setSlot(new Coordinate(5, 5), tempSlot);
     }
 
