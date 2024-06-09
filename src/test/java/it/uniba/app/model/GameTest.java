@@ -82,7 +82,9 @@ class GameTest {
     @Test
     void testSetGameField() {
         Field testField = new Field();
-        testField.setSlot(new Coordinate(2, 4), new Slot(Color.ORANGE));
+        Slot tempSlot = new Slot();
+        tempSlot.setColorState(Color.ORANGE);
+        testField.setSlot(new Coordinate(2, 4), tempSlot);
         tempGame.setGameField(testField);
         assertAll("Setter del campo da gioco",
                 () -> assertEquals(Field.DEFAULT_DIM, tempGame.getGameField().length()),
