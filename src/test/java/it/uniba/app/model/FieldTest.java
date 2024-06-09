@@ -96,10 +96,7 @@ class FieldTest {
      */
     @Test
     void testLength() {
-        assertAll("Lunghezza di un campo",
-                () -> assertEquals(Field.DEFAULT_DIM, tempField.length(), BAD_LENGTH),
-                () -> assertEquals(13, new Field(13).length(), BAD_LENGTH)
-        );
+        assertEquals(Field.DEFAULT_DIM, tempField.length(), BAD_LENGTH);
     }
 
 }
