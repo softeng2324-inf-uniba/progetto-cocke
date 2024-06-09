@@ -45,7 +45,7 @@ class MoveTest {
      * <code>toString()</code> della mossa su cui il metodo è invocato, e quella ipotizzata.
      */
     static final String WRONG_STRING = "La stringa corrispondente alla mossa in analisi, non coincide con quella "
-            + "attesa.";
+        + "attesa.";
 
 
     /**
