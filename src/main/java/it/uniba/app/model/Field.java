@@ -43,19 +43,6 @@ public class Field {
     }
 
     /**
-     * Costruttore della classe <code>Field</code> che utilizza il dato in entrata come dimensione del campo da gioco.
-     * @param dim dimensione del campo da gioco da inizializzare.
-     */
-    public Field(final int dim) {
-        gameboard = new Slot[dim][dim];
-        for (int row = 0; row < dim; row++) {
-            for (int column = 0; column < dim; column++) {
-                setSlot(new Coordinate(row, column), new Slot());
-            }
-        }
-    }
-
-    /**
      * Inserisce una casella, in entrata, all'interno del campo da gioco, nella posizione data in ingresso.
      * @param coordinate coordinata all'interno del campo da gioco, in cui inserire la casella.
      * @param slot casella da inserire nel campo da gioco su cui il metodo è invocato.
