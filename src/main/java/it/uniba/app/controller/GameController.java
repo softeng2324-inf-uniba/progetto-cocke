@@ -319,8 +319,8 @@ public class GameController {
     public boolean containsEmptyMove(final ArrayList<Move> moveList) {
         Coordinate emptyCoordinate = new Coordinate(0, 0);
         Move lastMove = moveList.get(moveList.size() - 1);
-        return lastMove.getStartingSlot().equalsCoordinate(emptyCoordinate)
-                && lastMove.getChosenSlot().equalsCoordinate(emptyCoordinate);
+        return lastMove.getStartingSlot().equals(emptyCoordinate)
+                && lastMove.getChosenSlot().equals(emptyCoordinate);
     }
 
     /**
