@@ -139,23 +139,6 @@ public final class Output {
     }
 
     /**
-     * Metodo che mostra a video il campo vuoto su cui giocare.
-     */
-    public static void printEmptyField() {
-        printTopField();
-        int i;
-        for (i = 0; i < Field.DEFAULT_DIM - 1; i++) {
-            printNumLine(i + 1);
-            System.out.print("╠═══╬");
-            printCrossedHoLine();
-            System.out.print("╬═══╣");
-            System.out.print("\n");
-        }
-        printNumLine(i + 1);
-        printBottomField();
-    }
-
-    /**
      * Metodo che stampa la parte superiore del campo.
      */
     private static void printTopField() {
@@ -189,6 +172,24 @@ public final class Output {
         }
         System.out.println("═════╝");
     }
+
+    /**
+     * Metodo che mostra a video il campo vuoto su cui giocare.
+     */
+    public static void printEmptyField() {
+        printTopField();
+        int i;
+        for (i = 0; i < Field.DEFAULT_DIM - 1; i++) {
+            printNumLine(i + 1);
+            System.out.print("╠═══╬");
+            printCrossedHoLine();
+            System.out.print("╬═══╣");
+            System.out.print("\n");
+        }
+        printNumLine(i + 1);
+        printBottomField();
+    }
+
 
     /**
      * Metodo che stampa a video il campo di gioco con le pedine nella situazione attuale.
