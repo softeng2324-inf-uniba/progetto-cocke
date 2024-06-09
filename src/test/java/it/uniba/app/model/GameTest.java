@@ -291,6 +291,7 @@ class GameTest {
         testField.setSlot(new Coordinate(0,5), tempSlot);
         testField.setSlot(new Coordinate(6,6), tempSlot);
         testField.setSlot(new Coordinate(5,5), tempSlot);
+        tempSlot = new Slot();
         tempSlot.setColorState(Color.WHITE);
         testField.setSlot(new Coordinate(4,4), tempSlot);
         tempGame.setGameField(testField);
