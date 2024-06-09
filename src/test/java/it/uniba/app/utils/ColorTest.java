@@ -11,7 +11,7 @@ class ColorTest {
     /**
      * Variabile di istanza di tipo Color per i casi di test.
      */
-    Color color;
+    private Color color;
 
     /**
      * Variabile di istanza che rappresenta il messaggio di errore
@@ -25,8 +25,9 @@ class ColorTest {
      */
     @Test
     void testColorValue() {
+        final int blackValue = 0;
         color = Color.BLACK;
-        assertEquals(0, color.getColorValue(), TEST_FAILED);
+        assertEquals(blackValue, color.getColorValue(), TEST_FAILED);
     }
 
     /**
@@ -35,8 +36,9 @@ class ColorTest {
      */
     @Test
     void testAnotherColorValue() {
+        final int whiteValue = 15;
         color = Color.WHITE;
-        assertEquals(15, color.getColorValue(), TEST_FAILED);
+        assertEquals(whiteValue, color.getColorValue(), TEST_FAILED);
     }
 
     /**
@@ -45,8 +47,9 @@ class ColorTest {
      */
     @Test
     void testWrongColorValue() {
+        final int notBlackValue = 16;
         color = Color.BLACK;
-        assertNotEquals(16, color.getColorValue());
+        assertNotEquals(notBlackValue, color.getColorValue());
     }
 
 
