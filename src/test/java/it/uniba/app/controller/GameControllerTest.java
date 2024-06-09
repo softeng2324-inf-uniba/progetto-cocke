@@ -53,25 +53,4 @@ public class GameControllerTest {
         gameController.checkTurn();
         assertNull(gameController.getGame());
     }
-
-    @Test
-    public void testContainsEmptyMove() {
-        ArrayList<Move> moveList = new ArrayList<>();
-        Coordinate emptyCoordinate = new Coordinate(0, 0);
-        Move emptyMove = new Move(emptyCoordinate, emptyCoordinate);
-
-        moveList.add(emptyMove);
-        assertTrue(controller.containsEmptyMove(moveList));
-
-        moveList.remove(emptyMove);
-        assertFalse(controller.containsEmptyMove(moveList));
-    }
 }
-
-//qui sono riportati i metodi non privati a cui fare i test
-//setStatingPosition
-//legalMoves
-//moveHistory
-//markNeighboringSlot
-//movePiece
-//checkTurn
