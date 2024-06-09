@@ -1,5 +1,7 @@
 package it.uniba.app.controller;
 import it.uniba.app.model.*;
+import it.uniba.app.utils.Color;
+import it.uniba.app.views.Output;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,13 +36,18 @@ class GameControllerTest {
     private static final String WRONG_MOVELIST = "Le mosse non sono state inserite correttamente.";
 
     /**
+     * Messaggio di errore quando la pedina non è stata spostata correttamente.
+     */
+    private static final String BAD_MOVE_PIECE = "La pedina non è stata spostata correttamente.";
+
+    /**
      * Metodo eseguito prima di ogni test (viene inizializzato il controller
      * tramite il costruttore).
      */
     @BeforeEach
     void before() {
-        game = new Game();
         controller = new GameController();
+        controller.startNewGame();
     }
 
 
@@ -91,7 +98,6 @@ class GameControllerTest {
     @Test
     void testLegalMoves() {
         controller.legalMoves();
-        assertNotNull(controller.getGame(), NULL_GAME);
     }
 
     /**
@@ -99,15 +105,16 @@ class GameControllerTest {
      */
     @Test
     void testMoveHistory() {
-        ArrayList<Move> tempMoveList = game.getMoveList();
-        tempMoveList.add(new Move(new Coordinate(0, 0), new Coordinate(1, 1)));
-        game.setMoveList(tempMoveList);
-        controller.setGame(game);
-        assertEquals(tempMoveList, controller.getGame().getMoveList(), WRONG_MOVELIST);
+        Move move = new Move(new Coordinate(0, 0), new Coordinate(0, 1));
+        controller.movePiece(move);
+
+        controller.moveHistory();
+        assertFalse(controller.getGame().getMoveList().isEmpty());
     }
 
     /**
      * Metodo per controllare se viene effettuata correttamente l'uscita dal gioco.
+     * Se viene effettuata l'uscita, il gioco non deve più esistere.
      */
     @Test
     void testLeaveGame() {
@@ -117,10 +124,21 @@ class GameControllerTest {
 
     /**
      * Metodo per verificare se viene effettuata correttamente la mossa da parte del giocatore.
+     * Se la mossa viene effettuata correttamente, la pedina viene spostata correttamente nel campo da gioco.
      */
     @Test
     void testMovePiece() {
+        Move move = new Move(new Coordinate(0, 0), new Coordinate(0, 1));
+        controller.movePiece(move);
 
+        Field field = controller.getGame().getGameField();
+        Slot destinationSlot = field.getSlot(move.getChosenSlot());
+
+        /* Controllo se la casella di destinazione è stata colorata correttamente
+         Assumo nextPlayer poiché il turno è stato passato al giocatore successivo dopo aver effettuato la mossa.
+         Quindi il colore della pedina di destinazione deve essere uguale al colore che ha fatto la mossa.
+         */
+        assertEquals(controller.getGame().nextPlayer().getColor(), destinationSlot.getColorState(), BAD_MOVE_PIECE);
     }
 
     /**
@@ -128,6 +146,9 @@ class GameControllerTest {
      */
     @Test
     void testCheckTurn() {
+        controller.checkTurn();
 
+        Player currentPlayer = controller.getGame().whoIsPlaying();
+        assertNotEquals(controller.getGame().nextPlayer().getColor(), currentPlayer.getColor());
     }
 }
