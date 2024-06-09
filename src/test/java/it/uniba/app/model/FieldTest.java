@@ -20,9 +20,9 @@ class FieldTest {
     Slot tempSlot;
 
     /**
-     * Messaggio di errore quando lo slot copiato non coincide con quello atteso.
+     * Messaggio di errore quando il campo copiato non coincide con quello atteso.
      */
-    final static String BAD_COPY_SLOT = "Lo slot copiato non coincide con quello atteso";
+    final static String WRONG_COPY = "Il campo copiato non coincide con quello atteso";
 
     /**
      * Messaggio di errore quando lo slot restituito non coincide con quello atteso.
@@ -33,11 +33,6 @@ class FieldTest {
      * Messaggio di errore quando lo slot non è stato modificato correttamente.
      */
     final static String BAD_SLOT = "Lo slot non è stato modificato correttamente";
-
-    /**
-     * Messaggio di errore quando la dimensione del campo non coincide con quella attesa.
-     */
-    final static String BAD_FIELD_LENGTH = "La dimensione del campo non coincide con quella attesa";
 
     /**
      * Messaggio di errore quando la dimensione restituita non coincide con quella attesa.
@@ -63,10 +58,7 @@ class FieldTest {
     @Test
     void testCopyConstructor() {
         Field copy = new Field(tempField);
-        assertAll("Costruttore di copia",
-                () -> assertEquals(Color.GOLD, copy.getSlot(new Coordinate(5, 5)).getColorState(), BAD_COPY_SLOT),
-                () -> assertEquals(Color.GREY, copy.getSlot(new Coordinate(4, 6)).getColorState(), BAD_COPY_SLOT)
-        );
+        assertEquals(tempField, copy, WRONG_COPY);
     }
 
     /**

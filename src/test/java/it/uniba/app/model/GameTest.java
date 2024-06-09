@@ -24,11 +24,6 @@ class GameTest {
     final static String BAD_COPY_GAME = "Il gioco copiato non coincide con quello atteso";
 
     /**
-     * Messaggio di errore restituito quando uno slot non viene conquistato.
-     */
-    final static String NOT_CAPTURED = "Non è stato effettuato il cambio colore per lo slot";
-
-    /**
      * Messaggio di errore restituito quando uno slot viene catturato senza motivo.
      */
     final static String BAD_CAPTURE = "È stato modificato il colore dello slot impropriamente";
@@ -93,13 +88,7 @@ class GameTest {
     @Test
     void testCopyConstructor() {
         Game copy = new Game(tempGame);
-        assertAll("Costruttore di copia",
-                () -> assertNotNull(copy, BAD_COPY_GAME),
-                () -> assertNotNull(copy.getGameField(), BAD_COPY_GAME),
-                () -> assertNotNull(copy.getMoveList(), BAD_COPY_GAME),
-                () -> assertNotNull(copy.getPlayers(), BAD_COPY_GAME),
-                () -> assertEquals(Color.BLACK, copy.getPlayer(0).getColor(), BAD_COPY_GAME)
-        );
+        assertEquals(tempGame, copy, BAD_COPY_GAME);
     }
 
     /**
@@ -119,10 +108,7 @@ class GameTest {
      */
     @Test
     void testGetGameField() {
-        assertAll("Getter del campo da gioco",
-                () -> assertEquals(Field.DEFAULT_DIM, tempGame.getGameField().length(), WRONG_FIELD),
-                () -> assertEquals(Color.GREY, tempGame.getGameField().getSlot(new Coordinate(4, 3)).getColorState(), WRONG_FIELD)
-        );
+        assertEquals(new Field(), tempGame.getGameField(), WRONG_FIELD);
     }
 
     /**
@@ -135,12 +121,9 @@ class GameTest {
         Slot tempSlot = new Slot();
         tempSlot.setColorState(Color.ORANGE);
         testField.setSlot(new Coordinate(2, 4), tempSlot);
+
         tempGame.setGameField(testField);
-        assertAll("Setter del campo da gioco",
-                () -> assertEquals(Field.DEFAULT_DIM, tempGame.getGameField().length(), BAD_FIELD_SET),
-                () -> assertEquals(Color.GREY, tempGame.getGameField().getSlot(new Coordinate(4, 3)).getColorState(), BAD_FIELD_SET),
-                () -> assertEquals(Color.ORANGE, tempGame.getGameField().getSlot(new Coordinate(2, 4)).getColorState(), BAD_FIELD_SET)
-        );
+        assertEquals(testField, tempGame.getGameField(), BAD_FIELD_SET);
     }
 
     /**
@@ -163,12 +146,7 @@ class GameTest {
         testMoveList.add(new Move(new Coordinate(0, 5), new Coordinate(7, 2)));
 
         tempGame.setMoveList(testMoveList);
-        assertAll("Getter della lista di mosse effettuate",
-                () -> assertEquals(testMoveList.get(0).getStartingSlot(), tempGame.getMoveList().get(0).getStartingSlot(), BAD_MOVE_LIST_SET),
-                () -> assertEquals(testMoveList.get(0).getChosenSlot(), tempGame.getMoveList().get(0).getChosenSlot(), BAD_MOVE_LIST_SET),
-                () -> assertEquals(testMoveList.get(1).getStartingSlot(), tempGame.getMoveList().get(1).getStartingSlot(), BAD_MOVE_LIST_SET),
-                () -> assertEquals(testMoveList.get(1).getChosenSlot(), tempGame.getMoveList().get(1).getChosenSlot(), BAD_MOVE_LIST_SET)
-        );
+        assertEquals(testMoveList, tempGame.getMoveList(), BAD_MOVE_LIST_SET);
     }
 
     /**
@@ -272,7 +250,7 @@ class GameTest {
      */
     @Test
     void testCountPieces() {
-        Field testField = tempGame.getGameField();
+        Field testField = new Field();
         Slot tempSlot = new Slot();
         tempSlot.setColorState(Color.WHITE);
         testField.setSlot(new Coordinate(0,0), tempSlot);
@@ -280,6 +258,7 @@ class GameTest {
         testField.setSlot(new Coordinate(0,5), tempSlot);
         testField.setSlot(new Coordinate(6,6), tempSlot);
         testField.setSlot(new Coordinate(5,5), tempSlot);
+        tempSlot = new Slot();
         tempSlot.setColorState(Color.BLACK);
         testField.setSlot(new Coordinate(4,4), tempSlot);
         tempGame.setGameField(testField);
@@ -342,21 +321,19 @@ class GameTest {
         testField.setSlot(new Coordinate(1,1), tempSlot);
         tempGame.setGameField(testField);
 
+        Field testFieldResult = testField;
+        tempSlot.setColorState(Color.WHITE);
+        testFieldResult.setSlot(new Coordinate(0,0), tempSlot);
+        testFieldResult.setSlot(new Coordinate(0,1), tempSlot);
+        testFieldResult.setSlot(new Coordinate(0,2), tempSlot);
+        testFieldResult.setSlot(new Coordinate(1,0), tempSlot);
+        testFieldResult.setSlot(new Coordinate(1,2), tempSlot);
+        testFieldResult.setSlot(new Coordinate(2,0), tempSlot);
+        testFieldResult.setSlot(new Coordinate(2,1), tempSlot);
+        testFieldResult.setSlot(new Coordinate(2,2), tempSlot);
+
         tempGame.captureSlot(new Coordinate(1, 1));
-        assertAll("Cattura caselle adiacenti",
-                () -> assertEquals(tempGame.getGameField().getSlot(new Coordinate(0, 0)).getColorState(), Color.WHITE, NOT_CAPTURED),
-                () -> assertEquals(tempGame.getGameField().getSlot(new Coordinate(0, 1)).getColorState(), Color.WHITE, NOT_CAPTURED),
-                () -> assertEquals(tempGame.getGameField().getSlot(new Coordinate(0, 2)).getColorState(), Color.WHITE, NOT_CAPTURED),
-                () -> assertEquals(tempGame.getGameField().getSlot(new Coordinate(1, 0)).getColorState(), Color.WHITE, NOT_CAPTURED),
-                () -> assertEquals(tempGame.getGameField().getSlot(new Coordinate(1, 1)).getColorState(), Color.WHITE, NOT_CAPTURED),
-                () -> assertEquals(tempGame.getGameField().getSlot(new Coordinate(1, 2)).getColorState(), Color.WHITE, NOT_CAPTURED),
-                () -> assertEquals(tempGame.getGameField().getSlot(new Coordinate(2, 0)).getColorState(), Color.WHITE, NOT_CAPTURED),
-                () -> assertEquals(tempGame.getGameField().getSlot(new Coordinate(2, 1)).getColorState(), Color.WHITE, NOT_CAPTURED),
-                () -> assertEquals(tempGame.getGameField().getSlot(new Coordinate(2, 2)).getColorState(), Color.WHITE, NOT_CAPTURED),
-                () -> assertNotEquals(tempGame.getGameField().getSlot(new Coordinate(2, 3)).getColorState(), Color.WHITE, BAD_CAPTURE),
-                () -> assertNotEquals(tempGame.getGameField().getSlot(new Coordinate(3, 1)).getColorState(), Color.WHITE, BAD_CAPTURE),
-                () -> assertNotEquals(tempGame.getGameField().getSlot(new Coordinate(3, 0)).getColorState(), Color.WHITE, BAD_CAPTURE)
-        );
+        assertEquals(testFieldResult, tempGame.getGameField(), BAD_CAPTURE);
     }
 }
 
