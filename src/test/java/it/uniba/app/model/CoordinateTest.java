@@ -63,7 +63,7 @@ class CoordinateTest {
     static final int TEST_ROW = 10;
 
     /**
-     * Colonna di test
+     * Colonna di test.
      */
     static final int TEST_COLUMN = 10;
 
