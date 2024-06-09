@@ -10,20 +10,12 @@ public class Player {
     /**
      * Rappresenta il colore del giocatore.
      */
-    private Color playerColor;
+    private final Color playerColor;
 
     /**
      * Rappresenta il nome del giocatore.
      */
-    private String playerName;
-
-    /**
-     * Costruttore della classe <code>Player</code> che inizializza nome e colore delle pedine di un giocatore.
-     */
-    public Player() {
-        playerColor = null;
-        playerName = "_";
-    }
+    private final String playerName;
 
     /**
      * Costruttore della classe Player che inizializza il giocatore con il suo colore e il suo nome.
@@ -53,14 +45,6 @@ public class Player {
     }
 
     /**
-     * Inizializza il colore del giocatore.
-     * @param color colore del giocatore da inizializzare.
-     */
-    public void setColor(final Color color) {
-        playerColor = color;
-    }
-
-    /**
      * Restituisce il nome del giocatore.
      * @return nome del giocatore.
      */
@@ -69,11 +53,28 @@ public class Player {
     }
 
     /**
-     * Inizializza il nome del giocatore.
-     * @param name nome del giocatoreda inizializzare.
+     * Verifica, se l'oggetto in entrata è un <code>Player</code>, se è uguale all'oggetto su cui
+     * il metodo è stato invocato.
+     * @param obj oggetto secondo membro dell'uguaglianza.
+     * @return <code>true</code> se i due giocatori hanno stesso colore e nome, <code>false</code>
+     * in tutti gli altri casi.
      */
-    public void setName(final String name) {
-        playerName = name;
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof Player castObj) {
+            return getColor().equals(castObj.getColor()) && getName().equals(castObj.getName());
+        }
+        return false;
     }
+
+    /**
+     * Calcola il valore hash relativo al nome e al colore del <code>Player</code> su cui il metodo è invocato.
+     * @return il valore hash del giocatore.
+     */
+    public int hashCode() {
+        return (getName() + getColor().toString()).hashCode();
+    }
+
 }
 

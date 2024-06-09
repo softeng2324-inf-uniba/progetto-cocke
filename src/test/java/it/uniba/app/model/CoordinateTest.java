@@ -108,7 +108,7 @@ class CoordinateTest {
     @Test
     void testEqualsCoordinate() {
         Coordinate equalCoordinate = new Coordinate(5, 6);
-        assertTrue(equalCoordinate.equalsCoordinate(tempCoordinate), BAD_EQUALS);
+        assertEquals(equalCoordinate, tempCoordinate, BAD_EQUALS);
     }
 
     /**

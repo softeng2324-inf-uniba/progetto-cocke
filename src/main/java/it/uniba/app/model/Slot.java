@@ -79,4 +79,28 @@ public class Slot {
             }
         }
     }
+
+    /**
+     * Verifica, se l'oggetto in entrata è uno <code>Slot</code>, se è uguale all'oggetto su cui
+     * il metodo è stato invocato.
+     * @param obj oggetto secondo membro dell'uguaglianza.
+     * @return <code>true</code> se le due caselle hanno lo stesso colore, <code>false</code>
+     * in tutti gli altri casi.
+     */
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof Slot castObj) {
+            return getColorState().equals(castObj.getColorState());
+        }
+        return false;
+    }
+
+    /**
+     * Calcola il valore hash relativo al colore della casella su cui il metodo è invocato.
+     * @return il valore hash della casella.
+     */
+    public int hashCode() {
+        return getColorState().toString().hashCode();
+    }
 }
