@@ -22,50 +22,45 @@ public class CommandsTest {
     static Vector<Coordinate> CoordsToLoco;
 
     /**
-     *
+     * Coordinate di cui verificare la presenza nel test di CoordsToLoco.
      */
     static Coordinate tempCord;
 
     /**
-     *
+     * Coordinate errate di cui verificare la presenza nel test di CoordsToLoco.
      */
     static Coordinate tempOutCord;
 
     /**
-     *
+     * Posizione di CoordsToLoco da cui recuperare il contenuto.
      */
     static int pos;
 
     /**
-     *
+     * Posizione errata di CoordsToLoco da cui recuperare il contenuto.
      */
     static int outPos;
 
     /**
-     *
+     * Messaggio di errore dovuto al fallimento di un test su CoordsToLoco.
      */
     final String IN_CTL = "L'oggetto si trova in CoordsToLoco";
 
     /**
-     *
+     * Messaggio di errore dovuto al fallimento di un test su CoordsToLoco.
      */
     final String NOT_IN_CTL_ATPOS = "L'oggetto non si trova nella posizione 0 di CoordsToLoco";
 
     /**
-     *
+     * Messaggio di errore dovuto al fallimento di un test su CoordsToLoco.
      */
     final String INVALID_POS = "Posizione di CoordsToLoco non accessibile";
 
     /**
-     *
-     */
-    final String SIZE_ERR = "Dimensione di CoordsToLoco errata";
-
-    /**
-     *
+     * Imposta il vettore CoordsToLoco su cui eseguire i test.
      */
     @BeforeAll
-    static void setUpCoordsToLoco() {
+    static void setUpCoordsToLockTest() {
         CoordsToLoco = new Vector<>();
         tempCord = new Coordinate(3,2);
         tempOutCord = new Coordinate(9,6);
@@ -75,26 +70,29 @@ public class CommandsTest {
     }
 
     /**
-     *
+     * Test del metodo isInCoordsToLock.
+     * Verifica se tempCord, precedentemente inserito, è presente in CoordsToLoco.
      */
     @Test
-    void isInCoordsToLockTest(){
+    void testIsInCoordsToLock(){
         assertEquals(tempCord, CoordsToLoco.get(pos), NOT_IN_CTL_ATPOS);
     }
 
     /**
-     *
+     * Test del metodo isInCoordsToLock.
+     * Verifica se tempOutCord non è presente in CoordsToLoco.
      */
     @Test
-    void isNotInCoordsToLockTest(){
+    void testIsNotInCoordsToLock(){
         assertNotEquals(tempOutCord, CoordsToLoco.get(pos), IN_CTL);
     }
 
     /**
-     *
+     * Test del metodo getCoordToLock.
+     * Verifica se la funzione in oggetto solleva eccezioni se si accede ad una posizione fuori da CoordToLoco.
      */
     @Test
-    void getOutOfCoordToLockTest() {
+    void testGetOutOfCoordToLock() {
         try {
             Commands.getCoordToLock(outPos);
             fail("Eccezione non raggiunta");
@@ -104,51 +102,44 @@ public class CommandsTest {
     }
 
     /**
-     *
-     */
-    @Test
-    void getCoordsToLockSizeTest() {
-        assertEquals(1, CoordsToLoco.size(), SIZE_ERR);
-    }
-
-    /**
-     *
+     * Argomenti di input per il test di ataxxCommand.
      */
     final String[] args = new String[]{"-i", "CONSOLE"};
 
     /**
-     *
+     * Variabile buffer che contiene le stampe prodotte dai test di ataxxCommand.
      */
     ByteArrayOutputStream byteOut;
 
     /**
-     *
+     *  Variabile utile per impostare il PrintStream allo stato di default.
      */
-    PrintStream defaultPS;
+    PrintStream defaultPS = System.out;
 
     /**
-     *
+     * Stringa contenente il comando da dare in input al test di ataxxCommand.
      */
     String str;
 
     /**
-     *
+     * Messaggio di errore relativo ai test di ataxxCommand.
      */
     final String UNEXPECTED_MSG = "L'output è differente da quello previsto.";
 
     /**
-     *
+     * Messaggio di errore relativo ai test di ataxxCommand.
      */
     final String FILE_ERR = "Il file help non è stato letto correttamente.";
 
     /**
-     *
+     * Messaggio di errore relativo ai test di ataxxCommand.
      */
     final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
 
     /**
-     *
-     * @return
+     * Funzione interna che restituisce vero se il buffer contiene gli elementi che compongono la stampa del campo di
+     * gioco
+     * @return vero o falso a seconda dell' esito dell'operazione.
      */
     boolean fieldPrintCheck() {
         boolean check = byteOut.toString().contains(" ");
@@ -165,156 +156,176 @@ public class CommandsTest {
     }
 
     /**
-     *
+     * Imposta per ogni test di ataxxCommand lo stream di input, in modo che venga simulata la lettura da tastiera
+     * della stringa str.
+     */
+    void setUpInputStream(final String str) {
+        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(stream);
+    }
+
+    /**
+     * Imposta il flusso di stampa a video, in modo da poter eseguire i test su ataxxCommand.
      */
     @BeforeEach
-    void setUpAtaxxCommandsTest() {
+    void setUpAtaxxCommandTest() {
         byteOut = new ByteArrayOutputStream();
         PrintStream myPS = new PrintStream(byteOut);
-        defaultPS = System.out;
         System.setOut(myPS);
     }
 
     /**
-     *
+     * Controlla un' asserzione in comune a tutti i test su ataxxCommand e reimposta il flusso di stampa a video.
      */
     @AfterEach
-    void afterAtaxxCommandsTest() {
+    void afterAtaxxCommandTest() {
         assertTrue(byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText()), UNEXPECTED_MSG);
         System.out.flush();
         System.setOut(defaultPS);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand quando viene inserito un comando non valido.
+     * Verifica che venga stampato a video il messaggio per un comando sconosciuto.
      */
     @Test
-    void notAnAtaxxCommandTest() {
+    void testNotAnAtaxxCommand() {
         str = "not_a_command\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.UNKNOWN_COMMAND.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
-     * @throws IOException
+     * Test del metodo ataxxCommand per il comando /help.
+     * Verifica che venga visualizzato a video il contenuto del file help.txt.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
-    void ataxxHelpCommandTest() throws IOException {
+    void testAtaxxHelpCommand() throws IOException {
         str = "/help\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         String helpToString = Files.readString(Path.of("./src/main/java/it/uniba/app/help.txt"));
         assertTrue(byteOut.toString().contains(helpToString), FILE_ERR);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /gioca.
+     * Verifica che venga stampato a video il campo di gioco.
      */
     @Test
-    void ataxxGiocaCommandTest() {
+    void testAtaxxGiocaCommand() {
         str = "/gioca\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(fieldPrintCheck(), FIELD_ERR);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /vuoto.
+     * Verifica che venga stampato a video il campo di gioco.
      */
     @Test
-    void ataxxVuotoCommandTest() {
+    void testAtaxxVuotoCommand() {
         str = "/vuoto\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(fieldPrintCheck(), FIELD_ERR);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /tavoliere.
+     * Verifica che venga stampato a video il campo di gioco.
      */
     @Test
-    void ataxxTavoliereCommandTest() {
+    void testAtaxxTavoliereCommand() {
         str = "/gioca\n/tavoliere\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(fieldPrintCheck(), FIELD_ERR);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /tavoliere quando non è in corso alcuna partita.
+     * Verifica che venga stampato a video il messaggio per una partita non cominciata.
      */
     @Test
-    void ataxxTavoliereNoGameCommandTest() {
+    void testAtaxxTavoliereNoGameCommand() {
         str = "/tavoliere\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /qualimosse.
+     * Verifica che venga stampato a video il campo di gioco.
      */
     @Test
-    void ataxxQualimosseCommandTest() {
+    void testAtaxxQualimosseCommand() {
         str = "/gioca\n/qualimosse\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(fieldPrintCheck(), FIELD_ERR);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /qualimosse quando non è in corso alcuna partita.
+     * Verifica che venga stampato a video il messaggio per una partita non cominciata.
      */
     @Test
-    void ataxxQualimosseNoGameCommandTest() {
+    void testAtaxxQualimosseNoGameCommand() {
         str = "/qualimosse\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /mosse.
+     * Verifica che venga stampato lo storico delle mosse.
      */
     @Test
-    void ataxxMosseCommandTest() {
+    void testAtaxxMosseCommand() {
+        str = "/gioca\na1-a2\n/mosse\n/esci\ns\n";
+        setUpInputStream(str);
+        Commands.ataxxCommand(args);
+        assertTrue(byteOut.toString().contains(Message.MOVE_LIST.getMessageText()), UNEXPECTED_MSG);
+    }
+
+    /**
+     * Test del metodo ataxxCommand per il comando /mosse quando non sono state effettuate mosse.
+     * Verifica che venga stampato il corretto messaggio di errore.
+     */
+    @Test
+    void testAtaxxEmptyMosseCommand() {
         str = "/gioca\n/mosse\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
-        assertTrue(fieldPrintCheck(), FIELD_ERR);
+        assertTrue(byteOut.toString().contains(Message.NO_MOVES.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /mosse quando non ci sono partite in corso.
+     * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void ataxxMosseNoGameCommandTest() {
+    void testAtaxxMosseNoGameCommand() {
         str = "/mosse\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /abbandona.
+     * Verifica che vengano stampati i messaggi relativi al termine della partita.
      */
     @Test
-    void ataxxAbbandonaCommandTest() {
+    void testAtaxxAbbandonaCommand() {
         str = "/gioca\n/abbandona\ns\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         boolean a = byteOut.toString().contains(Message.CONFIRM_ABANDONMENT.getMessageText());
         boolean b = byteOut.toString().contains(Message.WINNER_PLAYER.getMessageText());
@@ -322,49 +333,49 @@ public class CommandsTest {
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /abbandona quando non ci sono partite in corso.
+     * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void ataxxAbbandonaNoGameCommandTest() {
+    void testAtaxxAbbandonaNoGameCommand() {
         str = "/abbandona\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /tempo.
+     * Verifica che venga effettuata la stampa del tempo trascorso in partita.
      */
     @Test
-    void ataxxTempoCommandTest() {
+    void testAtaxxTempoCommand() {
         str = "/gioca\n/tempo\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.ELAPSED_TIME.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /tempo quando non ci sono partite in corso.
+     * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void ataxxTempoNoGameCommandTest() {
+    void testAtaxxTempoNoGameCommand() {
         str = "/tempo\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /esci.
+     * Verifica che vengano stampati i messaggi relativi al comando in oggetto.
      */
     @Test
-    void ataxxEsciCommandTest() {
+    void testAtaxxEsciCommand() {
         str = "/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         boolean a = byteOut.toString().contains(Message.CONFIRM_EXIT.getMessageText());
         boolean b = byteOut.toString().contains(Message.BAD_CONFIRMATION_EXIT.getMessageText());
@@ -372,73 +383,74 @@ public class CommandsTest {
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /blocca.
+     * Verifica che venga eseguito /gioca dopo aver bloccato una casella e che venga stampato il campo di gioco.
      */
     @Test
-    void ataxxBloccaCommandTest() {
+    void testAtaxxBloccaCommand() {
         str = "/blocca d3\n/gioca\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(fieldPrintCheck(), FIELD_ERR);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /blocca quando viene inserita una coordinata non bloccabile.
+     * Verifica che venga visualizzato il corretto messaggio.
      */
     @Test
-    void ataxxBloccaNonLockableCommandTest() {
+    void testAtaxxBloccaNonLockableCommand() {
         str = "/blocca a1\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /blocca quando viene inserita una coordinata non appartenente al
+     * campo di gioco.
+     * Verifica che venga stampato il messaggio di errore per le coordinate non ammesse.
      */
     @Test
-    void ataxxBloccaOutCommandTest() {
+    void testAtaxxBloccaOutCommand() {
         str = "/blocca m9\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.COORD_ERR.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand per il comando /blocca quando è in corso una partita.
+     * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void ataxxBloccaInvalidCommandTest() {
+    void testAtaxxBloccaInvalidCommand() {
         str = "/gioca\n/blocca a1\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.GAME_IS_PLAYING.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand nel momento in cui viene richiesta una mossa non valida.
+     * Verifica che venga stampato a video che la mossa non è realizzabile.
      */
     @Test
-    void ataxxMoveTest() {
+    void testAtaxxMoveCommand() {
         str = "/gioca\na1-a6\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.ILLEGAL_MOVE.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
-     *
+     * Test del metodo ataxxCommand nel momento in cui viene immessa una mossa senza che sia in corso una partita.
+     * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void ataxxMoveNoGameTest() {
+    void testAtaxxMoveNoGameCommand() {
         str = "a1-a2\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        setUpInputStream(str);
         Commands.ataxxCommand(args);
         assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
