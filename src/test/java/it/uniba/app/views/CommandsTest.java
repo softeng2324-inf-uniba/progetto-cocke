@@ -42,18 +42,12 @@ public class CommandsTest {
 
     @Test
     void isInCoordsToLockTest(){
-        assertAll(
-                () -> assertEquals(tempCord.getRow(), CoordsToLoco.get(pos).getRow(), NOT_IN_CTL_ATPOS),
-                () -> assertEquals(tempCord.getColumn(), CoordsToLoco.get(pos).getColumn(), NOT_IN_CTL_ATPOS)
-        );
+        assertEquals(tempCord, CoordsToLoco.get(pos), NOT_IN_CTL_ATPOS);
     }
 
     @Test
     void isNotInCoordsToLockTest(){
-        assertAll(
-                () -> assertNotEquals(tempOutCord.getRow(), CoordsToLoco.get(pos).getRow(), IN_CTL),
-                () -> assertNotEquals(tempOutCord.getColumn(), CoordsToLoco.get(pos).getColumn(), IN_CTL)
-        );
+        assertNotEquals(tempOutCord, CoordsToLoco.get(pos), IN_CTL);
     }
 
     @Test
@@ -76,11 +70,31 @@ public class CommandsTest {
     ByteArrayOutputStream byteOut;
     PrintStream defaultPS;
 
-    static String str;
+    String str;
 
     final String UNEXPECTED_MSG = "L'output è differente da quello previsto.";
     final String FILE_ERR = "Il file help non è stato letto correttamente.";
     final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
+
+    boolean fieldPrintCheck() {
+        boolean f1 = byteOut.toString().contains("╬");
+        boolean f2 = byteOut.toString().contains(" ");
+        boolean f3 = byteOut.toString().contains("║");
+        boolean f4 = byteOut.toString().contains("⛂");
+        boolean f5 = byteOut.toString().contains("╔");
+        boolean f6 = byteOut.toString().contains("╦");
+        boolean f7 = byteOut.toString().contains("╗");
+        boolean f8 = byteOut.toString().contains("╗");
+        boolean f9 = byteOut.toString().contains("╚");
+        boolean f10 = byteOut.toString().contains("╝");
+        boolean f11 = byteOut.toString().contains("╚");
+        boolean f12 = byteOut.toString().contains("═");
+        if (f1 && f2 && f3 && f4 && f5 && f6 && f7 && f8 && f9 && f10 && f11 && f12) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     @BeforeEach
     void setUp() {
@@ -112,7 +126,8 @@ public class CommandsTest {
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
         Commands.ataxxCommand(args);
-        assertTrue(byteOut.toString().contains(Files.readString(Path.of("src/main/java/it/uniba/app/help.txt"))), FILE_ERR);
+        String helpToString = Files.readString(Path.of("src/main/java/it/uniba/app/help.txt"));
+        assertTrue(byteOut.toString().contains(helpToString), FILE_ERR);
     }
 
     @Test
@@ -121,7 +136,7 @@ public class CommandsTest {
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
         Commands.ataxxCommand(args);
-
+        assertTrue(fieldPrintCheck(), FIELD_ERR);
     }
 
     @Test
@@ -130,23 +145,25 @@ public class CommandsTest {
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
         Commands.ataxxCommand(args);
-
+        assertTrue(fieldPrintCheck(), FIELD_ERR);
     }
 
     @Test
-    void ataxxTavoliereCommandTest() {
+    void ataxxTavoliereNoGameCommandTest() {
         str = "/tavoliere";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
         Commands.ataxxCommand(args);
-
+        assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     @Test
-    void ataxxQualimosseCommandTest() {
+    void ataxxQualimosseNoGameCommandTest() {
         str = "/qualimosse";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
+        Commands.ataxxCommand(args);
+        assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     @Test
@@ -154,7 +171,8 @@ public class CommandsTest {
         str = "/mosse";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
-
+        Commands.ataxxCommand(args);
+        assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     @Test
@@ -162,6 +180,8 @@ public class CommandsTest {
         str = "/abbandona";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
+        Commands.ataxxCommand(args);
+        assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     @Test
@@ -169,6 +189,8 @@ public class CommandsTest {
         str = "/tempo";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
+        Commands.ataxxCommand(args);
+        assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
     @Test
@@ -176,11 +198,10 @@ public class CommandsTest {
         str = "/esci";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
-    }
-
-    @Test
-    void ataxxNoGameCommandTest() {
-
+        Commands.ataxxCommand(args);
+        boolean a = byteOut.toString().contains(Message.CONFIRM_EXIT.getMessageText());
+        boolean b = byteOut.toString().contains(Message.BAD_CONFIRMATION_EXIT.getMessageText());
+        assertTrue(a && b, UNEXPECTED_MSG);
     }
 
     @Test
@@ -188,6 +209,8 @@ public class CommandsTest {
         str = "/blocca d3";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
+        Commands.ataxxCommand(args);
+        assertTrue(fieldPrintCheck(), FIELD_ERR);
     }
 
     @Test
@@ -195,6 +218,8 @@ public class CommandsTest {
         str = "/blocca a1";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
+        Commands.ataxxCommand(args);
+        assertTrue(byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
     }
 
     @Test
@@ -202,6 +227,8 @@ public class CommandsTest {
         str = "/blocca m9";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
+        Commands.ataxxCommand(args);
+        assertTrue(byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
     }
 
     @Test
@@ -209,6 +236,17 @@ public class CommandsTest {
         str = "/blocca ff";
         InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(stream);
+        Commands.ataxxCommand(args);
+        assertTrue(byteOut.toString().contains(Message.COORD_ERR.getMessageText()), UNEXPECTED_MSG);
+    }
+
+    @Test
+    void ataxxMoveNoGameTest() {
+        str = "a1-a2";
+        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(stream);
+        Commands.ataxxCommand(args);
+        assertTrue(byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
 
 }
