@@ -227,7 +227,7 @@ public class Game {
     public int hashCode() {
         StringBuilder temp = new StringBuilder();
         temp.append(getGameField().toString()).append(getMoveList().toString()).append(Arrays.toString(getPlayers()));
-        return temp.hashCode();
+        return temp.toString().hashCode();
     }
 
 }
