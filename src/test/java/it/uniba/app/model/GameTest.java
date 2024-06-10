@@ -81,12 +81,7 @@ class GameTest {
     /**
      * Messaggio di errore restituito quando l'hash della partita non coincide con quello atteso.
      */
-    static final String WRONG_HASH = "L'hash della partita non corrisponde con quello atteso";
-
-    /**
-     * L'hash calcolato su tempGame.
-     */
-    static final int HASH_TEMP_GAME = 839998248;
+    static final String WRONG_HASH = "L'hash della partita di test non corrisponde a quello della partita copiata";
 
     /**
      * La coordinata utilizzata durante i test.
@@ -409,7 +404,9 @@ class GameTest {
      */
     @Test
     void testHashCode() {
-        assertEquals(HASH_TEMP_GAME, tempGame.hashCode(), WRONG_HASH);
+        Game copy = new Game(tempGame);
+
+        assertTrue(tempGame.hashCode() == copy.hashCode(), WRONG_HASH);
     }
 
 }
