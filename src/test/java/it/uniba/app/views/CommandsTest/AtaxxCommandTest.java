@@ -1,105 +1,19 @@
-package it.uniba.app.views;
-
-import it.uniba.app.model.Coordinate;
+package it.uniba.app.views.CommandsTest;
 
 import it.uniba.app.model.Field;
 import it.uniba.app.utils.Message;
+import it.uniba.app.views.Commands;
+
 import org.junit.jupiter.api.*;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Vector;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CommandsTest {
-
-    /**
-     * Variabile di tipo vettore di coordinate per i casi di test.
-     */
-    static Vector<Coordinate> CoordsToLoco;
-
-    /**
-     * Coordinate di cui verificare la presenza nel test di CoordsToLoco.
-     */
-    static Coordinate tempCord;
-
-    /**
-     * Coordinate errate di cui verificare la presenza nel test di CoordsToLoco.
-     */
-    static Coordinate tempOutCord;
-
-    /**
-     * Posizione di CoordsToLoco da cui recuperare il contenuto.
-     */
-    static int pos;
-
-    /**
-     * Posizione errata di CoordsToLoco da cui recuperare il contenuto.
-     */
-    static int outPos;
-
-    /**
-     * Messaggio di errore dovuto al fallimento di un test su CoordsToLoco.
-     */
-    final String IN_CTL = "L'oggetto si trova in CoordsToLoco";
-
-    /**
-     * Messaggio di errore dovuto al fallimento di un test su CoordsToLoco.
-     */
-    final String NOT_IN_CTL_ATPOS = "L'oggetto non si trova nella posizione 0 di CoordsToLoco";
-
-    /**
-     * Messaggio di errore dovuto al fallimento di un test su CoordsToLoco.
-     */
-    final String INVALID_POS = "Posizione di CoordsToLoco non accessibile";
-
-    /**
-     * Imposta il vettore CoordsToLoco su cui eseguire i test.
-     */
-    @BeforeAll
-    static void setUpCoordsToLockTest() {
-        CoordsToLoco = new Vector<>();
-        tempCord = new Coordinate(3,2);
-        tempOutCord = new Coordinate(9,6);
-        pos = 0;
-        outPos = 7;
-        CoordsToLoco.add(tempCord);
-    }
-
-    /**
-     * Test del metodo isInCoordsToLock.
-     * Verifica se tempCord, precedentemente inserito, è presente in CoordsToLoco.
-     */
-    @Test
-    void testIsInCoordsToLock(){
-        assertEquals(tempCord, CoordsToLoco.get(pos), NOT_IN_CTL_ATPOS);
-    }
-
-    /**
-     * Test del metodo isInCoordsToLock.
-     * Verifica se tempOutCord non è presente in CoordsToLoco.
-     */
-    @Test
-    void testIsNotInCoordsToLock(){
-        assertNotEquals(tempOutCord, CoordsToLoco.get(pos), IN_CTL);
-    }
-
-    /**
-     * Test del metodo getCoordToLock.
-     * Verifica se la funzione in oggetto solleva eccezioni se si accede ad una posizione fuori da CoordToLoco.
-     */
-    @Test
-    void testGetOutOfCoordToLock() {
-        try {
-            Commands.getCoordToLock(outPos);
-            fail("Eccezione non raggiunta");
-        } catch (Exception e) {
-            System.out.println(INVALID_POS);
-        }
-    }
+public class AtaxxCommandTest {
 
     /**
      * Argomenti di input per il test di ataxxCommand.
