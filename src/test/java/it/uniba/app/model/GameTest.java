@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class GameTest {
 
@@ -82,6 +83,11 @@ class GameTest {
      * Messaggio di errore restituito quando l'hash della partita non coincide con quello atteso.
      */
     static final String WRONG_HASH = "L'hash della partita di test non corrisponde a quello della partita copiata";
+
+    /**
+     * Messaggio di errore restituito quando l'hash di una partita differente risulta uguale a quello della partita di test.
+     */
+    static final String WRONG_HASH_DIFFERENT = "L'hash della partita di test risulta uguale a quello di una nuova partita";
 
     /**
      * La coordinata utilizzata durante i test.
@@ -407,6 +413,17 @@ class GameTest {
         Game copy = new Game(tempGame);
 
         assertTrue(tempGame.hashCode() == copy.hashCode(), WRONG_HASH);
+    }
+
+    /**
+     * Test per il metodo hashCode.
+     * Verifica che l'hash restituito sia diverso da quello della partita di test.
+     */
+    @Test
+    void testHashCodeDifferent() {
+        Game copy = new Game();
+
+        assertFalse(tempGame.hashCode() == copy.hashCode(), WRONG_HASH_DIFFERENT);
     }
 
 }
