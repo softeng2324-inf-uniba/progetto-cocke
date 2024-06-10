@@ -36,7 +36,7 @@ public class AtaxxCommandTest {
     /**
      * Stringa contenente il comando da dare in input al test di ataxxCommand.
      */
-    String str;
+    String str = "";
 
     /**
      * Messaggio di errore relativo ai test di ataxxCommand.
@@ -441,6 +441,25 @@ public class AtaxxCommandTest {
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.GAME_IS_PLAYING.getMessageText()), UNEXPECTED_MSG);
+    }
+
+    /**
+     * Test del metodo ataxxCommand per il comando /blocca quando vengono bloccate più di 9 caselle.
+     * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
+     * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
+     * Verifica che venga stampato il corretto messaggio di errore.
+     */
+    @Test
+    void testAtaxxBloccaAllCommand() {
+        for (int i = 1; i <= Field.DEFAULT_DIM; i++) {
+            str = str + "/blocca d" + i + "\n";
+        }
+        str = str + "/blocca a4\n/blocca b4\n/blocca c4\n/esci\ns\n";
+        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(stream);
+        Commands.ataxxCommand(args);
+        boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
+        assertTrue(inC && byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
     }
 
     /**
