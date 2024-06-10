@@ -10,59 +10,62 @@ import java.lang.reflect.Field;
 
 import java.util.Vector;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class CoordsToLockTest {
 
     /**
      * Coordinate di cui verificare la presenza nel test di COORDS_TO_LOCK.
      */
-    static Coordinate tempCord;
+    private static Coordinate tempCord;
 
     /**
      * Coordinate errate di cui verificare la presenza nel test di COORDS_TO_LOCK.
      */
-    static Coordinate tempOutCord;
+    private static Coordinate tempOutCord;
 
     /**
      * Posizione di COORDS_TO_LOCK da cui recuperare il contenuto.
      */
-    static int pos;
+    private static int pos;
 
     /**
      * Posizione errata di COORDS_TO_LOCK da cui recuperare il contenuto.
      */
-    static int outPos;
+    private static int outPos;
 
     /**
      * Dimensione corrente attesa per COORDS_TO_LOCK.
      */
-    static int size;
+    private static int size;
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    final String IN_CTL = "L'oggetto si trova in COORDS_TO_LOCK";
+    private final String IN_CTL = "L'oggetto si trova in COORDS_TO_LOCK";
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    final String NOT_IN_CTL = "L'oggetto non si trova in COORDS_TO_LOCK";
+    private final String NOT_IN_CTL = "L'oggetto non si trova in COORDS_TO_LOCK";
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    final String NOT_IN_CTL_ATPOS = "L'oggetto non si trova nella posizione 0 di COORDS_TO_LOCK";
+    private final String NOT_IN_CTL_ATPOS = "L'oggetto non si trova nella posizione 0 di COORDS_TO_LOCK";
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    final String INVALID_POS = "Posizione di COORDS_TO_LOCK non accessibile";
+    private final String INVALID_POS = "Posizione di COORDS_TO_LOCK non accessibile";
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    final String SIZE_ERR = "Dimensione corrente di COORDS_TO_LOCK non corretta";
+    private final String SIZE_ERR = "Dimensione corrente di COORDS_TO_LOCK non corretta";
 
     /**
      * Imposta uno specchio per il vettore COORDS_TO_LOCK in commands, in modo da poterne testare i metodi.
@@ -76,8 +79,8 @@ public class CoordsToLockTest {
         Field nameField = com.getClass().getDeclaredField("COORDS_TO_LOCK");
         nameField.setAccessible(true);
         Vector<Coordinate> tempCTL = (Vector<Coordinate>) nameField.get(com);
-        tempCord = new Coordinate(3,1);
-        tempOutCord = new Coordinate(9,5);
+        tempCord = new Coordinate(3, 1);
+        tempOutCord = new Coordinate(9, 5);
         pos = 0;
         outPos = 7;
         size = 1;
@@ -89,7 +92,7 @@ public class CoordsToLockTest {
      * Verifica se tempCord, precedentemente inserito, è presente in COORDS_TO_LOCK.
      */
     @Test
-    void testIsInCoordsToLock(){
+    void testIsInCoordsToLock() {
         assertTrue(Commands.isInCoordsToLock(tempCord), NOT_IN_CTL);
     }
 
@@ -98,7 +101,7 @@ public class CoordsToLockTest {
      * Verifica se tempOutCord non è presente in COORDS_TO_LOCK.
      */
     @Test
-    void testIsNotInCoordsToLock(){
+    void testIsNotInCoordsToLock() {
         assertFalse(Commands.isInCoordsToLock(tempOutCord), IN_CTL);
     }
 

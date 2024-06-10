@@ -8,7 +8,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.PrintStream;
+import java.io.InputStream;
+import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -21,37 +26,37 @@ public class AtaxxCommandTest {
     /**
      * Argomenti di input per il test di ataxxCommand.
      */
-    final String[] args = new String[]{"-i", "CONSOLE"};
+    private final String[] args = new String[]{"-i", "CONSOLE"};
 
     /**
      * Variabile buffer che contiene le stampe prodotte dai test di ataxxCommand.
      */
-    ByteArrayOutputStream byteOut;
+    private ByteArrayOutputStream byteOut;
 
     /**
      *  Variabile utile per impostare il PrintStream allo stato di default.
      */
-    PrintStream defaultPS = System.out;
+    private PrintStream defaultPS = System.out;
 
     /**
      * Stringa contenente il comando da dare in input al test di ataxxCommand.
      */
-    String str = "";
+    private String str = "";
 
     /**
      * Messaggio di errore relativo ai test di ataxxCommand.
      */
-    final String UNEXPECTED_MSG = "L'output è differente da quello previsto.";
+    private final String UNEXPECTED_MSG = "L'output è differente da quello previsto.";
 
     /**
      * Messaggio di errore relativo ai test di ataxxCommand.
      */
-    final String FILE_ERR = "Il file help non è stato letto correttamente.";
+    private final String FILE_ERR = "Il file help non è stato letto correttamente.";
 
     /**
      * Messaggio di errore relativo ai test di ataxxCommand.
      */
-    final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
+    private final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
 
     /**
      * Imposta il flusso di stampa a video nel buffer byteOut, in modo da poter eseguire i test su ataxxCommand.
