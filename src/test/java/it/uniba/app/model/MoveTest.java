@@ -26,7 +26,7 @@ class MoveTest {
     /**
      * L'hash calcolato su testMove.
      */
-    static final int HASH_TEST_MOVE = 0;
+    private static final int HASH_TEST_MOVE = 2939904;
 
     /**
      * Messaggio di errore relativo alla non corrispondenza della casella di partenza utilizzata per l'inizializzazione
