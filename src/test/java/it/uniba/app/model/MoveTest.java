@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MoveTest {
 
@@ -21,6 +22,11 @@ class MoveTest {
      * Mossa temporanea, usata durante i test, inizializzata nel costruttore <code>setUp()</code>.
      */
     private Move testMove;
+
+    /**
+     * L'hash calcolato su testMove.
+     */
+    static final int HASH_TEST_MOVE = 0;
 
     /**
      * Messaggio di errore relativo alla non corrispondenza della casella di partenza utilizzata per l'inizializzazione
@@ -47,6 +53,15 @@ class MoveTest {
     static final String WRONG_STRING = "La stringa corrispondente alla mossa in analisi, non coincide con quella "
             + "attesa.";
 
+    /**
+     * Messaggio di errore restituito nel caso due mosse risultano diverse tra loro.
+     */
+    static final String BAD_MATCH = "Le mosse non risultano uguali";
+
+    /**
+     * Messaggio di errore restituito quando l'hash della mossa non coincide con quello atteso.
+     */
+    static final String WRONG_HASH = "L'hash della mossa non corrisponde con quello atteso";
 
     /**
      * Inizializza, prima di ogni test, la mossa di default utilizzata per ognuno di essi.
@@ -90,6 +105,27 @@ class MoveTest {
     @Test
     void testToString() {
         assertEquals("a1-b2", testMove.toString(), WRONG_STRING);
+    }
+
+    /**
+     * Test per il metodo equals.
+     * Verifica l'uguaglianza tra una copia del campo e il campo effettivo.
+     */
+    @Test
+    void testEquals() {
+        Move copy = new Move(testMove.getStartingSlot(), testMove.getChosenSlot());
+
+        boolean match = testMove.equals(copy);
+        assertTrue(match, BAD_MATCH);
+    }
+
+    /**
+     * Test per il metodo hashCode.
+     * Verifica che l'hash restituito corrisponda a quello del campo di test.
+     */
+    @Test
+    void testHashCode() {
+        assertEquals(HASH_TEST_MOVE, testMove.hashCode(), WRONG_HASH);
     }
 
 }
