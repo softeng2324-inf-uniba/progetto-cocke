@@ -76,4 +76,29 @@ public class Move {
         Coordinate cSlot = getChosenSlot();
         return sSlot + "-" + cSlot;
     }
+
+    /**
+     * Verifica, se l'oggetto in entrata è una mossa, se è uguale all'oggetto su cui
+     * il metodo è stato invocato.
+     * @param obj oggetto secondo membro dell'uguaglianza.
+     * @return <code>true</code> se le due coordinate, corrispondenti alla casella di partenza e arrivo, sono uguali,
+     * <code>false</code> in tutti gli altri casi.
+     */
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj instanceof Move castObj) {
+            return getStartingSlot().equals(castObj.getStartingSlot())
+                    && getChosenSlot().equals(castObj.getChosenSlot());
+        }
+        return false;
+    }
+
+    /**
+     * Calcola il valore hash relativo all'oggetto <code>Move</code> sulla quale il metodo è invocato.
+     * @return il valore hash della mossa.
+     */
+    public int hashCode() {
+        return (getStartingSlot().toString() + getChosenSlot().toString()).hashCode();
+    }
 }
