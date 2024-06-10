@@ -85,9 +85,9 @@ class GameTest {
     static final String WRONG_HASH = "L'hash della partita di test non corrisponde a quello della partita copiata";
 
     /**
-     * Messaggio di errore restituito quando l'hash di una partita differente risulta uguale a quello della partita di test.
+     * Messaggio di errore restituito quando l'hash di una nuova partita coincide con la partita di test.
      */
-    static final String WRONG_HASH_DIFFERENT = "L'hash della partita di test risulta uguale a quello di una nuova partita";
+    static final String WRONG_HASH_DIFFERENT = "L'hash della partita di test coincide con quello di una nuova partita";
 
     /**
      * La coordinata utilizzata durante i test.
