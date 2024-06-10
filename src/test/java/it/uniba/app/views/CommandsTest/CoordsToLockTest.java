@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * Classe di test per i metodi relativi a COORDS_TO_LOCK in Commands.
  */
-public class CoordsToLockTest {
+class CoordsToLockTest {
 
     /**
      * Coordinate di cui verificare la presenza nel test di COORDS_TO_LOCK.
@@ -44,6 +44,11 @@ public class CoordsToLockTest {
      * Dimensione corrente attesa per COORDS_TO_LOCK.
      */
     private static int size;
+
+    /**
+     * Costante utile a risolvere gli errori checkstyle relativi ai numeri magici.
+     */
+    private static final int ANTI_MAGIC_NUM = 3;
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
@@ -82,9 +87,9 @@ public class CoordsToLockTest {
         Field nameField = com.getClass().getDeclaredField("COORDS_TO_LOCK");
         nameField.setAccessible(true);
         Vector<Coordinate> tempCTL = (Vector<Coordinate>) nameField.get(com);
-        tempCord = new Coordinate(pos + pos + pos, pos);
-        tempOutCord = new Coordinate(outPos + pos + pos, outPos - pos - pos);
-        outPos = 7;
+        tempCord = new Coordinate(ANTI_MAGIC_NUM, ANTI_MAGIC_NUM - size);
+        tempOutCord = new Coordinate(ANTI_MAGIC_NUM * ANTI_MAGIC_NUM, ANTI_MAGIC_NUM + ANTI_MAGIC_NUM - size);
+        outPos = ANTI_MAGIC_NUM;
         size++;
         tempCTL.add(tempCord);
     }

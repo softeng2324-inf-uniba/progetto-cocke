@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Classe di test per il metodo ataxxCommand di Commands.
  */
-public class AtaxxCommandTest {
+class AtaxxCommandTest {
 
     /**
      * Argomenti di input per il test di ataxxCommand.
