@@ -71,7 +71,7 @@ final class Keyboard {
      * @return il prossimo token di input.
      */
     private static String getNextInputToken() {
-        final String delimiters = " \t\n\r\f";
+        final String delimiters = "\t\n\r\f";
         String token = null;
         String text;
         try {
