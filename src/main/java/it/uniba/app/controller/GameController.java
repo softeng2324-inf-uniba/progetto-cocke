@@ -280,35 +280,24 @@ public class GameController {
 
     /**
      * Verifica che il giocatore di turno abbia mosse disponibili.
-     *
      */
     public void checkTurn() {
         Player currentPlayer = game.whoIsPlaying();
         if (!isLegalMoves(currentPlayer)) {
-            Move emptyMove = new Move(new Coordinate(0, 0), new Coordinate(0, 0));
+            Coordinate tempCoords = new Coordinate(0, 0);
+            Move emptyMove = new Move(tempCoords, tempCoords);
             Output.printMessages(Message.UNAVAILABLE_MOVE,
                     currentPlayer.getName(), ". ", Message.PASS_TURN.getMessageText());
             ArrayList<Move> tempMoveList = getGame().getMoveList();
-            tempMoveList.add(emptyMove);
-            game.setMoveList(tempMoveList);
-            if (containsEmptyMove(tempMoveList)) {
+            if (tempMoveList.get(tempMoveList.size() - 1).equals(emptyMove)) {
                 Output.printMessages(Message.UNAVAILABLE_MOVE, "entrambi i giocatori.");
                 Output.printWinner(game);
                 game = null;
+            } else {
+                tempMoveList.add(emptyMove);
+                game.setMoveList(tempMoveList);
             }
         }
-    }
-    /**
-     * Verifica che non sia stata fatta una mossa vuota in precedenza.
-     *
-     *  @param moveList la lista delle mosse effettuate nel gioco
-     *  @return true se l'ultima mossa nella lista è una mossa vuota, altrimenti false
-     */
-    private boolean containsEmptyMove(final ArrayList<Move> moveList) {
-        Coordinate emptyCoordinate = new Coordinate(0, 0);
-        Move lastMove = moveList.get(moveList.size() - 1);
-        return lastMove.getStartingSlot().equalsCoordinate(emptyCoordinate)
-                && lastMove.getChosenSlot().equalsCoordinate(emptyCoordinate);
     }
 
     /**

@@ -17,6 +17,11 @@ public final class Input {
     static final int MAX_COORDINATE_LENGTH = 2;
 
     /**
+     * Attributo di istanza per i casi di test per l'input.
+     */
+    private static String testCommand = null;
+
+    /**
      * Costruttore per la classe Input.
      */
     private Input() { }
@@ -55,7 +60,20 @@ public final class Input {
      * @return il comando letto da tastiera.
      */
     public static String getCommand() {
-        Output.printMessages(Message.INSERT_COMMAND);
-        return Keyboard.readString();
+        if (testCommand != null) {
+            String command = testCommand;
+            testCommand = null;
+            return command;
+        } else {
+            Output.printMessages(Message.INSERT_COMMAND);
+            return Keyboard.readString();
+        }
+    }
+
+    /**
+     * Metodo per testare un comando preso input evitando di leggere da tastiera.
+     */
+    public static void setTestCommand(final String command) {
+        testCommand = command;
     }
 }
