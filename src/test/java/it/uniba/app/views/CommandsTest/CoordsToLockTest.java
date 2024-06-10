@@ -15,6 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Classe di test per i metodi relativi a COORDS_TO_LOCK in Commands.
+ */
 public class CoordsToLockTest {
 
     /**
@@ -45,27 +48,27 @@ public class CoordsToLockTest {
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    private final String IN_CTL = "L'oggetto si trova in COORDS_TO_LOCK";
+    static final String IN_CTL = "L'oggetto si trova in COORDS_TO_LOCK";
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    private final String NOT_IN_CTL = "L'oggetto non si trova in COORDS_TO_LOCK";
+    static final String NOT_IN_CTL = "L'oggetto non si trova in COORDS_TO_LOCK";
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    private final String NOT_IN_CTL_ATPOS = "L'oggetto non si trova nella posizione 0 di COORDS_TO_LOCK";
+    static final String NOT_IN_CTL_ATPOS = "L'oggetto non si trova nella posizione 0 di COORDS_TO_LOCK";
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    private final String INVALID_POS = "Posizione di COORDS_TO_LOCK non accessibile";
+    static final String INVALID_POS = "Posizione di COORDS_TO_LOCK non accessibile";
 
     /**
      * Messaggio di errore dovuto al fallimento di un test su COORDS_TO_LOCK.
      */
-    private final String SIZE_ERR = "Dimensione corrente di COORDS_TO_LOCK non corretta";
+    static final String SIZE_ERR = "Dimensione corrente di COORDS_TO_LOCK non corretta";
 
     /**
      * Imposta uno specchio per il vettore COORDS_TO_LOCK in commands, in modo da poterne testare i metodi.
@@ -79,11 +82,10 @@ public class CoordsToLockTest {
         Field nameField = com.getClass().getDeclaredField("COORDS_TO_LOCK");
         nameField.setAccessible(true);
         Vector<Coordinate> tempCTL = (Vector<Coordinate>) nameField.get(com);
-        tempCord = new Coordinate(3, 1);
-        tempOutCord = new Coordinate(9, 5);
-        pos = 0;
+        tempCord = new Coordinate(pos + pos + pos, pos);
+        tempOutCord = new Coordinate(outPos + pos + pos, outPos - pos - pos);
         outPos = 7;
-        size = 1;
+        size++;
         tempCTL.add(tempCord);
     }
 

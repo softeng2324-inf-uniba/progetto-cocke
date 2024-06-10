@@ -19,8 +19,11 @@ import java.nio.file.Path;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Classe di test per il metodo ataxxCommand di Commands.
+ */
 public class AtaxxCommandTest {
 
     /**
@@ -46,17 +49,17 @@ public class AtaxxCommandTest {
     /**
      * Messaggio di errore relativo ai test di ataxxCommand.
      */
-    private final String UNEXPECTED_MSG = "L'output è differente da quello previsto.";
+    static final String UNEXPECTED_MSG = "L'output è differente da quello previsto.";
 
     /**
      * Messaggio di errore relativo ai test di ataxxCommand.
      */
-    private final String FILE_ERR = "Il file help non è stato letto correttamente.";
+    static final String FILE_ERR = "Il file help non è stato letto correttamente.";
 
     /**
      * Messaggio di errore relativo ai test di ataxxCommand.
      */
-    private final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
+    static final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
 
     /**
      * Imposta il flusso di stampa a video nel buffer byteOut, in modo da poter eseguire i test su ataxxCommand.
