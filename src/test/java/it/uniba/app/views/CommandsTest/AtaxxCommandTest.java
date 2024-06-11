@@ -8,16 +8,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.PrintStream;
-import java.io.InputStream;
-import java.io.IOException;
+import java.io.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -71,17 +65,23 @@ class AtaxxCommandTest {
      */
     static final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
 
+    private File inToTest;
+
+    private FileOutputStream streamToFile;
+
     /**
      * Imposta il flusso di stampa a video nel buffer byteOut e inizializza le variabili.
      */
     @BeforeEach
-    void startAtaxxCommand() {
+    void startAtaxxCommand() throws IOException {
         defaultPS = System.out;
         str = "";
         byteOut = new ByteArrayOutputStream();
         myPS = new PrintStream(byteOut);
         System.setOut(myPS);
         args = new String[]{"-i", "CONSOLE"};
+        inToTest = new File("./src/test/java/it/uniba/app/inToTest.txt");
+        streamToFile = new FileOutputStream(inToTest);
     }
 
     /**
@@ -90,9 +90,9 @@ class AtaxxCommandTest {
     @AfterEach
     void setUpAtaxxCommandTest() throws IOException {
         System.out.flush();
-        inStream.close();
         System.setOut(defaultPS);
-        System.gc();
+        streamToFile.close();
+        inToTest.delete();
     }
 
     /**
@@ -101,10 +101,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato a video il messaggio dell'inserimento di un comando e per un comando sconosciuto.
      */
     @Test
-    void testNotAnAtaxxCommand() {
+    void testNotAnAtaxxCommand() throws IOException {
         str = "not_a_command\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.UNKNOWN_COMMAND.getMessageText()), UNEXPECTED_MSG);
@@ -120,9 +120,9 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxHelpCommand() throws IOException {
         str = "/help\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
         String helpToString = Files.readString(Path.of("./src/main/java/it/uniba/app/help.txt"));
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(helpToString), FILE_ERR);
@@ -135,10 +135,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato a video il campo di gioco.
      */
     @Test
-    void testAtaxxGiocaCommand() {
+    void testAtaxxGiocaCommand() throws IOException {
         str = "/gioca\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -160,10 +160,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato a video il campo di gioco.
      */
     @Test
-    void testAtaxxVuotoCommand() {
+    void testAtaxxVuotoCommand() throws IOException {
         str = "/vuoto\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -185,10 +185,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato a video il campo di gioco.
      */
     @Test
-    void testAtaxxTavoliereCommand() {
+    void testAtaxxTavoliereCommand() throws IOException {
         str = "/gioca\n/tavoliere\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -210,10 +210,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato a video il messaggio per una partita non cominciata.
      */
     @Test
-    void testAtaxxTavoliereNoGameCommand() {
+    void testAtaxxTavoliereNoGameCommand() throws IOException {
         str = "/tavoliere\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -226,10 +226,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato a video il campo di gioco.
      */
     @Test
-    void testAtaxxQualimosseCommand() {
+    void testAtaxxQualimosseCommand() throws IOException {
         str = "/gioca\n/qualimosse\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -251,10 +251,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato a video il messaggio per una partita non cominciata.
      */
     @Test
-    void testAtaxxQualimosseNoGameCommand() {
+    void testAtaxxQualimosseNoGameCommand() throws IOException {
         str = "/qualimosse\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -267,10 +267,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato lo storico delle mosse.
      */
     @Test
-    void testAtaxxMosseCommand() {
+    void testAtaxxMosseCommand() throws IOException {
         str = "/gioca\na1-a2\n/mosse\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.MOVE_LIST.getMessageText()), UNEXPECTED_MSG);
@@ -283,10 +283,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void testAtaxxEmptyMosseCommand() {
+    void testAtaxxEmptyMosseCommand() throws IOException {
         str = "/gioca\n/mosse\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_MOVES.getMessageText()), UNEXPECTED_MSG);
@@ -299,10 +299,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void testAtaxxMosseNoGameCommand() {
+    void testAtaxxMosseNoGameCommand() throws IOException {
         str = "/mosse\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -315,10 +315,10 @@ class AtaxxCommandTest {
      * Verifica che vengano stampati i messaggi relativi al termine della partita.
      */
     @Test
-    void testAtaxxAbbandonaCommand() {
+    void testAtaxxAbbandonaCommand() throws IOException {
         str = "/gioca\n/abbandona\ns\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean a = byteOut.toString().contains(Message.CONFIRM_ABANDONMENT.getMessageText());
         boolean b = byteOut.toString().contains(Message.WINNER_PLAYER.getMessageText());
@@ -333,10 +333,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void testAtaxxAbbandonaNoGameCommand() {
+    void testAtaxxAbbandonaNoGameCommand() throws IOException {
         str = "/abbandona\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -349,10 +349,10 @@ class AtaxxCommandTest {
      * Verifica che venga effettuata la stampa del tempo trascorso in partita.
      */
     @Test
-    void testAtaxxTempoCommand() {
+    void testAtaxxTempoCommand() throws IOException {
         str = "/gioca\n/tempo\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.ELAPSED_TIME.getMessageText()), UNEXPECTED_MSG);
@@ -365,10 +365,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void testAtaxxTempoNoGameCommand() {
+    void testAtaxxTempoNoGameCommand() throws IOException {
         str = "/tempo\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -381,10 +381,10 @@ class AtaxxCommandTest {
      * Verifica che vengano stampati i messaggi relativi al comando in oggetto.
      */
     @Test
-    void testAtaxxEsciCommand() {
+    void testAtaxxEsciCommand() throws IOException {
         str = "/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean a = byteOut.toString().contains(Message.CONFIRM_EXIT.getMessageText());
         boolean b = byteOut.toString().contains(Message.BAD_CONFIRMATION_EXIT.getMessageText());
@@ -399,10 +399,10 @@ class AtaxxCommandTest {
      * Verifica che venga eseguito /gioca dopo aver bloccato una casella e che venga stampato il campo di gioco.
      */
     @Test
-    void testAtaxxBloccaCommand() {
+    void testAtaxxBloccaCommand() throws IOException {
         str = "/blocca d3\n/gioca\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -424,10 +424,10 @@ class AtaxxCommandTest {
      * Verifica che venga visualizzato il corretto messaggio.
      */
     @Test
-    void testAtaxxBloccaNonLockableCommand() {
+    void testAtaxxBloccaNonLockableCommand() throws IOException {
         str = "/blocca a1\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
@@ -441,10 +441,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato il messaggio di errore per le coordinate non ammesse.
      */
     @Test
-    void testAtaxxBloccaOutCommand() {
+    void testAtaxxBloccaOutCommand() throws IOException {
         str = "/blocca m9\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.COORD_ERR.getMessageText()), UNEXPECTED_MSG);
@@ -457,10 +457,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void testAtaxxBloccaInvalidCommand() {
+    void testAtaxxBloccaInvalidCommand() throws IOException {
         str = "/gioca\n/blocca a1\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.GAME_IS_PLAYING.getMessageText()), UNEXPECTED_MSG);
@@ -473,13 +473,13 @@ class AtaxxCommandTest {
      * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void testAtaxxBloccaAllCommand() {
+    void testAtaxxBloccaAllCommand() throws IOException {
         for (int i = 1; i <= Field.DEFAULT_DIM; i++) {
             str = str + "/blocca d" + i + "\n";
         }
         str = str + "/blocca a4\n/blocca b4\n/blocca c4\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
@@ -492,10 +492,10 @@ class AtaxxCommandTest {
      * Verifica che venga stampato a video che la mossa non è realizzabile.
      */
     @Test
-    void testAtaxxMoveCommand() {
+    void testAtaxxMoveCommand() throws IOException {
         str = "/gioca\na1-a6\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.ILLEGAL_MOVE.getMessageText()), UNEXPECTED_MSG);
@@ -508,10 +508,11 @@ class AtaxxCommandTest {
      * Verifica che venga stampato il corretto messaggio di errore.
      */
     @Test
-    void testAtaxxMoveNoGameCommand() {
+    void testAtaxxMoveNoGameCommand() throws IOException {
         str = "a1-a2\n/esci\ns\n";
-        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(inStream);
+        streamToFile.write(str.getBytes());
+        System.setIn(new FileInputStream(inToTest));
+        Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
