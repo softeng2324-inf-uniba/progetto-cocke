@@ -4,11 +4,20 @@ import it.uniba.app.model.Field;
 import it.uniba.app.utils.Message;
 import it.uniba.app.views.Commands;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -65,9 +74,21 @@ class AtaxxCommandTest {
      */
     static final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
 
-    private File inToTest;
+    /**
+     *
+     */
+    private static File inToTest;
 
+    /**
+     * 
+     */
     private FileOutputStream streamToFile;
+
+    @BeforeAll
+    static void setUpInputStream() throws FileNotFoundException {
+        inToTest = new File("./src/test/java/it/uniba/app/inToTest.txt");
+        System.setIn(new FileInputStream(inToTest));
+    }
 
     /**
      * Imposta il flusso di stampa a video nel buffer byteOut e inizializza le variabili.
@@ -80,8 +101,8 @@ class AtaxxCommandTest {
         myPS = new PrintStream(byteOut);
         System.setOut(myPS);
         args = new String[]{"-i", "CONSOLE"};
-        inToTest = new File("./src/test/java/it/uniba/app/inToTest.txt");
-        streamToFile = new FileOutputStream(inToTest);
+        streamToFile = new FileOutputStream(inToTest, true);
+
     }
 
     /**
@@ -92,6 +113,10 @@ class AtaxxCommandTest {
         System.out.flush();
         System.setOut(defaultPS);
         streamToFile.close();
+    }
+
+    @AfterAll
+    static void deleteFile() {
         inToTest.delete();
     }
 
@@ -104,7 +129,6 @@ class AtaxxCommandTest {
     void testNotAnAtaxxCommand() throws IOException {
         str = "not_a_command\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.UNKNOWN_COMMAND.getMessageText()), UNEXPECTED_MSG);
@@ -122,7 +146,6 @@ class AtaxxCommandTest {
         str = "/help\n/esci\ns\n";
         String helpToString = Files.readString(Path.of("./src/main/java/it/uniba/app/help.txt"));
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(helpToString), FILE_ERR);
@@ -138,7 +161,6 @@ class AtaxxCommandTest {
     void testAtaxxGiocaCommand() throws IOException {
         str = "/gioca\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -163,7 +185,6 @@ class AtaxxCommandTest {
     void testAtaxxVuotoCommand() throws IOException {
         str = "/vuoto\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -188,7 +209,6 @@ class AtaxxCommandTest {
     void testAtaxxTavoliereCommand() throws IOException {
         str = "/gioca\n/tavoliere\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -213,7 +233,6 @@ class AtaxxCommandTest {
     void testAtaxxTavoliereNoGameCommand() throws IOException {
         str = "/tavoliere\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -229,7 +248,6 @@ class AtaxxCommandTest {
     void testAtaxxQualimosseCommand() throws IOException {
         str = "/gioca\n/qualimosse\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -254,7 +272,6 @@ class AtaxxCommandTest {
     void testAtaxxQualimosseNoGameCommand() throws IOException {
         str = "/qualimosse\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -270,7 +287,6 @@ class AtaxxCommandTest {
     void testAtaxxMosseCommand() throws IOException {
         str = "/gioca\na1-a2\n/mosse\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.MOVE_LIST.getMessageText()), UNEXPECTED_MSG);
@@ -286,7 +302,6 @@ class AtaxxCommandTest {
     void testAtaxxEmptyMosseCommand() throws IOException {
         str = "/gioca\n/mosse\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_MOVES.getMessageText()), UNEXPECTED_MSG);
@@ -302,7 +317,6 @@ class AtaxxCommandTest {
     void testAtaxxMosseNoGameCommand() throws IOException {
         str = "/mosse\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -318,7 +332,6 @@ class AtaxxCommandTest {
     void testAtaxxAbbandonaCommand() throws IOException {
         str = "/gioca\n/abbandona\ns\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean a = byteOut.toString().contains(Message.CONFIRM_ABANDONMENT.getMessageText());
         boolean b = byteOut.toString().contains(Message.WINNER_PLAYER.getMessageText());
@@ -336,7 +349,6 @@ class AtaxxCommandTest {
     void testAtaxxAbbandonaNoGameCommand() throws IOException {
         str = "/abbandona\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -352,7 +364,6 @@ class AtaxxCommandTest {
     void testAtaxxTempoCommand() throws IOException {
         str = "/gioca\n/tempo\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.ELAPSED_TIME.getMessageText()), UNEXPECTED_MSG);
@@ -368,7 +379,6 @@ class AtaxxCommandTest {
     void testAtaxxTempoNoGameCommand() throws IOException {
         str = "/tempo\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -384,7 +394,6 @@ class AtaxxCommandTest {
     void testAtaxxEsciCommand() throws IOException {
         str = "/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean a = byteOut.toString().contains(Message.CONFIRM_EXIT.getMessageText());
         boolean b = byteOut.toString().contains(Message.BAD_CONFIRMATION_EXIT.getMessageText());
@@ -402,7 +411,6 @@ class AtaxxCommandTest {
     void testAtaxxBloccaCommand() throws IOException {
         str = "/blocca d3\n/gioca\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -427,7 +435,6 @@ class AtaxxCommandTest {
     void testAtaxxBloccaNonLockableCommand() throws IOException {
         str = "/blocca a1\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
@@ -444,7 +451,6 @@ class AtaxxCommandTest {
     void testAtaxxBloccaOutCommand() throws IOException {
         str = "/blocca m9\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.COORD_ERR.getMessageText()), UNEXPECTED_MSG);
@@ -460,7 +466,6 @@ class AtaxxCommandTest {
     void testAtaxxBloccaInvalidCommand() throws IOException {
         str = "/gioca\n/blocca a1\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.GAME_IS_PLAYING.getMessageText()), UNEXPECTED_MSG);
@@ -479,7 +484,6 @@ class AtaxxCommandTest {
         }
         str = str + "/blocca a4\n/blocca b4\n/blocca c4\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
@@ -495,7 +499,6 @@ class AtaxxCommandTest {
     void testAtaxxMoveCommand() throws IOException {
         str = "/gioca\na1-a6\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.ILLEGAL_MOVE.getMessageText()), UNEXPECTED_MSG);
@@ -511,7 +514,6 @@ class AtaxxCommandTest {
     void testAtaxxMoveNoGameCommand() throws IOException {
         str = "a1-a2\n/esci\ns\n";
         streamToFile.write(str.getBytes());
-        System.setIn(new FileInputStream(inToTest));
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
