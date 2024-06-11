@@ -75,7 +75,7 @@ class AtaxxCommandTest {
      * Imposta il flusso di stampa a video nel buffer byteOut e inizializza le variabili.
      */
     @BeforeEach
-    void startAtaxxCommand(){
+    void startAtaxxCommand() {
         defaultPS = System.out;
         str = "";
         byteOut = new ByteArrayOutputStream();
@@ -88,11 +88,11 @@ class AtaxxCommandTest {
      * Svuota il buffer di stampa e reimposta il flusso di input e di stampa.
      */
     @AfterEach
-    void setUpAtaxxCommandTest() {
+    void setUpAtaxxCommandTest() throws IOException {
         System.out.flush();
-        inStream = System.in;
-        System.setIn(inStream);
+        inStream.close();
         System.setOut(defaultPS);
+        System.gc();
     }
 
     /**
@@ -512,7 +512,6 @@ class AtaxxCommandTest {
         str = "a1-a2\n/esci\ns\n";
         inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
         System.setIn(inStream);
-        Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
     }
