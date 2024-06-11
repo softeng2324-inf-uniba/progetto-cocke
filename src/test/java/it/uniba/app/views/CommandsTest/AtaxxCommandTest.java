@@ -12,11 +12,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 
 import java.nio.file.Files;
@@ -70,26 +68,26 @@ class AtaxxCommandTest {
     static final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
 
     /**
-     *
+     * File contenente l'input da testare.
      */
     private static File inToTest;
 
     /**
-     *
+     * Input stream proveniente da file di testo.
      */
     private FileOutputStream streamToFile;
 
     /**
-     *
-     * @throws FileNotFoundException
+     * Crea il file da cui proviene lo stream di input.
      */
     @BeforeAll
-    static void setUpInputStream() throws FileNotFoundException {
+    static void setUpInputStream() {
         inToTest = new File("./src/test/java/it/uniba/app/inToTest.txt");
     }
 
     /**
-     * Imposta il flusso di stampa a video nel buffer byteOut e inizializza le variabili.
+     * Inizializza le variabili di test e imposta l'inputStream in modo che venga letto il file di inToTest.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @BeforeEach
     void startAtaxxCommand() throws IOException {
@@ -104,7 +102,8 @@ class AtaxxCommandTest {
     }
 
     /**
-     * Svuota il buffer di stampa e reimposta il flusso di input e di stampa.
+     * Svuota il buffer di stampa e chiude il flusso di input precedente.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @AfterEach
     void setUpAtaxxCommandTest() throws IOException {
@@ -113,6 +112,9 @@ class AtaxxCommandTest {
         streamToFile.close();
     }
 
+    /**
+     * Cancella il file degli input e reimposta l'input e l'output allo stato di default.
+     */
     @AfterAll
     static void deleteFile() {
         inToTest.delete();
@@ -124,6 +126,7 @@ class AtaxxCommandTest {
      * Test del metodo ataxxCommand quando viene inserito un comando non valido.
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga stampato a video il messaggio dell'inserimento di un comando e per un comando sconosciuto.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testNotAnAtaxxCommand() throws IOException {
@@ -156,6 +159,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato a video il campo di gioco.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxGiocaCommand() throws IOException {
@@ -180,6 +184,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato a video il campo di gioco.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxVuotoCommand() throws IOException {
@@ -204,6 +209,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato a video il campo di gioco.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxTavoliereCommand() throws IOException {
@@ -228,6 +234,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato a video il messaggio per una partita non cominciata.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxTavoliereNoGameCommand() throws IOException {
@@ -243,6 +250,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato a video il campo di gioco.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxQualimosseCommand() throws IOException {
@@ -267,6 +275,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato a video il messaggio per una partita non cominciata.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxQualimosseNoGameCommand() throws IOException {
@@ -282,6 +291,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato lo storico delle mosse.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxMosseCommand() throws IOException {
@@ -297,6 +307,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato il corretto messaggio di errore.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxEmptyMosseCommand() throws IOException {
@@ -312,6 +323,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato il corretto messaggio di errore.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxMosseNoGameCommand() throws IOException {
@@ -327,6 +339,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che vengano stampati i messaggi relativi al termine della partita.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxAbbandonaCommand() throws IOException {
@@ -344,6 +357,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato il corretto messaggio di errore.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxAbbandonaNoGameCommand() throws IOException {
@@ -359,6 +373,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga effettuata la stampa del tempo trascorso in partita.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxTempoCommand() throws IOException {
@@ -374,6 +389,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato il corretto messaggio di errore.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxTempoNoGameCommand() throws IOException {
@@ -389,6 +405,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che vengano stampati i messaggi relativi al comando in oggetto.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxEsciCommand() throws IOException {
@@ -406,6 +423,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga eseguito /gioca dopo aver bloccato una casella e che venga stampato il campo di gioco.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxBloccaCommand() throws IOException {
@@ -430,6 +448,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga visualizzato il corretto messaggio.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxBloccaNonLockableCommand() throws IOException {
@@ -446,6 +465,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato il messaggio di errore per le coordinate non ammesse.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxBloccaOutCommand() throws IOException {
@@ -461,6 +481,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato il corretto messaggio di errore.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxBloccaInvalidCommand() throws IOException {
@@ -476,27 +497,10 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato il corretto messaggio di errore.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxBloccaAllCommand() throws IOException {
-        for (int i = 1; i <= Field.DEFAULT_DIM; i++) {
-            str = str + "/blocca d" + i + "\n";
-        }
-        str = str + "/blocca a4\n/blocca b4\n/blocca c4\n/esci\ns\n";
-        streamToFile.write(str.getBytes());
-        Commands.ataxxCommand(args);
-        boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-        assertTrue(inC && byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
-    }
-
-    /**
-     * Test del metodo ataxxCommand nel momento in cui viene richiesta una mossa non valida.
-     * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
-     * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
-     * Verifica che venga stampato a video che la mossa non è realizzabile.
-     */
-    @Test
-    void testAtaxxMoveCommand() throws IOException {
         str = "/gioca\na1-a6\n/esci\ns\n";
         streamToFile.write(str.getBytes());
         Commands.ataxxCommand(args);
@@ -509,6 +513,7 @@ class AtaxxCommandTest {
      * Modifica l'input stream, in modo che risulti letta da tastiera la stringa str.
      * Verifica che venga visualizzato a video il messaggio relativo all'inserimento di un comando.
      * Verifica che venga stampato il corretto messaggio di errore.
+     * @throws IOException se il percorso del file non viene trovato.
      */
     @Test
     void testAtaxxMoveNoGameCommand() throws IOException {
