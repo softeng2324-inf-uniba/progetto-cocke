@@ -87,10 +87,11 @@ class CoordsToLockTest {
         Field nameField = com.getClass().getDeclaredField("COORDS_TO_LOCK");
         nameField.setAccessible(true);
         Vector<Coordinate> tempCTL = (Vector<Coordinate>) nameField.get(com);
-        tempCord = new Coordinate(ANTI_MAGIC_NUM, ANTI_MAGIC_NUM - size);
-        tempOutCord = new Coordinate(ANTI_MAGIC_NUM * ANTI_MAGIC_NUM, ANTI_MAGIC_NUM + ANTI_MAGIC_NUM - size);
+        pos = 0;
         outPos = ANTI_MAGIC_NUM;
         size++;
+        tempCord = new Coordinate(ANTI_MAGIC_NUM, ANTI_MAGIC_NUM - size);
+        tempOutCord = new Coordinate(ANTI_MAGIC_NUM * ANTI_MAGIC_NUM, ANTI_MAGIC_NUM + ANTI_MAGIC_NUM - size);
         tempCTL.add(tempCord);
     }
 
