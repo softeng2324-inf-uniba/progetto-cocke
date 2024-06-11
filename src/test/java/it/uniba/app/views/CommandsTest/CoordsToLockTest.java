@@ -87,6 +87,7 @@ class CoordsToLockTest {
         Field nameField = com.getClass().getDeclaredField("COORDS_TO_LOCK");
         nameField.setAccessible(true);
         Vector<Coordinate> tempCTL = (Vector<Coordinate>) nameField.get(com);
+        tempCTL.clear();
         pos = 0;
         outPos = ANTI_MAGIC_NUM;
         size++;
