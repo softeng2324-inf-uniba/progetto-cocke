@@ -80,14 +80,17 @@ class AtaxxCommandTest {
     private static File inToTest;
 
     /**
-     * 
+     *
      */
     private FileOutputStream streamToFile;
 
+    /**
+     *
+     * @throws FileNotFoundException
+     */
     @BeforeAll
     static void setUpInputStream() throws FileNotFoundException {
         inToTest = new File("./src/test/java/it/uniba/app/inToTest.txt");
-        System.setIn(new FileInputStream(inToTest));
     }
 
     /**
@@ -102,7 +105,7 @@ class AtaxxCommandTest {
         System.setOut(myPS);
         args = new String[]{"-i", "CONSOLE"};
         streamToFile = new FileOutputStream(inToTest, true);
-
+        System.setIn(new FileInputStream(inToTest));
     }
 
     /**
