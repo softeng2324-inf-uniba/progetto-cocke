@@ -42,17 +42,12 @@ class AtaxxCommandTest {
     /**
      * Variabile utile per impostare il PrintStream allo stato di default.
      */
-    private PrintStream defaultPS;
+    private static PrintStream defaultPS;
 
     /**
      * Variabile utile per impostare il PrintStream in modo da poter effettuare i test.
      */
     private PrintStream myPS;
-
-    /**
-     * Variabile utile per impostare l'InputStream in modo da poter effettuare i test.
-     */
-    private InputStream inStream;
 
     /**
      * Stringa contenente il comando da dare in input al test di ataxxCommand.
@@ -121,6 +116,8 @@ class AtaxxCommandTest {
     @AfterAll
     static void deleteFile() {
         inToTest.delete();
+        System.setOut(defaultPS);
+        System.setIn(System.in);
     }
 
     /**
