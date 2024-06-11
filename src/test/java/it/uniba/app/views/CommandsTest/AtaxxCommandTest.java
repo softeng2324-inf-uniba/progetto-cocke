@@ -29,7 +29,7 @@ class AtaxxCommandTest {
     /**
      * Argomenti di input per il test di ataxxCommand.
      */
-    private final String[] args = new String[]{"-i", "CONSOLE"};
+    private String[] args;
 
     /**
      * Variabile buffer che contiene le stampe prodotte dai test di ataxxCommand.
@@ -37,14 +37,24 @@ class AtaxxCommandTest {
     private ByteArrayOutputStream byteOut;
 
     /**
-     *  Variabile utile per impostare il PrintStream allo stato di default.
+     * Variabile utile per impostare il PrintStream allo stato di default.
      */
-    private PrintStream defaultPS = System.out;
+    private PrintStream defaultPS;
+
+    /**
+     * Variabile utile per impostare il PrintStream in modo da poter effettuare i test.
+     */
+    private PrintStream myPS;
+
+    /**
+     * Variabile utile per impostare l'InputStream in modo da poter effettuare i test.
+     */
+    private InputStream inStream;
 
     /**
      * Stringa contenente il comando da dare in input al test di ataxxCommand.
      */
-    private String str = "";
+    private String str;
 
     /**
      * Messaggio di errore relativo ai test di ataxxCommand.
@@ -62,21 +72,26 @@ class AtaxxCommandTest {
     static final String FIELD_ERR = "Il campo stampato è differente da quello previsto.";
 
     /**
-     * Imposta il flusso di stampa a video nel buffer byteOut, in modo da poter eseguire i test su ataxxCommand.
+     * Imposta il flusso di stampa a video nel buffer byteOut e inizializza le variabili.
      */
     @BeforeEach
-    void setUpAtaxxCommandTest() {
+    void startAtaxxCommand(){
+        defaultPS = System.out;
+        str = "";
         byteOut = new ByteArrayOutputStream();
-        PrintStream myPS = new PrintStream(byteOut);
+        myPS = new PrintStream(byteOut);
         System.setOut(myPS);
+        args = new String[]{"-i", "CONSOLE"};
     }
 
     /**
-     * Reimposta il flusso di stampa a video.
+     * Svuota il buffer di stampa e reimposta il flusso di input e di stampa.
      */
     @AfterEach
-    void afterAtaxxCommandTest() {
+    void setUpAtaxxCommandTest() {
         System.out.flush();
+        inStream = System.in;
+        System.setIn(inStream);
         System.setOut(defaultPS);
     }
 
@@ -88,8 +103,8 @@ class AtaxxCommandTest {
     @Test
     void testNotAnAtaxxCommand() {
         str = "not_a_command\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.UNKNOWN_COMMAND.getMessageText()), UNEXPECTED_MSG);
@@ -105,10 +120,10 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxHelpCommand() throws IOException {
         str = "/help\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
-        Commands.ataxxCommand(args);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         String helpToString = Files.readString(Path.of("./src/main/java/it/uniba/app/help.txt"));
+        Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(helpToString), FILE_ERR);
     }
@@ -122,8 +137,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxGiocaCommand() {
         str = "/gioca\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -147,8 +162,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxVuotoCommand() {
         str = "/vuoto\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -172,8 +187,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxTavoliereCommand() {
         str = "/gioca\n/tavoliere\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -197,8 +212,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxTavoliereNoGameCommand() {
         str = "/tavoliere\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -213,8 +228,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxQualimosseCommand() {
         str = "/gioca\n/qualimosse\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -238,8 +253,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxQualimosseNoGameCommand() {
         str = "/qualimosse\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -254,8 +269,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxMosseCommand() {
         str = "/gioca\na1-a2\n/mosse\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.MOVE_LIST.getMessageText()), UNEXPECTED_MSG);
@@ -270,8 +285,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxEmptyMosseCommand() {
         str = "/gioca\n/mosse\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_MOVES.getMessageText()), UNEXPECTED_MSG);
@@ -286,8 +301,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxMosseNoGameCommand() {
         str = "/mosse\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -302,8 +317,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxAbbandonaCommand() {
         str = "/gioca\n/abbandona\ns\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean a = byteOut.toString().contains(Message.CONFIRM_ABANDONMENT.getMessageText());
         boolean b = byteOut.toString().contains(Message.WINNER_PLAYER.getMessageText());
@@ -320,8 +335,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxAbbandonaNoGameCommand() {
         str = "/abbandona\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -336,8 +351,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxTempoCommand() {
         str = "/gioca\n/tempo\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.ELAPSED_TIME.getMessageText()), UNEXPECTED_MSG);
@@ -352,8 +367,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxTempoNoGameCommand() {
         str = "/tempo\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
@@ -368,8 +383,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxEsciCommand() {
         str = "/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean a = byteOut.toString().contains(Message.CONFIRM_EXIT.getMessageText());
         boolean b = byteOut.toString().contains(Message.BAD_CONFIRMATION_EXIT.getMessageText());
@@ -386,8 +401,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxBloccaCommand() {
         str = "/blocca d3\n/gioca\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         boolean check = byteOut.toString().contains(" ");
@@ -411,8 +426,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxBloccaNonLockableCommand() {
         str = "/blocca a1\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
@@ -428,8 +443,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxBloccaOutCommand() {
         str = "/blocca m9\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.COORD_ERR.getMessageText()), UNEXPECTED_MSG);
@@ -444,8 +459,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxBloccaInvalidCommand() {
         str = "/gioca\n/blocca a1\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.GAME_IS_PLAYING.getMessageText()), UNEXPECTED_MSG);
@@ -463,8 +478,8 @@ class AtaxxCommandTest {
             str = str + "/blocca d" + i + "\n";
         }
         str = str + "/blocca a4\n/blocca b4\n/blocca c4\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
@@ -479,8 +494,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxMoveCommand() {
         str = "/gioca\na1-a6\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.ILLEGAL_MOVE.getMessageText()), UNEXPECTED_MSG);
@@ -495,8 +510,8 @@ class AtaxxCommandTest {
     @Test
     void testAtaxxMoveNoGameCommand() {
         str = "a1-a2\n/esci\ns\n";
-        InputStream stream = new ByteArrayInputStream(str.getBytes(UTF_8));
-        System.setIn(stream);
+        inStream = new ByteArrayInputStream(str.getBytes(UTF_8));
+        System.setIn(inStream);
         Commands.ataxxCommand(args);
         boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
         assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
