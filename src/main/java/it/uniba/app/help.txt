@@ -1,12 +1,12 @@
-•COME SI GIOCA
-Ataxx è un gioco a turni il cui scopo è quello di dominare più caselle dell' avversario.
+*COME SI GIOCA
+Ataxx consiste in un gioco a turni, con lo scopo di dominare un numero maggiore di caselle rispetto all' avversario.
 Sono consentite due tipi di mosse:
 	-SPOSTAMENTO: puoi spostare la pedina a due posizioni di distanza;
 	-DUPLICAZIONE: generando una pedina adiacente a quella di partenza.
-Quando una pedina è generata o spostata vicino ad una avversaria, le pedine avversarie adiacenti cambiano colore.
+Quando una pedina viene generata o spostata vicino ad una avversaria, le pedine avversarie adiacenti cambiano colore.
 
 
-•DESCRIZIONE DEI COMANDI
+*DESCRIZIONE DEI COMANDI
 /help       : Mostra l'elenco dei comandi.
 /gioca      : Genera una nuova partita se non ci sono partite in corso.
 /vuoto      : Mostra il tavoliere vuoto.
