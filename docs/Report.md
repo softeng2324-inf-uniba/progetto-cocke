@@ -14,7 +14,15 @@
 
 [4. System Design](#4-system-design)
 
+
+- [4.1 Stile architetturale adottato](#41-stile-architetturale-adottato)
+
+
 [5. OO Design](#5-oo-design)
+
+
+- [5.1 Diagramma delle classi](#51-diagramma-delle-classi)
+- [5.2 Diagramma di sequenza](#52-diagramma-di-sequenza)
 
 [6. Riepilogo dei test](#6-riepilogo-dei-test)
 
@@ -111,19 +119,217 @@ L'applicazione è distribuita come Container Docker.
 ---
 
 # **4. System Design**
+## 4.1 Stile architetturale adottato
 
 ---
 
+Abbiamo utilizzato come pattern architetturale l'**Entity-Control-Boundary (ECB)**, 
+in quanto è un pattern che permette di separare le responsabilità all'interno dell'applicazione, 
+garantendo una maggiore manutenibilità e flessibilità:
+
+### Entity
+Rappresenta le classi che contengono i dati e le regole di business dell'applicazione:
+- **Coordinate**
+- **Field**
+- **Game**
+- **Move**
+- **Player**
+- **Slot**
+
+### Boundary
+Rappresenta le classi che interagiscono con l'utente:
+- **App**
+- **Input**
+- **Keyboard**
+- **Output**
+
+### Control
+Rappresenta le classi che contengono la logica dell'applicazione:
+- **GameController**
 
 ---
 
 # **5. OO Design**
+## 5.1 Diagramma delle classi
+
+Di seguito è rappresentato il diagramma delle classi generale per il gioco Ataxx
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/diagramma_delle_classi.png"  alt=""/>
+</p>
 
 ---
+
+### Comando /help
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_help.png"  alt=""/>
+</p>
+
+### Comando help tramite flag
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_help_flag.png"  alt=""/>
+</p>
+
+
+### Comando /gioca
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_gioca.png"  alt=""/>
+</p>
+
+
+### Comando /vuoto
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_vuoto.png"  alt=""/>
+</p>
+
+### Comando /tavoliere
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_tavoliere.png"  alt=""/>
+</p>
+
+### Comando /qualimosse
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_qualimosse.png"  alt=""/>
+</p>
+
+### Comando /mosse
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_mosse.png"  alt=""/>
+</p>
+
+### Comando /abbandona
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_abbandona.png"  alt=""/>
+</p>
+
+### Comando /tempo
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_tempo.png"  alt=""/>
+</p>
+
+### Comando /esci
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_esci.png"  alt=""/>
+</p>
+
+### Comando /blocca
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_blocca.png"  alt=""/>
+</p>
+
+### Gestione di una mossa
+
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/gestione_mosse.png"  alt=""/>
+</p>
+
+---
+
+## 5.2 Diagramma di sequenza
+
+### Comando /help
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_help.png"  alt=""/>
+</p>
+
+### Comando help con la flag
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_flaghelp.png"  alt=""/>
+</p>
+
+### Comando /gioca
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_gioca.png"  alt=""/>
+</p>
+
+### Comando /vuoto
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_vuoto.png"  alt=""/>
+</p>
+
+### Comando /tavoliere
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_tavoliere.png"  alt=""/>
+</p>
+
+### Comando /qualimosse
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_qualimosse.png"  alt=""/>
+</p>
+
+### Comando /mosse
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_mosse.png"  alt=""/>
+</p>
+
+### Comando /abbandona
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_abbandona.png"  alt=""/>
+</p>
+
+### Comando /tempo
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_tempo.png"  alt=""/>
+</p>
+
+### Comando /esci
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_esci.png"  alt=""/>
+</p>
+
+### Comando /blocca
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_blocca.png"  alt=""/>
+</p>
+
+### Mossa 
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_mossa1.png"  alt=""/>
+</p>
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_mossa2.png"  alt=""/>
+</p>
+
+
+
 
 ---
 
 # **6. Riepilogo dei test**
+
+Di seguito è riportato un sommario riguardante i test effettuati per ogni package del programma:
+<p style="text-align: center;">
+    <img src="./img/Report/Test_summary.png" alt="">
+</p>
+
+Di seguito sono mostrate le percentuali di copertura dei test per ogni package:
+<p style="text-align: center;">
+    <img src="./img/Report/Test_coverage.png" alt="">
+</p>
 
 ---
 
@@ -144,11 +350,16 @@ Dopo aver eseguito il comando docker pull copiandolo da GitHub Packages, il coma
 Ataxx è un gioco da tavolo strategico per due giocatori, l'obiettivo è conquistare il maggior numero di celle possibili trasformando le pedine avversarie in proprie.
 
 _Ecco i comandi disponibili per il giocatore:_
+> - **/help** : Mostra l'elenco dei comandi.
 > - **/gioca** : Crea una nuova partita se non ci sono partite in corso.
 > - **/vuoto** : Mostra il tavoliere vuoto.
 > - **/tavoliere** : Mostra la posizione delle pedine sul tavoliere.
 > - **/qualimosse** : Mostra le mosse disponibili al giocatore.
+> - **/mosse** : Mostra le mosse effettuate fino ad ora nella partita. 
+> - **/blocca xn** : Blocca una casella xn, le pedine non possono arrivarci. 
+> - **xn-xn** : Esegue una mossa con le cordinate nel formato (partenza-arrivo).
 > - **/abbandona** : Chiude la partita in gioco e viene dichiarata vittoria all' avversario.
+> - **/tempo** : Stampa il tempo passato dall'inizio della partita.
 > - **/esci** : Esci dal gioco.
 
 
@@ -157,6 +368,26 @@ _Ecco i comandi disponibili per il giocatore:_
 # **8. Processo di sviluppo e organizzazione del lavoro**
 
 ---
+
+Nel team di sviluppo, è stato applicato il metodo di sviluppo software **SCRUM** per la gestione del progetto, seguendo il modello di sviluppo software **Agile**, che prevede lo sviluppo incrementale e iterativo del software. Il progetto è stato quindi suddiviso in 3 sprint, ognuno della durata di circa 2 settimane.
+
+Ad ogni inizio sprint, si sono tenuti meeting di **Sprint Planning** con il **Product Owner Filippo Lanubile**, durante i quali sono stati definiti gli obiettivi dello sprint e assegnati i task al team.
+
+Il nostro team di sviluppo è stato gestito da uno **Scrum Master**,il quale ha tenuto riunioni di **Daily Scrum Meeting** per monitorare lo stato di avanzamento del progetto.
+Queste riunioni, della durata massima di 15 minuti, hanno seguito la prassi standard dove ogni membro del team ha risposto alle domande guida di **SCRUM**:
+- *Cosa si è fatto ieri?*
+- *Cosa si è fatto oggi?*
+- *Ci sono problemi?*
+
+Eventuali problemi emersi sono stati approfonditi in un momento successivo.
+
+Inoltre abbiamo utilizzato in ogni sprint una **Scrum Board** fornita da GitHub, in cui abbiamo diviso i task in 5 colonne:
+
+- **To Do**
+- **In Progress**
+- **Review**
+- **Ready**
+- **Done**
 
 ---
 
@@ -167,6 +398,7 @@ _Ecco i comandi disponibili per il giocatore:_
 ## 9.1 Sprint 0
 
 ---
+
 ![Retrospettiva0](./img/Report/Retrospettiva0.jpg)
 
 ---
@@ -175,5 +407,6 @@ _Ecco i comandi disponibili per il giocatore:_
 
 ---
 
+![Retrospettiva1](./img/Report/Retrospettiva1.jpg)
 
 ---
