@@ -146,8 +146,8 @@ public class CommandsTest {
             str = "not_a_command\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.UNKNOWN_COMMAND.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.UNKNOWN_COMMAND.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -163,8 +163,8 @@ public class CommandsTest {
             String helpToString = Files.readString(Path.of("./src/main/java/it/uniba/app/help.txt"));
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(helpToString), FILE_ERR);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(helpToString), FILE_ERR);
         }
 
         /**
@@ -179,13 +179,13 @@ public class CommandsTest {
             str = "/gioca\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            boolean check = byteOut.toString().contains(" ");
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            boolean check = byteOut.toString(UTF_8).contains(" ");
             char a = 'A';
             char uno = '1';
             for (int i = 0; i < Field.DEFAULT_DIM - 1; i++) {
-                check = check && byteOut.toString().contains("" + a);
-                check = check && byteOut.toString().contains("" + uno);
+                check = check && byteOut.toString(UTF_8).contains("" + a);
+                check = check && byteOut.toString(UTF_8).contains("" + uno);
                 a++;
                 uno++;
             }
@@ -204,13 +204,13 @@ public class CommandsTest {
             str = "/vuoto\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            boolean check = byteOut.toString().contains(" ");
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            boolean check = byteOut.toString(UTF_8).contains(" ");
             char a = 'A';
             char uno = '1';
             for (int i = 0; i < Field.DEFAULT_DIM - 1; i++) {
-                check = check && byteOut.toString().contains("" + a);
-                check = check && byteOut.toString().contains("" + uno);
+                check = check && byteOut.toString(UTF_8).contains("" + a);
+                check = check && byteOut.toString(UTF_8).contains("" + uno);
                 a++;
                 uno++;
             }
@@ -229,13 +229,13 @@ public class CommandsTest {
             str = "/gioca\n/tavoliere\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            boolean check = byteOut.toString().contains(" ");
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            boolean check = byteOut.toString(UTF_8).contains(" ");
             char a = 'A';
             char uno = '1';
             for (int i = 0; i < Field.DEFAULT_DIM - 1; i++) {
-                check = check && byteOut.toString().contains("" + a);
-                check = check && byteOut.toString().contains("" + uno);
+                check = check && byteOut.toString(UTF_8).contains("" + a);
+                check = check && byteOut.toString(UTF_8).contains("" + uno);
                 a++;
                 uno++;
             }
@@ -254,8 +254,8 @@ public class CommandsTest {
             str = "/tavoliere\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -270,13 +270,13 @@ public class CommandsTest {
             str = "/gioca\n/qualimosse\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            boolean check = byteOut.toString().contains(" ");
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            boolean check = byteOut.toString(UTF_8).contains(" ");
             char a = 'A';
             char uno = '1';
             for (int i = 0; i < Field.DEFAULT_DIM - 1; i++) {
-                check = check && byteOut.toString().contains("" + a);
-                check = check && byteOut.toString().contains("" + uno);
+                check = check && byteOut.toString(UTF_8).contains("" + a);
+                check = check && byteOut.toString(UTF_8).contains("" + uno);
                 a++;
                 uno++;
             }
@@ -295,8 +295,8 @@ public class CommandsTest {
             str = "/qualimosse\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -311,8 +311,8 @@ public class CommandsTest {
             str = "/gioca\na1-a2\n/mosse\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.MOVE_LIST.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.MOVE_LIST.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -327,8 +327,8 @@ public class CommandsTest {
             str = "/gioca\n/mosse\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.NO_MOVES.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.NO_MOVES.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -343,8 +343,8 @@ public class CommandsTest {
             str = "/mosse\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -359,9 +359,9 @@ public class CommandsTest {
             str = "/gioca\n/abbandona\ns\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean a = byteOut.toString().contains(Message.CONFIRM_ABANDONMENT.getMessageText());
-            boolean b = byteOut.toString().contains(Message.WINNER_PLAYER.getMessageText());
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
+            boolean a = byteOut.toString(UTF_8).contains(Message.CONFIRM_ABANDONMENT.getMessageText());
+            boolean b = byteOut.toString(UTF_8).contains(Message.WINNER_PLAYER.getMessageText());
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
             assertTrue(inC && a && b, UNEXPECTED_MSG);
         }
 
@@ -377,8 +377,8 @@ public class CommandsTest {
             str = "/abbandona\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -393,8 +393,8 @@ public class CommandsTest {
             str = "/gioca\n/tempo\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.ELAPSED_TIME.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.ELAPSED_TIME.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -409,8 +409,8 @@ public class CommandsTest {
             str = "/tempo\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -425,9 +425,9 @@ public class CommandsTest {
             str = "/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean a = byteOut.toString().contains(Message.CONFIRM_EXIT.getMessageText());
-            boolean b = byteOut.toString().contains(Message.BAD_CONFIRMATION_EXIT.getMessageText());
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
+            boolean a = byteOut.toString(UTF_8).contains(Message.CONFIRM_EXIT.getMessageText());
+            boolean b = byteOut.toString(UTF_8).contains(Message.BAD_CONFIRMATION_EXIT.getMessageText());
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
             assertTrue(inC && a && !b, UNEXPECTED_MSG);
         }
 
@@ -443,13 +443,13 @@ public class CommandsTest {
             str = "/blocca d3\n/gioca\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            boolean check = byteOut.toString().contains(" ");
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            boolean check = byteOut.toString(UTF_8).contains(" ");
             char a = 'A';
             char uno = '1';
             for (int i = 0; i < Field.DEFAULT_DIM - 1; i++) {
-                check = check && byteOut.toString().contains("" + a);
-                check = check && byteOut.toString().contains("" + uno);
+                check = check && byteOut.toString(UTF_8).contains("" + a);
+                check = check && byteOut.toString(UTF_8).contains("" + uno);
                 a++;
                 uno++;
             }
@@ -468,8 +468,8 @@ public class CommandsTest {
             str = "/blocca a1\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.CANTDO.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -485,8 +485,8 @@ public class CommandsTest {
             str = "/blocca m9\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.COORD_ERR.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.COORD_ERR.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -501,8 +501,8 @@ public class CommandsTest {
             str = "/gioca\n/blocca a1\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.GAME_IS_PLAYING.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.GAME_IS_PLAYING.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -517,8 +517,8 @@ public class CommandsTest {
             str = "/gioca\na1-a6\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.ILLEGAL_MOVE.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.ILLEGAL_MOVE.getMessageText()), UNEXPECTED_MSG);
         }
 
         /**
@@ -533,8 +533,8 @@ public class CommandsTest {
             str = "a1-a2\n/esci\ns\n";
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
-            boolean inC = byteOut.toString().contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString().contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
+            boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
+            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.NO_GAME.getMessageText()), UNEXPECTED_MSG);
         }
 
     }
