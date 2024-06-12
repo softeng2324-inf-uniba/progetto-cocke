@@ -152,6 +152,10 @@ Rappresenta le classi che contengono la logica dell'applicazione:
 # **5. OO Design**
 ## 5.1 Diagramma delle classi
 
+Di seguito è rappresentato il diagramma delle classi generale per il gioco Ataxx, dove viene rappresentato più nello specifico la realizzazione del progetto
+
+![diagramma_delle_classi](./img/Report/diagrammi_di_classe/diagramma_delle_classi.png)
+
 ---
 
 
