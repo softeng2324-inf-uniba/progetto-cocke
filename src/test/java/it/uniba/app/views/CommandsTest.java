@@ -29,6 +29,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Classe di test per la classe Commands.
+ */
 public class CommandsTest {
 
     /**
@@ -147,7 +150,8 @@ public class CommandsTest {
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
             boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.UNKNOWN_COMMAND.getMessageText()), UNEXPECTED_MSG);
+            boolean a = byteOut.toString(UTF_8).contains(Message.UNKNOWN_COMMAND.getMessageText());
+            assertTrue(inC && a, UNEXPECTED_MSG);
         }
 
         /**
@@ -502,7 +506,8 @@ public class CommandsTest {
             streamToFile.write(str.getBytes(UTF_8));
             Commands.ataxxCommand(args);
             boolean inC = byteOut.toString(UTF_8).contains(Message.INSERT_COMMAND.getMessageText());
-            assertTrue(inC && byteOut.toString(UTF_8).contains(Message.GAME_IS_PLAYING.getMessageText()), UNEXPECTED_MSG);
+            boolean a = byteOut.toString(UTF_8).contains(Message.GAME_IS_PLAYING.getMessageText());
+            assertTrue(inC && a, UNEXPECTED_MSG);
         }
 
         /**
