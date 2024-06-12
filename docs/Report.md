@@ -154,91 +154,166 @@ Rappresenta le classi che contengono la logica dell'applicazione:
 
 Di seguito è rappresentato il diagramma delle classi generale per il gioco Ataxx
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/diagramma_delle_classi.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/diagramma_delle_classi.png"  alt=""/>
 </p>
 
 ---
 
 ### Comando /help
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_help.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_help.png"  alt=""/>
 </p>
 
 ### Comando help tramite flag
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_help_flag.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_help_flag.png"  alt=""/>
 </p>
 
 
 ### Comando /gioca
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_gioca.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_gioca.png"  alt=""/>
 </p>
 
 
 ### Comando /vuoto
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_vuoto.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_vuoto.png"  alt=""/>
 </p>
 
 ### Comando /tavoliere
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_tavoliere.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_tavoliere.png"  alt=""/>
 </p>
 
 ### Comando /qualimosse
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_qualimosse.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_qualimosse.png"  alt=""/>
 </p>
 
 ### Comando /mosse
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_mosse.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_mosse.png"  alt=""/>
 </p>
 
 ### Comando /abbandona
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_abbandona.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_abbandona.png"  alt=""/>
 </p>
 
 ### Comando /tempo
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_tempo.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_tempo.png"  alt=""/>
 </p>
 
 ### Comando /esci
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_esci.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_esci.png"  alt=""/>
 </p>
 
 ### Comando /blocca
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/comando_blocca.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/comando_blocca.png"  alt=""/>
 </p>
 
 ### Gestione di una mossa
 
-<p align="center">
-  <img src="./img/Report/diagramma_delle_classi/gestione_mosse.png" />
+<p style="text-align: center;">
+  <img src="./img/Report/diagramma_delle_classi/gestione_mosse.png"  alt=""/>
 </p>
 
 ---
 
 ## 5.2 Diagramma di sequenza
 
----
+### Comando /help
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_help.png"  alt=""/>
+</p>
+
+### Comando help con la flag
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_flaghelp.png"  alt=""/>
+</p>
+
+### Comando /gioca
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_gioca.png"  alt=""/>
+</p>
+
+### Comando /vuoto
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_vuoto.png"  alt=""/>
+</p>
+
+### Comando /tavoliere
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_tavoliere.png"  alt=""/>
+</p>
+
+### Comando /qualimosse
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_qualimosse.png"  alt=""/>
+</p>
+
+### Comando /mosse
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_mosse.png"  alt=""/>
+</p>
+
+### Comando /abbandona
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_abbandona.png"  alt=""/>
+</p>
+
+### Comando /tempo
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_tempo.png"  alt=""/>
+</p>
+
+### Comando /esci
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_esci.png"  alt=""/>
+</p>
+
+### Comando /blocca
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_blocca.png"  alt=""/>
+</p>
+
+### Mossa 
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_mossa1.png"  alt=""/>
+</p>
+
+<p style="text-align: center;">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_mossa2.png"  alt=""/>
+</p>
+
 
 
 
@@ -247,13 +322,13 @@ Di seguito è rappresentato il diagramma delle classi generale per il gioco Atax
 # **6. Riepilogo dei test**
 
 Di seguito è riportato un sommario riguardante i test effettuati per ogni package del programma:
-<p align="center">
-    <img src="./img/Report/Test_summary.png">
+<p style="text-align: center;">
+    <img src="./img/Report/Test_summary.png" alt="">
 </p>
 
 Di seguito sono mostrate le percentuali di copertura dei test per ogni package:
-<p align="center">
-    <img src="./img/Report/Test_coverage.png">
+<p style="text-align: center;">
+    <img src="./img/Report/Test_coverage.png" alt="">
 </p>
 
 ---
