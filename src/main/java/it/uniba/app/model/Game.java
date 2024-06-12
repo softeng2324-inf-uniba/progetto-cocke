@@ -225,10 +225,10 @@ public class Game {
      * @return il valore hash del <code>Game</code>.
      */
     public int hashCode() {
-        String temp = getGameField().toString() +
-                getMoveList().toString() +
-                Arrays.toString(getPlayers()) +
-                getStartTime().toString();
+        String temp = getGameField().toString()
+                + getMoveList().toString()
+                + Arrays.toString(getPlayers())
+                + getStartTime().toString();
         return temp.hashCode();
     }
 
