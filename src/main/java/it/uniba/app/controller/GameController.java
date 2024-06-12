@@ -125,16 +125,19 @@ public class GameController {
             Output.printMessages(Message.NO_MOVES);
         } else {
             StringBuilder moveList = new StringBuilder();
+            Move emptyMove = new Move(new Coordinate(0, 0), new Coordinate(0, 0));
             int i = 1;
             for (Move move : game.getMoveList()) {
-                int playerColor = i % 2;
-                moveList.append(i).append(". ").append(move).append(" ");
-                if (playerColor == 0) {
-                    moveList.append("(B); ");
-                } else {
-                    moveList.append("(N); ");
+                if (!move.equals(emptyMove)) {
+                    int playerColor = i % 2;
+                    moveList.append(i).append(". ").append(move).append(" ");
+                    if (playerColor == 0) {
+                        moveList.append("(B); ");
+                    } else {
+                        moveList.append("(N); ");
+                    }
+                    i++;
                 }
-                i++;
             }
             Output.printMessages(Message.MOVE_LIST, moveList.toString());
         }
