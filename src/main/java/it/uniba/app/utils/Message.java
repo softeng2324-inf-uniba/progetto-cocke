@@ -6,7 +6,7 @@ package it.uniba.app.utils;
  * <p>In questa enumerazione sono riportati tutti i messaggi principali del programma.</p>
  */
 public enum Message {
-    NO_GAME("Non è stata avviata alcuna partita. '/gioca' per avviare una nuova partita."),
+    NO_GAME("Nessuna partita in corso. '/gioca' per avviare una nuova partita."),
     CONFIRM_EXIT("Sicuro di voler uscire? (s/n)"),
     UNKNOWN_FLAG("Flag non riconosciuta: "),
     UNKNOWN_COMMAND("Comando sconosciuto. '/help' per mostrare la lista dei comandi."),
@@ -21,8 +21,8 @@ public enum Message {
     START_SLOT("della pedina da muovere"),
     ARRIVAL_SLOT("dello slot di arrivo"),
     WINNER_PLAYER("Il giocatore "),
-    PLAYER_WON(" ha vinto per abbandono dell'avversario, il punteggio è "),
-    NO_MOVES("Non è stata giocata nessuna mossa."),
+    PLAYER_WON(" ha vinto per abbandono dell'avversario. Punteggio:  "),
+    NO_MOVES("Nessuna mossa giocata."),
     MOVE_LIST("Ecco la lista delle mosse: "),
     SCORE_0(" a 0."),
     ILLEGAL_MOVE("Mossa non valida, riprova."),
@@ -30,7 +30,7 @@ public enum Message {
     PASS_TURN("Il turno passa all'altro giocatore."),
     ELAPSED_TIME("Tempo trascorso dall'inizio del gioco: "),
     COORD_ERR("Coordinate non riconosciute."),
-    GAME_IS_PLAYING("Non è possibile effettuare tale operazione, poichè è in corso una partita."),
+    GAME_IS_PLAYING("Impossibile effettuare tale operazione: partita in corso."),
     CANTDO("Operazione non possibile: ");
 
     /**
