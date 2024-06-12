@@ -168,6 +168,16 @@ Rappresenta le classi che contengono la logica dell'applicazione:
 
 # **6. Riepilogo dei test**
 
+Di seguito è riportato un sommario riguardante i test effettuati per ogni package del programma:
+<p align="center">
+    <img src="./img/Report/Test_summary.png">
+</p>
+
+Di seguito sono mostrate le percentuali di copertura dei test per ogni package:
+<p align="center">
+    <img src="./img/Report/Test_coverage.png">
+</p>
+
 ---
 
 
