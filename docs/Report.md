@@ -152,13 +152,87 @@ Rappresenta le classi che contengono la logica dell'applicazione:
 # **5. OO Design**
 ## 5.1 Diagramma delle classi
 
-Di seguito è rappresentato il diagramma delle classi generale per il gioco Ataxx, dove viene rappresentato più nello specifico la realizzazione del progetto
+Di seguito è rappresentato il diagramma delle classi generale per il gioco Ataxx
 
-![diagramma_delle_classi](./img/Report/diagrammi_di_classe/diagramma_delle_classi.png)
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/diagramma_delle_classi.png" />
+</p>
 
 ---
 
+### Comando /help
 
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_help.png" />
+</p>
+
+### Comando help tramite flag
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_help_flag.png" />
+</p>
+
+
+### Comando /gioca
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_gioca.png" />
+</p>
+
+
+### Comando /vuoto
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_vuoto.png" />
+</p>
+
+### Comando /tavoliere
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_tavoliere.png" />
+</p>
+
+### Comando /qualimosse
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_qualimosse.png" />
+</p>
+
+### Comando /mosse
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_mosse.png" />
+</p>
+
+### Comando /abbandona
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_abbandona.png" />
+</p>
+
+### Comando /tempo
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_tempo.png" />
+</p>
+
+### Comando /esci
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_esci.png" />
+</p>
+
+### Comando /blocca
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/comando_blocca.png" />
+</p>
+
+### Gestione di una mossa
+
+<p align="center">
+  <img src="./img/Report/diagramma_delle_classi/gestione_mosse.png" />
+</p>
 
 ---
 
