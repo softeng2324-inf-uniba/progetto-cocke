@@ -16,8 +16,7 @@
 
 
 - [4.1 Stile architetturale adottato](#41-stile-architetturale-adottato)
-- [4.2 Diagramma dei package](#42-diagramma-dei-package)
-- [4.3 Diagramma dei componenti](#43-diagramma-dei-componenti)
+
 
 [5. OO Design](#5-oo-design)
 
@@ -147,23 +146,6 @@ Rappresenta le classi che interagiscono con l'utente:
 ### Control
 Rappresenta le classi che contengono la logica dell'applicazione:
 - **GameController**
-
-
----
-
-## 4.2 Diagramma dei package
-
----
-
-![Diagrammadeipackage](./img/Report/DiagrammadeiPackage.png)
-
----
-
-## 4.3 Diagramma dei componenti
-
----
-
-![Diagrammadeicomponenti](./img/Report/Diagrammadeicomponenti.png)
 
 ---
 
