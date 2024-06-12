@@ -292,7 +292,7 @@ public class GameController {
             Output.printMessages(Message.UNAVAILABLE_MOVE,
                     currentPlayer.getName(), ". ", Message.PASS_TURN.getMessageText());
             ArrayList<Move> tempMoveList = getGame().getMoveList();
-            if (tempMoveList.get(tempMoveList.size() - 1).equals(emptyMove)) {
+            if (!isLegalMoves(game.nextPlayer())) {
                 Output.printMessages(Message.UNAVAILABLE_MOVE, "entrambi i giocatori.");
                 Output.printWinner(game);
                 game = null;
