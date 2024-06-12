@@ -107,7 +107,7 @@ public class CommandsTest {
         void startAtaxxCommand() throws IOException {
             str = "";
             byteOut = new ByteArrayOutputStream();
-            myPS = new PrintStream(byteOut);
+            myPS = new PrintStream(byteOut, false, UTF_8);
             System.setOut(myPS);
             args = new String[]{"-i", "CONSOLE"};
             streamToFile = new FileOutputStream(inToTest, true);
