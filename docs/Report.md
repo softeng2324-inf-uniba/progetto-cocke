@@ -238,7 +238,82 @@ Di seguito è rappresentato il diagramma delle classi generale per il gioco Atax
 
 ## 5.2 Diagramma di sequenza
 
----
+### Comando /help
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_help.png" />
+</p>
+
+### Comando help con la flag
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_flaghelp.png" />
+</p>
+
+### Comando /gioca
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_gioca.png" />
+</p>
+
+### Comando /vuoto
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_vuoto.png" />
+</p>
+
+### Comando /tavoliere
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_tavoliere.png" />
+</p>
+
+### Comando /qualimosse
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_qualimosse.png" />
+</p>
+
+### Comando /mosse
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_mosse.png" />
+</p>
+
+### Comando /abbandona
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_abbandona.png" />
+</p>
+
+### Comando /tempo
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_tempo.png" />
+</p>
+
+### Comando /esci
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_esci.png" />
+</p>
+
+### Comando /blocca
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_blocca.png" />
+</p>
+
+### Mossa 
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_mossa1.png" />
+</p>
+
+<p align="center">
+  <img src="./img/Report/Diagrammi_Di_Sequenza/DiagrammaDiSequenza_-_mossa2.png" />
+</p>
+
 
 
 
